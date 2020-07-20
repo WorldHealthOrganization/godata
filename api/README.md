@@ -13,7 +13,7 @@ Note: before running these scripts, make sure that the user used to send the req
 
 
 ### Managing your instance through API
-#### 1_godata_UpdateDatesInTraining.R	
+#### godata_UpdateDatesInTraining.R	
 ##### _This script gets cases, contacts, events, lab results and all the relationships of the cases and moves their dates by the number of days (defined in the input parameters) in order to keep outbreaks up to date._
 * Required inputs	
   * URL of the Go.Data server ending in “/”
@@ -25,7 +25,7 @@ Note: before running these scripts, make sure that the user used to send the req
 
 _Authors	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
 
-#### 2_Godata_modifyUserAccessToOubreak.R
+#### godata_modifyUserAccessToOubreak.R
 ##### _This script gets a list of users from Go.Data, identifies which of them are training participants and sets their available outbreaks and active outbreak_
 * Required inputs:
   * URL of the GO.Data server ending in “/”
@@ -38,7 +38,7 @@ _Authors	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
    
 _Authors	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
 
-#### 3_godata_generateOutbreaks.R
+#### godata_generateOutbreaks.R
 ##### _This script generates outbreaks for those participants that haven’t been able to generate their own during the training sessions and gives them access to this outbreak. It defines as well participants active outbreak_
 * Required inputs:	
   * URL of the GO.Data server ending in “/”
@@ -50,7 +50,7 @@ _Authors	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
 
 _Authors	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
 
-#### 4_godata_giveUsersAccessToMobileOutbreak.R
+#### godata_giveUsersAccessToMobileOutbreak.R
 ##### _This script gives users access to the outbreak used for connecting mobile phone and sets it active to prevent issues while participants connect. (Note: it respects user’s access to all outbreak he/she had access to before o running this script)_
 * Required inputs	
   * URL of the GO.Data server ending in “/”
@@ -63,7 +63,7 @@ _Authors	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
 
 _Authors	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
 
-#### Addition_godata_modifyUserRoles.R
+#### godata_modifyUserRoles.R
 ##### _This script modifies in bulk the roles of users of a go data installation with a certain pattern in the firstName_
 * Required inputs
   * URL of the GO.Data server ending in “/”
@@ -74,7 +74,7 @@ _Authors	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
 
 _Authors	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
 
-#### Addition_godata_createHospitalizations.R
+#### godata_createHospitalizations.R
 ##### _This script generates demo hospitalization dates for the cases of an outbreak. It generates them through the random number generator from the dateOfOnset_
 * Required inputs
   * URL of the GO.Data server ending in “/”
