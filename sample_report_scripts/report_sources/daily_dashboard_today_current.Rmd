@@ -1,0 +1,1016 @@
+---
+title: "Go.Data Rapport d'Opérations Quotidien - COVID-19 Tableau de bord - Aujourdhui"
+date: "`r format(Sys.time(), '%A %d %B %Y')`"
+output:
+    flexdashboard::flex_dashboard:
+      orientation: columns
+      theme: cosmo
+---
+
+```{r setup, include=FALSE}
+library(htmlwidgets)
+library(flexdashboard)
+library(sqldf)
+library(formattable)
+library(kableExtra)
+require(dplyr)
+library(ggplot2)
+library(purrr)
+
+path_to_functions <- here::here("functions")
+scripts_files <- dir(path_to_functions, pattern = ".R$", full.names=TRUE)
+for (file in scripts_files) source(file, local = TRUE)
+```
+
+```{r load_data, include = FALSE}
+
+clean_folder <- here::here("data", "clean")
+
+current_clean_cases <- get_latest_data("^cases.*.csv", clean_folder)
+current_clean_contacts <- get_latest_data("^contacts.*.csv", clean_folder)
+current_clean_followups <- get_latest_data("^followups.*.csv", clean_folder)
+# current_clean_locations <- get_latest_data("^location*.rds", clean_folder)
+
+current_clean_cases
+current_clean_cases <- rio::import(current_clean_cases) %>%
+  as_tibble()
+
+current_clean_contacts
+current_clean_contacts <- rio::import(current_clean_contacts) %>%
+  as_tibble()
+
+current_clean_followups
+current_clean_followups <- rio::import(current_clean_followups) %>%
+  as_tibble()
+  
+
+
+```
+
+```{r define_time_periods, include = FALSE}
+
+database_date <- Sys.Date() -1 
+
+# Extract time periods: yesterday i.e. date of database
+prev_1_date <- database_date - 1
+# prev_1_date <- max(followups$date_of_followup)
+ prev_7_date <- prev_1_date - 7
+ prev_21_date <- prev_1_date - 21
+
+# Create data of these time points, by filtering follow up list for only these date ranges 
+f_1day <- current_clean_followups %>% 
+  filter(date_of_followup == prev_1_date) %>% 
+  mutate(days = as.character(prev_1_date)) 
+
+f_0day <- current_clean_followups %>%
+  filter(date_of_followup == database_date) %>% 
+  mutate(days = as.character(database_date)) 
+
+f_7day <- current_clean_followups %>%
+  filter(date_of_followup >= prev_7_date) %>% 
+  mutate(days = as.character(prev_7_date)) 
+
+f_21day <- current_clean_followups %>%
+  filter(date_of_followup >= prev_21_date) %>% 
+  mutate(days = as.character(prev_21_date)) 
+
+```
+
+```{r themes, include = FALSE}
+# Create cusotmized color scales for graphs and tables
+custom_green0 = "#E3FCEE"
+custom_green = "#71CA97"
+custom_red0 = "#FFAAAA"
+custom_red = "#ff7f7f"
+custom_grey0 = "#ADADAD"
+custom_grey = "#818181"
+custom_orange0 = "#FFD6CA"
+custom_orange = "#FF9270"
+custom_blue0 = "#79C5FF"
+custom_blue = "#004F8B"
+
+scale_status <- scale_fill_manual(
+    "Statut",
+    values = c(seen            = "#71CA97",
+               not_seen        = "#5d6d75",
+               not_performed   = "#D3C9C6",
+               seen_no_signs   = "#A0E2BD",
+               seen_with_signs = "#E94B25",
+               decede          = "#020202"),
+                
+    labels = c(seen            = "Vu",
+               not_seen        = "Absent",
+               not_performed   = "Pas d'action",
+               seen_no_signs   = "Vu sans signes",
+               seen_with_signs = "Vu avec signes",
+               decede          = "Décédé"))
+
+scale_cause_nv <- scale_fill_manual(
+    "Cause de Non Vue",
+        values = c(
+               autreraison    = "#71CA97",
+               endeplacement  = "#E94B25",
+               resistance     = "#020202",
+               raison_de_travail = "#53F1EB",
+               refus_communautaire = "#FFB119",
+               transfertauct = "#C89DF6"),
+                
+    labels = c(autreraison    = "Autre Raison",
+               endeplacement  = "En déplacement",
+               resistance     = "Resistance",
+               raison_de_travail = "Raison de travail",
+               refus_communautaire = "Refus communitaire",
+               transfertauct = "Transfert au CT"))
+
+statuscols <- c(decede = 0, 
+                seen_with_signs = 0, 
+                seen_no_signs = 0,
+                not_seen = 0,
+                not_performed = 0)
+
+completioncols <- c(completed = 0,
+                    partial = 0,
+                    not_attempted = 0)
+    
+```
+
+```{r linelists, include = FALSE}
+
+
+## daily follow ups, past 21 days
+daily_follow_up_linelist_21d <- current_clean_followups %>%
+  arrange(desc(date_of_followup)) %>%
+  select(date_of_followup,
+         contact_id = visual_id,
+         status,
+         seen,
+         equipe,
+         zone,
+         province,
+         follow_up_number,
+         updated_at
+         # vaccinated
+         )
+
+
+## FUs from today or yesterday, which we will use for tables otherwise so many rows
+fu_subset <- daily_follow_up_linelist_21d %>%
+  filter(date_of_followup == database_date |
+         date_of_followup == prev_1_date) %>%
+  arrange(contact_id, desc(updated_at)) %>%
+  distinct(contact_id, .keep_all = TRUE) 
+
+## contact linelist, active (follow up end date equal to or after database_date)
+contact_status_linelist <- 
+  left_join(current_clean_contacts,fu_subset, by = c("contact_id" = "contact_id")) %>%
+  select(
+    contact_id,
+    statut_followup = followup_status,
+    nom = name,
+    sexe = gender,
+    age = age_years,
+    # classe_age = age_class,
+    occupation,
+    telephone,
+    date_dernier_contact = date_of_last_contact,
+    date_dernier_visite = date_of_followup,
+    date_contact_liste = date_of_data_entry,
+    equipe = equipe.x,
+    zone = zone.x,
+    province = province.x,
+    enterrement_securise = safe_burial,
+    statut_dernier_visite = status,
+    # statut_vaccinal = vaccinated,
+    etait_cas = was_case) 
+
+
+
+### case linelist, past 21 days
+case_linelist <- current_clean_cases %>%
+  filter(date_of_reporting >= prev_21_date) %>%
+  # mutate(contacts_per_case = str_replace_na(contacts_per_case, replacement = 0 )) %>%
+  mutate(date_of_death = case_when(
+                    outcome_id == "decede" ~ date_of_outcome)) %>%
+  # mutate(date_of_outcome = case_when(
+  #                   !is.na(date_of_death) ~ date_of_death,
+  #                         TRUE ~ date_of_outcome)) %>%
+  # mutate(safeburial = case_when(safeburial == "TRUE" ~ "oui",
+  #                               safeburial == "FALSE" ~ "non",
+  #                         TRUE ~ NA)) %>%
+  mutate(cas_source_connu = case_when(
+              is.na(source_case_contact_id) ~ "non",
+              TRUE ~ "oui")) %>%
+  select(
+        cas_id = visual_id,
+        nom = name,
+        sexe = gender,
+        age = age_years,
+        # classe_age = age_class,
+        occupation,
+        telephone,
+        classification,
+        resultat = outcome_id,
+        nombre_de_contacts = contacts_per_case,
+        cas_source_connu,
+        cas_source_id = source_case_contact_id,
+        contact_connu = was_contact_godata,
+        # etait_contact = was_contact_godata,
+        date_dernier_contact = date_of_last_contact,
+        date_devenir_cas = date_become_case,
+        date_du_rapport = date_of_reporting,
+        date_of_data_entry_go_data = date_of_data_entry,
+        date_debut_symptomes = date_of_onset,
+        date_du_resultat = date_of_outcome,
+        # date_isolement = date_of_isolation,
+        # nom_du_centre = center_name,
+        date_decede = date_of_death,
+        # enterrement_securise = safeburial,
+        # date_enterrement = date_of_burial,
+        # voyage = patient_travel,
+        # lien_parent = parent_link,
+        # statut_vaccinal = vaccinated,
+        transfert_refuse = transferrefused,
+        # raison_risque = risk_reason,
+        # participer_funerailles = participate_funeral,
+        # lat,
+        # long,
+        equipe,
+        zone,
+        province,
+        adresse = address,
+        ville = city
+        # endroit_patient_est_tombe = location_fell_ill
+        )
+
+
+case_linelist_essential <- case_linelist %>% 
+  mutate_all(as.character) %>%
+  # mutate_if(is_character, funs(na_if(.,""))) %>%
+  mutate(date_du_resultat = as_date(date_du_resultat)) %>%
+  mutate(date_debut_symptomes = as_date(date_debut_symptomes)) %>%
+  mutate(fardeau_syndromique = difftime(date_du_resultat,date_debut_symptomes, units = "day")) %>%
+      select(
+        date_du_rapport,
+        cas_id,
+        nom,
+        sexe,
+        age,
+        occupation,
+        classification,
+        resultat,
+        nombre_de_contacts,
+        cas_source_connu,
+        contact_connu,
+        date_dernier_contact,
+        date_devenir_cas,
+        date_debut_symptomes,
+        # date_du_resultat,
+        # date_isolement,
+        date_decede,
+        fardeau_syndromique,
+        # enterrement_securise,
+        # lien_parent,
+        # statut_vaccinal,
+        # lat,
+        # long,
+        ville,
+        equipe,
+        zone,
+        province
+        # endroit_patient_est_tombe
+        ) 
+
+case_linelist_essential$total_na <- 
+  apply(case_linelist_essential,
+                MARGIN = 1, function(x) sum(is.na(x))) 
+
+contacts_seen_ever <- daily_follow_up_linelist_21d %>%
+  subset(seen == TRUE) %>%
+  filter(!(contact_id == "")) %>%
+  arrange(contact_id, desc(updated_at)) %>%
+  distinct(contact_id, .keep_all = TRUE) %>%
+  select(contact_id, date_of_followup, seen)
+# 
+# contacts_vaccinated_ever <- daily_follow_up_linelist_21d %>%
+#   subset(vaccinated == "oui") %>%
+#   filter(!(contact_id == "")) %>%
+#   arrange(contact_id, desc(updated_at)) %>%
+#   distinct(contact_id, .keep_all = TRUE) %>%
+#   select(contact_id, date_of_followup, vaccinated)
+  
+active_contacts_full_linelist <- contact_status_linelist %>%
+  mutate(equipe = str_replace_all(equipe, "_", " ")) %>%
+  # mutate(sup = str_replace_all(sup, "sup", "")) %>%
+  mutate(equipe = str_to_title(equipe)) %>%
+  mutate(zone = str_to_title(zone)) %>%
+  mutate(province = str_to_title(province)) %>%
+  mutate(date_dernier_visite = as_date(date_dernier_visite)) %>%
+  mutate(date_dernier_contact = as_date(date_dernier_contact)) %>%
+  mutate(days_since_followup = difftime(database_date,date_dernier_visite, units = "day")) %>%
+  mutate(days_since_exp = difftime(database_date,date_dernier_contact, units = "day")) %>%
+  mutate(vu_avec_signes = case_when(
+                                  statut_dernier_visite == "seen_with_signs" 
+                                & date_dernier_visite == database_date ~ TRUE, 
+                                  TRUE ~ FALSE)) %>%
+  mutate(absent = case_when(
+                                  statut_dernier_visite == "not_seen" 
+                                & date_dernier_visite == database_date ~ TRUE, 
+                                  TRUE ~ FALSE)) %>%
+  mutate(pas_d_action = case_when(
+                                  statut_dernier_visite == "not_performed" 
+                                & date_dernier_visite == database_date ~ TRUE, 
+                                  TRUE ~ FALSE)) %>%
+  # mutate(vaccine = (contact_status_linelist$contact_id %in% contacts_vaccinated_ever$contact_id)) %>%
+  mutate(vu_sans_signes = case_when(
+                                  statut_dernier_visite == "seen_no_signs" 
+                                & date_dernier_visite == database_date ~ TRUE, 
+                                  TRUE ~ FALSE)) %>%
+  mutate(etait_cas = case_when(
+                                  etait_cas == TRUE 
+                                & date_dernier_visite == database_date ~ TRUE,
+                                  TRUE ~ FALSE)) %>%
+  mutate(perdu_vue = case_when(
+                                  days_since_followup >= 3 ~ TRUE,
+                                  TRUE ~ FALSE)) %>%
+  mutate(deuxieme_semaine = case_when(
+                                  days_since_exp < 15
+                                  & days_since_exp >= 8 ~ TRUE,
+                                  TRUE ~ FALSE)) %>%
+  mutate(premiere_semaine = case_when(
+                                  days_since_exp < 8 ~ TRUE,
+                                  TRUE ~ FALSE)) %>%
+  mutate(enterrement_securise = case_when(
+                                  enterrement_securise == TRUE 
+                                  & date_dernier_visite == database_date ~ TRUE, 
+                                  TRUE ~ FALSE)) %>%
+  mutate(jamais_vue = !(contact_status_linelist$contact_id %in% contacts_seen_ever$contact_id)) %>%
+  mutate(decede = case_when(
+                                  statut_dernier_visite == "decede"
+                                & date_dernier_visite == database_date ~ TRUE,
+                                   TRUE ~ FALSE)) %>%
+  select(
+    contact_id,
+    nom,
+    sexe,
+    age,
+    telephone,
+    equipe,
+    zone,
+    province,
+    date_dernier_contact,
+    deuxieme_semaine,
+    premiere_semaine,
+    date_contact_liste,
+    date_dernier_visite,
+    statut_dernier_visite,
+    vu_avec_signes,
+    vu_sans_signes,
+    absent,
+    pas_d_action,
+    decede,
+    # vaccine,
+    etait_cas,
+    perdu_vue,
+    jamais_vue,
+    enterrement_securise
+        )
+
+```
+
+```{r summary_counts, include = FALSE}
+
+
+total_active_contacts_reg <- current_clean_contacts %>%
+  count() 
+
+total_cases_reg <- current_clean_cases %>%
+  count()
+
+total_cases_reg_21d <- case_linelist_essential %>%
+  count()
+
+total_active_contact_tracers <- current_clean_contacts %>%
+  distinct(location_id) %>%
+  count()
+
+total_active_teams <- current_clean_contacts %>%
+  distinct(equipe_id) %>%
+  count()
+
+total_followups_generated_last21d <- current_clean_followups %>%           ## dont include per Lucas request
+  count()
+
+total_followups_forms_completed_last21d <- current_clean_followups %>%      ## dont include per Lucas request
+  filter(performed == TRUE) %>%
+  count()
+
+total_followups_seen_with_signs_last21d <- current_clean_followups %>%
+  filter(status == "seen_with_signs") %>%
+  count()
+
+total_contacts_lost_to_followup_last21d <- active_contacts_full_linelist %>%
+  filter(perdu_vue == TRUE) %>%
+  count()
+
+total_contacts_never_seen_last21d <- active_contacts_full_linelist %>%
+  filter(jamais_vue == TRUE) %>%
+  count()
+
+total_contacts_in_second_week_last21d <- active_contacts_full_linelist %>%
+  filter(deuxieme_semaine == TRUE) %>%
+  count()
+
+
+```
+
+
+
+Contacts 
+=====================================================
+
+
+Column {data-width=75}
+-----------------------------------------------------------------------
+
+### Total Contacts Actifs 
+```{r total_active_contacts_reg, echo = FALSE}
+
+valueBox(total_active_contacts_reg, color = "#81A4CE")
+
+
+```
+
+### Contacts Vu Avec Signes last 21d
+
+```{r total_followups_seen_with_signs_last21d, echo = FALSE}
+
+valueBox(total_followups_seen_with_signs_last21d, color = "#E94B25")  
+
+```
+
+
+### Contacts Dans Première Semaine
+```{r total_contacts_in_second_week_last21d, echo = FALSE}
+
+valueBox(total_contacts_in_second_week_last21d, color = "#4a7cb9 ")
+
+```
+
+<!-- ### Total Equipes -->
+
+<!-- ```{r total_active_teams, echo = FALSE} -->
+
+<!-- valueBox(total_active_teams, color = "#004F8B") -->
+
+<!-- ``` -->
+
+
+<!-- ### Follow-ups Generated last 21d -->
+<!-- ```{r total_countries, echo = FALSE} -->
+
+<!-- valueBox(total_followups_generated_last21d, color = "#818181") -->
+
+
+<!-- ``` -->
+
+### Contacts Perdu Vue 
+```{r total_contacts_lost_to_followup_last21d, echo = FALSE}
+
+valueBox(total_contacts_lost_to_followup_last21d, color = "#818181")
+
+```
+
+### Contacts Jamais Vue
+```{r total_contacts_never_seen_last21d, echo = FALSE}
+
+valueBox(total_contacts_never_seen_last21d, color = "#CD5C5C")
+
+```
+
+
+<!-- ### Follow-ups Completed last 21d -->
+
+<!-- ```{r total_followups_forms_completed_last21d, echo = FALSE} -->
+
+<!-- valueBox(total_followups_forms_completed_last21d, color = "#71CA97") -->
+
+<!-- ``` -->
+
+
+
+Column {.tabset data-width=925}
+-----------------------------------------------------------------------
+
+### Statut de contacts par equipe - tableau
+
+```{r contact_summary_table_by_equipe, include= TRUE}
+
+
+
+active_per_equipe <- active_contacts_full_linelist %>%
+  mutate(equipe = str_replace_na(equipe, replacement = "aucun correctement attribué" )) %>%
+  group_by(equipe, zone) %>%
+  count()
+
+
+tab_active_contacts_status_daily <- active_contacts_full_linelist %>%
+mutate(equipe = str_replace_na(equipe, replacement = "aucun correctement attribué" )) %>%
+  group_by(equipe, zone) %>%
+  summarize(
+        vu_avec_signes = sum(vu_avec_signes),
+        vu_sans_signes = sum(vu_sans_signes),
+        absent = sum(absent),
+        pas_d_action = sum(pas_d_action),
+        decede = sum(decede),
+        # vaccine = sum(vaccine),
+        deuxieme_semaine = sum(deuxieme_semaine),
+        premiere_semaine = sum(premiere_semaine),
+        etait_cas = sum(etait_cas),
+        perdu_vue = sum(perdu_vue),
+        jamais_vue = sum(jamais_vue)
+        ) 
+  
+tab_active_contacts_status_daily_join <-
+sqldf('select *
+                from tab_active_contacts_status_daily as tab
+                  inner join active_per_equipe as active on tab.equipe = active.equipe 
+                                                  AND tab.zone = active.zone 
+                  ')  %>%
+  setNames(., make.names(colnames(.), unique = TRUE)) %>%
+  arrange(zone, equipe) %>%
+ 
+  
+  dplyr::select(`Equipe` = equipe,
+         `Zone` = zone,
+         `Contacts actifs` = n,
+         `Vu avec signes`= vu_avec_signes,
+         `Vu sans signes` = vu_sans_signes,
+         `Absent` = absent,
+         `Pas d'action` = pas_d_action,
+         `Décédé` = decede,
+         `Dans premiere semaine` = premiere_semaine,
+         `Dans deuxieme semaine` = deuxieme_semaine,
+         `Est devenu un cas` = etait_cas,
+         `Perdu vue` = perdu_vue,
+         `Jamais vue` = jamais_vue
+         # `Vacciné` = vaccine
+         
+         # `Enterrement sécuritaire` = safe_burial
+        ) 
+
+formattable_tab_active_contacts_status_daily_join <-tab_active_contacts_status_daily_join %>%
+  
+mutate(
+  `Equipe` = formatter("span", style = ~ formattable::style(
+                    color = ifelse(`Equipe` == "aucun correctement attribué", "red", "grey"),
+                    font.weight = "bold",font.style = "italic"))(`Equipe`),
+  `Vu avec signes`= color_tile("white", custom_orange)(`Vu avec signes`),
+  `Vu sans signes`= color_tile("white", "#A0E2BD")(`Vu sans signes`),
+  `Est devenu un cas`= color_tile("white", "grey")(`Est devenu un cas`),
+  `Perdu vue`= color_tile("white", "grey")(`Perdu vue`), 
+  `Jamais vue`= color_tile("white", custom_red)(`Jamais vue`),
+  # `Vacciné`= color_tile("white", custom_green0)(`Vacciné`),
+  `Décédé`= color_tile("white", custom_grey)(`Décédé`),
+  `Contacts actifs` = color_tile("white", "#81A4CE")(`Contacts actifs`)
+          ) %>%
+  # select(`Superviseur`, everything()) %>%
+  kable("html", escape = F, align =c("l","l","c","c","c","c","c","c","c","c","c","c","c")) %>%
+  kable_styling("hover", full_width = FALSE) %>%
+  add_header_above(c(" " = 3, 
+                    "Statut de la visite d'aujourd'hui" = 5,
+                    "De contacts actifs" = 5))
+
+formattable_tab_active_contacts_status_daily_join
+
+```
+
+### Active Contacts by Zone 
+
+```{r contacts_active_by_zone, fig.width=10, fig.height=7}
+# 
+# active_contacts_by_aire <- contact_status_linelist  %>%
+#   mutate(aire = str_to_title(aire)) %>%
+#   group_by(aire) %>%
+#   summarise(n=n())
+# 
+# graph_active_contacts_by_aire <-
+# ggplot(active_contacts_by_aire, aes(x = reorder(aire, n), y = n, label = n)) +
+#   geom_col() +
+#   coord_flip() +
+#   theme_classic() +
+#   labs(x = "",
+#          y = "Nombre de contacts",
+#          title = "Nombre de contacts actif par aire",
+#          subtitle = paste0("Donnees jusq'a ", database_date, "\n")) +
+#   theme(plot.title = element_text(face = "bold", color = "#011822", size = 14),
+#         plot.subtitle = element_text(size = 11, color = "#011822"),
+#         legend.position = "top"
+#         ) +
+#   geom_text(size = 3, position = position_stack(vjust = 0.5), color = "white", check_overlap = TRUE, fontface = "bold") 
+# 
+# graph_active_contacts_by_aire
+
+
+contact_status_by_zone <- contact_status_linelist %>%
+  mutate(zone = str_to_title(zone)) %>%
+  filter(date_dernier_visite == database_date) %>%
+  group_by(zone, statut_dernier_visite) %>%
+  tally() %>%
+  pivot_wider(names_from = statut_dernier_visite, values_from = n, values_fill = list(n=0)) %>%
+  add_column(!!!statuscols[!names(statuscols)%in% names(.)]) %>%
+  # mutate(statut_dernier_visite = case_when(
+  #                                 decede >=1 ~ "decede",
+  #                                 seen_with_signs >= 1 ~ "seen_with_signs",
+  #                                 seen_no_signs >= 1 ~ "seen_no_signs",
+  #                                 not_seen >= 1 ~ "not_seen",
+  #                                 not_performed >= 1 ~ "not_performed"
+  #                                 )) %>%
+  gather("daily_status", "n", -zone) %>%
+  arrange(zone, daily_status) 
+
+
+graph_contact_status_by_zone <-
+    contact_status_by_zone %>%
+    ggplot(aes(x = reorder(zone, n), y = n, fill = daily_status, label = ifelse(n>0, n, NA))) +
+    geom_col(position = "stack") +
+    coord_flip() +
+    theme_classic() +
+    labs(x = "",
+         y = "Nombre de contacts",
+         title = "Statut de contacts quotidien, par zone",
+         subtitle = paste0("Donnees jusq'a ", database_date, "\n")) +
+  theme(plot.title = element_text(face = "bold", color = "#011822", size = 14),
+        plot.subtitle = element_text(size = 11, color = "#011822")
+        # ,legend.position = "top"
+        ) +
+  geom_text(size = 3, position = position_stack(vjust = 0.5), color = "white", check_overlap = TRUE, fontface = "bold") +
+  scale_status +
+    # scale_x_discrete(drop = TRUE) +
+    # facet_wrap(~aire, strip.position = "right", scales = "free_y", ncol = 1) +
+    # facet_grid(.~zone, scales = "free_y", space = "free", drop = TRUE) +
+    theme(panel.spacing = unit(1, "lines"), 
+         strip.background = element_blank(),
+         strip.placement = "outside")  
+
+graph_contact_status_by_zone
+    
+    
+```
+
+
+
+### Contacts by Equipe 
+```{r daily_follow_up_status_equipe, fig.width=10, fig.height=7}
+
+# active_contacts_by_sup <- contact_status_linelist  %>%
+#   # mutate(reco = str_sub(reco, 8, -1 )) %>%
+#   # mutate(reco = str_replace_all(reco, "_", " ")) %>%
+#   # mutate(reco = str_to_sentence(reco)) %>%
+#   mutate(sup = str_replace_all(sup, "_", " ")) %>%
+#   mutate(sup = str_replace_all(sup, "sup", "")) %>%
+#   mutate(sup = str_to_title(sup)) %>%
+#   mutate(aire = str_to_title(aire)) %>%
+#   group_by(sup, aire) %>%
+#   summarise(n=n()) %>%
+#   filter(! is.na(sup))
+# 
+# 
+# graph_active_contacts_by_sup <-
+# ggplot(active_contacts_by_sup, aes(x = reorder(sup, n), y = n, label = n)) +
+#   geom_col() +
+#   coord_flip() +
+#   theme_classic() +
+#   labs(x = "",
+#          y = "Nombre de contacts",
+#          title = "Nombre de contacts actif par aire",
+#          subtitle = paste0("Donnees jusq'a ", database_date, "\n")) +
+#   theme(plot.title = element_text(face = "bold", color = "#011822", size = 14),
+#         plot.subtitle = element_text(size = 11, color = "#011822")
+#         ) +
+#   facet_wrap(~aire, strip.position = "right", scales = "free_y", ncol = 1) +
+#   geom_text(size = 3, position = position_stack(vjust = 0.5), color = "white", check_overlap = TRUE, fontface = "bold") 
+# graph_active_contacts_by_sup
+
+
+contact_status_by_equipe <- contact_status_linelist %>%
+  filter(! is.na(equipe)) %>%
+  # mutate(reco = str_sub(reco, 8, -1 )) %>%
+  # mutate(reco = str_replace_all(reco, "_", " ")) %>%
+  # mutate(reco = str_to_sentence(reco)) %>%
+  mutate(equipe = str_replace_all(equipe, "_", " ")) %>%
+  # mutate(sup = str_replace_all(sup, "sup", "")) %>%
+  mutate(equipe = str_to_title(equipe)) %>%
+  mutate(zone = str_to_title(zone)) %>%
+  filter(date_dernier_visite == database_date) %>%
+  group_by(equipe, zone, statut_dernier_visite) %>%
+  tally() %>%
+  pivot_wider(names_from = statut_dernier_visite, values_from = n, values_fill = list(n=0)) %>%
+  add_column(!!!statuscols[!names(statuscols)%in% names(.)]) %>%
+  # mutate(statut_dernier_visite = case_when(
+  #                                 decede >=1 ~ "decede",
+  #                                 seen_with_signs >= 1 ~ "seen_with_signs",
+  #                                 seen_no_signs >= 1 ~ "seen_no_signs",
+  #                                 not_seen >= 1 ~ "not_seen",
+  #                                 not_performed >= 1 ~ "not_performed"
+  #                                 )) %>%
+  gather("daily_status", "n", -equipe, -zone) %>%
+  arrange(equipe, zone, daily_status) 
+
+
+
+graph_contact_status_by_equipe <-
+    contact_status_by_equipe %>%
+    ggplot(aes(x = reorder(equipe, n), y = n, fill = daily_status, label = ifelse(n>0, n, NA))) +
+    geom_col(position = "stack") +
+    theme_classic() +
+    labs(x = "",
+         y = "Nombre de contacts",
+         title = "Statut de contacts quotidien, par Equipe",
+         subtitle = paste0("Donnees jusq'a ", database_date, "\n")) +
+  theme(plot.title = element_text(face = "bold", color = "#011822", size = 14),
+        plot.subtitle = element_text(size = 11, color = "#011822")
+        # ,legend.position = "top"
+        ) +
+  facet_wrap(~zone, strip.position = "right", scales = "free_y", ncol = 1) +
+  geom_text(size = 3, position = position_stack(vjust = 0.5), color = "white", check_overlap = TRUE, fontface = "bold") +
+  scale_status +
+    # scale_x_discrete(drop = TRUE) +
+    
+    # facet_grid(.~aire, scales = "free_y", space = "free", drop = TRUE) +
+    # theme(panel.spacing = unit(1, "lines"), 
+    #      strip.background = element_blank(),
+    #      strip.placement = "outside") + 
+    coord_flip() 
+    
+
+graph_contact_status_by_equipe
+  
+
+```  
+
+### Suivi des contacts au fil du temps 
+```{r follow_ups_over_time, fig.width=10, fig.height=7}
+
+
+graph_21d_follow_up <- daily_follow_up_linelist_21d %>%
+  group_by(date_of_followup, status, zone, equipe) %>%
+  tally() %>%
+  pivot_wider(names_from = status, values_from = n, values_fill = list(n=0)) %>%
+  add_column(!!!statuscols[!names(statuscols)%in% names(.)]) %>%
+  gather("status", "n", -zone, -equipe, -date_of_followup) %>%
+  ggplot(aes(x=date_of_followup, y = n, fill = status)) +
+  geom_col(position = position_stack(reverse = TRUE)) +
+  theme_classic() +
+  labs(x = "Date de suivi",
+       y = "Nombre de contacts",
+       title = "Suivi des contacts au fil du temps",
+       subtitle = "Dernière 21 jours") +
+  theme(plot.title = element_text(face = "bold", color = "#011822", size = 14),
+        plot.subtitle = element_text(size = 11, color = "#011822"),
+        axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5)
+                                   
+        # ,legend.position = "top"
+  ) +
+  # geom_text(size = 3, position = position_stack(vjust = 0.5), color = "white", check_overlap = TRUE, fontface = "bold") +
+  scale_status +
+  # scale_x_discrete(drop = TRUE) +
+  # facet_wrap(~aire, strip.position = "right", scales = "free_y", ncol = 1) +
+  # facet_grid(.~zone, scales = "free_y", space = "free", drop = TRUE) +
+  theme(panel.spacing = unit(1, "lines"), 
+        strip.background = element_blank(),
+        strip.placement = "outside")  
+
+  graph_21d_follow_up
+  
+```
+
+<!-- ### Contacts by RECO  -->
+<!-- ```{r daily_follow_up_status_reco, fig.width=10, fig.height=7} -->
+
+<!-- # active_contacts_by_reco <- contact_status_linelist  %>% -->
+<!-- #   mutate(reco = str_sub(reco, 8, -1 )) %>% -->
+<!-- #   mutate(reco = str_replace_all(reco, "_", " ")) %>% -->
+<!-- #   mutate(reco = str_to_sentence(reco)) %>% -->
+<!-- #   mutate(sup = str_replace_all(sup, "_", " ")) %>% -->
+<!-- #   mutate(sup = str_replace_all(sup, "sup", "")) %>% -->
+<!-- #   mutate(sup = str_to_title(sup)) %>% -->
+<!-- #   mutate(aire = str_to_title(aire)) %>% -->
+<!-- #   group_by(reco, sup, aire) %>% -->
+<!-- #   summarise(n=n())  -->
+<!-- #  -->
+<!-- #  -->
+<!-- # graph_active_contacts_by_reco <- -->
+<!-- # ggplot(active_contacts_by_reco, aes(x = reorder(reco, n), y = n, label = n)) + -->
+<!-- #   geom_col() + -->
+<!-- #   coord_flip() + -->
+<!-- #   theme_classic() + -->
+<!-- #   labs(x = "", -->
+<!-- #          y = "Nombre de contacts", -->
+<!-- #          title = "Nombre de contacts actif par RECO", -->
+<!-- #          subtitle = paste0("Donnees jusq'a ", database_date, "\n")) + -->
+<!-- #   theme(plot.title = element_text(face = "bold", color = "#011822", size = 14), -->
+<!-- #         plot.subtitle = element_text(size = 11, color = "#011822"), -->
+<!-- #         legend.position = "top" -->
+<!-- #         ) + -->
+<!-- #   facet_wrap(~aire, strip.position = "right", scales = "free_y", ncol = 1) + -->
+<!-- #   geom_text(size = 3, position = position_stack(vjust = 0.5), color = "white", check_overlap = TRUE, fontface = "bold")  -->
+<!-- # graph_active_contacts_by_reco -->
+
+
+<!-- contact_status_by_reco <- contact_status_linelist %>% -->
+<!--   # filter(! is.na(sup)) %>% -->
+<!--   mutate(reco = str_sub(reco, 8, -1 )) %>% -->
+<!--   mutate(reco = str_replace_all(reco, "_", " ")) %>% -->
+<!--   mutate(reco = str_to_sentence(reco)) %>% -->
+<!--   mutate(sup = str_replace_all(sup, "_", " ")) %>% -->
+<!--   mutate(sup = str_replace_all(sup, "sup", "")) %>% -->
+<!--   mutate(sup = str_to_title(sup)) %>% -->
+<!--   mutate(aire = str_to_title(aire)) %>% -->
+<!--   filter(date_dernier_visite == database_date) %>% -->
+<!--   group_by(reco, sup, aire, statut_dernier_visite) %>% -->
+<!--   tally() %>% -->
+<!--   pivot_wider(names_from = statut_dernier_visite, values_from = n, values_fill = list(n=0)) %>% -->
+<!--   add_column(!!!statuscols[!names(statuscols)%in% names(.)]) %>% -->
+<!--   # mutate(statut_dernier_visite = case_when( -->
+<!--   #                                 decede >=1 ~ "decede", -->
+<!--   #                                 seen_with_signs >= 1 ~ "seen_with_signs", -->
+<!--   #                                 seen_no_signs >= 1 ~ "seen_no_signs", -->
+<!--   #                                 not_seen >= 1 ~ "not_seen", -->
+<!--   #                                 not_performed >= 1 ~ "not_performed" -->
+<!--   #                                 )) %>% -->
+<!--   gather("daily_status", "n", -reco, -sup, -aire) %>% -->
+<!--   arrange(reco, sup, aire, daily_status)  -->
+
+
+
+<!-- graph_contact_status_by_reco <- -->
+<!--     contact_status_by_reco %>% -->
+<!--     ggplot(aes(x = reorder(reco, n), y = n, fill = daily_status, label = ifelse(n>0, n, NA))) + -->
+<!--     geom_col(position = "stack") + -->
+<!--   coord_flip() + -->
+<!--   theme_classic() + -->
+<!--     labs(x = "", -->
+<!--          y = "Nombre de contacts", -->
+<!--          title = "Statut de contacts quotidien, par RECO", -->
+<!--          subtitle = paste0("Donnees jusq'a ", database_date, "\n")) + -->
+<!--   theme(plot.title = element_text(face = "bold", color = "#011822", size = 14), -->
+<!--         plot.subtitle = element_text(size = 11, color = "#011822") -->
+<!--         # ,legend.position = "top" -->
+<!--         ) + -->
+<!--   geom_hline(aes(yintercept = 20), col = "red", lty = 2, lwd = 1, alpha = 0.5) + -->
+<!--   facet_wrap(~aire, strip.position = "right", scales = "free_y", ncol = 1) + -->
+<!--   geom_text(size = 3, position = position_stack(vjust = 0.5), color = "white", check_overlap = TRUE, fontface = "bold") + -->
+<!--   scale_status  -->
+<!--     # scale_x_discrete(drop = TRUE) + -->
+
+<!--     # # facet_grid(.~aire, scales = "free_y", space = "free", drop = TRUE) + -->
+<!--     # theme(panel.spacing = unit(1, "lines"),  -->
+<!--     #      strip.background = element_blank(), -->
+<!--     #      strip.placement = "outside") +  -->
+
+
+<!-- graph_contact_status_by_reco -->
+
+
+<!-- ```   -->
+
+
+Cases 
+=====================================================
+
+
+Column {data-width=75}
+-----------------------------------------------------------------------
+
+### Registered Cases, since beginning of outbreak
+```{r total_cases_reg, echo = FALSE}
+
+valueBox(total_cases_reg, color = "#ff7f7f")
+
+
+```
+
+### Cases investigated in last 21 days
+```{r total_cases_reg_21d, echo = FALSE}
+
+valueBox(total_cases_reg_21d, color = "#ff4d4d")
+
+```
+
+
+Column {.tabset data-width=925}
+-------------------------------------
+### Registration des cas au fil du temps
+```{r cases_over_time, fig.width=10, fig.height=7}
+
+
+graph_21d_cases <- case_linelist_essential %>%
+  group_by(date_du_rapport, ville, sexe) %>%
+  tally() %>%
+  # pivot_wider(names_from = sexe, values_from = n, values_fill = list(n=0)) %>%
+  # gather("sexe", "n", -date_du_rapport) %>%
+  ggplot(aes(x=date_du_rapport, y = n, fill = sexe)) +
+  geom_col(position = "stack") +
+  theme_classic() +
+  labs(x = "Date du rapport",
+       y = "Nombre de cas",
+       title = "Investigation des cas au fil du temps",
+       subtitle = "Dernière 21 jours, par sexe") +
+  theme(plot.title = element_text(face = "bold", color = "#011822", size = 14),
+        plot.subtitle = element_text(size = 11, color = "#011822"),
+        axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 0.5)
+                                   
+        # ,legend.position = "top"
+  ) +
+  # geom_text(size = 3, position = position_stack(vjust = 0.5), color = "white", check_overlap = TRUE, fontface = "bold") +
+  # scale_x_discrete(drop = TRUE) +
+  # facet_wrap(~aire, strip.position = "right", scales = "free_y", ncol = 1) +
+  theme(panel.spacing = unit(1, "lines"), 
+        strip.background = element_blank(),
+        strip.placement = "outside")  
+
+  graph_21d_cases
+  
+```
+
+### Case Investigation Forms, last 21 days
+
+```{r case_data_completion}
+
+## TO DO:
+## 1. epi link - is there a source case ID for the case? if so, what is the type of transmission
+
+
+tab_case_data_completion <- case_linelist_essential %>%
+  mutate(ville = str_replace_all(ville, "_", "-")) %>%
+  mutate(ville = str_to_title(ville)) %>%
+  mutate(cas_id = str_replace_all(cas_id, "_", "-")) %>%
+  mutate(fardeau_syndromique = str_replace_na(fardeau_syndromique, replacement = "--" )) %>%
+  mutate(nombre_de_contacts = str_replace_na(nombre_de_contacts, replacement = "--" )) %>%
+  mutate(cas_id = str_replace_na(cas_id, replacement = "-" )) %>%
+  mutate(perc_complete = 100- (total_na * 100 / 20)) %>%
+  arrange(desc(date_du_rapport)) %>%
+  # mutate(isolement = case_when(!is.na(date_isolement) ~ "oui", TRUE ~ "non")) %>%
+  mutate(perc_complete = paste0(perc_complete,"%")) %>%
+  select(
+          # `Aire de Santé` = aire, 
+          `Ville` = ville,
+          `Date du rapport ` = date_du_rapport,
+          `Cas ID` = cas_id, 
+          `% de variables complèts` = perc_complete,
+          `Fardeau syndromique` = fardeau_syndromique,
+          # `Isolée` = isolement,
+          # `Enterrement securisé` = enterrement_securise,
+          `Nombre de contacts répertoriés` = nombre_de_contacts) 
+
+format_tab_case_data_completion <- tab_case_data_completion %>%
+  mutate(
+        `Ville` = formatter("span", style = ~ formattable::style(
+                            color = "grey",font.weight = "bold",font.style = "italic"))(`Ville`),
+        `% de variables complèts`= color_tile("white","green")(`% de variables complèts`)
+        # `Isolée` = formatter("span", style = ~ formattable::style(
+        #                                color = ifelse(`Isolée` == "non", "red", "green")))(`Isolée`)
+        # `Enterrement securisé` = formatter("span", style = ~ formattable::style(
+        #               color = ifelse(`Enterrement securisé` == "non", "red", "green")))(`Enterrement securisé`)
+            ) %>%
+  kable("html", escape = F, align =c("l","c","c", "c","c","c")) %>%
+  kable_styling("hover", full_width = F) 
+
+ format_tab_case_data_completion  
+
+```
+
+
+
+Linelists {data-navmenu="Files"}
+==========================================
+Column {.tabset .tabset-fade}
+-------------------------------------
+
+
+### Contacts Linelist
+```{r datatable_contacts_linelist}
+
+contact_status_linelist %>%
+  DT::datatable()
+
+```
+
+### Cases Linelist
+```{r datatable_cases_linelist}
+
+case_linelist_essential %>%
+  DT::datatable()
+
+```
+
+### Followups Linelist
+```{r datatable_followups_linelist}
+
+fu_subset %>%
+  DT::datatable()
+
+```
+
+
+
