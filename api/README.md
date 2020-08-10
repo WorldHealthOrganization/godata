@@ -11,7 +11,7 @@ Note: before running these scripts, make sure that the user used to send the req
 * Outputs	
   * flattened dataframes stored in R
   
- _Authors	Sara Hollis (hollissl@who.int) - Produced in Feb 2020_
+ _Authors	Sara Hollis (holliss@who.int) - Produced in Feb 2020_
 
 
 ### Managing your instance through API
