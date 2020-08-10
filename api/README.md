@@ -9,7 +9,9 @@ Note: before running these scripts, make sure that the user used to send the req
   * UserName and Password of a user 
   * IDs of the outbreak for which you want to retrieve collections (can only do one outbreak at a time)
 * Outputs	
-  * flattened dataframes stored in R for:
+  * flattened dataframes stored in R
+  
+ _Authors	Sara Hollis (hollissl@who.int) - Produced in Feb 2020_
 
 
 ### Managing your instance through API
