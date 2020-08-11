@@ -1,6 +1,7 @@
 # dhis2godata 
 
 ## dhis2 to godata organisation unit converter
+_Developed by:	EyeSeeTea LLC (http://eyeseetea.com/) - Produced in May 2020_
 
 ### How to use:
 
