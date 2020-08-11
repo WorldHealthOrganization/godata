@@ -1,13 +1,12 @@
 ###################################################################################################
-url <- "https://godata-r13.who.int/"                   # <--------------------- insert instance url here, don't forget the slash at end !
-username <- "holliss@who.int"                           # <--------------------- insert your username for signing into Go.Data webapp here
-password <- "Benibenitimes1999"                           # <--------------------- insert your password for signing into Go.Data webapp here
-outbreak_id <- "3b5554d7-2c19-41d0-b9af-475ad25a382b"   # <--------------------- insert your outbreak ID here
+url <- "https://sampleURL.int/"                   # <--------------------- insert instance url here, don't forget the slash at end !
+username <- "username"                           # <--------------------- insert your username for signing into Go.Data webapp here
+password <- "password"                           # <--------------------- insert your password for signing into Go.Data webapp here
+outbreak_id <- "xxxxxx-xxxx-xxxx-xxxx-xxxxxxx"   # <--------------- insert your outbreak ID here! (find it in URL when you have selected outbreak)
 
 ###################################################################################################
 
 # SCRIPT ADAPTED TO GENERIC DEMO COVID INSTANCE #
-
 
 ###################################################################################################
 # read in from go.data API, using your updated parameters by Clicking "Source"
