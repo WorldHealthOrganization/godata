@@ -1,4 +1,4 @@
-# godata
+# Welcome to the Go.Data repository!
 
 This is the public WHO Go.Data repo for sharing scripts and documentation related to the Go.Data projects. Currently under construction but adding new things each day.
 
