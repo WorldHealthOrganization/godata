@@ -2,8 +2,9 @@
 
 This is the public WHO Go.Data repo for sharing scripts and documentation related to the Go.Data projects. Currently under construction but adding new things each day. Feedback and contributions welcome!
 
-Questions or feedback - please contact us at godata@who.int
-Visit our Community oF Practice website to share and discuss here: https://community-godata.who.int/
+_Questions or feedback - please contact us at godata@who.int
+
+_Visit our Community oF Practice website to swap learnings our post queries here: https://community-godata.who.int/
 
 ## api
 
