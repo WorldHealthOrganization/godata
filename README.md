@@ -1,7 +1,9 @@
 # Welcome to the Go.Data repository!
 
-This is the public WHO Go.Data repo for sharing scripts and documentation related to the Go.Data projects. Currently under construction but adding new things each day.
-Any questions please direct them to godata@who.int - all feedbacks welcome and we look forward to contributions on what has worked well in various country deployments.
+This is the public WHO Go.Data repo for sharing scripts and documentation related to the Go.Data projects. Currently under construction but adding new things each day. Feedback and contributions welcome!
+
+Questions or feedback - please contact us at godata@who.int
+Visit our Community oF Practice website to share and discuss here: https://community-godata.who.int/
 
 ## api
 
