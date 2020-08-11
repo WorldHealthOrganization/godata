@@ -1,5 +1,6 @@
-#dhis2godata
-##dhis2 to godata organisation unit converter
+dhis2godata
+
+dhis2 to godata organisation unit converter
 
 How to use:
 1) Download dhis2 organisation unit json files and add them to the input folder (by default "input") You can add multiple files to convert in the same execution. If you want to configure a different input/output folder, please change them in config.json configuration file
