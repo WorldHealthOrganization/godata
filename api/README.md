@@ -25,7 +25,7 @@ Note: before running these scripts, make sure that the user used to send the req
 * Outputs	
   * The outbreak is moved in time X amount of days.
 
-_Authors	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
+_Authors:	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
 
 #### godata_modifyUserAccessToOubreak.R
 ##### _This script gets a list of users from Go.Data, identifies which of them are training participants and sets their available outbreaks and active outbreak_
