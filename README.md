@@ -1,6 +1,7 @@
 # Welcome to the Go.Data repository!
 
 This is the public WHO Go.Data repo for sharing scripts and documentation related to the Go.Data projects. Currently under construction but adding new things each day.
+Any questions please direct them to godata@who.int - all feedbacks welcome and we look forward to contributions on what has worked well in various country deployments.
 
 ## api
 
@@ -14,6 +15,3 @@ This folder contains in it some example scripts for extracting, cleaning, and ru
 
 This folder contains the beginnings of interoperability work between DHIS2 COVID packages and Go.Data for countries that have requested to push their case and contact data to Go.Data from their DHIS2 instance. So far we have a Python script to take the national org tree from DHIS2 and input it into Go.Data as well as an API wrapper to push basic case information from DHIS2 Tracked Entities to Go.Data.
 
-any questions please don't hesitate to email godata@who.int
-
-Thanks for your patience as we built this out but very much looking forward contributions, feedbacks, ideas!
