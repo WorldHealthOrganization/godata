@@ -1,0 +1,34 @@
+{
+  "name": "godata-api-wrapper",
+  "version": "0.1.0",
+  "description": "Javascript library to handle Go.Data queries easier",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test-watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WISCENTD-UPC/godata-api-wrapper.git"
+  },
+  "keywords": [
+    "go.data",
+    "api",
+    "client"
+  ],
+  "author": "Pablo-Rodriguez <rodpepablo@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/WISCENTD-UPC/godata-api-wrapper/issues"
+  },
+  "homepage": "https://github.com/WISCENTD-UPC/godata-api-wrapper#readme",
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "uuid": "^8.1.0"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.0",
+    "query-string": "^6.13.1",
+    "ramda": "^0.27.0"
+  }
+}
