@@ -4,4 +4,12 @@ This folder contains ongoing interoperability projects to push metadata to and f
 
 ## Org Unit Converter
 
-## API Wrapper for pushing case and contact data
+Python script to transform DHIS2 org tree to cleaned output in Go.Data format for org tree importation.
+
+## API Wrapper 
+
+Utility library over Go.Data's API.
+
+## Pushing case and contact data
+
+Scripts to push case and contact data from DHIS2 to Go.Data.
