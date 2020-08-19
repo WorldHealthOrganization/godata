@@ -1,5 +1,9 @@
 # dhis2-godata-interoperability (WIP)
+_developed by WISCENTD (https://github.com/WISCENTD-UPC)_
+_https://github.com/WISCENTD-UPC/dhis2-godata-interoperability/tree/develop_
+
 Scripts to exchange data between dhis2 and Go.Data instances
+
 
 ## Requirements
 - Node.js (>= v12.x) and npm (>= v6.x) installed in the system.
@@ -21,6 +25,8 @@ In order to use the dhis2-godata-interoperability script, a couple of things hav
 
 Connection to APIs: the first think that needs to be configured is the connection to both DHIS2 and Go.Data. A base endpoint has to be provided for each service, as well as the credentials needed for the authentication.
 // Connection example
+
+```
 module.exports = {
   GoDataAPIConfig: {
     baseURL: 'http://mygodatainstance.com/api',
@@ -37,12 +43,19 @@ module.exports = {
     }
   }
 }
+```
 
 Organisation units root: mandatory configuration of the organisation unit used as the root for the hierarchal structure. (i.e. the ID of the DHIS2 organisation unit with level 1, which means administrative level 0 in Go.Data)
+
+```
 module.exports = {
   rootID: 'adkfj2o3i'
 }
+```
 Countries: the names of the countries the organisation units represent. In almost all cases this is going to be just one value, but more than one can be provided.
+
+```
 module.exports = {
   rootID: [ 'Trainingland' ]
 }
+```
