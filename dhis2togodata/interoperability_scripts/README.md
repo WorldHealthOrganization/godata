@@ -1,7 +1,7 @@
 # dhis2-godata-interoperability (WIP)
-_developed by WISCENTD (https://github.com/WISCENTD-UPC)
+_developed by WISCENTD (https://github.com/WISCENTD-UPC)_
 
-original package here: https://github.com/WISCENTD-UPC/dhis2-godata-interoperability/tree/develop_
+_original package here: https://github.com/WISCENTD-UPC/dhis2-godata-interoperability/tree/develop_
 
 Scripts to exchange data between dhis2 and Go.Data instances
 
