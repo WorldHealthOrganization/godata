@@ -6,11 +6,11 @@ _Questions or feedback - please contact us at godata@who.int_
 
 _Visit our Community oF Practice website to swap learnings or post queries here: https://community-godata.who.int/_
 
-## api
+## API
 
 This folder contains in it many example R scripts for GET/PUT/POST commands so that you can manipulate your Go.Data instance through the API, including bulk actions. We have used this for our training instances but think it could be helpful for others too.
 
-## sample_report_scripts
+## Sample Report Scripts
 
 This folder contains in it some example scripts for extracting, cleaning, and running some basic analysis. Output at present includes flattened cleaned .csvs for case/contact linelists and an HTML dashboard displaying operational performance metrics for contact tracing by contact tracing supervisor and teams. Feel free to adapt to your purposes.
 
