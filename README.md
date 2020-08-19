@@ -23,7 +23,9 @@ Devleoped by EyeSeeTea LS (http://eyeseetea.com/), this is a Python script to ta
 
 ### API wrapper:
 Developed by WISCENTD-UPC (https://github.com/WISCENTD-UPC/) - this package provides certain common things you may need in order to use Go.Data's API, so that it is easier and faster. This utility libaray "wraps" the functionality of the API under a common tiny library that already handles functions such as login authorization that would otherwise have to be done for each query separtely.
+_see full package here: https://github.com/WISCENTD-UPC/godata-api-wrapper/tree/develop_
 
 ### Interoperability scripts:
 Developed by WISCENTD-UPC (https://github.com/WISCENTD-UPC/) - these scripts push DHIS2 Tracked Entities for cases and contacts into Go.Data cases and contacts, in addition to automatically inserting them in a new or existing outbreak in Go.Data with the appropriate parameters. 
+_see full package here: https://github.com/WISCENTD-UPC/dhis2-godata-interoperability/tree/develop_
 
