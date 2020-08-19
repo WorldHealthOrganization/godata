@@ -4,6 +4,8 @@ _developed by WISCENTD (https://github.com/WISCENTD-UPC)_
 
 Javascript API wrapper around DHIS2. It handles authentication automatically given user credentials.
 
+_see full package here: https://github.com/WISCENTD-UPC/godata-api-wrapper/tree/develop_
+
 ## Installation
 
 This package is not currently in the npm ecosystem, so in order to install it in a project, it should be added as a git repository.
