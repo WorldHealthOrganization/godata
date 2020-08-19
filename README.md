@@ -4,7 +4,7 @@ This is the public WHO Go.Data repo for sharing scripts and documentation relate
 
 _Questions or feedback - please contact us at godata@who.int_
 
-_Visit our Community oF Practice website to swap learnings our post queries here: https://community-godata.who.int/_
+_Visit our Community oF Practice website to swap learnings or post queries here: https://community-godata.who.int/_
 
 ## api
 
