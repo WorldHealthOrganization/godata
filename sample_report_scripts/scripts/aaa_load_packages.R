@@ -1,4 +1,3 @@
-
 ## This script loads all required packages, and throws error messages for ones
 ## that are missing.
 
@@ -24,7 +23,11 @@ required_packages <- c(
   "tidyverse",
   "plotly",
   "zoo", # rolling operations
-  "formattable"
+  "formattable",
+  "tidyr",
+  "aweek",
+  "stringr"
+
 )
 
 available_packages <- .packages(all.available = TRUE)
@@ -48,3 +51,4 @@ for (i in seq_along(required_packages)) {
                    pkg)
   }
 }
+
