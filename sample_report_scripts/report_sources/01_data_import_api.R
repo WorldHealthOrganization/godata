@@ -13,9 +13,10 @@ outbreak_id <- "xxxxxx-xxxx-xxxx-xxxx-xxxxxxx"   # <--------------- insert your 
 # no need to modify the below unless you would like to bring in additional data collections!
 # this script currently will give us: contacts, 
 #                                     cases,
-#                                     follow ups - last 21d,
+#                                     follow ups,
 #                                     locations,
 #                                     users,
+#                                     teams,
 #                                     relationships
 ###################################################################################################
 
@@ -42,42 +43,28 @@ content <-
 
 access_token <- content$response$access_token                 ## this is your access token !!! that allows API calls
 
-#specify date ranges, for follow up filters
+#specify date ranges, for follow up filters, if your volume of follow ups gets too large
 date_now <- format(Sys.time(), "%Y-%m-%dT23:59:59.999Z")                  
 date_21d_ago <- format((Sys.Date()-21), "%Y-%m-%dT23:59:59.999Z")
 
 
 
-# import contact follow-ups, last 21 days only to avoid system time-out 
+# import contact follow-ups, can opt to filter to last 21 days only to avoid system time-out 
 response_followups <- GET(paste0(
   url,
   "api/outbreaks/",
   outbreak_id,
-  "/follow-ups/?filter={%22where%22:{%22and%22:[{%22date%22:{%22between%22:[%22",
-  date_21d_ago,
-  "%22,%22",
-  date_now,
-  "%22]}}]}}"),
+  "/follow-ups"
+  # /?filter={%22where%22:{%22and%22:[{%22date%22:{%22between%22:[%22",
+  # date_21d_ago,
+  # "%22,%22",
+  # date_now,
+  # "%22]}}]}}"
+    ),
   add_headers(Authorization = paste("Bearer", access_token, sep = " ")))
 json_followups <- content(response_followups, as="text")
 followups <- as_tibble(fromJSON(json_followups, flatten = TRUE)) 
 
-
-
-# import location hierarchy (outbreak agnostic)
-response_locations <- GET(paste0(url,"api/locations"), 
-                          add_headers(Authorization = paste("Bearer", access_token, sep = " "))
-)
-json_locations <- content(response_locations, as = "text")
-locations <- as_tibble(fromJSON(json_locations, flatten = TRUE))
-
-
-# import oubtreaks (outbreak agnostic)
-response_outbreaks <- GET(paste0(url,"api/outbreaks"), 
-                          add_headers(Authorization = paste("Bearer", access_token, sep = " "))
-)
-json_outbreaks <- content(response_outbreaks, as = "text")
-outbreaks <- as_tibble(fromJSON(json_outbreaks, flatten = TRUE))
 
 # import outbreak Cases 
 response_cases <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/cases"), 
@@ -86,15 +73,14 @@ response_cases <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/cases"),
 json_cases <- content(response_cases, as = "text")
 cases <- as_tibble(fromJSON(json_cases, flatten = TRUE))
 
+
 # import oubtreak Contacts
 response_contacts <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/contacts"), 
                          add_headers(Authorization = paste("Bearer", access_token, sep = " "))
 )
 json_contacts <- content(response_contacts, as = "text")
 contacts <- as_tibble(fromJSON(json_contacts, flatten = TRUE)) %>%
-  filter(active == TRUE) %>%
-  filter(as.Date.character(followUp.endDate) >= Sys.Date()) %>%
-  filter(followUp.status == "LNG_REFERENCE_DATA_CONTACT_FINAL_FOLLOW_UP_STATUS_TYPE_UNDER_FOLLOW_UP")
+
 
 # import outbreak Relationships
 response_relationships <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/relationships/export"), 
@@ -117,4 +103,11 @@ response_users <- GET(paste0(url,"api/users"),
 )
 json_users <- content(response_users, as = "text")
 users <- as_tibble(fromJSON(json_users, flatten = TRUE))
+
+# import location hierarchy (outbreak agnostic)
+response_locations <- GET(paste0(url,"api/locations"), 
+                          add_headers(Authorization = paste("Bearer", access_token, sep = " "))
+)
+json_locations <- content(response_locations, as = "text")
+locations <- as_tibble(fromJSON(json_locations, flatten = TRUE))
 
