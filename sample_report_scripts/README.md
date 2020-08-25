@@ -14,3 +14,12 @@ This includes scripts for
 ## report_outputs
 
 This is where report outputs are stored.
+
+## scripts
+
+This is where other scripts and functions are stored; you do not need to open them up or run them separately, the scripts reference them where needed.
+
+## data
+
+This is where your data exports will be stored, in the "clean" folder. You can store other raw exports from Go.Data web interface in the "raw" folder.
+
