@@ -27,7 +27,7 @@
     "uuid": "^8.1.0"
   },
   "dependencies": {
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "query-string": "^6.13.1",
     "ramda": "^0.27.0"
   }
