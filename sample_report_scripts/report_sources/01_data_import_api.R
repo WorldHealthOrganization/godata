@@ -25,6 +25,16 @@ outbreak_id <- "xxxxxx-xxxx-xxxx-xxxx-xxxxxxx"   # <--------------- insert your 
 #                                     relationships, 
 #                                     events
 ###################################################################################################
+# source required scripts, including packages that need to be installed
+#       this includes set_core_fields.R script, which ensures that collections have all the columns they need and set to NA those that don't exist
+#       otherwise, the JSON drops it if these questions were consistently not answered, which can break the scripts if its a core variable
+###################################################################################################
+
+path_to_functions <- here::here("scripts")
+scripts_files <- dir(path_to_functions, pattern = ".R$", full.names=TRUE)
+for (file in scripts_files) source(file, local = TRUE)
+
+###################################################################################################
 # get access token
 ###################################################################################################
 
@@ -44,14 +54,14 @@ content <-
 access_token <- content$response$access_token                 ## this is your access token !!! that allows API calls
 
 ###################################################################################################
-
 # specify date ranges, for follow up filters - if your volume of follow up gets too large 
-# see below commented out code in Follow Ups section for an example
-# date_now <- format(Sys.time(), "%Y-%m-%dT23:59:59.999Z")                  
-# date_21d_ago <- format((Sys.Date()-21), "%Y-%m-%dT23:59:59.999Z")
+#     see below commented out code in Follow Ups section for an example
+#     date_now <- format(Sys.time(), "%Y-%m-%dT23:59:59.999Z")                  
+#     date_21d_ago <- format((Sys.Date()-21), "%Y-%m-%dT23:59:59.999Z")
+###################################################################################################
 
 ###################################################################################################
-# IMPORT COLLECTIONS BELOW
+# IMPORT ALL RELEVANT API COLLECTIONS BELOW 
 ###################################################################################################
 
 # import contact follow-ups (could filter last 21 days only to avoid system time-out)
