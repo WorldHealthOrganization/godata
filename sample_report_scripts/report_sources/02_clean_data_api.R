@@ -3,18 +3,11 @@
 # 
 #       Before running this Script, please first run 01_data_import_api.R
 #
-#       This script is for cleaning the Go.Data data for COVID - core variables ONLY.
-#       You can adapt these if you need to add additional variables from your questionnaire.
+#       This script is for cleaning the Go.Data data for COVID - core variables ONLY (i.e. does not retrieve from custom questionnaire as this varies across instances
+#       You can adapt these relatively easily if you need to add in variables from your questionnaire.
 
 ####################################################################################################################################################
 
-# source required scripts, including packages that need to be installed
-# this includes set_core_fields.R script, which ensures that collections have all the columns they need and set to NA those that don't exist
-# otherwise, the JSON drops it if these questions were consistently not answered, which can break the scripts if its a core variable
-
-path_to_functions <- here::here("scripts")
-scripts_files <- dir(path_to_functions, pattern = ".R$", full.names=TRUE)
-for (file in scripts_files) source(file, local = TRUE)
 
 ##########################################################################
 ## CLEAN LOCATIONS
