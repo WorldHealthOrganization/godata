@@ -2,6 +2,7 @@
 ## that are missing.
 
 required_packages <- c(
+  "dplyr",
   "lubridate",
   "here",
   "rio",
@@ -18,16 +19,18 @@ required_packages <- c(
   "kableExtra",
   "ggrepel",
   "ggplot2",
-  "linelist", # devel, only on github
-  "ggthemr", # devel, only on github
   "tidyverse",
   "plotly",
   "zoo", # rolling operations
   "formattable",
   "tidyr",
   "aweek",
-  "stringr"
-
+  "stringr",
+  "httr",
+  "tibble",
+  "jsonlite",
+  "sqldf"
+  
 )
 
 available_packages <- .packages(all.available = TRUE)
