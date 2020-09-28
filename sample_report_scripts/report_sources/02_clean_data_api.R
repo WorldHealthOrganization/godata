@@ -291,6 +291,10 @@ contacts_address_history_clean <- contacts %>%
   mutate(addresses_typeid = sub("LNG_REFERENCE_DATA_CATEGORY_ADDRESS_TYPE_","",addresses_typeid)) %>%
   left_join(locations_clean, by=c("addresses_locationid" = "location_id"))
 
+  # add in any missing fields
+  missing_columns_contacts_addresses <- setdiff(address_columns, names(contacts_address_history_clean))
+  contacts_address_history_clean[missing_columns_contacts_addresses] <- NA
+
 
 # if you have a question about quarantine in your questionnaire, could unnest that here and then do a left join later to join this to main table
 
@@ -422,7 +426,7 @@ contacts_clean <- contacts_clean %>%
   mutate(address = case_when(postal_code == "NA" ~ NA)) %>%
   
   #Join in cases that used to be contacts
-  bind_rows(contacts_becoming_cases) %>%
+  bind_rows(contacts_becoming_cases) 
   
 
 ##########################################################################
