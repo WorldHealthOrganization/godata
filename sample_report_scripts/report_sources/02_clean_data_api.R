@@ -83,6 +83,10 @@ cases_address_history_clean <- cases %>%
   select_if(negate(is.list)) %>%
   mutate(addresses_typeid = sub("LNG_REFERENCE_DATA_CATEGORY_ADDRESS_TYPE_","",addresses_typeid)) %>%
   left_join(locations_clean, by=c("addresses_locationid" = "location_id")) 
+ 
+  # add in any missing address fields
+  missing_columns_cases_addresses <- setdiff(address_columns, names(cases_address_history_clean))
+  cases_address_history_clean[missing_columns_cases_addresses] <- NA
 
 # Unnest Date Ranges - Isolation history
 # here we assume that if time frame is over 14d and no end date, it has already completed
