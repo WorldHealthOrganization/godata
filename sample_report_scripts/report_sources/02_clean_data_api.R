@@ -83,10 +83,10 @@ cases_address_history_clean <- cases %>%
   select_if(negate(is.list)) %>%
   mutate(addresses_typeid = sub("LNG_REFERENCE_DATA_CATEGORY_ADDRESS_TYPE_","",addresses_typeid)) %>%
   left_join(locations_clean, by=c("addresses_locationid" = "location_id")) 
- 
-  # add in any missing address fields
-  missing_columns_cases_addresses <- setdiff(address_columns, names(cases_address_history_clean))
-  cases_address_history_clean[missing_columns_cases_addresses] <- NA
+
+# add in any missing address fields
+missing_columns_cases_addresses <- setdiff(address_columns, names(cases_address_history_clean))
+cases_address_history_clean[missing_columns_cases_addresses] <- NA
 
 # Unnest Date Ranges - Isolation history
 # here we assume that if time frame is over 14d and no end date, it has already completed
@@ -291,9 +291,9 @@ contacts_address_history_clean <- contacts %>%
   mutate(addresses_typeid = sub("LNG_REFERENCE_DATA_CATEGORY_ADDRESS_TYPE_","",addresses_typeid)) %>%
   left_join(locations_clean, by=c("addresses_locationid" = "location_id"))
 
-  # add in any missing fields
-  missing_columns_contacts_addresses <- setdiff(address_columns, names(contacts_address_history_clean))
-  contacts_address_history_clean[missing_columns_contacts_addresses] <- NA
+# add in any missing fields
+missing_columns_contacts_addresses <- setdiff(address_columns, names(contacts_address_history_clean))
+contacts_address_history_clean[missing_columns_contacts_addresses] <- NA
 
 
 # if you have a question about quarantine in your questionnaire, could unnest that here and then do a left join later to join this to main table
@@ -428,8 +428,8 @@ contacts_clean <- contacts_clean %>%
   #Join in cases that used to be contacts
   bind_rows(contacts_becoming_cases) 
   
-
-##########################################################################
+  
+  ##########################################################################
 ### Clean & Un-nest FOLLOW-UPS
 ##########################################################################
 
@@ -506,27 +506,29 @@ if (nrow(events)==0) {
   
   
   ## unnest events to get contacts and exposures
-  events_relationship_history <- events %>%
-    select(id, name, relationshipsRepresentation) %>%
-    unnest(relationshipsRepresentation, names_sep = "_", keep_empty = TRUE) %>%
-    mutate(other_participant_type = sub(".*TYPE_", "", relationshipsRepresentation_otherParticipantType)) %>%
-    mutate(relationship_type = case_when(
-      relationshipsRepresentation_source == TRUE  ~ "CONTACT",
-      relationshipsRepresentation_target == TRUE  ~ "EXPOSURE",
-    )) 
+  # events_relationship_history <- events %>%
+  #   select(id, name, relationshipsRepresentation) %>%
+  #   unnest(relationshipsRepresentation, names_sep = "_", keep_empty = TRUE) %>%
+  #   mutate(other_participant_type = sub(".*TYPE_", "", relationshipsRepresentation_otherParticipantType)) %>%
+  #   mutate(relationship_type = case_when(
+  #     relationshipsRepresentation_source == TRUE  ~ "CONTACT",
+  #     relationshipsRepresentation_target == TRUE  ~ "EXPOSURE",
+  #   )) 
+  # 
+  # events_relationship_history_counts <- events_relationship_history %>%
+  #   select(
+  #     id,
+  #     name,
+  #     relationship_type,
+  #     other_participant_type,
+  #     other_participant_id = relationshipsRepresentation_otherParticipantId) %>%
+  #   group_by(id, relationship_type) %>%
+  #   tally()
   
-  events_relationship_history_counts <- events_relationship_history %>%
-    select(
-      id,
-      name,
-      relationship_type,
-      other_participant_type,
-      other_participant_id = relationshipsRepresentation_otherParticipantId) %>%
-    group_by(id, relationship_type) %>%
-    tally()
   
-  
-  date_fields_events <- c("dateOfReporting","dateOfLastContact","createdAt","updatedAt","date")
+  date_fields_events <- c("dateOfReporting",
+                              # "dateOfLastContact",
+                          "createdAt","updatedAt","date")
   
   events_clean <- events %>%
     filter(deleted==FALSE) %>%
@@ -536,22 +538,22 @@ if (nrow(events)==0) {
     rename(event_name = name) %>%
     mutate(date_of_reporting = dateOfReporting,
            date_of_data_entry = createdAt,
-           date_of_last_contact = dateOfLastContact, 
+           # date_of_last_contact = dateOfLastContact, 
            date_of_event = date) %>%
     left_join(locations_clean, by=c("address.locationId" = "location_id")) %>%
     #join in count of contacts per event 
-    left_join(events_relationship_history_counts %>% filter(relationship_type=="CONTACT"), by="id") %>% rename(number_of_contacts = n) %>%
-    #join in count of exposures per event
-    left_join(events_relationship_history_counts %>% filter(relationship_type=="EXPOSURE"), by="id") %>% rename(number_of_exposures = n) %>%
-    mutate(number_of_contacts = replace(number_of_contacts, is.na(number_of_contacts),0)) %>%
-    mutate(number_of_exposures = replace(number_of_exposures, is.na(number_of_exposures),0)) %>%
+    # left_join(events_relationship_history_counts %>% filter(relationship_type=="CONTACT"), by="id") %>% rename(number_of_contacts = n) %>%
+    # #join in count of exposures per event
+    # left_join(events_relationship_history_counts %>% filter(relationship_type=="EXPOSURE"), by="id") %>% rename(number_of_exposures = n) %>%
+    # mutate(number_of_contacts = replace(number_of_contacts, is.na(number_of_contacts),0)) %>%
+    # mutate(number_of_exposures = replace(number_of_exposures, is.na(number_of_exposures),0)) %>%
     
     select(
       uuid = id,
       event_name,
       description,
-      number_of_contacts,
-      number_of_exposures,
+      # number_of_contacts,
+      # number_of_exposures,
       date_of_event,
       date_of_reporting,
       date_of_data_entry,
@@ -574,146 +576,146 @@ if (nrow(events)==0) {
 ##########################################################################
 # Clean & Un-nest CONTACTS OF CONTACTS
 ##########################################################################
-if (nrow(contacts_of_contacts)==0) {
-  contacts_of_contacts_clean <- data.frame(matrix(ncol=length(contacts_of_contacts_columns_final)))
-  colnames(contacts_of_contacts_clean) <- contacts_of_contacts_columns_final
-} else {
-  
-  #Unnest Addresses
-  addresses_contacts_of_contacts <- contacts_of_contacts %>%
-    filter(deleted == FALSE) %>%
-    select(id, addresses) %>%
-    unnest(addresses, names_sep = "_") %>%
-    mutate(addresses_typeId = sub("LNG_REFERENCE_DATA_CATEGORY_ADDRESS_TYPE_","",addresses_typeId)) %>%
-    left_join(locations_clean, by=c("addresses_locationId" = "location_id"))
-  
-  
-  date_fields_contacts_of_contacts <- c("dob","dateOfReporting","dateOfLastContact","createdAt","updatedAt","createdOn")
-  
-  contacts_of_contacts_clean <- contacts_of_contacts %>%
-    filter(deleted == FALSE) %>%
-    # take out all that are not core variables, can be modified if someone wants to analyze questionnaire vars
-    select_if( !(names(.) %in% c('dateRanges','addresses','classificationHistory','vaccinesReceived','documents','relationshipsRepresentation','followUpHistory'))) %>%
-    select(-contains("questionnaireAnswers")) %>%
-    # unnest commonly used fields
-    #unnest_wider(addresses, names_sep = "_") %>%
-    #unnest_wider(followUpHistory, names_sep = "_")
-    left_join(addresses_contacts_of_contacts %>% filter(addresses_typeId=="USUAL_PLACE_OF_RESIDENCE"), by="id")  
-  
-  # force bind other core vars in case they are missing in JSON from having never been answered
-  missing_columns_contacts <- setdiff(contact_columns, names(contacts_clean))
-  contacts_clean[missing_columns_contacts] <- NA
-  contacts_clean <- contacts_clean[contact_columns]
-  contacts_clean[contacts_clean == "NA"] <- NA
-  
-  contacts_clean <- contacts_clean %>%
-    # unnest location IDs if more than 1 is documented
-    # unnest(addresses_locationId) %>%
-    # unnest(addresses_city) %>%
-    # clean date formats
-    mutate_at(vars(all_of(date_fields_contacts)), list(~substr(., 1, 10)), ~as.Date) %>%  
-    mutate(date_of_reporting = dateOfReporting,
-           date_of_data_entry = createdAt,
-           date_of_last_contact = dateOfLastContact, 
-           date_of_followup_start = followUp.startDate,
-           date_of_followup_end = followUp.endDate) %>%
-    # format and combine age variables
-    mutate(age_years = as.numeric(age.years)) %>%
-    mutate(age_years = na_if(age_years,0)) %>%
-    mutate(age_months = as.numeric(age.months)) %>%
-    mutate(age_months = na_if(age_months,0)) %>%
-    mutate(age = case_when(
-      is.na(age_years) && !is.na(age_months) ~  age_months / 12,
-      TRUE ~ age_years)) %>%
-    
-    mutate(
-      age = as.numeric(age),
-      age_class = factor(
-        case_when(
-          age <= 4 ~ "0-4",
-          age <= 9 ~ "5-9",
-          age <= 14 ~ "10-14",
-          age <= 19 ~ "15-19",
-          age <= 29 ~ "20-29",
-          age <= 39 ~ "30-39",
-          age <= 49 ~ "40-49",
-          age <= 59 ~ "50-59",
-          age <= 64 ~ "60-64",
-          age <= 69 ~ "65-69",
-          age <= 74 ~ "70-74",
-          age <= 79 ~ "75-79",
-          is.finite(age) ~ "80+",
-          TRUE ~ "unknown"
-        ), levels = c(
-          "0-4",
-          "5-9",
-          "10-14",
-          "15-19",
-          "20-29",
-          "30-39",
-          "40-49",
-          "50-59",
-          "60-64",
-          "65-69",
-          "70-74",
-          "75-79",
-          "80+",
-          "unknown"
-        )),
-      age_class = factor(
-        age_class,
-        levels = rev(levels(age_class)))) %>%
-    
-    # select only core variables
-    select(
-      uuid = id,
-      contact_id = visualId,
-      active,
-      contact_status = followUp.status,
-      location_id = addresses_locationId,
-      lat = addresses_geoLocation.lat,
-      long = addresses_geoLocation.lng,
-      address = addresses_addressLine1,
-      postal_code = addresses_postalCode,
-      team_id = followUpTeamId,
-      city = addresses_city,
-      firstName,
-      lastName,
-      gender,
-      age,
-      age_class,
-      occupation,
-      telephone = addresses_phoneNumber,
-      pregnancy_status = pregnancyStatus,
-      date_of_reporting,
-      date_of_data_entry,
-      date_of_last_contact,
-      date_of_followup_start,
-      date_of_followup_end,
-      risk_level = riskLevel,
-      risk_reason = riskReason,
-      was_case = wasCase,
-      createdBy
-      
-    ) %>%
-    
-    mutate(gender = sub(".*GENDER_", "", gender)) %>%
-    mutate(occupation = sub(".*OCCUPATION_", "", occupation)) %>%
-    mutate(contact_status = sub(".*TYPE_", "", contact_status)) %>%
-    mutate(pregnancy_status = sub(".*STATUS_", "", pregnancy_status)) %>%
-    mutate(risk_level = sub(".*LEVEL_", "", risk_level)) %>%
-    mutate(address = case_when(address == "NA" ~ NA)) %>%
-    mutate(address = case_when(postal_code == "NA" ~ NA)) %>%
-    
-    #Join in cases that used to be contacts
-    bind_rows(contacts_becoming_cases) %>%
-    
-    # join in location hierarchy
-    left_join(locations_clean %>% select(!(admin_level:long)), by="location_id")
-  
-  
-  
-}
+# if (nrow(contacts_of_contacts)==0) {
+#   contacts_of_contacts_clean <- data.frame(matrix(ncol=length(contacts_of_contacts_columns_final)))
+#   colnames(contacts_of_contacts_clean) <- contacts_of_contacts_columns_final
+# } else {
+#   
+#   #Unnest Addresses
+#   addresses_contacts_of_contacts <- contacts_of_contacts %>%
+#     filter(deleted == FALSE) %>%
+#     select(id, addresses) %>%
+#     unnest(addresses, names_sep = "_") %>%
+#     mutate(addresses_typeId = sub("LNG_REFERENCE_DATA_CATEGORY_ADDRESS_TYPE_","",addresses_typeId)) %>%
+#     left_join(locations_clean, by=c("addresses_locationId" = "location_id"))
+#   
+#   
+#   date_fields_contacts_of_contacts <- c("dob","dateOfReporting","dateOfLastContact","createdAt","updatedAt","createdOn")
+#   
+#   contacts_of_contacts_clean <- contacts_of_contacts %>%
+#     filter(deleted == FALSE) %>%
+#     # take out all that are not core variables, can be modified if someone wants to analyze questionnaire vars
+#     select_if( !(names(.) %in% c('dateRanges','addresses','classificationHistory','vaccinesReceived','documents','relationshipsRepresentation','followUpHistory'))) %>%
+#     select(-contains("questionnaireAnswers")) %>%
+#     # unnest commonly used fields
+#     #unnest_wider(addresses, names_sep = "_") %>%
+#     #unnest_wider(followUpHistory, names_sep = "_")
+#     left_join(addresses_contacts_of_contacts %>% filter(addresses_typeId=="USUAL_PLACE_OF_RESIDENCE"), by="id")  
+#   
+#   # force bind other core vars in case they are missing in JSON from having never been answered
+#   missing_columns_contacts <- setdiff(contact_columns, names(contacts_clean))
+#   contacts_clean[missing_columns_contacts] <- NA
+#   contacts_clean <- contacts_clean[contact_columns]
+#   contacts_clean[contacts_clean == "NA"] <- NA
+#   
+#   contacts_clean <- contacts_clean %>%
+#     # unnest location IDs if more than 1 is documented
+#     # unnest(addresses_locationId) %>%
+#     # unnest(addresses_city) %>%
+#     # clean date formats
+#     mutate_at(vars(all_of(date_fields_contacts)), list(~substr(., 1, 10)), ~as.Date) %>%  
+#     mutate(date_of_reporting = dateOfReporting,
+#            date_of_data_entry = createdAt,
+#            date_of_last_contact = dateOfLastContact, 
+#            date_of_followup_start = followUp.startDate,
+#            date_of_followup_end = followUp.endDate) %>%
+#     # format and combine age variables
+#     mutate(age_years = as.numeric(age.years)) %>%
+#     mutate(age_years = na_if(age_years,0)) %>%
+#     mutate(age_months = as.numeric(age.months)) %>%
+#     mutate(age_months = na_if(age_months,0)) %>%
+#     mutate(age = case_when(
+#       is.na(age_years) && !is.na(age_months) ~  age_months / 12,
+#       TRUE ~ age_years)) %>%
+#     
+#     mutate(
+#       age = as.numeric(age),
+#       age_class = factor(
+#         case_when(
+#           age <= 4 ~ "0-4",
+#           age <= 9 ~ "5-9",
+#           age <= 14 ~ "10-14",
+#           age <= 19 ~ "15-19",
+#           age <= 29 ~ "20-29",
+#           age <= 39 ~ "30-39",
+#           age <= 49 ~ "40-49",
+#           age <= 59 ~ "50-59",
+#           age <= 64 ~ "60-64",
+#           age <= 69 ~ "65-69",
+#           age <= 74 ~ "70-74",
+#           age <= 79 ~ "75-79",
+#           is.finite(age) ~ "80+",
+#           TRUE ~ "unknown"
+#         ), levels = c(
+#           "0-4",
+#           "5-9",
+#           "10-14",
+#           "15-19",
+#           "20-29",
+#           "30-39",
+#           "40-49",
+#           "50-59",
+#           "60-64",
+#           "65-69",
+#           "70-74",
+#           "75-79",
+#           "80+",
+#           "unknown"
+#         )),
+#       age_class = factor(
+#         age_class,
+#         levels = rev(levels(age_class)))) %>%
+#     
+#     # select only core variables
+#     select(
+#       uuid = id,
+#       contact_id = visualId,
+#       active,
+#       contact_status = followUp.status,
+#       location_id = addresses_locationId,
+#       lat = addresses_geoLocation.lat,
+#       long = addresses_geoLocation.lng,
+#       address = addresses_addressLine1,
+#       postal_code = addresses_postalCode,
+#       team_id = followUpTeamId,
+#       city = addresses_city,
+#       firstName,
+#       lastName,
+#       gender,
+#       age,
+#       age_class,
+#       occupation,
+#       telephone = addresses_phoneNumber,
+#       pregnancy_status = pregnancyStatus,
+#       date_of_reporting,
+#       date_of_data_entry,
+#       date_of_last_contact,
+#       date_of_followup_start,
+#       date_of_followup_end,
+#       risk_level = riskLevel,
+#       risk_reason = riskReason,
+#       was_case = wasCase,
+#       createdBy
+#       
+#     ) %>%
+#     
+#     mutate(gender = sub(".*GENDER_", "", gender)) %>%
+#     mutate(occupation = sub(".*OCCUPATION_", "", occupation)) %>%
+#     mutate(contact_status = sub(".*TYPE_", "", contact_status)) %>%
+#     mutate(pregnancy_status = sub(".*STATUS_", "", pregnancy_status)) %>%
+#     mutate(risk_level = sub(".*LEVEL_", "", risk_level)) %>%
+#     mutate(address = case_when(address == "NA" ~ NA)) %>%
+#     mutate(address = case_when(postal_code == "NA" ~ NA)) %>%
+#     
+#     #Join in cases that used to be contacts
+#     bind_rows(contacts_becoming_cases) %>%
+#     
+#     # join in location hierarchy
+#     left_join(locations_clean %>% select(!(admin_level:long)), by="location_id")
+#   
+#   
+#   
+# }
 
 ##########################################################################
 # Clean & Un-nest LAB RESULTS
