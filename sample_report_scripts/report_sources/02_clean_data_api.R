@@ -5,6 +5,7 @@
 #
 #       This script is for cleaning the Go.Data data for COVID - core variables ONLY (i.e. does not retrieve from custom questionnaire as this varies across instances
 #       You can adapt these relatively easily if you need to add in variables from your questionnaire.
+#       Script authors: Sara Hollis (holliss@who.int); James Fuller (fullerj@who.int)
 
 ####################################################################################################################################################
 
