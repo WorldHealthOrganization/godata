@@ -12,6 +12,7 @@ outbreak_id <- "xxxxxx-xxxx-xxxx-xxxx-xxxxxxx"   # <--------------- insert your 
 ###################################################################################################
 # read in from Go.Data API, using your updated log-in credentials by Clicking "Source"
 # no need to modify the below unless you would like to bring in additional API endpoints used in the dashboards in webapp, etc!
+# script author: Sara Hollis (holliss@who.int)
 ###################################################################################################
 
 # this script currently will give us: 
