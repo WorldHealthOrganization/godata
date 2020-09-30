@@ -150,7 +150,7 @@ users <- as_tibble(fromJSON(json_users, flatten = TRUE))
 
 
 ################################################################################################
-# Create empty data frames if needed
+# Create empty data frames if needed, Otherwise if unutilized, API JSON leaves it out
 ################################################################################################
 
 #Locations
@@ -170,6 +170,14 @@ if (nrow(cases)==0) {
   colnames(cases_address_history) <- cols.cases_addresses
   cases <- cases %>% bind_cols(cases_address_history) %>% nest(addresses=cols.cases_addresses)
   
+  cols.cases_hosp <- c("typeId","centerName","locationId","comments","startDate","endDate")
+  cases_hosp <- data.frame(matrix(ncol=length(cols.cases_hosp)))
+  colnames(cases_hosp) <- cols.cases_hosp
+  cases <- cases %>% bind_cols(cases_hosp) %>% nest(dateRanges=cols.cases_hosp)
+}
+
+#DateRanges for Cases
+if (!("dateRanges" %in% colnames(cases))) {
   cols.cases_hosp <- c("typeId","centerName","locationId","comments","startDate","endDate")
   cases_hosp <- data.frame(matrix(ncol=length(cols.cases_hosp)))
   colnames(cases_hosp) <- cols.cases_hosp
