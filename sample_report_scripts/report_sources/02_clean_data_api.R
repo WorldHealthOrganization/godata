@@ -854,7 +854,8 @@ cases_join_clean <- cases_clean %>%
 ###############################################################
 
 ## Specify location to save files
-clean_folder <- here::here("data", "clean")
+clean_folder_rds <- here::here("data", "clean", "rds")
+clean_folder_csv <- here::here("data", "clean", "csv")
 
 ## specify data frames to export
 mydfs<- ls(pattern = "_clean")
@@ -866,7 +867,7 @@ for (i in 1:length(mydfs)){
   # write.csv(get(mydfs[i]), file=savefile, fileEncoding = "UTF-8", na="", row.names = F)
   
   #save files with date in filename
-  savefile2<-paste0(clean_folder,"/", mydfs[i], "_" , format(Sys.Date(), "%Y-%m-%d"), ".csv")
+  savefile2<-paste0(clean_folder_csv,"/", mydfs[i], "_" , format(Sys.Date(), "%Y-%m-%d"), ".csv")
   write.csv(get(mydfs[i]), file=savefile2, fileEncoding = "UTF-8", na="", row.names = F)  
   
   print(paste("Dataframe Saved:", mydfs[i]))
@@ -874,9 +875,7 @@ for (i in 1:length(mydfs)){
 
 ## export all as .rds files which we will use for report scripts as it preserves language characters better
 for (i in 1:length(mydfs)){
-  savefile<-paste0(clean_folder,"/", mydfs[i], ".rds")
+  savefile<-paste0(clean_folder_rds,"/", mydfs[i], ".rds")
   saveRDS(get(mydfs[i]), file=savefile)
   print(paste("Dataframe Saved:", mydfs[i]))
 }
-
-
