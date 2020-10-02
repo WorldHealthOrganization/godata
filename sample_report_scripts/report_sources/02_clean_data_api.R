@@ -5,7 +5,7 @@
 #
 #       This script is for cleaning the Go.Data data for COVID - core variables ONLY (i.e. does not retrieve from custom questionnaire as this varies across instances
 #       You can adapt these relatively easily if you need to add in variables from your questionnaire.
-#       Script authors: Sara Hollis (holliss@who.int); James Fuller (fullerj@who.int)
+#       Script authored and maintained by: Sara Hollis (holliss@who.int); James Fuller (fullerj@who.int)
 
 ####################################################################################################################################################
 
@@ -453,7 +453,7 @@ followups_clean <- followups %>%
   left_join(contacts_address_history_clean %>% filter(addresses_typeid=="USUAL_PLACE_OF_RESIDENCE"), by=c("contact_uuid" = "id")) %>%
   
   # # clean date formats
-  mutate_at(vars(all_of(date_fields_followups)), list(~substr(., 1, 10)), ~as.Date) %>%  
+  mutate_at(vars(all_of(date_fields_followups)), list(~ as.Date(substr(., 1, 10)))) %>%  
   mutate(date_of_followup = date,
          date_of_data_entry = createdAt) %>%
   # mutate(location_id = str_replace_na(address.locationId, replacement = "")) %>%
