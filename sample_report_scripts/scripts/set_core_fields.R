@@ -235,3 +235,14 @@ address_columns <- c(
   "addresses_geolocation_lat",
   "addresses_geolocation_lng"
 )
+
+#################################################################
+
+dateranges_columns <- c(
+  "id",
+  "dateranges_typeid",
+  "dateranges_centername",
+  "dateranges_locationid",
+  "dateranges_startdate",
+  "dateranges_enddate"
+)
