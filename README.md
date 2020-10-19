@@ -16,7 +16,7 @@ This folder contains in it some example scripts for extracting, cleaning, and ru
 
 ## DHIS2 to Go.Data
 
-This folder contains the beginnings of interoperability work between DHIS2 COVID packages and Go.Data for countries that have requested to push their case and contact data to Go.Data from their DHIS2 instance. This includes:
+This folder contains the beginnings of interoperability work between DHIS2 COVID packages and Go.Data for countries that have requested to push their case and contact data to Go.Data from their DHIS2 instance, and vice versa, to benefit from core competencies of each tool. More details below:
 
 ### Org unit converter: 
 Devleoped by EyeSeeTea LS (http://eyeseetea.com/), this is a Python script to take the national org tree from a DHIS2 instance, transform its .json structure and input it into Go.Data 
@@ -28,4 +28,5 @@ _see full package here: https://github.com/WISCENTD-UPC/godata-api-wrapper/tree/
 ### Interoperability scripts:
 Developed by WISCENTD-UPC (https://github.com/WISCENTD-UPC/) - these scripts push DHIS2 Tracked Entities for cases and contacts into Go.Data cases and contacts, in addition to automatically inserting them in a new or existing outbreak in Go.Data with the appropriate parameters. 
 _see full package here: https://github.com/WISCENTD-UPC/dhis2-godata-interoperability/tree/develop_
+_see more project-related updates here: https://www.essi.upc.edu/dtim/projects/COVID-19_
 
