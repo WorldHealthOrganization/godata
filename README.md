@@ -8,7 +8,7 @@ _Visit our Community oF Practice website to swap learnings or post queries here:
 
 ## API
 
-This folder contains in it many example R scripts for GET/PUT/POST commands so that you can manipulate your Go.Data instance through the API, including bulk actions. We have used this for our training instances but think it could be helpful for others too.
+This folder contains example R scripts for GET/PUT/POST commands so that you can manipulate your Go.Data instance through the API, including bulk actions. We have used this for our training instances but think it could be helpful for others too.
 
 ## Sample Report Scripts
 
