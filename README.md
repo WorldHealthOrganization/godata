@@ -12,7 +12,7 @@ This folder contains in it many example R scripts for GET/PUT/POST commands so t
 
 ## Sample Report Scripts
 
-This folder contains in it some example scripts for extracting, cleaning, and running some basic analysis. Output at present includes flattened cleaned .csvs for case/contact linelists and an HTML dashboard displaying operational performance metrics for contact tracing by contact tracing supervisor and teams. Feel free to adapt to your purposes.
+This folder contains example scripts for extracting, cleaning, and running some basic analysis. Output at present includes flattened cleaned .csvs for case/contact linelists and an HTML dashboard displaying operational performance metrics for contact tracing by contact tracing supervisor and teams. Feel free to adapt to your purposes.
 
 ## DHIS2 to Go.Data
 
