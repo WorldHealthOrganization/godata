@@ -1,7 +1,7 @@
 ## Overview of API scripts
 Note: before running these scripts, make sure that the user used to send the request to the API has access to ALL outbreaks that you are referencing in script. To do this, you have to UNSELECT all outbreaks in the “available outbreak” dropdown menu from the user configuration page in Go.Data.
 
-### Retrieve your data collections from your Go.Data instance and import into R
+### GET data collections from your Go.Data instance 
 #### data_import_api.R
 ##### _This script gets relevant database collections from your Go.Data instance and stores them as tidy data frames in R (including all cases/contacts, followups, locations, users, teams)_
 * Required inputs	
@@ -13,8 +13,41 @@ Note: before running these scripts, make sure that the user used to send the req
   
  _Authors	Sara Hollis (holliss@who.int) - Produced in Feb 2020_
 
+### PUT and/or MANAGE the data collections in your Go.Data instance via API calls
 
-### Managing your instance through API
+### Create objects (cases, contacts, outbreaks, hospitalizations)
+
+#### godata_createCases.js
+#### _This jquery script pushes cases from a national HMIS API to Go.Data instance._
+
+_Authors:	Sello Pila (pilas@who.int) - Produced in Oct 2020_
+
+#### godata_createHospitalizations.R
+##### _This R script generates demo hospitalization for the cases of an outbreak. It generates them through the random number generator from the dateOfOnset_
+* Required inputs
+  * URL of the GO.Data server ending in “/”
+  * UserName and Password of a user with the right to manage users
+  * IDs of the training outbreaks we want participants to have access to
+  * List of training participants in standard format
+* Outputs
+  * All cases of an outbreak will have hospitalization data  
+  
+_Authors: Sara Hollis (holliss@who.int) and Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
+
+#### godata_generateOutbreaks.R
+##### _This script generates outbreaks for those participants that haven’t been able to generate their own during the training sessions and gives them access to this outbreak. It defines as well participants active outbreak_
+* Required inputs:	
+  * URL of the GO.Data server ending in “/”
+  * UserName and Password of a user with the right to manage users
+  *IDs of the training outbreaks we want participants to have access to
+  * List of training participants in standard format
+* Outputs:
+  * All the participants will have an outbreak to practice data import.  
+
+_Authors	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
+
+### Modify existing data (dates, user roles)
+
 #### godata_UpdateDatesInTraining.R	
 ##### _This script gets cases, contacts, events, lab results and all the relationships of the cases and moves their dates by the number of days (defined in the input parameters) in order to keep outbreaks up to date._
 * Required inputs	
@@ -40,18 +73,6 @@ _Authors:	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
    
 _Authors	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
 
-#### godata_generateOutbreaks.R
-##### _This script generates outbreaks for those participants that haven’t been able to generate their own during the training sessions and gives them access to this outbreak. It defines as well participants active outbreak_
-* Required inputs:	
-  * URL of the GO.Data server ending in “/”
-  * UserName and Password of a user with the right to manage users
-  *IDs of the training outbreaks we want participants to have access to
-  * List of training participants in standard format
-* Outputs:
-  * All the participants will have an outbreak to practice data import.  
-
-_Authors	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
-
 #### godata_giveUsersAccessToMobileOutbreak.R
 ##### _This script gives users access to the outbreak used for connecting mobile phone and sets it active to prevent issues while participants connect. (Note: it respects user’s access to all outbreak he/she had access to before o running this script)_
 * Required inputs	
@@ -75,18 +96,5 @@ _Authors	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
   * NOTE:	The script can be adapted to change users based on any other property of the user object (email, middleName, etc..)
 
 _Authors	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
-
-#### godata_createHospitalizations.R
-##### _This script generates demo hospitalization dates for the cases of an outbreak. It generates them through the random number generator from the dateOfOnset_
-* Required inputs
-  * URL of the GO.Data server ending in “/”
-  * UserName and Password of a user with the right to manage users
-  * IDs of the training outbreaks we want participants to have access to
-  * List of training participants in standard format
-* Outputs
-  * All cases of an outbreak will have hospitalization data  
-
-Authors
-_Sara Hollis (holliss@who.int) and Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
 
 
