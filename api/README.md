@@ -1,7 +1,7 @@
-## Overview of API scripts
+# Overview of API scripts
 Note: before running these scripts, make sure that the user used to send the request to the API has access to ALL outbreaks that you are referencing in script. To do this, you have to UNSELECT all outbreaks in the “available outbreak” dropdown menu from the user configuration page in Go.Data.
 
-### GET data collections from your Go.Data instance 
+## GET data collections from your Go.Data instance 
 #### data_import_api.R
 ##### _This script gets relevant database collections from your Go.Data instance and stores them as tidy data frames in R (including all cases/contacts, followups, locations, users, teams)_
 * Required inputs	
@@ -11,14 +11,14 @@ Note: before running these scripts, make sure that the user used to send the req
 * Outputs	
   * flattened dataframes stored in R
   
- _Authors	Sara Hollis (holliss@who.int) - Produced in Feb 2020_
+ _Authors:	Sara Hollis (holliss@who.int) - Produced in Feb 2020_
 
-### PUT and/or MANAGE the data collections in your Go.Data instance via API calls
+## PUT and/or MANAGE the data collections in your Go.Data instance via API calls
 
 ### Create objects (cases, contacts, outbreaks, hospitalizations)
 
 #### godata_createCases.js
-#### _This jquery script pushes cases from a national HMIS API to Go.Data instance._
+##### _This jquery script pushes cases from a national HMIS API to Go.Data instance._
 
 _Authors:	Sello Pila (pilas@who.int) - Produced in Oct 2020_
 
