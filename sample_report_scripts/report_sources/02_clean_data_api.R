@@ -89,7 +89,7 @@ cases_address_history_clean <- cases %>%
 missing_columns_cases_addresses <- setdiff(address_columns, names(cases_address_history_clean))
 cases_address_history_clean[missing_columns_cases_addresses] <- NA
 
-# Unnest Date Ranges - Isolation history
+# Unnest Date Ranges - Isolation / Hospitalizaton History
 # here we assume that if time frame is over 14d and no end date, it has already completed
 cases_hosp_history_clean <- cases %>%
   filter(deleted == FALSE | is.na(deleted)) %>%
