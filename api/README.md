@@ -13,6 +13,20 @@ Note: before running these scripts, make sure that the user used to send the req
   
  _Authors:	Sara Hollis (holliss@who.int) - Produced in Feb 2020_
 
+#### godata_export_cases_to_gsheets_v1.0.py
+##### _This script reads Go.Data cases, cleans, aggregates and exports them to Google Sheets_
+* Required inputs	
+  * URL of the Go.Data server ending in “/”
+  * UserName and Password of a user 
+  * IDs of the outbreak for which you want to retrieve collections (can only do one outbreak at a time)
+  * Gmail credentials
+* Outputs	
+  * aggregate case-counts in Google Sheets
+  
+ _Authors:	Mathias Leroy (mathiasleroy@gmail.com) - Produced in Nov 2020_
+ 
+ # Read Go.Data Cases, clean, aggregate and export to Google Sheets
+
 ## PUT and/or MANAGE the data collections in your Go.Data instance via API calls
 
 ### Create objects (cases, contacts, outbreaks, hospitalizations)
