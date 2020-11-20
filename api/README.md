@@ -24,8 +24,6 @@ Note: before running these scripts, make sure that the user used to send the req
   * aggregate case-counts in Google Sheets
   
  _Authors:	Mathias Leroy (mathiasleroy@gmail.com) - Produced in Nov 2020_
- 
- # Read Go.Data Cases, clean, aggregate and export to Google Sheets
 
 ## PUT and/or MANAGE the data collections in your Go.Data instance via API calls
 
