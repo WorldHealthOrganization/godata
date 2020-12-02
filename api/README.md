@@ -19,7 +19,7 @@ Note: before running these scripts, make sure that the user used to send the req
   * URL of the Go.Data server ending in “/”
   * UserName and Password of a user 
   * IDs of the outbreak for which you want to retrieve collections (can only do one outbreak at a time)
-  * Gmail credentials
+  * Google Sheets API credentials
 * Outputs	
   * aggregate case-counts in Google Sheets
   
