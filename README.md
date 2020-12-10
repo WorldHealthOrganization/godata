@@ -1,18 +1,20 @@
-# Welcome to the Go.Data repository!
+# Go.Data GitHub Repository
 
-This is the public WHO Go.Data repo for sharing scripts and documentation related to the Go.Data projects. Currently under construction but adding new things each day. Feedback and contributions welcome!
+Welcome to the Go.Data GitHub Repository! This is the public WHO Go.Data repo for sharing scripts and documentation related to the Go.Data projects being implemented worldwide. Feedback and contributions welcome!
 
 _Questions or feedback - please contact us at godata@who.int_
 
-_Visit our Community oF Practice website to swap learnings or post queries here: https://community-godata.who.int/_
+_Visit our Community of Practice website to swap learnings or post queries here: https://community-godata.who.int/_
+
+_R user? Join our slack channel here:https://godata-workspace.slack.com/archives/C01GS9B2RTK_
+
+## Sample Report Scripts
+
+This folder contains example scripts for extracting, cleaning, and running some basic analysis. Output at present includes flattened cleaned .csvs for case/contact linelists and an HTML dashboard displaying operational performance metrics for contact tracing by contact tracing supervisor and teams. Feel free to adapt to your purposes and share back any good stuff you've created!
 
 ## API
 
 This folder contains in it many example R scripts for GET/PUT/POST commands so that you can manipulate your Go.Data instance through the API, including bulk actions. We have used this for our training instances but think it could be helpful for others too.
-
-## Sample Report Scripts
-
-This folder contains example scripts for extracting, cleaning, and running some basic analysis. Output at present includes flattened cleaned .csvs for case/contact linelists and an HTML dashboard displaying operational performance metrics for contact tracing by contact tracing supervisor and teams. Feel free to adapt to your purposes.
 
 ## DHIS2 to Go.Data
 
