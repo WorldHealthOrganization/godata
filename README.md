@@ -1,3 +1,5 @@
+![Go.Data Logo](https://github.com/WorldHealthOrganization/godata/edit/master/assets/Go.Data Logo - Logo and name right - Grey.png?)
+
 # Go.Data GitHub Repository
 
 Welcome to the Go.Data GitHub Repository! This is the public WHO Go.Data repo for sharing scripts and documentation related to the Go.Data projects being implemented worldwide. Feedback and contributions welcome!
