@@ -1,4 +1,4 @@
-![Go.Data Logo](https://github.com/WorldHealthOrganization/godata/tree/master/assets/Go.Data Logo - Logo and name right - Grey.png?)
+![Go.Data Logo](https://github.com/WorldHealthOrganization/godata/tree/master/assets/Go.Data Logo - Logo and name right - Grey.png)
 
 # Go.Data GitHub Repository
 
