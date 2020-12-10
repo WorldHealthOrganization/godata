@@ -1,10 +1,12 @@
 ![Go.Data Logo](https://github.com/WorldHealthOrganization/godata/blob/master/assets/godata_logo.png)
 
-# Go.Data GitHub Repository
+# Welcome to the Go.Data GitHub Repository!
 
-Welcome to the Go.Data GitHub Repository! This is the public WHO Go.Data repo for sharing scripts and documentation related to the Go.Data projects being implemented worldwide. Feedback and contributions welcome!
+This is the project repo for sharing technical documentation and resources developed and used in the context of Go.Data deployments worldwide. Go.Data is a software for contact tracing and outbreak response developed by WHO in collaboration with partners in the Global Outbreak Alert and Response Network (GOARN). Go.Data focuses on case and contact data including laboratory data, hospitalizaton and other variables collected through investigation forms. It generates contact follow-up lists and viusalisation of chains of tranmission.
 
-_Questions or feedback - please contact us at godata@who.int_
+It is currently in use in over 60 countries / terrirorites, in different institutions and at different national levels.
+
+_Questions or feedback - please contact us at godata@who.int_ or visit 
 
 _Visit our Community of Practice website to swap learnings or post queries here: https://community-godata.who.int/_
 
