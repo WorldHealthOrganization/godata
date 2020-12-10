@@ -9,9 +9,9 @@ If you copy/paste this folder hierarchy into your C drive and double click the .
 ## report_sources
 
 This includes scripts for 
-1. importing data from API and storing as dataframes
+1. importing data into R from your Go.Data API 
 2. cleaning these dataframes and exporting to .csv files into clean data folder
-3. running basic analysis for these data collections and outputting into .HTML dashboard using flexdashboard package
+3. running basic analysis for these data collections and outputting into .HTML dashboard using flexdashboard package (see screenshot above for an example)
 
 ## report_outputs
 
