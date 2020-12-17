@@ -1,0 +1,9 @@
+C:\Users\hauw\source\repos\WindowApp\bin\Release\WindowApp.exe.config
+C:\Users\hauw\source\repos\WindowApp\bin\Release\WindowApp.exe
+C:\Users\hauw\source\repos\WindowApp\bin\Release\WindowApp.pdb
+C:\Users\hauw\source\repos\WindowApp\obj\Release\WindowApp.LSIntegration.resources
+C:\Users\hauw\source\repos\WindowApp\obj\Release\WindowApp.Properties.Resources.resources
+C:\Users\hauw\source\repos\WindowApp\obj\Release\WindowApp.csproj.GenerateResource.cache
+C:\Users\hauw\source\repos\WindowApp\obj\Release\WindowApp.csproj.CoreCompileInputs.cache
+C:\Users\hauw\source\repos\WindowApp\obj\Release\WindowApp.exe
+C:\Users\hauw\source\repos\WindowApp\obj\Release\WindowApp.pdb

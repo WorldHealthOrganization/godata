@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<script type="text/javascript">
+    function onRequestLS_Export_Responses() {
+        AjaxRequestLimeSurvey();
+    }
+
+    function onRequestLS_List_Participants() {
+        AjaxRequestLS_List_Participants();
+    }
+
+    function onRequestGoData() {
+        AjaxRequestGoData();
+    }
+
+    function onRequestGoData_FollowUps() {
+        AjaxRequestGoData_FollowUps();
+    }
+
+    function AjaxRequestLimeSurvey() {
+        $.ajax({
+            url: "/home/GetLimeSurveyAPI",
+            type: "POST",
+            cache: false,
+            async: false,
+            beforeSend: function () {
+            },
+            success: function (data) {
+                if (data.json_status) {
+                    //no need prompt as window app run in scheduler mode
+                    //alert(data.json_message);
+                }
+                else {
+                    //alert("Connection failure!.");
+                }
+            }
+        });
+    }
+
+    function AjaxRequestLS_List_Participants() {
+        $.ajax({
+            url: "/home/GetLimeSurveyAPI_ListParticipants",
+            type: "POST",
+            cache: false,
+            async: false,
+            beforeSend: function () {
+            },
+            success: function (data) {
+                if (data.json_status) {
+                    alert("Connect Lime Survey API Successfully.");
+                }
+                else {
+                    alert("Connection failure!.");
+                }
+            }
+        });
+    }
+
+    function AjaxRequestGoData() {
+        $.ajax({
+            url: "/home/GetGoDataAPI",
+            type: "POST",
+            cache: false,
+            async: false,
+            beforeSend: function () {
+            },
+            success: function (data) {
+                if (data.json_status) {
+                    alert("Connect GoData API Successfully.");
+                }
+                else {
+                    alert("Connection failure!");
+                }
+            }
+        });
+    }
+
+    function AjaxRequestGoData_FollowUps() {
+        $.ajax({
+            url: "/home/PostGoDataAPI_FollowUps",
+            type: "POST",
+            cache: false,
+            async: false,
+            beforeSend: function () {
+            },
+            success: function (data) {
+                if (data.json_status) {
+                    alert("Connect GoData API Successfully.");
+                }
+                else {
+                    alert("Connection failure!");
+                }
+            }
+        });
+    }
+
+
+</script>
+
+<div class="jumbotron">
+    <h1>LIME SURVEY</h1>
+    <p class="lead">Lime Survey API Integration</p>
+    <p><a href="javascript:onRequestLS_Export_Responses()" class="btn btn-primary btn-lg">Request (export_responses)  &raquo;</a></p>
+    <p><a href="javascript:onRequestLS_List_Participants()" class="btn btn-primary btn-lg">Request (list_participants) - Require step-in to view response  &raquo;</a></p>
+    <p><a href="javascript:onRequestGoData()" class="btn btn-primary btn-lg">Request GoData (GET_Outbreaks_ALL) - Require step-in to view response  &raquo;</a></p>
+    <p><a href="javascript:onRequestGoData_FollowUps()" class="btn btn-primary btn-lg">Request GoData (Follow-Ups) - Require LS mapping  &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>
+            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+            enables a clean separation of concerns and gives you full control over markup
+            for enjoyable, agile development.
+        </p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Get more libraries</h2>
+        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Web Hosting</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+</div>
