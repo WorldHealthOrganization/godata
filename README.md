@@ -39,3 +39,8 @@ _see full package here: https://github.com/WISCENTD-UPC/dhis2-godata-interoperab
 
 _see more project-related updates here: https://www.essi.upc.edu/dtim/projects/COVID-19_
 
+### Lime Survey to Go.Data:
+A project developed internally by WHO IMT to link Daat Form (Lime Survey) to Go.Data API to API for teh exchange of COVID-19 tracking data for WHO staff.  This then is a very specific solution internal to WHO's need but illustrated using the Lime Survey and Go.Data interfaces using .Net 4.7.2 - C# code.
+
+_see more project-related updates here: PENDING
+
