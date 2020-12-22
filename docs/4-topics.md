@@ -14,6 +14,8 @@ When interoperating with other systems, determining unique identifiers for every
 All records created in Go.Data are assigned a system-generated internal Globally Unique Identifier (`GUID`). 
 GUIDs (e.g., `8c71e61f-fb11-4d4f-9130-b69384b6e4e4`) are used as primary
 keys for records in the MongoDB, and are **required to request and update Go.Data records** via the API.
+
+
 `GET  http://localhost:8000/api/outbreaks/8c71e61f-fb11-4d4f-9130-b69384b6e4e4`
 
 ### Case & Contact IDs
