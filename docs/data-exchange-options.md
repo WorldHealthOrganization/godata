@@ -6,16 +6,36 @@ permalink: /interoperability-options/
 ---
 # Data Interoperability Options & Use Cases
 ## 1. Data Input
-...
+1. Go.Data provides out-of-box features to support manual data entry, and file import options for file types .csv, .xls, .xlsx, .xml, json, and .ods. See the [User Guide](...) for more information. 
+2. Online, offline, and mobile data input options are supported. 
+3. **Import templates**: 
+- [Case List](...)
+- [Lab Results](...)
+- [Locations](...)
+- ...
+4. Manual data entry and import approaches require relatively little technical effort. They may also be used temporarily to pilot a data integration approach. This allows users to test functionality and reports, without having to employ dedicated technical resources for the development of automated interoperability functions.
+
 
 ## 2. Data Sharing & APIs
-...
+1. **Exports:** Go.Data provides out-of-box features for generating data exports and basic reports. This includes exports to file types .csv, .xls, .xlsx, .xml, json, .ods, and .pdf.  See the [User Guide](...) for more information. 
+2. **API:** Go.Data provides robust APIs to support a wide range of data exchange scenarios. Any operation possible from the web interface/smartphone can also be made by calling the appropriate method direct. 
+- [See IT Admin Guide](...) for additional API documentation. 
+- The self-documenting description of the API methods can be viewed using Loopback Explorer by adding /explorer to the end of any Go.Data URL. See the API Loopback Explorer for the Go.Data Training Site: http://who-stable.clarisoft.com/explorer/
+- See the [Github Repo](https://github.com/WorldHealthOrganization/godata/tree/master/api) for sample scripts leveraging the API. 
 
 ## 3. Integration Scripts & ETL Tools
-...
+1. [Sample Report Scripts](https://github.com/WorldHealthOrganization/godata#sample-report-scripts): This folder contains example scripts for extracting, cleaning, and running some basic analysis. Output at present includes flattened cleaned .csvs for case/contact linelists and an HTML dashboard displaying operational performance metrics for contact tracing by contact tracing supervisor and teams. Feel free to adapt to your purposes and share back any good stuff you've created!
+2. [API Scripts](https://github.com/WorldHealthOrganization/godata/tree/master/api): This folder contains in it many example R scripts for GET/PUT/POST commands so that you can manipulate your Go.Data instance through the API, including bulk actions. We have used this for our training instances but think it could be helpful for others too.
+3. [DHIS2 to Go.Data](https://github.com/WorldHealthOrganization/godata/tree/master/dhis2togodata): This folder contains the beginnings of interoperability work between DHIS2 COVID packages and Go.Data for countries that have requested to push their case and contact data to Go.Data from their DHIS2 instance, and vice versa, to benefit from core competencies of each tool. 
+4. [Interoperability Jobs](https://github.com/WorldHealthOrganization/godata/tree/master/dhis2togodata): This folder contains reference implementations of automated interoperability solutions to demonstrate common Go.Data interoperability use cases and example OpenFn job scripts that automate common API and data exchange operations. 
+5. Export to PowerBI: New scripts - coming soon. [See the community](https://community-godata.who.int/conversations/dashboards-and-analysis/connecting-power-bi-through-api/5f8033acbd255079ca8ce356) for related discussion. 
 
 ## 4. Connectors with Common ICT4D Tools
-...
+1. [OpenFn](https://docs.openfn.org/) integration platform uses the open-source API adaptor/wrapper [language-godata](https://github.com/OpenFn/language-godata) to expose a series of helper functions for commonly used API operations (e.g., `getCases(...)`). 
+- See OpenFn/microservice for information on open-source and free integration tools for configuring and automating integration scripts. 
+2. PowerBI & Other analysis tools - Consider leveraging the standard export feature to generate file exports to run through external tools, and/or leverage the Go.Data API to automate or stream data exports (see the standard resource and `/export` endpoints). 
+3. **DHIS2 App** (*in progress*)
+4. **ArcGIS Connector** (*in progress*) - Consider making use of the existing [Data Interoperability Extension](https://pro.arcgis.com/en/pro-app/latest/help/data/data-interoperability/what-is-the-data-interoperability-extension.htm)
 
 # Real-World Interoperability Scenarios
 To develop this toolkit, we engaged several Go.Data community members and HIS stakeholders to collect common interoperability requirements for Go.Data implementations. Key requirements for data interoperability were summarized into two main categories:
