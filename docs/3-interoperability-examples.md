@@ -10,6 +10,8 @@ The following examples were configured to demonstrate common interoperability us
 ## 1. Go.Data <> HMIS/Surveillance system 2-way information exchange
 In most country-level implementations, Go.Data needs to interoperate with an existing HMIS or Surveillance system to ensure no duplication of efforts. These systems might be configured on an application like DHIS2 or are custom developed using other software or databases. In this solution we explore the following use cases by designing for a Go.Data integration with a theoretical SQL-based HMIS for 2-way exchange of case information. 
 
+![implementation-1](../assets/godata-example1.png)
+
 ---
 **Use Cases:**
 
@@ -18,7 +20,8 @@ In most country-level implementations, Go.Data needs to interoperate with an exi
 **#2.** _As a Go.Data user, I would like to automatically apply the FHIR data standard to any information collected via Go.Data before sharing with the HMIS to ensure data interoperability and to avoid any manual data cleaning/reformatting steps during information exchange._
 
 ---
-![implementation-1](../assets/godata-example1.png)
+![diagram-1-2](../assets/Go.Data Use Case Diagrams  - Use Cases 1 & 2.png)
+
 
 ### 1. HMIS to Go.Data
 To automate data integration from the HMIS to Go.Data, implementers may consider 2 common integration approaches: 
@@ -86,6 +89,12 @@ Mobile apps and survey tools are widely used by Go.Data implementers and other h
 **#4.** _As a MOH employee, I would like to integrate case data collected via my mobile survey tool so that I can monitor new case registrations in real-time and quickly follow up with new contacts._
 
 ---
+
+![dataflow-4](../assets/Go.Data Use Case Diagrams  - Use Case #4_ Kobo --_ Go.Data.png)
+
+## Integration Steps
+1. ...
+
 ### Implementation Resources
 1. [See this video](...) of the demo solution configured to demonstrate this use case #4.  
 2. To click around & explore the solution in-depth, go to OpenFn.org...
@@ -100,6 +109,7 @@ Importing administrative locations (e.g., `Admin-Level-2` province data) and dif
 **#5.** _As a Go.Data analyst, I would like to import facility and location lists from standard registries and external data sources so that I can more easily exchange information with the MOH and other partners._
 
 ---
+![dataflow-5](../assets/Go.Data Use Case Diagrams  - Use Case #5 Location List .png)
 ### Integration Steps
 1. Identify the external data source and available APIs - see [Health Sites example](). 
 2. Export the data from the source - [see here]() for an example script where we send a `GET` HTTP request to `/api/facilities` to fetch a health facility list.
@@ -129,7 +139,9 @@ Reporting...
 **#6.** _As a MOH employee using DHIS2, I would like to receive a weekly summary of Go.Data data cases to monitor performance across key COVID-19 indicators (e.g., # confirmed cases, # hospitalized cases, transmission classifications)._
 
 ---
+![dataflow-5](../assets/Go.Data Use Case Diagrams  - Use Case #6_ DHIS2 Aggregate.png)
 
+## Integration Steps 
 
 ### Implementation Resources
 1. [See this video](...) of the demo solution configured to demonstrate this use case #6.  
