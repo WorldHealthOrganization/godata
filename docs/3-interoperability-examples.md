@@ -18,6 +18,7 @@ In most country-level implementations, Go.Data needs to interoperate with an exi
 **#2.** _As a Go.Data user, I would like to automatically apply the FHIR data standard to any information collected via Go.Data before sharing with the HMIS to ensure data interoperability and to avoid any manual data cleaning/reformatting steps during information exchange._
 
 ---
+![implementation-1](../assets/godata-example1.png)
 
 ### 1.1. HMIS to Go.Data
 To automate data integration from the HMIS to Go.Data, implementers may consider 2 common integration approaches: 
@@ -43,6 +44,8 @@ To automate data integration from Go.Data to the HMIS, we...
 1. [See this video](...) of the demo solution configured to demonstrate these use cases #1 and #2.  
 2. See [example integration scripts](...) ... 
 3. See the solution [design documentation](...) ... 
+
+![implementation-2](../assets/godata-example2.png)
 
 ## 2. Importing Lab Sample Data to Go.Data
 For many Go.Data implementers, lab results data will be the starting reference point when implementing a new Go.Data instance. This sample data will need to be first be transformed to align with the Go.Data data model, where `Case` and `Contact` records must first be created to track individual beneficiary details. Once these individual records are created, then related `Lab Results` data can be imported. 
