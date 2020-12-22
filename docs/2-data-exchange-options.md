@@ -40,18 +40,18 @@ permalink: /interoperability-options/
 # Real-World Interoperability Scenarios
 To develop this toolkit, we engaged several Go.Data community members and HIS stakeholders to collect common interoperability requirements for Go.Data implementations. Key requirements for data interoperability were summarized into two main categories:
 
-## Transactional information sharing  (individual-level data exchange)
+## Transactional data exchange  (individual-level sharing)
 For transactional data exchange and building shared health records for enhanced collaboration. 1- and 2-way information exchange flows, list examples…
 
-[diagram]
+![individual-sync](../assets/transactional.png)
 
-## Aggregate information sharing (summary-level data exchange)
+## Aggregate data exchange (summary-level sharing)
 For aggregate data exchange primarily used for external reporting & monitoring. Typically a 1-way information flow, list examples…
 
-[diagram]
+![aggregate-sync](../assets/aggregate.png)
 
 ## Common Use Cases
-[See this table] for interoperability use cases identified by the Go.Data partners through "Interoperability" `Ask The Expert` sessions and conversations with Go.Data impleementers and team in December 2020. 
+[See this table](https://docs.google.com/spreadsheets/d/1L6r6o1cLFyN9JdF8HAoDzTQP5KOg5Hqy-NwqntmMGqE/edit?usp=drive_web&ouid=101430720901034004945) for interoperability use cases identified by the Go.Data partners through "Interoperability" `Ask The Expert` sessions and conversations with Go.Data impleementers and team in December 2020. 
 
 **Table Below:** 6 use cases from this list have been implemented as [Interoperability Reference Implementations](...) to showcase common interoperability scenarios and priority requirements. 
 In the table below, we have highlighted the common use cases we will address via solutions developed as reference implementations. 
