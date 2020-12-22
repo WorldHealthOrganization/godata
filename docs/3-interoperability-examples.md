@@ -101,9 +101,10 @@ Importing administrative locations (e.g., `Admin-Level-2` province data) and dif
 
 ---
 ### Integration Steps
-1. Identify the external data source and available APIs - Health Sites example: 
-2. Export the data from the source - [see here]() for an example script where we send a `GET` HTTP request to `/api/facilities` to fetch a health facility list
-3. Upsert the facilities as `locations` in Go.Data using `name` as an external identifier to match existing locations ([see script here](...). You might also consider matching on other unique identifiers such as available `uuid` or `geodata` codes. 
+1. Identify the external data source and available APIs - see [Health Sites example](). 
+2. Export the data from the source - [see here]() for an example script where we send a `GET` HTTP request to `/api/facilities` to fetch a health facility list.
+3. Analyze the response to #2 to determine the appropriate unique identifiers to matching with Go.Data `locations` and to use as `externalId` for future duplicate prevention. 
+4. Upsert the facilities as `locations` in Go.Data using `name` as an external identifier to match existing locations ([see script here](...). You might also consider matching on other unique identifiers such as available `uuid` or `geodata` codes. 
 
 ### Implementation Resources
 1. [See this video](...) of the demo solution configured to demonstrate this use case #5.  
