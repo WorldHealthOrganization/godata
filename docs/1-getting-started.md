@@ -10,9 +10,9 @@ permalink: /getting-started/
 Quickstart guide to starting your interoperability journey… (This section will target a non-technical audience who is interested in interoperability)
 1. Evaluating the options 
 2. Preparing for implementations 
-2a. Getting buy-in, Shareable PDF overviews on Go.Data app, available data elements → LINK to existing Go.Data resources here
-2b. Example data sharing agreements
-2c. Finalizing requirements, mapping data elements → link to Go.Data-specific template to jumpstart implementers’ design process (shareable file that could be shared with partner agencies/ systems)
+- a. Getting buy-in, Shareable PDF overviews on Go.Data app, available data elements → LINK to existing Go.Data resources here
+- b. Example data sharing agreements
+- c. Finalizing requirements, mapping data elements → link to Go.Data-specific template to jumpstart implementers’ design process (shareable file that could be shared with partner agencies/ systems)
 3. Planning for the technical implementation of interoperability solutions → link to OpenFn ‘Integration Checklist’ resource used in all new integration projects, but customized for Go.Data)
 4. Guidance for data security, protection, & compliance considerations → links to FAQ, resources
 
