@@ -19,7 +19,7 @@ In most country-level implementations, Go.Data needs to interoperate with an exi
 
 ---
 
-### HMIS to Go.Data
+### 1.1. HMIS to Go.Data
 To automate data integration from the HMIS to Go.Data, implementers may consider 2 common integration approaches: 
 1. Data forwarding...
 2. Direct data integration via APIs where you can (1) send a HTTP request to fetch the relevant data from the source HMIS, and then (2) upsert* the data in Go.Data, matching HMIS `caseId` with Go.Data `externalId` to ensure no duplicate records are created. 
@@ -27,7 +27,7 @@ To automate data integration from the HMIS to Go.Data, implementers may consider
 
 * _**"Upsert"** operations are a data import pattern where you first check if a record exists using an external identifier, and then either **update** or **insert** a new record dependng on whether an existing record is found. See the [section on Unique Identifiers](...) for additional considerations regarding upserts, `externalId` and other unique identifiers._ 
 
-### Go.Data to HMIS & FHIR Standard
+### 1.2. Go.Data to HMIS & FHIR Standard
 To automate data integration from Go.Data to the HMIS, we...
 1. Leverage the Go.Data API to automatically extract cases via an HTTP request to `GET /cases`. 
 2. Apply transformation rules determined from [FHIR HL7](...) to clean, re-format, & map the Go.Data information to match the international standard
