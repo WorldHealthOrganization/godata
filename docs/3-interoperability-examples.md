@@ -28,7 +28,7 @@ To automate data integration from the HMIS to Go.Data, implementers may consider
 
 * _**"Upsert"** operations are a data import pattern where you first check if a record exists using an external identifier, and then either **update** or **insert** a new record dependng on whether an existing record is found. See the [section on Unique Identifiers](...) for additional considerations regarding upserts, `externalId` and other unique identifiers._ 
 
-### 2. Go.Data to HMIS & FHIR Standard
+### 2. Go.Data to HMIS & Applying FHIR 
 To automate data integration from Go.Data to the HMIS, we...
 1. Leverage the Go.Data API to automatically extract cases via an HTTP request to `GET /cases`. 
 2. Apply transformation rules determined from [FHIR HL7](...) to clean, re-format, & map the Go.Data information to match the international standard
