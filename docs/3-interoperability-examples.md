@@ -20,7 +20,7 @@ In most country-level implementations, Go.Data needs to interoperate with an exi
 ---
 ![implementation-1](../assets/godata-example1.png)
 
-### 1.1. HMIS to Go.Data
+### 1. HMIS to Go.Data
 To automate data integration from the HMIS to Go.Data, implementers may consider 2 common integration approaches: 
 1. Data forwarding...
 2. Direct data integration via APIs where you can (1) send a HTTP request to fetch the relevant data from the source HMIS, and then (2) upsert* the data in Go.Data, matching HMIS `caseId` with Go.Data `externalId` to ensure no duplicate records are created. 
@@ -28,7 +28,7 @@ To automate data integration from the HMIS to Go.Data, implementers may consider
 
 * _**"Upsert"** operations are a data import pattern where you first check if a record exists using an external identifier, and then either **update** or **insert** a new record dependng on whether an existing record is found. See the [section on Unique Identifiers](...) for additional considerations regarding upserts, `externalId` and other unique identifiers._ 
 
-### 1.2. Go.Data to HMIS & FHIR Standard
+### 2. Go.Data to HMIS & FHIR Standard
 To automate data integration from Go.Data to the HMIS, we...
 1. Leverage the Go.Data API to automatically extract cases via an HTTP request to `GET /cases`. 
 2. Apply transformation rules determined from [FHIR HL7](...) to clean, re-format, & map the Go.Data information to match the international standard
@@ -47,7 +47,7 @@ To automate data integration from Go.Data to the HMIS, we...
 
 ![implementation-2](../assets/godata-example2.png)
 
-## 2. Importing Lab Sample Data to Go.Data
+## 3. Importing Lab Sample Data to Go.Data
 For many Go.Data implementers, lab results data will be the starting reference point when implementing a new Go.Data instance. This sample data will need to be first be transformed to align with the Go.Data data model, where `Case` and `Contact` records must first be created to track individual beneficiary details. Once these individual records are created, then related `Lab Results` data can be imported. 
 
 ---
@@ -78,9 +78,8 @@ Typically a lab will provide export of `Sample`/ `Results` data like [this examp
 3. See the section on [Unique Identifiers](...) to support with resource matching during data imports. 
 
 
-
-## 3. Mobile to Go.Data
-Mobile survey and data collection apps are widely used by Go.Data implementers and other health initiatives...
+## 4. Mobile to Go.Data
+Mobile apps and survey tools are widely used by Go.Data implementers and other health initiatives for on-the-ground data collection, response, basic monitoring. Many of these tools are open-source and developed on similar frameworks (e.g., ODK, Kobo Toolbox, ONA, CommCare), so the available integration options are very similar. 
 
 ---
 **Use Case:**
@@ -93,14 +92,18 @@ Mobile survey and data collection apps are widely used by Go.Data implementers a
 3. See [example integration scripts](...) ... 
 4. See the solution [design documentation](...) ... 
 
-## 4. Health Facility/ Locations  Import to Go.Data
-Mobile survey and data collection apps are widely used by Go.Data implementers and other health initiatives...
+## 5. Health Facility/ Locations Import to Go.Data
+Importing administrative locations (e.g., `Admin-Level-2` province data) and different `Location` reference data are typically the first steps in setting up a new `Outbreak` in Go.Data. Importing location lists from shared reference sources are important to strengthening interoperability and ensuring information can be easily synced and mapped in other systems. [See p. 33 of the Implementation Guide](...) for more information and step-by-step guidance for data imports. Here we demonstrate how `Location` data may be synced via APIs.  
 
 ---
 **Use Case:**
 **#5.** _As a Go.Data analyst, I would like to import facility and location lists from standard registries and external data sources so that I can more easily exchange information with the MOH and other partners._
 
 ---
+### Integration Steps
+1. Identify the external data source and available APIs - Health Sites example: 
+2. Export the data from the source - [see here]() for an example script where we send a `GET` HTTP request to `/api/facilities` to fetch a health facility list
+3. Upsert the facilities as `locations` in Go.Data using `name` as an external identifier to match existing locations ([see script here](...). You might also consider matching on other unique identifiers such as available `uuid` or `geodata` codes. 
 
 ### Implementation Resources
 1. [See this video](...) of the demo solution configured to demonstrate this use case #5.  
@@ -108,7 +111,16 @@ Mobile survey and data collection apps are widely used by Go.Data implementers a
 3. See [example integration scripts](...) ... 
 4. See the solution [design documentation](...) ... 
 
-## 5. Aggregate reporting to DHIS2 
+### External Data Sources
+1. `HDX` – a clearinghouse of humanitarian open-source data. Included for many countries is the administrative unit boundaries which typically has a unique ID (Pcode) and in some cases this will also include additional data such as “population” that can be used in post analysis.
+https://data.humdata.org/
+2.`WHO` – Global coverage of administrative unit boundaries, has centroid and Pcode for unique ID – so could be joined back to GIS data afterwards but only goes to Adm2 and in some countries only ADM 1.
+https://polioboundaries-who.hub.arcgis.com/
+3. `Geonames` – has ID, lat/lon and names – may or may not be able to match up to any GIS outside of Go.Data.
+http://download.geonames.org/export/dump/
+4. `HealthSites.io` - open source repository of health facility data built in partnership with Open Street Map http://healthsites.io/
+
+## 6. Aggregate reporting to DHIS2 
 Reporting...
 
 ---
