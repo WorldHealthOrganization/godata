@@ -8,11 +8,10 @@ permalink: /interoperability-options/
 ## 1. Data Input
 1. Go.Data provides out-of-box features to support manual data entry, and file import options for file types .csv, .xls, .xlsx, .xml, json, and .ods. See the [User Guide](...) for more information. 
 2. Online, offline, and mobile data input options are supported. 
-3. **Import templates**: 
+3. **Excel import templates**: 
 - [Case List](...)
 - [Lab Results](...)
 - [Locations](...)
-- ...
 4. Manual data entry and import approaches require relatively little technical effort. They may also be used temporarily to pilot a data integration approach. This allows users to test functionality and reports, without having to employ dedicated technical resources for the development of automated interoperability functions.
 
 
@@ -31,9 +30,8 @@ permalink: /interoperability-options/
 5. Export to PowerBI: New scripts - coming soon. [See the community](https://community-godata.who.int/conversations/dashboards-and-analysis/connecting-power-bi-through-api/5f8033acbd255079ca8ce356) for related discussion. 
 
 ## 4. Connectors with Common ICT4D Tools
-1. [OpenFn](https://docs.openfn.org/) integration platform uses the open-source API adaptor/wrapper [language-godata](https://github.com/OpenFn/language-godata) to expose a series of helper functions for commonly used API operations (e.g., `getCases(...)`). 
-- See OpenFn/microservice for information on open-source and free integration tools for configuring and automating integration scripts. 
-2. PowerBI & Other analysis tools - Consider leveraging the standard export feature to generate file exports to run through external tools, and/or leverage the Go.Data API to automate or stream data exports (see the standard resource and `/export` endpoints). 
+1. **[OpenFn](https://docs.openfn.org/) integration platform** uses the open-source API adaptor/wrapper [language-godata](https://github.com/OpenFn/language-godata) to expose a series of helper functions for commonly used API operations (e.g., `getCases(...)`). See [OpenFn/microservice](https://openfn.github.io/microservice/) for information on open-source and free integration tools for configuring and automating integration scripts. 
+2. **PowerBI & Other analysis tools** - Consider leveraging the standard export feature to generate file exports to run through external tools, and/or leverage the Go.Data API to automate or stream data exports (see the standard resource and `/export` endpoints). 
 3. **DHIS2 App** (*in progress*)
 4. **ArcGIS Connector** (*in progress*) - Consider making use of the existing [Data Interoperability Extension](https://pro.arcgis.com/en/pro-app/latest/help/data/data-interoperability/what-is-the-data-interoperability-extension.htm)
 
