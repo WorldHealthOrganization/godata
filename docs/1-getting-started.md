@@ -41,7 +41,7 @@ Go.Data exposes an Application Programming Interface (API) which is used for all
 ### Go.Data 
 See [Data Input & Sharing Options](../2-data-exchange-options.md), including available API documentation to understand Go.Data's wide range of flexible and robust options for data exchange, including import/export options, API documentation, and scripts and sample solutions for automated data integration.
 
-## Other Systems
+### Connecting with other systems
 When analyzing integration & interoperability options with another system, consider the following questions: 
 1. Who are the other users? What information do they access, when, and for what business purpose? 
 2. Where is the system hosted? And who manages it/ provides ongoing support? If it is hosted locally, is it web accessible or can it only be accessed via the local network? If it is hosted by a third party, do you have access to that third party to request changes, API access, technical documentation, etc.? 
