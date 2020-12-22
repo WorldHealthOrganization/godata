@@ -10,7 +10,8 @@ nav_order: 6
 Questions or feedback - please contact us at godata@who.int
 
 Visit our Community of Practice website to swap learnings or post queries here: https://community-godata.who.int/
-[→ Links to where to find Go.Data guides…]
+
+- [→ Links to where to find Go.Data guides…]
 
 ## Other Resources
 ### WHO 
