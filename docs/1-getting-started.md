@@ -38,4 +38,4 @@ Go.Data exposes an Application Programming Interface (API) which is used for all
 
 
 ## Understand Available Options
-See [Data Input & Sharing Options](../2-data-exchange-options.md), including available API documentation to understand Go.Data's wide range of flexible and robust options for data exchange. 
+See [Data Input & Sharing Options](../2-data-exchange-options.md), including available API documentation to understand Go.Data's wide range of flexible and robust options for data exchange, including import/export options, API documentation, and scripts and sample solutions for automated data integration.
