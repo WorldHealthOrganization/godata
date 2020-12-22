@@ -45,13 +45,13 @@ When planning to report aggregate results to an external system, build a map of 
 See [reference implementation #3] for specific step-by-step guidance with a real-world example. Other resources: ...
 
 ## 6. Integrating with DHIS2
-## DHIS2 to Go.Data
+## 6.1. DHIS2 to Go.Data
 See the UPC scripts... 
 
-## Go.Data to DHIS2 Tracker (Individual-level data exchange)
+## 6.2. Go.Data to DHIS2 Tracker (Individual-level data exchange)
 See the UPC scripts and consider leveraging the DHIS2 [Tracker Web API](https://docs.dhis2.org/2.34/en/dhis2_developer_manual/web-api.html#tracker-web-api) for potential 2-way exchange of case information between DHIS2 `tracked entity instance` records or `events` and Go.Data `cases` or `contacts`. 
 
-## Go.Data to DHIS2 Data Values (Aggregate-level data exchange)
+## 6.3. Go.Data to DHIS2 Data Values (Aggregate-level data exchange)
 See [reference implementation #6] for specific step-by-step guidance with a real-world example of aggregate reporting. 
 One of the first things you’ll need to do is identify the specific DHIS2 `data set` that you plan to integrate your Go.Data data with. In DHIS2, aggregate data captured as `dataValueSets` and is further defined across different dimensions called `orgUnit`, `period`, and `dataElement` & `categories`. 
 
