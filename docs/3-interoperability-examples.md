@@ -20,7 +20,7 @@ In most country-level implementations, Go.Data needs to interoperate with an exi
 **#2.** _As a Go.Data user, I would like to automatically apply the FHIR data standard to any information collected via Go.Data before sharing with the HMIS to ensure data interoperability and to avoid any manual data cleaning/reformatting steps during information exchange._
 
 ---
-![diagram-1-2](../assets/Go.Data Use Case Diagrams  - Use Cases 1 & 2.png)
+![diagram-1-2](../assets/io-use-case-1-2.png)
 
 
 ### 1. HMIS to Go.Data
@@ -90,7 +90,7 @@ Mobile apps and survey tools are widely used by Go.Data implementers and other h
 
 ---
 
-![dataflow-4](../assets/Go.Data Use Case Diagrams  - Use Case #4_ Kobo --_ Go.Data.png)
+![dataflow-4](../assets/io-use-case-4.png)
 
 ## Integration Steps
 1. ...
@@ -109,7 +109,7 @@ Importing administrative locations (e.g., `Admin-Level-2` province data) and dif
 **#5.** _As a Go.Data analyst, I would like to import facility and location lists from standard registries and external data sources so that I can more easily exchange information with the MOH and other partners._
 
 ---
-![dataflow-5](../assets/Go.Data Use Case Diagrams  - Use Case #5 Location List .png)
+![dataflow-5](../assets/io-use-case-5.png)
 ### Integration Steps
 1. Identify the external data source and available APIs - see [Health Sites example](). 
 2. Export the data from the source - [see here]() for an example script where we send a `GET` HTTP request to `/api/facilities` to fetch a health facility list.
@@ -139,9 +139,10 @@ Reporting...
 **#6.** _As a MOH employee using DHIS2, I would like to receive a weekly summary of Go.Data data cases to monitor performance across key COVID-19 indicators (e.g., # confirmed cases, # hospitalized cases, transmission classifications)._
 
 ---
-![dataflow-5](../assets/Go.Data Use Case Diagrams  - Use Case #6_ DHIS2 Aggregate.png)
+![dataflow-5](../assets/io-use-case-6.png)
 
 ## Integration Steps 
+1. 
 
 ### Implementation Resources
 1. [See this video](...) of the demo solution configured to demonstrate this use case #6.  
