@@ -52,7 +52,26 @@ See the UPC scripts...
 See the UPC scripts and consider leveraging the DHIS2 [Tracker Web API](https://docs.dhis2.org/2.34/en/dhis2_developer_manual/web-api.html#tracker-web-api) for potential 2-way exchange of case information between DHIS2 `tracked entity instance` records or `events` and Go.Data `cases` or `contacts`. 
 
 ## Go.Data to DHIS2 Data Values (Aggregate-level data exchange)
-See [reference implementation #6] for specific step-by-step guidance with a real-world example.
+See [reference implementation #6] for specific step-by-step guidance with a real-world example of aggregate reporting. 
+One of the first things you’ll need to do is identify the specific DHIS2 `data set` that you plan to integrate your Go.Data data with. In DHIS2, aggregate data captured as `dataValueSets` and is further defined across different dimensions called `orgUnit`, `period`, and `dataElement` & `categories`. 
+
+### Data sets
+Users will need to know the specific name and ID of the destination `dataSet` in DHIS2. You will need to obtain the ID from the test or production DHIS2 environment.
+
+### Organisation units
+Aggregation by location in Go.Data is based on your `Location` hierarchy. Your `Locations` must align with DHIS2 `organisation units`. You will need to specify the DHIS2 `orgUnit` ID in order to upload aggregate results. 
+
+### Period
+All aggregate data reported is associated with a specific DHIS2 reporting `period`, which may be daily, weekly, monthly, yearly, etc. depending on the DHIS2 implementation. Examples: `20201205`, `202012`, `2020`
+
+### Data elements
+Calculations for DHIS2 `indicators` are based on `dataElements`. For each DHIS2 data element, you will need to calculate the summary `value` to send to DHIS2. You will need to know both the `value` and `dataElement` DHIS2 Id in order to upload new `dataValues`. 
+
+### Categories
+Categories are another dimension commonly used to define data elements in aggregate reporting.
+
+### Learn More
+Read more about setting up DHIS2 aggregated reporting [here](https://docs.dhis2.org/2.31/en/user/html/setting_up_reporting.html), and learn about [DHIS2 aggregation strategies](https://docs.dhis2.org/master/en/implementer/html/aggregation-strategy-in-dhis2.html). 
 
 
 ## 7. Integrating with mobile data collection apps 
