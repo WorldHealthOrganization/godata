@@ -1,0 +1,14 @@
+---
+layout: default
+title: Unique Identifier Schemes
+parent: Popular Topics
+nav_order: 2
+permalink: /4-2-unique-identifiers--duplicate-prevention/
+---
+# Unique identifiers & duplicate prevention
+## 'Upsert' Operations
+Upserts ensure no duplicates...
+
+## Go.Data Duplicate Management Features
+For scenarios where the unique identfier scheme fails, Go.Data offers some out-of-box feature for duplicate-checking across different record attributes (e.g., `name`, `dateOfBirth`). See the [User Guide](...) to learn more. 
+
