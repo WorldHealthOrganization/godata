@@ -1,0 +1,14 @@
+---
+layout: default
+title: Data Security Considerations
+parent: Popular Topics
+nav_order: 5
+permalink: /4-5-data-security-considerations-for-information-exchange/
+---
+
+# Data security considerations for information exchange
+1. Capture these requirements early on
+2. Data sharing protocols
+3. Be selective & deliberate about _which_ data points are exchanged
+4. Leverage identifiers and autonumbers to mask sensistive information
+5. Consider the security of where information is stored at rest
