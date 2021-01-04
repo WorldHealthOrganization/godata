@@ -3,6 +3,7 @@ layout: default
 title: API
 parent: Data Interoperability Options
 nav_order: 2
+permalink: /api/
 ---
 
 # Go.Data API Documentation
