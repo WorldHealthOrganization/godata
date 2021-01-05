@@ -55,6 +55,6 @@ upsertCase( //checks for existing cases & then sends PUT/POST request to Go.Data
 ## Explore the Implementation
 1. [See this video](...) of the demo solution configured to demonstrate this use case #4.  
 2. Kobo Toolbox: Explore the demo Kobo project at [https://kobo.humanitarianresponse.info/](https://kobo.humanitarianresponse.info/) & REST Service configured using the login details: `godata_demo`; pw: `interoperability`. 
-3. Integration: See [example integration scripts](https://github.com/WorldHealthOrganization/godata/tree/docs-toolkit/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange. Explore the solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `demo@godata.org`; pw: `interop!2021`. 
+3. Integration: See [example integration scripts](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange. Explore the solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `demo@godata.org`; pw: `interop!2021`. 
 4. Go.Data API Wrapper: See the open-source OpenFn adaptor [language-godata](https://openfn.github.io/language-godata/). 
 5. See the solution [design documentation](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII).
