@@ -26,14 +26,14 @@ In this reference implementation, we integrated a COVID-19 data collection form 
 3. We then drafted an OpenFn integration script (or ["job"](https://docs.openfn.org/documentation.html#jobs)) to automate the data integration mapping whenever a new Kobo form submission is forwarded to the OpenFn project inbox via the Kobo REST Service. 
 
 In [L21](https://github.com/WorldHealthOrganization/godata/blob/docs-toolkit/interoperability-jobs/4-upsertCases.js#L21) we perform an "upsert" operation to (1) check if the case record exists, and then (2) insert/update the record in Go.Data accorndingly. We chose to check for existing Go.Data records using the `visualId` as we are also capturing the external `caseId` (e.g., `C19-930020123`) in Kobo Toolbox and can using this unique identifier for matching resources. 
-```
+```.js
 upsertCase( //checks for existing cases & then sends PUT/POST request to Go.Data API Cases endpoint
     '3b5554d7-2c19-41d0-b9af-475ad25a382b', // outbreakId in Go.Data
     'visualId', //caseId - shared unique identifier 
     { data } //data mappings
   )
 ```
-**See the full [job script](https://github.com/WorldHealthOrganization/godata/blob/docs-toolkit/interoperability-jobs/4-upsertCases.js).** This job leverages the [language-godata](https://openfn.github.io/language-godata/) API adaptor, which offers helper functions like `upsertCase(...)` for quicker integration setup. 
+**→ See the full [job script](https://github.com/WorldHealthOrganization/godata/blob/docs-toolkit/interoperability-jobs/4-upsertCases.js).** This job leverages the [language-godata](https://openfn.github.io/language-godata/) API adaptor, which offers helper functions like `upsertCase(...)` for quicker integration setup. 
 
 ## Explore the Implementation
 1. [See this video](...) of the demo solution configured to demonstrate this use case #4.  
