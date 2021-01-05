@@ -26,14 +26,17 @@ To automate data integration from the HMIS to Go.Data, implementers may consider
 1. Data forwarding...
 2. Direct data integration via APIs where you can (1) send a HTTP request to fetch the relevant data from the source HMIS, and then (2) upsert* the data in Go.Data, matching HMIS `caseId` with Go.Data `externalId` to ensure no duplicate records are created. 
 
+* _**"Upsert"** operations are a data import pattern where you first check if a record exists using an external identifier, and then either **update** or **insert** a new record dependng on whether an existing record is found. See the [section on Unique Identifiers](https://worldhealthorganization.github.io/godata/topics/1-unique-identifier-schemes) for additional considerations regarding upserts, `externalId` and other unique identifiers._ 
 
-* _**"Upsert"** operations are a data import pattern where you first check if a record exists using an external identifier, and then either **update** or **insert** a new record dependng on whether an existing record is found. See the [section on Unique Identifiers](...) for additional considerations regarding upserts, `externalId` and other unique identifiers._ 
+![openfn-2](../assets/openfn-2.png)
 
 ## Flow 2. Go.Data to HMIS & Applying FHIR 
 To automate data integration from Go.Data to the HMIS, we...
 1. Leverage the Go.Data API to automatically extract cases via an HTTP request to `GET /cases`. 
 2. Apply transformation rules determined from [FHIR HL7](...) to clean, re-format, & map the Go.Data information to match the international standard
 3. We then upsert the transformed data in the HMIS system, matching HMIS `caseId` with the Go.Data `externalId` to ensure no duplicates are uploaded
+
+![openfn-1](../assets/openfn-1.png)
 
 ## Considerations for two-way syncing
 1. Unique identifiers are critical to ensuring no duplicate records or efforts and developing a **shared record reference**. 
@@ -43,5 +46,8 @@ To automate data integration from Go.Data to the HMIS, we...
 
 ## Demo Solution & Implementation Resources
 1. [See this video](...) of the demo solution configured to demonstrate these use cases #1 and #2.  
-2. See [example integration scripts](https://github.com/WorldHealthOrganization/godata/tree/docs-toolkit/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange. Explore the solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `demo@godata.org`; pw: `interop!2021`. 
-3. See the solution [design documentation](...) ... 
+2. HMIS demo: For this example use case, we configured a demo "HMIS" system on a SQL database and implemented OpenFn jobs that leverage the [`language-postgresql`](https://github.com/OpenFn/language-postgresql) to connect directly with the database. 
+3. Integration: See [example integration scripts](https://github.com/WorldHealthOrganization/godata/tree/docs-toolkit/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange for scenarios `1` and `2`. Explore the solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `demo@godata.org`; pw: `interop!2021`. 
+4. Go.Data API Wrapper: See the open-source OpenFn adaptor [language-godata](https://openfn.github.io/language-godata/). 
+5. See the solution [design documentation](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII).
+6. FHIR-HL7 Documentation on the content specifications for [Patient resources](https://www.hl7.org/fhir/patient.html). See the [Applying Data Standards](https://worldhealthorganization.github.io/godata/topics/4-applying-data-standards) section for more information. 
