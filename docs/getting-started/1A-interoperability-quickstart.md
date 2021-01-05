@@ -1,6 +1,6 @@
 ---
 layout: page
-parent: Getting Started
+parent: Getting Started with IO
 title: Interoperability QuickStart
 nav_order: 1
 permalink: /interoperability-quickstart/
