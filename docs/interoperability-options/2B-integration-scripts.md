@@ -2,7 +2,7 @@
 layout: default
 title: Integration Scripts
 parent: Data Interoperability Options
-nav_order: 3
+nav_order: 2
 permalink: /integration-scripts/
 ---
 
