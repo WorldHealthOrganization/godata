@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Getting Started
-title: Interoperability QuickStart
 nav_order: 1
 permalink: /getting-started/
 has_children: true
