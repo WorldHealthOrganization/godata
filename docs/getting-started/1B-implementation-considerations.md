@@ -21,7 +21,7 @@ While Go.Data offers a set of core variables out-of-box, administrators may conf
 
 ## 4. Standards: 
 The inclusion of international eHealth standards strengthens interoperability and data sharing options for Go.Data implementations. Some standards are on the technical level (e.g. transmission methods), others on the contents side (e.g., [WHO standard indicators](http://who.int/data/gho/indicator-metadata-registry)). Aligning Go.Data implementations to these standards can incentivize data sharing and provide access to existing health systems.  
---> See the [Applying Data Standards](https://worldhealthorganization.github.io/godata/interoperability-examples/) section for more information. 
+→ See the [Applying Data Standards](https://worldhealthorganization.github.io/godata/applying-data-standards/) section for more information. 
 
 ## 5. API Access: 
 Go.Data exposes an Application Programming Interface (API) which is used for all interactions between the web front-end, the smartphone applications and even between copies of Go.Data, if you configure multiple instances of the solution to exchange data in an “upstream server/client application” model. 
