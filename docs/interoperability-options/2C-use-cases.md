@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Interoperability Use Cases
+title: Use Cases
 parent: Data Interoperability Options
 nav_order: 3
 permalink: /use-cases/
