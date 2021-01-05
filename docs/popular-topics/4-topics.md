@@ -3,6 +3,7 @@ layout: page
 title: Popular Topics
 permalink: /topics/
 nav_order: 5
+has_children: true
 ---
 
 # Popular Design Topics
