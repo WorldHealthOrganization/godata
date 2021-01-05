@@ -18,25 +18,28 @@ In most country-level implementations, Go.Data needs to interoperate with an exi
 **#2.** _As a Go.Data user, I would like to automatically apply the FHIR data standard to any information collected via Go.Data before sharing with the HMIS to ensure data interoperability and to avoid any manual data cleaning/reformatting steps during information exchange._
 
 ---
+## Solution Overview
+See below visual for a data flow diagram for a two-way information exchange between Go.Data and a theoretical HMIS/surveillance system. For this reference, we integrated Go.Data with a sample "HMIS" database configured PostgreSQL to demonstrate how user might integrate with a SQL-based system. 
 ![diagram-1-2](../assets/io-use-case-1-2.png)
 
 
 ## Flow 1. HMIS to Go.Data
-To automate data integration from the HMIS to Go.Data, implementers may consider 2 common integration approaches: 
+To automate data integration from the HMIS (or any external system) to Go.Data, implementers may consider 2 common integration approaches: 
 1. Data forwarding...
 2. Direct data integration via APIs where you can (1) send a HTTP request to fetch the relevant data from the source HMIS, and then (2) upsert* the data in Go.Data, matching HMIS `caseId` with Go.Data `externalId` to ensure no duplicate records are created. 
 
 * _**"Upsert"** operations are a data import pattern where you first check if a record exists using an external identifier, and then either **update** or **insert** a new record dependng on whether an existing record is found. See the [section on Unique Identifiers](https://worldhealthorganization.github.io/godata/topics/1-unique-identifier-schemes) for additional considerations regarding upserts, `externalId` and other unique identifiers._ 
 
-![openfn-2](../assets/openfn-2.png)
 
-## Flow 2. Go.Data to HMIS & Applying FHIR 
+## Flow 2. Go.Data to HMIS & Applying FHIR data standard
 To automate data integration from Go.Data to the HMIS, we...
 1. Leverage the Go.Data API to automatically extract cases via an HTTP request to `GET /cases`. 
 2. Apply transformation rules determined from [FHIR HL7](...) to clean, re-format, & map the Go.Data information to match the international standard
 3. We then upsert the transformed data in the HMIS system, matching HMIS `caseId` with the Go.Data `externalId` to ensure no duplicates are uploaded
 
+In OpenFn.org, we configured these jobs to run automatically on a cron timer to automate the two-way exchange. 
 ![openfn-1](../assets/openfn-1.png)
+![openfn-2](../assets/openfn-2.png)
 
 ## Considerations for two-way syncing
 1. Unique identifiers are critical to ensuring no duplicate records or efforts and developing a **shared record reference**. 
@@ -44,8 +47,9 @@ To automate data integration from Go.Data to the HMIS, we...
 3. Consider implementing a date/time `cursor` so that every time you extract data from a source system, you will only extract the _most recent_ data. This minimizes the data load to be exchanged between systems, which is good for efficiency and security. 
 4. Consider what initiates the data `sync`...
 
+
 ## Demo Solution & Implementation Resources
-1. [See this video](...) of the demo solution configured to demonstrate these use cases #1 and #2.  
+1. [See this video](https://drive.google.com/drive/folders/1Rf9TXCXkn8_XnjH4FcRsIGqDZ-UkVvdC) of the demo solution configured to demonstrate these use cases #1 and #2.  
 2. HMIS demo: For this example use case, we configured a demo "HMIS" system on a SQL database and implemented OpenFn jobs that leverage the [`language-postgresql`](https://github.com/OpenFn/language-postgresql) to connect directly with the database. 
 3. Integration: See [example integration scripts](https://github.com/WorldHealthOrganization/godata/tree/docs-toolkit/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange for scenarios `1` and `2`. Explore the solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `demo@godata.org`; pw: `interop!2021`. 
 4. Go.Data API Wrapper: See the open-source OpenFn adaptor [language-godata](https://openfn.github.io/language-godata/). 
