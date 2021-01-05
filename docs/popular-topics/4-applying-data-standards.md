@@ -25,6 +25,7 @@ Also, implementers can consider at what step in the data cycle does it make the 
 ![applying-standards](../assets/applying-standards.png)
 
 #### Mapping information & meaning
+Consider...
 1. Which data elements are important to share? 
 2. How to map your data elements to external systems & standard definitions? 
 3. What are the transformation rules that need to be applied? 
