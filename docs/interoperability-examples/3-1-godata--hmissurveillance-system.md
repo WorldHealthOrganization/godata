@@ -3,7 +3,7 @@ layout: default
 title: 1. Go.Data <> HMIS/Surveillance System Integration
 parent: Interoperability Examples
 nav_order: 1
-permalink: /3-1-godata--hmissurveillance-system/
+permalink: /1-2-godata--hmissurveillance-system/
 ---
 # Go.Data <> HMIS/Surveillance System Integration for 2-way Information Exchange
 In most country-level implementations, Go.Data needs to interoperate with an existing HMIS or Surveillance system to ensure no duplication of efforts. These systems might be configured on an application like DHIS2 or are custom developed using other software or databases. In this solution we explore the following use cases by designing for a Go.Data integration with a theoretical SQL-based HMIS for 2-way exchange of case information. 
@@ -23,17 +23,32 @@ See below visual for a data flow diagram for a two-way information exchange betw
 
 ![diagram-1-2](../assets/io-use-case-1-2.png)
 
+### Integration Scripts
+See the Github repo for the raw source code for the following 4 OpenFn job scripts: 
+1. [`1a-getCasesHMIS.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/1a-getCasesHMIS.js) gets active cases from HMIS Sql-based system
+- Implements OpenFn API adaptor [`language-postgresql`](https://github.com/OpenFn/language-postgresql) function `sql(...)` to execute sql queries
+
+2. [`1b-upsertToGoData.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/1b-upsertToGoData.js) upserts cases in Go.Data
+- Implements OpenFn API adaptor [`language-godata`](https://openfn.github.io/language-godata/index.html) function `upsertCases(...)` to (1) list Cases via a `GET` request filtering by `virtualId` (caseId), and then (2) sends a `POST` or `PUT` request to either insert or update case records depending on whether matching record found
+
+3. [`2a-getGoDataCases.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/2a-getGoDataCases.js) gets Go.Data cases newly created/updated
+- Implements OpenFn API adaptor [`language-godata`](https://openfn.github.io/language-godata/index.html) function `listCases(...)` to list Cases via a `GET` request  
+
+4.[`2b-upsertToHMIS.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/2b-upsertToHMIS.js) syncs Go.Data cases back to HMIS
+- Implements OpenFn API adaptor [`language-postgresql`](https://github.com/OpenFn/language-postgresql) function `sql(...)` to execute sql queries
+
 
 In OpenFn.org, we configured these jobs to run automatically on a cron timer to automate the two-way exchange. 
 ![openfn-1](../assets/openfn-1.png)
 ![openfn-2](../assets/openfn-2.png)
 
-## Determining the Integration Approach
+### Integration Approach
 To automate data integration from the HMIS (or any external system) to Go.Data, implementers may consider **2 common integration approaches**: 
 1. **Data forwarding** - in the source system there may be an option to configure some sort of data forwarding/publishing mechanism like a webhook or REST service. If available, this allows the source system to control what and when information is shared and can enable real-time data sharing. 
-2. **Direct API integration** where you can (1) send a HTTP request to fetch the relevant data from the source system, and then (2) upsert* the data in Go.Data, matching HMIS `caseId` with Go.Data `externalId` to ensure no duplicate records are created. In the approach, the integration implementer can choose what information to fetch and how frequently (and is only limited by the API & user permissions). This approach does not support real-time integration, but data syncs can be scheduled regularly to ensure no lapse in data. 
+2. **Direct integration** where you can (1) send a request to fetch the relevant data from the source system, and then (2) upsert* the data in Go.Data via the API, matching HMIS `caseId` with Go.Data `externalId` to ensure no duplicate records are created. In the approach, the integration implementer can choose what information to fetch and how frequently (and is only limited by the API & user permissions). This approach does not support real-time integration, but data syncs can be scheduled regularly to ensure no lapse in data. Direct database integration was implemented for this reference implementation. 
 
-Once the integration approach and requirements were determined, we built a **HMIS-Go.Data Mapping Specification** to map the data elements between the 2 systems to identify corresponding variables and data transformation steps (e.g., reformatting dates, re-labeling values, mapping categories, etc.). [See example mapping specification](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII). 
+Once the integration approach and requirements are determined, build a **HMIS-Go.Data Mapping Specification** to map the data elements between the 2 systems to identify corresponding variables and data transformation steps (e.g., reformatting dates, re-labeling values, mapping categories, etc.). [See example mapping specification](https://docs.google.com/spreadsheets/d/1SNx5wB818ikveaVhHqW9c4N05leL1WGZulsdC_BJj70/edit#gid=0). 
+![openfn-2](../assets/map-flow1.png)
 
 ---
 **NOTE:**
@@ -49,13 +64,13 @@ Once the integration approach and requirements were determined, we built a **HMI
 4. Consider what initiates the data `sync` between the two systems considering the two-way pattern and system of record to ensure no data gaps or overwrites. 
 5. Leverage `upsert` operations wherever possible in data exchange flows to check for existing records and prevent duplicates (upsert = insert if new, update if record existing). 
 
-## Flow 1. HMIS to Go.Data
+## Use Case #1. HMIS to Go.Data flow
 To demonstrate automated data integration between the HMIS database and Go.Data, we...
-1. Configured an [OpenFn job script](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/2a-getCasesHMIS.js) to fetch data from the HMIS system. Here we leveraged the open-sourve OpenFn adaptor [`language-postgresql`](https://github.com/OpenFn/language-postgresql) to connect directly with the database and execute a `sql()` statement to list relevant records. 
+1. Configured OpenFn job [`1a-getCasesHMIS.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/1a-getCasesHMIS.js) to fetch data from the HMIS system. Here we leveraged the open-sourve OpenFn adaptor [`language-postgresql`](https://github.com/OpenFn/language-postgresql) to connect directly with the database and execute a `sql()` statement to list relevant records. 
 ```
 sql(state => 'SELECT * FROM tbl_cases WHERE active = true');
 ```
-2. Configured a second [OpenFn job](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/2b-upsertCasesGoData.js) that then maps & loads the data from the HMIS to Go.Data, leveraging Go.Data API adaptor [language-godata](https://openfn.github.io/language-godata/). 
+2. Configured a second OpenFn job [`1b-upsertToGoData.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/1b-upsertToGoData.js) that then maps & loads the data from the HMIS to Go.Data, leveraging Go.Data API adaptor [language-godata](https://openfn.github.io/language-godata/). 
 
 In this job script, we have implemented an `upsert` pattern leveraging `language-godata` to (1) search for existing `Cases` by sending a `GET` request to Go.Data filtering by the `visualId` external identifier (e.g., `CASE-100001`) to match, and then (2) create/update `Cases` (send a `POST`/`PUT` HTTP request) depending on whether the `Case` record already exists. 
 ```.js
@@ -68,9 +83,9 @@ upsertCase(
 See the docs on the Go.Data API adaptor `language-godata` helper function [`upsertCase(...)`](https://openfn.github.io/language-godata/global.html#upsertCase) for more on this upsert pattern and the `GET` and `POST`/`PUT` HTTP requests. 
 
 
-## Flow 2. Go.Data to HMIS & Applying FHIR data standard specs
+##  Use Case #2. Go.Data to HMIS flow 
 To automate data integration from Go.Data to the HMIS, we...
-1. Configured an [OpenFn job](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/1a-getCases.js) to automatically extract cases via an HTTP request to the Go.Data API to `GET /cases`. 
+1. Configured OpenFn job [`2a-getGoDataCases.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/2a-getGoDataCases.js) to automatically extract cases via an HTTP request to the Go.Data API to `GET /cases`. 
 - We leveraged the adaptor `language-godata` helper function `listCases(...)`](https://openfn.github.io/language-godata/global.html#listCases).
 - We apply a date `cursor` to filter the `GET` request made to `listCases` to ensure we only query `Cases` after a specified date. 
 ```.js
@@ -122,7 +137,7 @@ listCases('3b5554d7-2c19-41d0-b9af-475ad25a382b', {}, state => {
   return { ...state, cases, HMISCases };
 });
 ```
-2.In a [second OpenFn job](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/1b-upsertPostgres.js), we then upsert the transformed data in the HMIS system, matching HMIS `caseId` with the Go.Data external `identifier` to ensure no duplicates are uploaded. 
+2.In the OpenFn job [`2b-upsertToHMIS.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/2b-upsertToHMIS.js), we then upsert the transformed data in the HMIS system, matching HMIS `caseId` with the Go.Data external `identifier` to ensure no duplicates are uploaded. 
 ```
 upsertMany('tbl_cases', 'identifier', state => cases)(state);
 ```
@@ -134,10 +149,10 @@ Below is a screenshot of the ([FHIR Patient content standards](https://www.hl7.o
 ![fhir-patient](../assets/fhir-patient.png)
 
 
-## Demo Solution & Implementation Resources
+## Explore the Implementation
 1. [See this video](https://drive.google.com/drive/folders/1Rf9TXCXkn8_XnjH4FcRsIGqDZ-UkVvdC) of the demo solution configured to demonstrate these use cases #1 and #2.  
 2. HMIS demo: For this example use case, we configured a demo "HMIS" system on a SQL database and implemented OpenFn jobs that leverage the [`language-postgresql`](https://github.com/OpenFn/language-postgresql) to connect directly with the database. 
-3. Integration: See [example integration scripts](https://github.com/WorldHealthOrganization/godata/tree/docs-toolkit/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange for scenarios `1` and `2`. Explore the solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `demo@godata.org`; pw: `interop!2021`. 
-4. Go.Data API Wrapper: See the open-source OpenFn adaptor [language-godata](https://openfn.github.io/language-godata/). 
+3. Integration: See [example integration scripts](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange for scenarios `1` and `2`. Explore the solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `demo@godata.org`; pw: `interop!2021`. 
+4. Go.Data API Wrapper: See the open-source OpenFn API adaptor [`language-godata`](https://openfn.github.io/language-godata/)
 5. See the solution [design documentation](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII).
 6. FHIR-HL7 Documentation on the content specifications for [Patient resources](https://www.hl7.org/fhir/patient.html). See the [Applying Data Standards](https://worldhealthorganization.github.io/godata/topics/4-applying-data-standards) section for more information. 
