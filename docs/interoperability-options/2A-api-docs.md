@@ -157,4 +157,4 @@ A full list of examples is given below.
 `https://godata.gov.mt/api//outbreaks/{OUTBREAK TOKEN}/cases?filter=%7B%22where%22%3A%7B%22createdAt%22%3A%7B%22%24gt%22%3A%222020-04-14T00%3A00%3A00Z%22%7D%7D%7D&access_token={ACCESS TOKEN}`
 
 ## Example Implementations
-- See the [Github Repo](https://github.com/WorldHealthOrganization/godata/tree/master/api) for sample scripts leveraging the API. 
+- See the [Github `api` directory](https://github.com/WorldHealthOrganization/godata/tree/master/api) for sample scripts leveraging the API. 
