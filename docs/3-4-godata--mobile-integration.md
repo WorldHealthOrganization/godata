@@ -58,7 +58,7 @@ Check out the job on OpenFn.org or explore the OpenFn Inbox to see other example
 **→ See the full [job script](https://github.com/WorldHealthOrganization/godata/blob/docs-toolkit/interoperability-jobs/4-upsertCases.js).** This job leverages the [language-godata](https://openfn.github.io/language-godata/) API adaptor, which offers helper functions like `upsertCase(...)` for quicker integration setup. 
 
 ## Explore the Implementation
-1. [See this video](...) of the demo solution configured to demonstrate this use case #4.  
+1. [See this video](https://drive.google.com/drive/folders/1Rf9TXCXkn8_XnjH4FcRsIGqDZ-UkVvdC) of the demo solution configured to demonstrate this use case #4.  
 2. Kobo Toolbox: Explore the demo Kobo project at [https://kobo.humanitarianresponse.info/](https://kobo.humanitarianresponse.info/) & REST Service configured using the login details: `godata_demo`; pw: `interoperability`. 
 3. Integration: See [example integration scripts](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange. Explore the solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `demo@godata.org`; pw: `interop!2021`. 
 4. Go.Data API Wrapper: See the open-source OpenFn adaptor [language-godata](https://openfn.github.io/language-godata/). 
