@@ -32,14 +32,11 @@ See sample [JSON output](https://github.com/WorldHealthOrganization/godata/blob/
   "body": {
     "Age_in_year": "32",
     "Covid_19_suspected_criteria/HF_visited": "no",
-    "_attachments": [],
     "Sample_Classification": "n_id",
     "patient_address/teknaf_Camp": "camp_23",
-    "UID": "375",
-    "_validation_status": {},
     "Covid_19_suspected_criteria/Symptoms": "difficulty_breathing",
-    "sample_type_001": "ari_ili",
     "Patient_name": "Jane Doe",
+    ...
 ```
 
 2. We then mapped relevant data elements from the Kobo Toolbox survey form to Go.Data `Cases`. See example [mapping specification](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII). In this step, it was important to determine the unique identifier that could be used to look-up existing `Case` records in Go.Data to ensure no duplicates were created (see the [Unique Identifiers](http://worldhealthorganization.github.io/godata/topics/1-unique-identifier-schemes) section for more on this design topic). 
