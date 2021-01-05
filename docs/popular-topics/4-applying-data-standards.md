@@ -33,3 +33,5 @@ Also, implementers can consider at what step in the data cycle does it make the 
 ### Technical Requirements
 Consider the technical requirements for exchange patterns, message protocols, & data storage.  Depending on your standard, where you expect to implement the transformation step, and the requirements of the connected systems - your implementation plan may vary. Mapping out the systems and data flows will help you to build this blueprint and consider whatever steps or tools are needed to satisfy requirements. 
 
+# Learn More
+Seek more information specific to the standard you are interested in applying. The [OpenHIE Community](https://wiki.ohie.org/display/documents/OpenHIE+Standards+and+Profiles) is an active and trusted resource when it homes to healthcare information exchange and standards. 
