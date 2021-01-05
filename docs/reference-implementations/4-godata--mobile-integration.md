@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 4. Mobile App to Go.Data Integration
+title: 4. Mobile App to Go.Data
 parent: Reference Implementations
 nav_order: 3
 permalink: /godata--mobile-integration/
