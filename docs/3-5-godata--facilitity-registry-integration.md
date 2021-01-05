@@ -25,7 +25,7 @@ In this reference implementation, we integrated a health facility list extracted
 - Here we leverage the [OpenFn integration platform](https://docs.openfn.org/) to automate the data integration flow & quickly map Kobo data elements to Go.Data. OpenFn offers [open-source](https://openfn.github.io/microservice/readme.html) and hosted implementation options. 
 
 ![dataflow-5](../assets/io-use-case-5.png)
-### Integration Steps
+### Implementation Steps
 1. We first identified the external data source to be integrated, data availability, and available APIs - see [HealthSites country data](https://healthsites.io/#country-data). 
 2. Once we've identified the specific facility we'd like to integrate, we then determine how to export the data from the source. [See here](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/5a-GETHealthSitesData.js) for an example OpenFn job script where we send a `GET` HTTP request to `/api/v2/facilities` to list a health facilities for `Bangladesh` in HealthSites.io.
 ```
