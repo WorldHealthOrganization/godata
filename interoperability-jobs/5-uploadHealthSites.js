@@ -22,7 +22,6 @@ each(
     const coordinates = centroid.coordinates;
     const data = {
       name: attributes.name,
-      // synonyms: [attributes.amenity],
       identifiers: [{ description: 'uuid', code: attributes.uuid }],
       geoLocation: { lat: coordinates[1], lng: coordinates[0] },
       active: true,
