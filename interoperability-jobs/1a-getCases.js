@@ -1,5 +1,4 @@
 //Job to fetch Cases to sync to other system
-
 // Fetch cases from Go.Data matching a specific outbreak id
 listCases('3b5554d7-2c19-41d0-b9af-475ad25a382b', {}, state => {
   function yesterdayDate() {
@@ -49,14 +48,14 @@ listCases('3b5554d7-2c19-41d0-b9af-475ad25a382b', {}, state => {
   return { ...state, cases, HMISCases };
 });
 
-// Bulk post to OpenFn Inbox
+// Bulk post the Go.Data API response to the OpenFn Inbox, where it can be mapped & loaded into the HMIS via another job
 alterState(state => {
   const { openfnInboxUrl } = state.configuration;
   const data = state.cases;
   console.log(`Sending to OpenFn Inbox in bulk...`);
   return axios({
     method: 'POST',
-    url: 'https://www.openfn.org/inbox/8775c5e5-72c2-4524-b2ba-e422510ba115', //`${openfnInboxUrl}`,
+    url: 'https://www.openfn.org/inbox/8775c5e5-72c2-4524-b2ba-e422510ba115', //Replace with your unique OpenFn project inbox URL
     data,
   }).then(response => {
     return state;
