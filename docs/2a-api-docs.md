@@ -1,7 +1,7 @@
 ---
 layout: default
-title: API
-parent: 2-data-exchange-options.md
+title: API Documentation
+parent: Data Interoperability Options
 nav_order: 2
 permalink: /api/
 ---
