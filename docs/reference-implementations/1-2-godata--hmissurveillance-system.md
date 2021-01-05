@@ -25,14 +25,14 @@ See below visual for a data flow diagram for a two-way information exchange betw
 
 ### Integration Scripts
 See the Github repo for the raw source code for the following 4 OpenFn job scripts: 
-1. **[`1a-getCasesHMIS.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/1a-getCasesHMIS.js) gets active cases from HMIS Sql-based system.** Implements OpenFn API adaptor [`language-postgresql`](https://github.com/OpenFn/language-postgresql) function `sql(...)` to execute sql queries
+1. Job **[`1a-getCasesHMIS.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/1a-getCasesHMIS.js) gets active cases from HMIS Sql-based system.** Implements OpenFn API adaptor [`language-postgresql`](https://github.com/OpenFn/language-postgresql) function `sql(...)` to execute sql queries
 
-2. **[`1b-upsertToGoData.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/1b-upsertToGoData.js) upserts cases in Go.Data.**
+2. Job **[`1b-upsertToGoData.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/1b-upsertToGoData.js) upserts cases in Go.Data.**
 Implements OpenFn API adaptor [`language-godata`](https://openfn.github.io/language-godata/index.html) function `upsertCases(...)` to (1) list Cases via a `GET` request filtering by `virtualId` (caseId), and then (2) sends a `POST` or `PUT` request to either insert or update case records depending on whether matching record found
 
-3. **[`2a-getGoDataCases.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/2a-getGoDataCases.js) gets Go.Data cases newly created/updated.** Implements OpenFn API adaptor [`language-godata`](https://openfn.github.io/language-godata/index.html) function `listCases(...)` to list Cases via a `GET` request. 
+3. Job **[`2a-getGoDataCases.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/2a-getGoDataCases.js) gets Go.Data cases newly created/updated.** Implements OpenFn API adaptor [`language-godata`](https://openfn.github.io/language-godata/index.html) function `listCases(...)` to list Cases via a `GET` request. 
 
-4.**[`2b-upsertToHMIS.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/2b-upsertToHMIS.js) syncs Go.Data cases back to HMIS.** Implements OpenFn API adaptor [`language-postgresql`](https://github.com/OpenFn/language-postgresql) function `sql(...)` to execute sql queries. 
+4. Job **[`2b-upsertToHMIS.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/2b-upsertToHMIS.js) syncs Go.Data cases back to HMIS.** Implements OpenFn API adaptor [`language-postgresql`](https://github.com/OpenFn/language-postgresql) function `sql(...)` to execute sql queries. 
 
 In OpenFn.org, we configured these jobs to run automatically on a cron timer to automate the two-way exchange. 
 ![openfn-1-2](../assets/openfn-1-2.png)
