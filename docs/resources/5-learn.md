@@ -29,4 +29,4 @@ Visit our Community of Practice website to swap learnings or post queries here: 
 
 ### Other
 - FHIR HL7: https://www.hl7.org/fhir/overview.html
-- HIS Strengthening Resource Center: https://www.measureevaluation.org/his-strengthening-resource-center/his-stages-of-continuous-improvement-toolkit
+- HIS Strengthening Resource Center: [https://www.measureevaluation.org/his-strengthening-resource-center/his-stages-of-continuous-improvement-toolkit]
