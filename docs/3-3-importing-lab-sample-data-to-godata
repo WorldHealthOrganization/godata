@@ -8,6 +8,8 @@ permalink: /3-3-importing-lab-sample-data-to-godata/
 # Importing Lab Sample Data to Go.Data
 For many Go.Data implementers, lab results data will be the starting reference point when implementing a new Go.Data instance. This sample data will need to be first be transformed to align with the Go.Data data model, where `Case` and `Contact` records must first be created to track individual beneficiary details. Once these individual records are created, then related `Lab Results` data can be imported. 
 
+![use-case-3](../assets/use-case-3.png)
+
 ---
 **Use Case:**
 **#3.** _As a Go.Data user, I would like to directly integrate lab datasets so that I can more quickly and securely register Contact and Case records to ensure data quality and save time on data entry._
