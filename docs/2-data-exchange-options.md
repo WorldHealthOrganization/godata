@@ -3,7 +3,10 @@ layout: page
 title: Data Interoperability Options
 nav_order: 3
 permalink: /interoperability-options/
+has_children: true
+
 ---
+
 # Data Interoperability Options
 ## 1. Data Input
 1. Go.Data provides out-of-box features to support manual data entry, and file import options for file types .csv, .xls, .xlsx, .xml, json, and .ods. See the [User Guide](...) for more information. 
