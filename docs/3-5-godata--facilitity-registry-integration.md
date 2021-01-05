@@ -62,7 +62,7 @@ We refer to the data source's [API docs](https://healthsites.io/api/docs/) to de
 ```
 4. We then mapped relevant data elements from the HealthSites response to Go.Data `Location`. See example [mapping specification](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII). In this step, it was also important to determine the `geographicalLevelId` to be assigned based on the location hierarchy configured in Go.Data and `parentLocationId` where relevant. We leveraged the Go.Data `identifiers` variables (e.g., `uuid`, `osm_id`) to capture other external identifiers provided by HealthSites to track Locations. 
 
-5. We then drafted an OpenFn integration script (or "job" - [see here](https://github.com/WorldHealthOrganization/godata/blob/docs-toolkit/interoperability-jobs/5-uploadHealthSites.js)) to automate the data integration mapping of data points between HealthSites and Go.Data (see below snippet). 
+5. We then drafted another OpenFn integration script (or "job" - [see here](https://github.com/WorldHealthOrganization/godata/blob/docs-toolkit/interoperability-jobs/5-uploadHealthSites.js)) to automate the data integration mapping of data points between HealthSites and Go.Data (see below snippet). 
 ```.js 
    const data = {
       name: attributes.name,
@@ -74,7 +74,7 @@ We refer to the data source's [API docs](https://healthsites.io/api/docs/) to de
         'LNG_REFERENCE_DATA_CATEGORY_LOCATION_GEOGRAPHICAL_LEVEL_HOSPITAL_FACILITY',
     };
 ```
-In this job, we perform an "upsert" pattern via the Go.Data API where we (1) check for existing facilities by searching Go.Data `Location` records using HealthSite `name` (e.g., `"Manikchari Upazila Health Complex"`) as an external identifier, and then (2) create/update the `Location` records (send `POST`/`PUT` request) depending on whether a match was found. 
+In this second job, we perform an "upsert" pattern via the Go.Data API where we (1) check for existing facilities by searching Go.Data `Location` records using HealthSite `name` (e.g., `"Manikchari Upazila Health Complex"`) as an external identifier, and then (2) create/update the `Location` records (send `POST`/`PUT` request) depending on whether a match was found. 
 ```.js
 upsertLocation('name', {
       data,
@@ -82,6 +82,8 @@ upsertLocation('name', {
 ```
 
 See `upsertLocation(...)` function in the Go.Data API adaptor: https://openfn.github.io/language-godata/global.html#upsertLocation
+
+![openfn-5](../assets/openfn-5.png)
 
 
 ## Explore the Implementation
