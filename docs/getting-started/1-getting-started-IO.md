@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Getting Started
+title: Getting Started with IO
 nav_order: 2
 permalink: /getting-started/
 has_children: true
