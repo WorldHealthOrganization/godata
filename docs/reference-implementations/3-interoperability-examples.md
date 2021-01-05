@@ -1,10 +1,10 @@
 ---
 layout: page
-title: Interoperability Examples
+title: Reference Implementations
 nav_order: 4
 permalink: /interoperability-examples/
 ---
-# Interoperability Examples
+# Interoperability Reference Implementations
 The following reference implementations were configured to demonstrate common interoperability use cases & potential solutions.
 - Watch the [demo videos](https://drive.google.com/drive/folders/1Rf9TXCXkn8_XnjH4FcRsIGqDZ-UkVvdC). 
 - See the [Use Cases](../2c-integration-use-cases.md) for a summary of the driving requirements and use cases. 
