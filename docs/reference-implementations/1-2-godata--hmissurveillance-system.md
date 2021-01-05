@@ -68,7 +68,7 @@ sql(state => 'SELECT * FROM tbl_cases WHERE active = true');
 2. Configured a second OpenFn job [`1b-upsertToGoData.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/1b-upsertToGoData.js) that then maps & loads the data from the HMIS to Go.Data, leveraging Go.Data API adaptor [language-godata](https://openfn.github.io/language-godata/). 
 
 In this job script, we have implemented an `upsert` pattern leveraging `language-godata` to (1) search for existing `Cases` by sending a `GET` request to Go.Data filtering by the `visualId` external identifier (e.g., `CASE-100001`) to match, and then (2) create/update `Cases` (send a `POST`/`PUT` HTTP request) depending on whether the `Case` record already exists. 
-```.js
+```js
 upsertCase(
       '3b5554d7-2c19-41d0-b9af-475ad25a382b', // the outbreak ID
       'visualId', //external ID to upsert cases - this is the Case Mask ID -e.g., CASE-10001
@@ -85,7 +85,7 @@ To automate data integration from Go.Data to the HMIS, we...
 - We apply a date `cursor` to filter the `GET` request made to `listCases` to ensure we only query `Cases` after a specified date. 
 
 
-```.js
+```js
 listCases('3b5554d7-2c19-41d0-b9af-475ad25a382b', {}, state => {
   function yesterdayDate() {
     const date = new Date();
@@ -94,8 +94,6 @@ listCases('3b5554d7-2c19-41d0-b9af-475ad25a382b', {}, state => {
     return date.toISOString();
   }
   // We add a cursor so that we don't list ALL cases, but filter our search to only list NEW cases
-  
-
   const yesterday = null; // set to null if we want to use manualCursor as a default date filter. Set to yesterDayDate() to use the date of yesterday.
   const manualCursor = '2020-07-24T00:00:00.000Z'; //default date filter for listing cases
 
