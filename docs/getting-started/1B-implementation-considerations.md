@@ -1,6 +1,6 @@
 ---
 layout: page
-parent: Getting Started
+parent: Getting Started with IO
 title: Go.Data Implementation Considerations 
 nav_order: 2
 permalink: /implementation-considerations/
