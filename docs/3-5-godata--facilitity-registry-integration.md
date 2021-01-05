@@ -10,6 +10,7 @@ Importing administrative locations (e.g., `Admin-Level-2` province data) and dif
 new `Outbreak` in Go.Data. Importing location and facility lists from shared reference sources are important to strengthening interoperability and ensuring information can be easily synced and mapped in other systems. [See p. 33 of the Implementation Guide](https://community-godata.who.int/page/documents) for more information and step-by-step guidance for data imports of Location data. 
 
 **Here we demonstrate how `Location` data may be synced via APIs between Go.Data and an external web-based data source. While this implementation integrates `HealthSites` data, a similar integration approach may be applied to integrate other data sources with an available web API.**  
+![use-case-5](../assets/use-case-5.png)
 
 ---
 **Use Case:**
@@ -74,6 +75,11 @@ We refer to the data source's [API docs](https://healthsites.io/api/docs/) to de
     };
 ```
 In this job, we perform an "upsert" pattern via the Go.Data API where we (1) check for existing facilities by searching Go.Data `Location` records using HealthSite `name` (e.g., `"Manikchari Upazila Health Complex"`) as an external identifier, and then (2) create/update the `Location` records (send `POST`/`PUT` request) depending on whether a match was found. 
+```.js
+upsertLocation('name', {
+      data,
+})
+```
 
 See `upsertLocation(...)` function in the Go.Data API adaptor: https://openfn.github.io/language-godata/global.html#upsertLocation
 
