@@ -83,6 +83,7 @@ To automate data integration from Go.Data to the HMIS, we...
 1. Configured OpenFn job [`2a-getGoDataCases.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/2a-getGoDataCases.js) to automatically extract cases via an HTTP request to the Go.Data API to `GET /cases`. 
 - We leveraged the adaptor `language-godata` helper function `listCases(...)`](https://openfn.github.io/language-godata/global.html#listCases).
 - We apply a date `cursor` to filter the `GET` request made to `listCases` to ensure we only query `Cases` after a specified date. 
+
 ```.js
 listCases('3b5554d7-2c19-41d0-b9af-475ad25a382b', {}, state => {
   function yesterdayDate() {
@@ -143,11 +144,11 @@ Below is a screenshot of the ([FHIR Patient content standards](https://www.hl7.o
 
 ![fhir-patient](../assets/fhir-patient.png)
 
+→ See the [Applying Data Standards](https://worldhealthorganization.github.io/godata/topics/applying-data-standards) section for more on data standards. 
 
 ## Explore the Implementation
 1. [See this video - TO UPDATE](https://drive.google.com/drive/folders/1Rf9TXCXkn8_XnjH4FcRsIGqDZ-UkVvdC) of the demo solution configured to demonstrate these use cases #1 and #2.  
 2. HMIS demo: For this example use case, we configured a demo "HMIS" system on a SQL database and implemented OpenFn jobs that leverage the [`language-postgresql`](https://github.com/OpenFn/language-postgresql) to connect directly with the database. 
-3. Integration: See [example integration scripts](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange for scenarios `1` and `2`. Explore the solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `godata@who.int`; pw: `interoperability`. 
+3. Integration: See [example integration scripts](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange for scenarios `1` and `2`. Explore the live solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `godata@who.int`; pw: `interoperability`. 
 4. Go.Data API Wrapper: See the open-source OpenFn API adaptor [`language-godata`](https://openfn.github.io/language-godata/)
-5. See the solution [design documentation](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII).
-6. FHIR-HL7 Documentation on the content specifications for [Patient resources](https://www.hl7.org/fhir/patient.html). See the [Applying Data Standards](https://worldhealthorganization.github.io/godata/topics/applying-data-standards) section for more information. 
+5. See the solution [design documentation](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII). 
