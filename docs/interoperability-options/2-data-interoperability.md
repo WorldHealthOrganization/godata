@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Data Interoperability
+title: Go.Data Interoperability
 nav_order: 3
 permalink: /data-interoperability/
 has_children: true
