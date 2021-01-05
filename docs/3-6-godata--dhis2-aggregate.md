@@ -74,7 +74,8 @@ dataValueSet({
 2. DHIS2: Here we integrated with the public COVID-19 demo instance: [https://covid19.dhis2.org/demo](https://covid19.dhis2.org/demo)
 3. Integration: See [example integration scripts for scenario `6`](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange. Explore the solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `demo@godata.org`; pw: `interop!2021`. 
 4. Go.Data API Wrapper: See the open-source OpenFn adaptor [language-godata](https://openfn.github.io/language-godata/). 
-5. See the solution [design documentation](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII).
+5. DHIS2 API Wrapper: See the open-source OpenFn adaptor [language-dhis2](https://openfn.github.io/language-dhis2/). 
+6. See the solution [design documentation](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII).
 
 ## Other DHIS2 Resources
 1. See DHIS2 documentation for more on aggregate reporting & API docs: https://docs.dhis2.org/2.34/en/dhis2_implementation_guide/integration-concepts.html#aggregate-and-transactional-data
