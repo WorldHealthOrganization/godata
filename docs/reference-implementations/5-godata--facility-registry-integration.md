@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 5. Facility Registry to Go.Data
+title: 5. Facility List to Go.Data
 parent: Reference Implementations
 nav_order: 5
 permalink: /5-godata--facility-registry/
