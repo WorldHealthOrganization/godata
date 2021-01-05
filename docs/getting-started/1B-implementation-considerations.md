@@ -8,7 +8,7 @@ permalink: /implementation-considerations/
 
 # Go.Data Implementation Considerations for Interoperability
 ## 1. Unique Identifiers:
-Accurate and efficient unique identification of any data to be shared or referenced external is critical to interoperability. Before implementing Go.Data, you should spend time evaluating available unique identifier schemes and what options may already be implemented by related information systems. See the [Unique Identifiers section](https://worldhealthorganization.github.io/godata/popular-topics/) for more on Go.Data identifier schemes and considerations. 
+Accurate and efficient unique identification of any data to be shared or referenced external is critical to interoperability. Before implementing Go.Data, you should spend time evaluating available unique identifier schemes and what options may already be implemented by related information systems. See the [Unique Identifiers section](https://worldhealthorganization.github.io/godata/unique-identifiers/) for more on Go.Data identifier schemes and considerations. 
 
 ## 2. Mandatory & Core Metadata: 
 Consider that Go.Data has a list of mandatory variables (see p.41 of [Implementation Guide](https://community-godata.who.int/page/documents)) that must be specified in order to successfully import data into the system, as well as a list of core variables provided out-of-box. Implementers should consider leveraging available variables before configuring custom metadata, as many of these variables are referenced in Go.Data features and thereby offer enhanced reporting, if used.
