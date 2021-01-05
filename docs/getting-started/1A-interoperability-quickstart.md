@@ -3,7 +3,7 @@ layout: page
 parent: Getting Started
 title: Interoperability QuickStart
 nav_order: 1
-permalink: /getting-started/
+permalink: /interoperability-quickstart/
 ---
 
 # Interoperability Planning QuickStart
