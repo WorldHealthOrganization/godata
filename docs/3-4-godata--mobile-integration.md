@@ -22,8 +22,10 @@ In this reference implementation, we integrated a COVID-19 data collection form 
 
 ## Implementation Steps
 1. Consider how to extract data from your mobile application ([see this section](https://worldhealthorganization.github.io/godata/topics/#8-integrating-with-mobile-data-collection-apps) for an overview of common options). In this implementation we configured a REST Service on Kobo Toolbox ([see instructions](https://docs.openfn.org/kobo-toolbox.html)) to automatically forward new Kobo Toolbox form submissions collected via mobile to a specified endpoint–our demo OpenFn integration layer. 
+
 ![kobo-rest-service1](../assets/kobo-rest-1.png)
 ![kobo-rest-service2](../assets/kobo-rest-2.png)
+
 2. We then mapped relevant data elements from the Kobo Toolbox survey form to Go.Data `Cases`. See example [mapping specification](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII). In this step, it was important to determine the unique 
 3. We then drafted an OpenFn integration script (or ["job"](https://docs.openfn.org/documentation.html#jobs)) to automate the data integration mapping whenever a new Kobo form submission is forwarded to the OpenFn project inbox via the Kobo REST Service. 
 
