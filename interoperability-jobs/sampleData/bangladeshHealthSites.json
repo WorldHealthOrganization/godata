@@ -1,0 +1,2304 @@
+{
+  "0": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 22058971,
+      "changeset_timestamp": "2014-05-01T07:56:20",
+      "changeset_user": "Md Alamgir",
+      "changeset_version": 1,
+      "name": "Manikchari Upazila Health Complex",
+      "uuid": "4598ac8e8c6d47a4a3b95d0806ca4a5d"
+    },
+    "centroid": {
+      "coordinates": [
+        91.84117813480628,
+        22.8501898435141
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 2828406228,
+    "osm_type": "node"
+  },
+  "1": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 50800923,
+      "changeset_timestamp": "2017-08-03T08:59:16",
+      "changeset_user": "asmi84",
+      "changeset_version": 2,
+      "name": "Lions Charitable Eye Hospital",
+      "uuid": "a04a1cd481df436280d5910aaecdb87a"
+    },
+    "centroid": {
+      "coordinates": [
+        91.81605555933851,
+        22.36122054159398
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 2208720876,
+    "osm_type": "node"
+  },
+  "2": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 53792969,
+      "changeset_timestamp": "2017-11-15T07:10:00",
+      "changeset_user": "AHM Bodruddoza",
+      "changeset_version": 1,
+      "healthcare": "hospital",
+      "name": "HSTU Medical Center",
+      "uuid": "cca3f821bbb0489182b0da78f9ce2cc2"
+    },
+    "centroid": {
+      "coordinates": [
+        88.65404552151409,
+        25.698909516207415
+      ],
+      "type": "Point"
+    },
+    "completeness": 12,
+    "osm_id": 540615652,
+    "osm_type": "way"
+  },
+  "3": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "amenity": "pharmacy",
+      "changeset_id": 50474089,
+      "changeset_timestamp": "2017-07-22T05:10:12",
+      "changeset_user": "asmi84",
+      "changeset_version": 3,
+      "name": "Hena Medicine Point(হেনা মেডিসিন পয়েন্ট)",
+      "uuid": "1474e45d95904faf8b04eaee74793587"
+    },
+    "centroid": {
+      "coordinates": [
+        90.37066114917747,
+        23.82653957378875
+      ],
+      "type": "Point"
+    },
+    "completeness": 12,
+    "osm_id": 4432181691,
+    "osm_type": "node"
+  },
+  "4": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 49632028,
+      "changeset_timestamp": "2017-06-18T10:35:43",
+      "changeset_user": "Atikur Rahman atik",
+      "changeset_version": 2,
+      "name": "East West Medical College and Hospital",
+      "uuid": "0331c90066cb4b4b95bf70ab04b27674"
+    },
+    "centroid": {
+      "coordinates": [
+        90.37664633095756,
+        23.8941806942087
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 2895202033,
+    "osm_type": "node"
+  },
+  "5": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 52275129,
+      "changeset_timestamp": "2017-09-22T12:38:12",
+      "changeset_user": "carlitos gomez",
+      "changeset_version": 1,
+      "uuid": "8df6a206dfef4c818e17b126765717ac"
+    },
+    "centroid": {
+      "coordinates": [
+        92.297411327149,
+        20.875707073902305
+      ],
+      "type": "Point"
+    },
+    "completeness": 6,
+    "osm_id": 5121901801,
+    "osm_type": "node"
+  },
+  "6": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 75175405,
+      "changeset_timestamp": "2019-10-02T01:43:50",
+      "changeset_user": "Rasel Mohammad",
+      "changeset_version": 1,
+      "opening_hours": "24/7",
+      "uuid": "0ec44e633bfd45cfa5991c9a20ce7d72"
+    },
+    "centroid": {
+      "coordinates": [
+        92.14616197985873,
+        21.215114892374174
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 6842499685,
+    "osm_type": "node"
+  },
+  "7": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "157",
+      "addr_postcode": "1207",
+      "addr_street": "5",
+      "amenity": "pharmacy",
+      "changeset_id": 76947752,
+      "changeset_timestamp": "2019-11-12T08:49:29",
+      "changeset_user": "arafin",
+      "changeset_version": 1,
+      "name": "Nur Pharma",
+      "uuid": "83031237ef9c4516a10cf2fbb7210969"
+    },
+    "centroid": {
+      "coordinates": [
+        90.35583616085353,
+        23.763295180678483
+      ],
+      "type": "Point"
+    },
+    "completeness": 21,
+    "osm_id": 6968440886,
+    "osm_type": "node"
+  },
+  "8": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 1211154,
+      "changeset_timestamp": "2009-05-16T19:39:37",
+      "changeset_user": "syedmahm",
+      "changeset_version": 1,
+      "name": "Dhaka Medical College Hospital",
+      "uuid": "cf8f4fd02a7243d9b9dc34f7a905c5af"
+    },
+    "centroid": {
+      "coordinates": [
+        90.39807282240196,
+        23.725664291104863
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 401827549,
+    "osm_type": "node"
+  },
+  "9": {
+    "attributes": {
+      "addr_city": "Mohammadpur, Dhaka",
+      "addr_housenumber": "Block- F, 15/6",
+      "addr_postcode": "1207",
+      "addr_street": "Haji Chino Mia Road, Tikkapara",
+      "amenity": "pharmacy",
+      "changeset_id": 84125996,
+      "changeset_timestamp": "2020-04-26T01:34:00",
+      "changeset_user": "HubMiner",
+      "changeset_version": 2,
+      "dispensing": "yes",
+      "healthcare": "pharmacy",
+      "name": "Bismillah Pharmacy & Baby Care",
+      "opening_hours": "09:00-22:00",
+      "uuid": "84b91500e47748189714fafa670d9a13"
+    },
+    "centroid": {
+      "coordinates": [
+        90.35938748940913,
+        23.76852708082035
+      ],
+      "type": "Point"
+    },
+    "completeness": 31,
+    "osm_id": 7419065759,
+    "osm_type": "node"
+  },
+  "10": {
+    "attributes": {
+      "amenity": "clinic",
+      "changeset_id": 43851955,
+      "changeset_timestamp": "2016-11-21T17:10:18",
+      "changeset_user": "tasauf1980",
+      "changeset_version": 2,
+      "name": "Marie Stopes Clinic",
+      "source": "NextView",
+      "uuid": "bb731186227a420ab5d3ce38ff6b3a46"
+    },
+    "centroid": {
+      "coordinates": [
+        90.37659897320464,
+        23.71962613569673
+      ],
+      "type": "Point"
+    },
+    "completeness": 12,
+    "osm_id": 4508575874,
+    "osm_type": "node"
+  },
+  "11": {
+    "attributes": {
+      "amenity": "pharmacy",
+      "changeset_id": 42978553,
+      "changeset_timestamp": "2016-10-18T09:05:00",
+      "changeset_user": "Raven Nahid",
+      "changeset_version": 2,
+      "uuid": "f7063d13eef44ede81c6b99fd395ce65"
+    },
+    "centroid": {
+      "coordinates": [
+        89.23458406092708,
+        25.767835244538386
+      ],
+      "type": "Point"
+    },
+    "completeness": 6,
+    "osm_id": 436048723,
+    "osm_type": "way"
+  },
+  "12": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "7/3/A",
+      "addr_postcode": "1207",
+      "addr_street": "Lalmatia Road",
+      "changeset_id": 76228615,
+      "changeset_timestamp": "2019-10-25T20:58:10",
+      "changeset_user": "dgitto",
+      "changeset_version": 2,
+      "healthcare": "laboratory",
+      "name": "Estern Care Diagnostic",
+      "uuid": "9c42c585807c4ec9922fcca5039aca63"
+    },
+    "centroid": {
+      "coordinates": [
+        90.37220006660016,
+        23.75773823033154
+      ],
+      "type": "Point"
+    },
+    "completeness": 21,
+    "osm_id": 6902628622,
+    "osm_type": "node"
+  },
+  "13": {
+    "attributes": {
+      "amenity": "pharmacy",
+      "changeset_id": 43759191,
+      "changeset_timestamp": "2016-11-18T09:56:40",
+      "changeset_user": "Sawan Shariar",
+      "changeset_version": 2,
+      "name": "Das Medical",
+      "uuid": "208b80919e3e4310989b42dfeade215b"
+    },
+    "centroid": {
+      "coordinates": [
+        89.631880371102,
+        23.04122892335934
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 3794108602,
+    "osm_type": "node"
+  },
+  "14": {
+    "attributes": {
+      "addr_city": "Mirpur Original -10",
+      "addr_postcode": "1216",
+      "addr_street": "বেগম রোকেয়া সরণী",
+      "amenity": "hospital",
+      "changeset_id": 83784513,
+      "changeset_timestamp": "2020-04-19T20:13:16",
+      "changeset_user": "AshrafulSium",
+      "changeset_version": 4,
+      "healthcare": "hospital",
+      "name": "Popular Diagonistic Center Unit-1",
+      "operator": "Popular",
+      "operator_type": "private",
+      "speciality": "general;psychiatry;orthopaedics;orthodontics;cardiology",
+      "uuid": "da44bc2dbe2d4075861eee31746df072"
+    },
+    "centroid": {
+      "coordinates": [
+        90.36729906693539,
+        23.810650702130474
+      ],
+      "type": "Point"
+    },
+    "completeness": 31,
+    "osm_id": 367199585,
+    "osm_type": "way"
+  },
+  "15": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "11/19",
+      "addr_postcode": "1207",
+      "addr_street": "Salimullah Road",
+      "amenity": "pharmacy",
+      "changeset_id": 76228615,
+      "changeset_timestamp": "2019-10-25T20:58:10",
+      "changeset_user": "dgitto",
+      "changeset_version": 2,
+      "name": "Akash Homeo",
+      "uuid": "c2ca93432e934383beb3d1e6a334d896"
+    },
+    "centroid": {
+      "coordinates": [
+        90.36382419839691,
+        23.76019613961813
+      ],
+      "type": "Point"
+    },
+    "completeness": 21,
+    "osm_id": 6908693896,
+    "osm_type": "node"
+  },
+  "16": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 53260489,
+      "changeset_timestamp": "2017-10-26T11:16:47",
+      "changeset_user": "AHM Bodruddoza",
+      "changeset_version": 1,
+      "healthcare": "hospital",
+      "name": "Pirganj upajila health complex",
+      "uuid": "f2c0abd915e249229b831a325a305dbf"
+    },
+    "centroid": {
+      "coordinates": [
+        89.31106668238964,
+        25.417450886633524
+      ],
+      "type": "Point"
+    },
+    "completeness": 12,
+    "osm_id": 535555800,
+    "osm_type": "way"
+  },
+  "17": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_street": "৬ নং সুজাত নগর",
+      "amenity": "pharmacy",
+      "changeset_id": 42649157,
+      "changeset_timestamp": "2016-10-05T06:55:20",
+      "changeset_user": "mmahmud",
+      "changeset_version": 1,
+      "name": "Bangladesh Clinic(বাংলাদেশ ক্লিনিক)",
+      "uuid": "accd751ba989413f8eac389dcbed235d"
+    },
+    "centroid": {
+      "coordinates": [
+        90.36318021677607,
+        23.828472692117657
+      ],
+      "type": "Point"
+    },
+    "completeness": 15,
+    "osm_id": 4432181542,
+    "osm_type": "node"
+  },
+  "18": {
+    "attributes": {
+      "amenity": "pharmacy",
+      "changeset_id": 38047041,
+      "changeset_timestamp": "2016-03-24T18:32:46",
+      "changeset_user": "Sawan Shariar",
+      "changeset_version": 1,
+      "name": "Shoily Pharmecy",
+      "uuid": "7098a12c73be4fbebc86ed0383d694ce"
+    },
+    "centroid": {
+      "coordinates": [
+        90.40958436058241,
+        23.75133294756438
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 4077093210,
+    "osm_type": "node"
+  },
+  "19": {
+    "attributes": {
+      "addr_housenumber": "A5/5",
+      "addr_street": "Central Road",
+      "amenity": "pharmacy",
+      "changeset_id": 50474036,
+      "changeset_timestamp": "2017-07-22T05:40:58",
+      "changeset_user": "kazi tusher",
+      "changeset_version": 2,
+      "name": "Khandokar Pharmadicaloy",
+      "uuid": "aeed57edb82441d09e56279dfa270a41"
+    },
+    "centroid": {
+      "coordinates": [
+        90.38990968690126,
+        23.74181236284477
+      ],
+      "type": "Point"
+    },
+    "completeness": 15,
+    "osm_id": 4364326292,
+    "osm_type": "node"
+  },
+  "20": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 51694744,
+      "changeset_timestamp": "2017-09-03T14:53:43",
+      "changeset_user": "tasauf1980",
+      "changeset_version": 5,
+      "name": "M.A.G Osmani Medical College Hospital, Sylhet",
+      "uuid": "58624a54632443388d7b541081440564"
+    },
+    "centroid": {
+      "coordinates": [
+        91.85324438733875,
+        24.900367736667192
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 265945386,
+    "osm_type": "node"
+  },
+  "21": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "9/17",
+      "addr_postcode": "1207",
+      "addr_street": "Humayun Road",
+      "amenity": "pharmacy",
+      "changeset_id": 76228615,
+      "changeset_timestamp": "2019-10-25T20:58:10",
+      "changeset_user": "dgitto",
+      "changeset_version": 2,
+      "name": "Nurjahan & Co",
+      "uuid": "27cd09ebdb6a4d069719f8d44165755c"
+    },
+    "centroid": {
+      "coordinates": [
+        90.3622269429282,
+        23.766304283917776
+      ],
+      "type": "Point"
+    },
+    "completeness": 21,
+    "osm_id": 6902633004,
+    "osm_type": "node"
+  },
+  "22": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "৭",
+      "addr_street": "২",
+      "amenity": "pharmacy",
+      "changeset_id": 42649157,
+      "changeset_timestamp": "2016-10-05T06:55:24",
+      "changeset_user": "mmahmud",
+      "changeset_version": 1,
+      "name": "Ibnesina Homeo Pharmacy(ইবনেসিনা হোমিও ফার্মাসি)",
+      "uuid": "e7d9002c8ee44be1a99a38bf35f355b7"
+    },
+    "centroid": {
+      "coordinates": [
+        90.36399334520297,
+        23.823569530218236
+      ],
+      "type": "Point"
+    },
+    "completeness": 18,
+    "osm_id": 4432181695,
+    "osm_type": "node"
+  },
+  "23": {
+    "attributes": {
+      "amenity": "clinic",
+      "changeset_id": 28303356,
+      "changeset_timestamp": "2015-01-21T10:38:43",
+      "changeset_user": "Nabila Ahmed Orin",
+      "changeset_version": 3,
+      "uuid": "1fe00a7ac6114a69ab962497c9e83562"
+    },
+    "centroid": {
+      "coordinates": [
+        90.36418161127743,
+        23.738588895320223
+      ],
+      "type": "Point"
+    },
+    "completeness": 6,
+    "osm_id": 321032560,
+    "osm_type": "way"
+  },
+  "24": {
+    "attributes": {
+      "amenity": "dentist",
+      "changeset_id": 34057778,
+      "changeset_timestamp": "2015-09-16T08:57:12",
+      "changeset_user": "Muhibur Rahman",
+      "changeset_version": 3,
+      "name": "Faith Dental Care",
+      "uuid": "f2c0c87d2836468cac0f07e0b6129556"
+    },
+    "centroid": {
+      "coordinates": [
+        90.42788406686697,
+        23.701487781048257
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 3532608714,
+    "osm_type": "node"
+  },
+  "25": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 16925124,
+      "changeset_timestamp": "2013-07-12T11:57:39",
+      "changeset_user": "Md Alamgir",
+      "changeset_version": 1,
+      "name": "Panchari Upazila Health Complex",
+      "uuid": "334d1cf40cd24be48349180ef1e7d944"
+    },
+    "centroid": {
+      "coordinates": [
+        91.89991063325726,
+        23.297212581554618
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 2382267550,
+    "osm_type": "node"
+  },
+  "26": {
+    "attributes": {
+      "amenity": "pharmacy",
+      "changeset_id": 75449142,
+      "changeset_timestamp": "2019-10-09T09:25:47",
+      "changeset_user": "rakibdc",
+      "changeset_version": 2,
+      "healthcare": "pharmacy",
+      "name": "JMI Syringes & Medical Devices Ltd.",
+      "uuid": "e9219c86f6b54cb38625464cc47fa6ec"
+    },
+    "centroid": {
+      "coordinates": [
+        91.30694035314082,
+        23.264077996300358
+      ],
+      "type": "Point"
+    },
+    "completeness": 12,
+    "osm_id": 5125806767,
+    "osm_type": "node"
+  },
+  "27": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 61784903,
+      "changeset_timestamp": "2018-08-19T05:38:19",
+      "changeset_user": "Ashraf Shakil",
+      "changeset_version": 3,
+      "name": "Chittagong Shishu Hospital",
+      "uuid": "95f0dec58b634ccaa59c4c6a7a85f71a"
+    },
+    "centroid": {
+      "coordinates": [
+        91.83120568168658,
+        22.361090622094792
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 2209597873,
+    "osm_type": "node"
+  },
+  "28": {
+    "attributes": {
+      "addr_city": "Dhaka - Sylhet Hwy",
+      "amenity": "pharmacy",
+      "changeset_id": 53446573,
+      "changeset_timestamp": "2017-11-02T09:51:36",
+      "changeset_user": "abdurRob",
+      "changeset_version": 1,
+      "healthcare": "pharmacy",
+      "name": "Alif Homoeo Hall",
+      "uuid": "00b19e6d7e6944cab7b602654aaff161"
+    },
+    "centroid": {
+      "coordinates": [
+        90.59542816920265,
+        23.81492435146606
+      ],
+      "type": "Point"
+    },
+    "completeness": 15,
+    "osm_id": 5206043441,
+    "osm_type": "node"
+  },
+  "29": {
+    "attributes": {
+      "addr_city": "Noakhali",
+      "addr_postcode": "3838",
+      "addr_street": "আব্দুল করিম মুন্সী সড়ক",
+      "amenity": "hospital",
+      "changeset_id": 72832996,
+      "changeset_timestamp": "2019-07-30T23:57:30",
+      "changeset_user": "Zabir91",
+      "changeset_version": 5,
+      "healthcare": "hospital",
+      "name": "কাশিপুর আল হাবিব হাসপাতাল (প্রাঃ)",
+      "speciality": "general;clinic",
+      "uuid": "ef2e9264af1f4043a5b011c01bc4cd06"
+    },
+    "centroid": {
+      "coordinates": [
+        91.14996365141212,
+        23.015577198344232
+      ],
+      "type": "Point"
+    },
+    "completeness": 25,
+    "osm_id": 6658461746,
+    "osm_type": "node"
+  },
+  "30": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "৬০",
+      "amenity": "pharmacy",
+      "changeset_id": 41057757,
+      "changeset_timestamp": "2016-07-27T09:45:05",
+      "changeset_user": "mmahmud",
+      "changeset_version": 3,
+      "name": "Chadpur Pharmacy(চাঁদপুর ফার্মেসি)",
+      "uuid": "75b6314d57a64b31919e2be1cd009637"
+    },
+    "centroid": {
+      "coordinates": [
+        90.37113447524968,
+        23.820958986474864
+      ],
+      "type": "Point"
+    },
+    "completeness": 15,
+    "osm_id": 4322832718,
+    "osm_type": "node"
+  },
+  "31": {
+    "attributes": {
+      "addr_city": "Mirpur 11, Dhaka",
+      "addr_housenumber": "301",
+      "addr_street": "Avenue-5,Line 18",
+      "amenity": "pharmacy",
+      "changeset_id": 75208922,
+      "changeset_timestamp": "2019-10-03T04:13:28",
+      "changeset_user": "rohamot",
+      "changeset_version": 4,
+      "contact_number": "+8801753046546",
+      "name": "Bhola Pharmacy",
+      "opening_hours": "8:00-24:00",
+      "uuid": "a958fcdf37674043bc626a4c163c3e4a"
+    },
+    "centroid": {
+      "coordinates": [
+        90.37589009725193,
+        23.814369583474438
+      ],
+      "type": "Point"
+    },
+    "completeness": 25,
+    "osm_id": 377710222,
+    "osm_type": "way"
+  },
+  "32": {
+    "attributes": {
+      "amenity": "pharmacy",
+      "changeset_id": 37991326,
+      "changeset_timestamp": "2016-03-22T05:14:33",
+      "changeset_user": "rmahfuz",
+      "changeset_version": 2,
+      "name": "New Sunview Medicine Corner",
+      "uuid": "3b9937412605462ca6104aa2a14ab4a8"
+    },
+    "centroid": {
+      "coordinates": [
+        90.40673803390274,
+        23.757172619505383
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 4062904098,
+    "osm_type": "node"
+  },
+  "33": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "168",
+      "addr_postcode": "1207",
+      "addr_street": "4",
+      "amenity": "pharmacy",
+      "changeset_id": 76947752,
+      "changeset_timestamp": "2019-11-12T08:49:29",
+      "changeset_user": "arafin",
+      "changeset_version": 1,
+      "name": "S A Pharma",
+      "uuid": "581cabfa879d4c39a5c5928a75404dff"
+    },
+    "centroid": {
+      "coordinates": [
+        90.3564354669304,
+        23.763569185093218
+      ],
+      "type": "Point"
+    },
+    "completeness": 21,
+    "osm_id": 6968431083,
+    "osm_type": "node"
+  },
+  "34": {
+    "attributes": {
+      "addr_city": "Moulvibazar",
+      "addr_street": "Shreemangal Road",
+      "amenity": "clinic",
+      "changeset_id": 74345197,
+      "changeset_timestamp": "2019-09-11T10:08:39",
+      "changeset_user": "Ataur Rahman Shaheen",
+      "changeset_version": 1,
+      "name": "City Diagnostics",
+      "uuid": "c501cb44b2d0470bb3ff6aef14bd4d36"
+    },
+    "centroid": {
+      "coordinates": [
+        91.76569314557753,
+        24.485040746382168
+      ],
+      "type": "Point"
+    },
+    "completeness": 15,
+    "osm_id": 6787831181,
+    "osm_type": "node"
+  },
+  "35": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "38/2",
+      "addr_postcode": "1207",
+      "addr_street": "Ring Road",
+      "amenity": "pharmacy",
+      "changeset_id": 76525564,
+      "changeset_timestamp": "2019-11-02T11:34:40",
+      "changeset_user": "mueschel",
+      "changeset_version": 2,
+      "name": "Jaki Medical Center",
+      "uuid": "99893742e73a4fddbdf9ab843cef3b7d"
+    },
+    "centroid": {
+      "coordinates": [
+        90.36165672205527,
+        23.773319098683686
+      ],
+      "type": "Point"
+    },
+    "completeness": 21,
+    "osm_id": 6900268979,
+    "osm_type": "node"
+  },
+  "36": {
+    "attributes": {
+      "amenity": "pharmacy",
+      "changeset_id": 69921907,
+      "changeset_timestamp": "2019-05-06T04:54:54",
+      "changeset_user": "Kayser Ahmad",
+      "changeset_version": 1,
+      "name": "জামান ফার্মেসি",
+      "uuid": "e936b95dbacd4fc4b1cd9d3872f5da3f"
+    },
+    "centroid": {
+      "coordinates": [
+        88.90710709433398,
+        26.211106537069583
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 6451134180,
+    "osm_type": "node"
+  },
+  "37": {
+    "attributes": {
+      "amenity": "pharmacy",
+      "changeset_id": 31785631,
+      "changeset_timestamp": "2015-06-07T09:12:39",
+      "changeset_user": "JAHIDUL Ahsan08",
+      "changeset_version": 1,
+      "uuid": "f2ab805d8e57461aac7efe3b2e6b066e"
+    },
+    "centroid": {
+      "coordinates": [
+        89.50992074626129,
+        22.89780718398572
+      ],
+      "type": "Point"
+    },
+    "completeness": 6,
+    "osm_id": 3578177138,
+    "osm_type": "node"
+  },
+  "38": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 56041849,
+      "changeset_timestamp": "2018-02-03T23:00:09",
+      "changeset_user": "alexandrebc",
+      "changeset_version": 1,
+      "uuid": "0f7ff727d64f444e9d38cd70b79f712b"
+    },
+    "centroid": {
+      "coordinates": [
+        91.75665950752274,
+        25.085399590327043
+      ],
+      "type": "Point"
+    },
+    "completeness": 6,
+    "osm_id": 558368065,
+    "osm_type": "way"
+  },
+  "39": {
+    "attributes": {
+      "amenity": "clinic",
+      "changeset_id": 65267807,
+      "changeset_timestamp": "2018-12-07T13:06:50",
+      "changeset_user": "Esmat Enan",
+      "changeset_version": 1,
+      "name": "Loularchar Commuinity Clinic",
+      "source": "survey",
+      "uuid": "2238a23e270d4c95a0afb9a3eeaeb6f2"
+    },
+    "centroid": {
+      "coordinates": [
+        91.25997294544129,
+        24.742558628134304
+      ],
+      "type": "Point"
+    },
+    "completeness": 12,
+    "osm_id": 6123345342,
+    "osm_type": "node"
+  },
+  "40": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 76268025,
+      "changeset_timestamp": "2019-10-27T14:51:50",
+      "changeset_user": "maggot27",
+      "changeset_version": 4,
+      "name": "Maizbag Community Clinic",
+      "source": "Field Survey",
+      "uuid": "a748f18b55f140d682fec47f8c89507d"
+    },
+    "centroid": {
+      "coordinates": [
+        90.61097661620381,
+        24.630159500171583
+      ],
+      "type": "Point"
+    },
+    "completeness": 12,
+    "osm_id": 561589126,
+    "osm_type": "way"
+  },
+  "41": {
+    "attributes": {
+      "amenity": "clinic",
+      "changeset_id": 55832727,
+      "changeset_timestamp": "2018-01-28T15:47:53",
+      "changeset_user": "Daniel Specht",
+      "changeset_version": 2,
+      "uuid": "332b83f66e2749158d69969b081eb317"
+    },
+    "centroid": {
+      "coordinates": [
+        92.1555516392508,
+        21.176731978447833
+      ],
+      "type": "Point"
+    },
+    "completeness": 6,
+    "osm_id": 5340687521,
+    "osm_type": "node"
+  },
+  "42": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 12060429,
+      "changeset_timestamp": "2012-06-29T20:27:17",
+      "changeset_user": "sazid",
+      "changeset_version": 2,
+      "name": "Seaside Hospital",
+      "uuid": "aff61fcfca584d16975e07fd7774b5d9"
+    },
+    "centroid": {
+      "coordinates": [
+        91.97612258494826,
+        21.441651080702172
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 1802430846,
+    "osm_type": "node"
+  },
+  "43": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "2/13",
+      "addr_postcode": "1207",
+      "addr_street": "Humayun Road",
+      "changeset_id": 76228615,
+      "changeset_timestamp": "2019-10-25T20:58:10",
+      "changeset_user": "dgitto",
+      "changeset_version": 2,
+      "healthcare": "blood_donation",
+      "name": "Maliha Blood Bank and Transfusion Center",
+      "uuid": "f211b8ebb4374ead8bd5fdb06a559b32"
+    },
+    "centroid": {
+      "coordinates": [
+        90.36662635244687,
+        23.769608430148764
+      ],
+      "type": "Point"
+    },
+    "completeness": 21,
+    "osm_id": 6902628680,
+    "osm_type": "node"
+  },
+  "44": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_postcode": "1207",
+      "addr_street": "6/A, Nabaday Housing",
+      "amenity": "pharmacy",
+      "changeset_id": 76947752,
+      "changeset_timestamp": "2019-11-12T08:49:29",
+      "changeset_user": "arafin",
+      "changeset_version": 1,
+      "name": "New Nashema Medical Hall",
+      "uuid": "508bfcd007f84f55991eb2f7bf2c514c"
+    },
+    "centroid": {
+      "coordinates": [
+        90.35158611684938,
+        23.764638045385908
+      ],
+      "type": "Point"
+    },
+    "completeness": 18,
+    "osm_id": 6968440940,
+    "osm_type": "node"
+  },
+  "45": {
+    "attributes": {
+      "addr_city": "dhaka",
+      "addr_postcode": "1213.0",
+      "amenity": "pharmacy",
+      "changeset_id": 66856050,
+      "changeset_timestamp": "2019-02-02T13:52:57",
+      "changeset_user": "SWF8",
+      "changeset_version": 8,
+      "name": "Mayar Doya Pharmacy",
+      "uuid": "c19388e61d764d80aafe2e5ad5e271d1"
+    },
+    "centroid": {
+      "coordinates": [
+        90.4066552206994,
+        23.78560294542254
+      ],
+      "type": "Point"
+    },
+    "completeness": 15,
+    "osm_id": 5622156315,
+    "osm_type": "node"
+  },
+  "46": {
+    "attributes": {
+      "addr_city": "phulpur",
+      "addr_housenumber": "goadanga",
+      "addr_postcode": "2150",
+      "amenity": "pharmacy",
+      "changeset_id": 83521967,
+      "changeset_timestamp": "2020-04-14T09:10:40",
+      "changeset_user": "Tamjid",
+      "changeset_version": 1,
+      "dispensing": "no",
+      "healthcare": "pharmacy",
+      "name": "আরিফ ফার্মেসি",
+      "opening_hours": "24/7",
+      "uuid": "309f57770df244888fca0bf4d04d8d90"
+    },
+    "centroid": {
+      "coordinates": [
+        90.25267295387937,
+        24.929092770299917
+      ],
+      "type": "Point"
+    },
+    "completeness": 28,
+    "osm_id": 7401184586,
+    "osm_type": "node"
+  },
+  "47": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 53938376,
+      "changeset_timestamp": "2017-11-20T04:27:36",
+      "changeset_user": "Nazmul Hoque Sohel",
+      "changeset_version": 1,
+      "healthcare": "hospital",
+      "name": "Tetuljhora Health & Family Welfare Center তেতুলঝোড়া স্বাস্থ্য ও পরিবার কল্যাণ কেন্দ্র",
+      "uuid": "3c88ceedae0f416e997704cd315a1b1a"
+    },
+    "centroid": {
+      "coordinates": [
+        90.27119343949352,
+        23.79426312778139
+      ],
+      "type": "Point"
+    },
+    "completeness": 12,
+    "osm_id": 5238876402,
+    "osm_type": "node"
+  },
+  "48": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "45",
+      "addr_postcode": "1207",
+      "addr_street": "Road 2",
+      "amenity": "hospital",
+      "changeset_id": 76525564,
+      "changeset_timestamp": "2019-11-02T11:34:39",
+      "changeset_user": "mueschel",
+      "changeset_version": 2,
+      "name": "Aitam Metarnity and General Hospital",
+      "uuid": "7e74391d43434d61a4c7509f7be4751c"
+    },
+    "centroid": {
+      "coordinates": [
+        90.35805946067029,
+        23.769523856745735
+      ],
+      "type": "Point"
+    },
+    "completeness": 21,
+    "osm_id": 6900268931,
+    "osm_type": "node"
+  },
+  "49": {
+    "attributes": {
+      "amenity": "clinic",
+      "changeset_id": 65105390,
+      "changeset_timestamp": "2018-12-02T20:49:12",
+      "changeset_user": "Esmat Enan",
+      "changeset_version": 1,
+      "name": "Noyani Community Clinic",
+      "source": "survey",
+      "uuid": "d75893c83ed0472591c293b9a89a6114"
+    },
+    "centroid": {
+      "coordinates": [
+        89.34147743335308,
+        22.436878617123256
+      ],
+      "type": "Point"
+    },
+    "completeness": 12,
+    "osm_id": 6111623879,
+    "osm_type": "node"
+  },
+  "50": {
+    "attributes": {
+      "addr_street": "জাহাঙ্গীরপুর সেন্টার মেইন রোড",
+      "amenity": "pharmacy",
+      "changeset_id": 75851630,
+      "changeset_timestamp": "2019-10-17T15:57:56",
+      "changeset_user": "Sohanur Rahman00",
+      "changeset_version": 1,
+      "name": "Himel Medical Hol",
+      "uuid": "d0bf9592054e4bc3b1a2aceeb84862d8"
+    },
+    "centroid": {
+      "coordinates": [
+        90.94746357626252,
+        24.716849570901473
+      ],
+      "type": "Point"
+    },
+    "completeness": 12,
+    "osm_id": 6893111783,
+    "osm_type": "node"
+  },
+  "51": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_postcode": "1209",
+      "addr_street": "Hazaribag Bazar Road",
+      "amenity": "pharmacy",
+      "changeset_id": 83427321,
+      "changeset_timestamp": "2020-04-12T13:19:28",
+      "changeset_user": "MD Shahidul Islam",
+      "changeset_version": 1,
+      "dispensing": "yes",
+      "healthcare": "pharmacy",
+      "name": "Hazi Pharma",
+      "opening_hours": "Mo-Su 09:00-23:30",
+      "uuid": "990f76a6db1544b8920818de17b0bfe7",
+      "wheelchair": "limited"
+    },
+    "centroid": {
+      "coordinates": [
+        90.36696213148798,
+        23.732570141129514
+      ],
+      "type": "Point"
+    },
+    "completeness": 31,
+    "osm_id": 7394777657,
+    "osm_type": "node"
+  },
+  "52": {
+    "attributes": {
+      "amenity": "pharmacy",
+      "changeset_id": 73112557,
+      "changeset_timestamp": "2019-08-07T13:31:02",
+      "changeset_user": "GY_OSM",
+      "changeset_version": 5,
+      "uuid": "941635a26c43438f9a6220f13a9300ae"
+    },
+    "centroid": {
+      "coordinates": [
+        90.41158528850798,
+        23.782889639546227
+      ],
+      "type": "Point"
+    },
+    "completeness": 6,
+    "osm_id": 5622154303,
+    "osm_type": "node"
+  },
+  "53": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_postcode": "1207",
+      "addr_street": "6, Shekhertek",
+      "amenity": "pharmacy",
+      "changeset_id": 76947752,
+      "changeset_timestamp": "2019-11-12T08:49:29",
+      "changeset_user": "arafin",
+      "changeset_version": 1,
+      "name": "Shuvo Pharma",
+      "uuid": "93acdd34a46446e6b6508f76c3ce7a77"
+    },
+    "centroid": {
+      "coordinates": [
+        90.35354236923109,
+        23.767434164465556
+      ],
+      "type": "Point"
+    },
+    "completeness": 18,
+    "osm_id": 6968440917,
+    "osm_type": "node"
+  },
+  "54": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 62421108,
+      "changeset_timestamp": "2018-09-09T10:47:43",
+      "changeset_user": "Shatil",
+      "changeset_version": 1,
+      "uuid": "e2967a41c1644c90884cb20e49580458"
+    },
+    "centroid": {
+      "coordinates": [
+        88.6557695250678,
+        25.86324523397107
+      ],
+      "type": "Point"
+    },
+    "completeness": 6,
+    "osm_id": 5894264988,
+    "osm_type": "node"
+  },
+  "55": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "15",
+      "addr_postcode": "1207",
+      "addr_street": "Mohammadia Housing Limited",
+      "amenity": "pharmacy",
+      "changeset_id": 76228615,
+      "changeset_timestamp": "2019-10-25T20:58:10",
+      "changeset_user": "dgitto",
+      "changeset_version": 2,
+      "name": "Marzia Pharmacy",
+      "uuid": "8be49ffcbe0d45b493e3dcf3820dadb5"
+    },
+    "centroid": {
+      "coordinates": [
+        90.35533618032923,
+        23.761062660768204
+      ],
+      "type": "Point"
+    },
+    "completeness": 21,
+    "osm_id": 6908693995,
+    "osm_type": "node"
+  },
+  "56": {
+    "attributes": {
+      "amenity": "pharmacy",
+      "changeset_id": 54090219,
+      "changeset_timestamp": "2017-11-26T09:35:00",
+      "changeset_user": "Nazmul Hoque Sohel",
+      "changeset_version": 1,
+      "healthcare": "pharmacy",
+      "name": "Raj Pharmacy রাজ ফার্মেসী",
+      "uuid": "046867599fe74fb68a46a3d6c0aea809"
+    },
+    "centroid": {
+      "coordinates": [
+        90.25645897572383,
+        23.84800219123582
+      ],
+      "type": "Point"
+    },
+    "completeness": 12,
+    "osm_id": 5248388519,
+    "osm_type": "node"
+  },
+  "57": {
+    "attributes": {
+      "addr_city": "Moulvibazar",
+      "addr_street": "Shreemangal Road",
+      "amenity": "hospital",
+      "changeset_id": 74345197,
+      "changeset_timestamp": "2019-09-11T10:08:39",
+      "changeset_user": "Ataur Rahman Shaheen",
+      "changeset_version": 1,
+      "name": "Life Care Pvt Hospital",
+      "uuid": "7a51809dd062439780ad0745ffa73222"
+    },
+    "centroid": {
+      "coordinates": [
+        91.7650812666459,
+        24.47888314885381
+      ],
+      "type": "Point"
+    },
+    "completeness": 15,
+    "osm_id": 6787831161,
+    "osm_type": "node"
+  },
+  "58": {
+    "attributes": {
+      "addr_city": "Gopalgonj",
+      "addr_street": "Bhatiapara Stand Road",
+      "amenity": "pharmacy",
+      "changeset_id": 41738977,
+      "changeset_timestamp": "2016-08-27T15:57:26",
+      "changeset_user": "MD Mozammel Haque",
+      "changeset_version": 1,
+      "name": "Mamun Pharmacy",
+      "uuid": "a67ae37e52fc4d03b64884608005b4f7"
+    },
+    "centroid": {
+      "coordinates": [
+        89.70968471675792,
+        23.213931165089008
+      ],
+      "type": "Point"
+    },
+    "completeness": 15,
+    "osm_id": 4369921514,
+    "osm_type": "node"
+  },
+  "59": {
+    "attributes": {
+      "amenity": "pharmacy",
+      "changeset_id": 37863824,
+      "changeset_timestamp": "2016-03-16T07:31:59",
+      "changeset_user": "Razu Ahmed",
+      "changeset_version": 1,
+      "name": "Haque Medical Store",
+      "uuid": "69a85cbe93be404986e0a7868ac91731"
+    },
+    "centroid": {
+      "coordinates": [
+        90.41796182134726,
+        23.76652933801796
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 4062930407,
+    "osm_type": "node"
+  },
+  "60": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "22/23",
+      "addr_postcode": "1207",
+      "addr_street": "Khiljee Road",
+      "amenity": "doctors",
+      "changeset_id": 76525564,
+      "changeset_timestamp": "2019-11-02T11:34:40",
+      "changeset_user": "mueschel",
+      "changeset_version": 2,
+      "name": "Dr Mohammad Osman",
+      "uuid": "188003d4d35a4b9c925e06d1d786def3"
+    },
+    "centroid": {
+      "coordinates": [
+        90.36742011867739,
+        23.77051702845276
+      ],
+      "type": "Point"
+    },
+    "completeness": 21,
+    "osm_id": 6902628679,
+    "osm_type": "node"
+  },
+  "61": {
+    "attributes": {
+      "addr_city": "Bera",
+      "addr_postcode": "6680",
+      "addr_street": "Haspital Road",
+      "amenity": "clinic",
+      "changeset_id": 84382715,
+      "changeset_timestamp": "2020-04-30T05:56:52",
+      "changeset_user": "MD KAWSAR ALAM",
+      "changeset_version": 1,
+      "healthcare": "clinic",
+      "name": "Al Arabi General Hospital",
+      "opening_hours": "24/7",
+      "speciality": "general;surgery;orthopaedics",
+      "uuid": "85bde264c67844ab80b659e6c2690a31"
+    },
+    "centroid": {
+      "coordinates": [
+        89.61534689945421,
+        24.07589465531632
+      ],
+      "type": "Point"
+    },
+    "completeness": 28,
+    "osm_id": 7465717513,
+    "osm_type": "node"
+  },
+  "62": {
+    "attributes": {
+      "addr_city": "Sylhet",
+      "amenity": "pharmacy",
+      "changeset_id": 52946077,
+      "changeset_timestamp": "2017-10-15T05:35:44",
+      "changeset_user": "abdurRob",
+      "changeset_version": 1,
+      "healthcare": "pharmacy",
+      "name": "Hamdard Laboratories",
+      "uuid": "b0d7224f7b7c4a4c96a84167033c7de1"
+    },
+    "centroid": {
+      "coordinates": [
+        91.73096956642459,
+        24.704630373577285
+      ],
+      "type": "Point"
+    },
+    "completeness": 15,
+    "osm_id": 532654602,
+    "osm_type": "way"
+  },
+  "63": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_postcode": "1209",
+      "addr_street": "Dhanmondi 9/A",
+      "amenity": "pharmacy",
+      "changeset_id": 84121155,
+      "changeset_timestamp": "2020-04-25T20:37:02",
+      "changeset_user": "Shoeb_m_s",
+      "changeset_version": 1,
+      "dispensing": "yes",
+      "healthcare": "pharmacy",
+      "name": "Ibn Sina Pharmacy",
+      "uuid": "5e6b16794fc8402db51dffd4f9cf0ee8"
+    },
+    "centroid": {
+      "coordinates": [
+        90.37236049622692,
+        23.74510636697292
+      ],
+      "type": "Point"
+    },
+    "completeness": 25,
+    "osm_id": 7447205042,
+    "osm_type": "node"
+  },
+  "64": {
+    "attributes": {
+      "addr_housenumber": "555",
+      "addr_street": "Noyatola, Bara Maghbazar",
+      "amenity": "clinic",
+      "changeset_id": 37965735,
+      "changeset_timestamp": "2016-03-20T23:06:21",
+      "changeset_user": "danbjoseph",
+      "changeset_version": 2,
+      "name": "E.P.I. Tikadan Kendro",
+      "uuid": "bb9aa1bc61054c3399e1709b31a1cd6b"
+    },
+    "centroid": {
+      "coordinates": [
+        90.4101807468718,
+        23.754739980459192
+      ],
+      "type": "Point"
+    },
+    "completeness": 15,
+    "osm_id": 385519425,
+    "osm_type": "way"
+  },
+  "65": {
+    "attributes": {
+      "addr_city": "Mirpur 11, Dhaka",
+      "addr_housenumber": "House 11/A",
+      "addr_postcode": "1216",
+      "addr_street": "Avenue 3, Kacabazer Road ADC Camp",
+      "amenity": "pharmacy",
+      "changeset_id": 36909682,
+      "changeset_timestamp": "2016-01-31T04:09:34",
+      "changeset_user": "arafin",
+      "changeset_version": 5,
+      "name": "Khan Homeo Hall",
+      "operator": "private",
+      "uuid": "98add12797594c5d9776fbf98ed99298"
+    },
+    "centroid": {
+      "coordinates": [
+        90.36971608375558,
+        23.814566126175542
+      ],
+      "type": "Point"
+    },
+    "completeness": 25,
+    "osm_id": 377697235,
+    "osm_type": "way"
+  },
+  "66": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "22/1",
+      "addr_postcode": "1207",
+      "addr_street": "Babar Road",
+      "amenity": "pharmacy",
+      "changeset_id": 76525564,
+      "changeset_timestamp": "2019-11-02T11:34:40",
+      "changeset_user": "mueschel",
+      "changeset_version": 2,
+      "name": "Islam Pharma",
+      "uuid": "305bb7142c0b4338b9444b0a303fc008"
+    },
+    "centroid": {
+      "coordinates": [
+        90.36795505173791,
+        23.77065449166483
+      ],
+      "type": "Point"
+    },
+    "completeness": 21,
+    "osm_id": 6900269044,
+    "osm_type": "node"
+  },
+  "67": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "15/1",
+      "addr_postcode": "1207",
+      "addr_street": "Ring Road, Tikkapara",
+      "amenity": "pharmacy",
+      "changeset_id": 76228615,
+      "changeset_timestamp": "2019-10-25T20:58:10",
+      "changeset_user": "dgitto",
+      "changeset_version": 2,
+      "name": "Suchona Homeo Hall",
+      "uuid": "11bde6126b254829b5bbf996f121743b"
+    },
+    "centroid": {
+      "coordinates": [
+        90.35912957824848,
+        23.76740792910863
+      ],
+      "type": "Point"
+    },
+    "completeness": 21,
+    "osm_id": 6902628642,
+    "osm_type": "node"
+  },
+  "68": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 53670545,
+      "changeset_timestamp": "2017-11-10T16:02:18",
+      "changeset_user": "Shourove",
+      "changeset_version": 1,
+      "healthcare": "hospital",
+      "name": "Pabna Sadar Hospital",
+      "uuid": "5a47258c729c4f04a7f3d31b0d54c393"
+    },
+    "centroid": {
+      "coordinates": [
+        89.24473644059049,
+        24.01661406421681
+      ],
+      "type": "Point"
+    },
+    "completeness": 12,
+    "osm_id": 5221788596,
+    "osm_type": "node"
+  },
+  "69": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "5/7",
+      "addr_postcode": "1207",
+      "addr_street": "Block D, Lalmatia",
+      "amenity": "hospital",
+      "changeset_id": 76947752,
+      "changeset_timestamp": "2019-11-12T08:49:29",
+      "changeset_user": "arafin",
+      "changeset_version": 1,
+      "name": "Euro Bangla Heart Hospital",
+      "uuid": "91af4a5ac4104b6fb42c3c9e2282cf6a"
+    },
+    "centroid": {
+      "coordinates": [
+        90.36734023914016,
+        23.753516852436263
+      ],
+      "type": "Point"
+    },
+    "completeness": 21,
+    "osm_id": 6968440956,
+    "osm_type": "node"
+  },
+  "70": {
+    "attributes": {
+      "amenity": "pharmacy",
+      "changeset_id": 41654696,
+      "changeset_timestamp": "2016-08-24T06:35:57",
+      "changeset_user": "sourov_zafor",
+      "changeset_version": 1,
+      "name": "Harun Pharmacy",
+      "uuid": "9fd901bbba8f4a44be78c849131f12ef",
+      "wheelchair": "yes"
+    },
+    "centroid": {
+      "coordinates": [
+        90.3849582452396,
+        23.73513106400611
+      ],
+      "type": "Point"
+    },
+    "completeness": 12,
+    "osm_id": 4364245916,
+    "osm_type": "node"
+  },
+  "71": {
+    "attributes": {
+      "addr_city": "kalia",
+      "amenity": "pharmacy",
+      "changeset_id": 43759191,
+      "changeset_timestamp": "2016-11-18T09:56:34",
+      "changeset_user": "Sawan Shariar",
+      "changeset_version": 3,
+      "name": "Akber Medical",
+      "uuid": "dcd4e9104c4b4f5798ba55ba596bffd7"
+    },
+    "centroid": {
+      "coordinates": [
+        89.63192353790333,
+        23.041219284170694
+      ],
+      "type": "Point"
+    },
+    "completeness": 12,
+    "osm_id": 3794107088,
+    "osm_type": "node"
+  },
+  "72": {
+    "attributes": {
+      "amenity": "doctors",
+      "changeset_id": 69028594,
+      "changeset_timestamp": "2019-04-09T03:41:51",
+      "changeset_user": "Zabir91",
+      "changeset_version": 2,
+      "healthcare": "doctor",
+      "name": "ডাঃ সাখাওয়াত হোসেন",
+      "opening_hours": "19:30-22:30",
+      "uuid": "362b2479a07946cbb4ae7a223a6d483b"
+    },
+    "centroid": {
+      "coordinates": [
+        90.4268841896374,
+        23.748987858694505
+      ],
+      "type": "Point"
+    },
+    "completeness": 15,
+    "osm_id": 3738885640,
+    "osm_type": "node"
+  },
+  "73": {
+    "attributes": {
+      "amenity": "clinic",
+      "changeset_id": 31545700,
+      "changeset_timestamp": "2015-05-28T20:00:03",
+      "changeset_user": "danbjoseph",
+      "changeset_version": 2,
+      "uuid": "7f1d44ba6a1b4e68ab5e97492b8fbdc0"
+    },
+    "centroid": {
+      "coordinates": [
+        90.42581356914502,
+        23.701424162403185
+      ],
+      "type": "Point"
+    },
+    "completeness": 6,
+    "osm_id": 3532321328,
+    "osm_type": "node"
+  },
+  "74": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "2/1",
+      "addr_postcode": "1207",
+      "addr_street": "Bir Uttam ANM Nuruzzaman Sarak",
+      "amenity": "pharmacy",
+      "changeset_id": 76525564,
+      "changeset_timestamp": "2019-11-02T11:34:40",
+      "changeset_user": "mueschel",
+      "changeset_version": 2,
+      "name": "Medicine Corner",
+      "uuid": "b06754f75bc742039b27c343af5749fa"
+    },
+    "centroid": {
+      "coordinates": [
+        90.3682583928138,
+        23.77019549864704
+      ],
+      "type": "Point"
+    },
+    "completeness": 21,
+    "osm_id": 6900269047,
+    "osm_type": "node"
+  },
+  "75": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "1/8",
+      "addr_postcode": "1207",
+      "addr_street": "Mirpur Road, Block # B",
+      "amenity": "pharmacy",
+      "changeset_id": 76525564,
+      "changeset_timestamp": "2019-11-02T11:34:40",
+      "changeset_user": "mueschel",
+      "changeset_version": 2,
+      "name": "Al Sami Drug House",
+      "uuid": "fa7f59c9ac9e4599a22ceff7b1586aad"
+    },
+    "centroid": {
+      "coordinates": [
+        90.36848076470494,
+        23.76954556587495
+      ],
+      "type": "Point"
+    },
+    "completeness": 21,
+    "osm_id": 6900269038,
+    "osm_type": "node"
+  },
+  "76": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 61625183,
+      "changeset_timestamp": "2018-08-13T12:30:31",
+      "changeset_user": "Shofiqur rahman",
+      "changeset_version": 2,
+      "healthcare": "hospital",
+      "uuid": "771796fcb7b247678195fa19c6cbe2e6"
+    },
+    "centroid": {
+      "coordinates": [
+        88.96601712149419,
+        22.79329658607645
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 5623591578,
+    "osm_type": "node"
+  },
+  "77": {
+    "attributes": {
+      "addr_city": "Kalia",
+      "addr_postcode": "7520",
+      "addr_street": "College Road",
+      "amenity": "pharmacy",
+      "changeset_id": 42249905,
+      "changeset_timestamp": "2016-09-18T15:40:30",
+      "changeset_user": "Sawan Shariar",
+      "changeset_version": 2,
+      "name": "Pharmacy",
+      "uuid": "4084823ea81b49e0b8240261bf325bc4",
+      "wheelchair": "no"
+    },
+    "centroid": {
+      "coordinates": [
+        89.6313004110981,
+        23.040952961550232
+      ],
+      "type": "Point"
+    },
+    "completeness": 21,
+    "osm_id": 377688600,
+    "osm_type": "way"
+  },
+  "78": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "১",
+      "addr_street": "১১",
+      "amenity": "pharmacy",
+      "changeset_id": 41182129,
+      "changeset_timestamp": "2016-08-02T03:19:14",
+      "changeset_user": "mmahmud",
+      "changeset_version": 1,
+      "name": "Adorsho Medical Hall(আদর্শ মেডিক্যাল হল)",
+      "uuid": "e2e6d669495e474eb6f129f266b975dc"
+    },
+    "centroid": {
+      "coordinates": [
+        90.3725842930416,
+        23.816870126468757
+      ],
+      "type": "Point"
+    },
+    "completeness": 18,
+    "osm_id": 4331663665,
+    "osm_type": "node"
+  },
+  "79": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 53477712,
+      "changeset_timestamp": "2017-11-03T12:25:03",
+      "changeset_user": "Mahfuza Mim",
+      "changeset_version": 1,
+      "healthcare": "hospital",
+      "uuid": "f65c9049e6714e72b1f153d32a171807"
+    },
+    "centroid": {
+      "coordinates": [
+        89.12780259824667,
+        23.90383917243369
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 537955797,
+    "osm_type": "way"
+  },
+  "80": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_postcode": "1207",
+      "addr_street": "Jafrabad, Pulpar Battola",
+      "amenity": "clinic",
+      "changeset_id": 76947752,
+      "changeset_timestamp": "2019-11-12T08:49:29",
+      "changeset_user": "arafin",
+      "changeset_version": 1,
+      "name": "Nagar Sastha Kendra",
+      "uuid": "03e796b2a4c94d22805f7f020f79978a"
+    },
+    "centroid": {
+      "coordinates": [
+        90.3603519950073,
+        23.75160879599784
+      ],
+      "type": "Point"
+    },
+    "completeness": 18,
+    "osm_id": 6968431066,
+    "osm_type": "node"
+  },
+  "81": {
+    "attributes": {
+      "amenity": "pharmacy",
+      "changeset_id": 31333318,
+      "changeset_timestamp": "2015-05-21T05:22:47",
+      "changeset_user": "Ashif Karim",
+      "changeset_version": 1,
+      "uuid": "4d7d17d4364040bb8159cdbb1fac659f"
+    },
+    "centroid": {
+      "coordinates": [
+        90.42397223265584,
+        23.705307917238628
+      ],
+      "type": "Point"
+    },
+    "completeness": 6,
+    "osm_id": 3532287229,
+    "osm_type": "node"
+  },
+  "82": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 69110447,
+      "changeset_timestamp": "2019-04-11T11:03:27",
+      "changeset_user": "Soft Bangla",
+      "changeset_version": 2,
+      "healthcare": "hospital",
+      "name": "Comilla Meghna General Hospital কুমিল্লা মেঘনা জেনারেল হাসপাতালে",
+      "uuid": "448706b334c84940845674fc7846feca"
+    },
+    "centroid": {
+      "coordinates": [
+        91.1751602390849,
+        23.46511509407003
+      ],
+      "type": "Point"
+    },
+    "completeness": 12,
+    "osm_id": 6180203268,
+    "osm_type": "node"
+  },
+  "83": {
+    "attributes": {
+      "amenity": "pharmacy",
+      "changeset_id": 82436744,
+      "changeset_timestamp": "2020-03-20T14:59:53",
+      "changeset_user": "Ashiqur Choudhury",
+      "changeset_version": 1,
+      "dispensing": "yes",
+      "healthcare": "pharmacy",
+      "name": "Good Life Pharmacy",
+      "uuid": "85600e6559d24830bdb4876ec8e8d78b"
+    },
+    "centroid": {
+      "coordinates": [
+        90.42566546091592,
+        23.784422521998607
+      ],
+      "type": "Point"
+    },
+    "completeness": 15,
+    "osm_id": 7312606289,
+    "osm_type": "node"
+  },
+  "84": {
+    "attributes": {
+      "addr_city": "Tongi",
+      "amenity": "pharmacy",
+      "changeset_id": 60794447,
+      "changeset_timestamp": "2018-07-17T10:31:54",
+      "changeset_user": "Sawan Shariar",
+      "changeset_version": 2,
+      "healthcare": "pharmacy",
+      "name": "Tongi Pharmacy and Optical Center টঙ্গী ফার্মেসী এন্ড অপটিক্যাল সেন্টার",
+      "uuid": "ac3e2b832bb0421783c18f05cd45b115"
+    },
+    "centroid": {
+      "coordinates": [
+        90.40049225058372,
+        23.885362311420746
+      ],
+      "type": "Point"
+    },
+    "completeness": 15,
+    "osm_id": 537312194,
+    "osm_type": "way"
+  },
+  "85": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "11/2",
+      "addr_postcode": "1207",
+      "addr_street": "Uttor Adabor bazar road",
+      "amenity": "pharmacy",
+      "changeset_id": 76525564,
+      "changeset_timestamp": "2019-11-02T11:34:39",
+      "changeset_user": "mueschel",
+      "changeset_version": 2,
+      "healthcare": "laboratory",
+      "name": "Rajib Homeo",
+      "uuid": "60fdfce454de4d2da93401bc8d290450"
+    },
+    "centroid": {
+      "coordinates": [
+        90.35770825892735,
+        23.773632498043327
+      ],
+      "type": "Point"
+    },
+    "completeness": 25,
+    "osm_id": 6900268900,
+    "osm_type": "node"
+  },
+  "86": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_street": "৬",
+      "amenity": "hospital",
+      "changeset_id": 41057757,
+      "changeset_timestamp": "2016-07-27T09:45:23",
+      "changeset_user": "mmahmud",
+      "changeset_version": 3,
+      "name": "physiotherapy center(ফিজিওথেরাপি সেন্টার)",
+      "uuid": "2ff2c41aa5164ee295fba58839589f46"
+    },
+    "centroid": {
+      "coordinates": [
+        90.36637883484616,
+        23.817702281815826
+      ],
+      "type": "Point"
+    },
+    "completeness": 15,
+    "osm_id": 4322833430,
+    "osm_type": "node"
+  },
+  "87": {
+    "attributes": {
+      "amenity": "pharmacy",
+      "changeset_id": 53599732,
+      "changeset_timestamp": "2017-11-08T05:22:28",
+      "changeset_user": "Nazmul Hoque Sohel",
+      "changeset_version": 1,
+      "healthcare": "pharmacy",
+      "name": "Lazz Pharmacy",
+      "uuid": "4c7fbeb36e4648a4a361535fbdcc694f"
+    },
+    "centroid": {
+      "coordinates": [
+        90.40774259769796,
+        24.74251133718366
+      ],
+      "type": "Point"
+    },
+    "completeness": 12,
+    "osm_id": 539149893,
+    "osm_type": "way"
+  },
+  "88": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_postcode": "1207",
+      "addr_street": "3, Shekhertek",
+      "amenity": "pharmacy",
+      "changeset_id": 76947752,
+      "changeset_timestamp": "2019-11-12T08:49:29",
+      "changeset_user": "arafin",
+      "changeset_version": 1,
+      "name": "Medicine Medicine Corner",
+      "uuid": "1433638612f341e7ae0dd02d966161ba"
+    },
+    "centroid": {
+      "coordinates": [
+        90.35776953063953,
+        23.766874756247745
+      ],
+      "type": "Point"
+    },
+    "completeness": 18,
+    "osm_id": 6968440906,
+    "osm_type": "node"
+  },
+  "89": {
+    "attributes": {
+      "addr_city": "Banani, Dhaka",
+      "addr_housenumber": "76/B",
+      "addr_postcode": "1212",
+      "addr_street": "Road 11",
+      "amenity": "pharmacy",
+      "changeset_id": 49293184,
+      "changeset_timestamp": "2017-06-06T04:45:02",
+      "changeset_user": "Atikur Rahman atik",
+      "changeset_version": 2,
+      "name": "Pharmacy Plus",
+      "uuid": "f12a206d85c144d593939df632f0361d"
+    },
+    "centroid": {
+      "coordinates": [
+        90.41101263688319,
+        23.79009723808514
+      ],
+      "type": "Point"
+    },
+    "completeness": 21,
+    "osm_id": 3732378507,
+    "osm_type": "node"
+  },
+  "90": {
+    "attributes": {
+      "amenity": "pharmacy",
+      "changeset_id": 54895793,
+      "changeset_timestamp": "2017-12-24T21:00:03",
+      "changeset_user": "shahriar",
+      "changeset_version": 4,
+      "healthcare": "pharmacy",
+      "name": "Rahmania Pharmacy রহমানিয়া ফার্মেসী",
+      "uuid": "faae6ca33459407098cfa408d2901364"
+    },
+    "centroid": {
+      "coordinates": [
+        88.47180812426222,
+        26.029817873728973
+      ],
+      "type": "Point"
+    },
+    "completeness": 12,
+    "osm_id": 5215639174,
+    "osm_type": "node"
+  },
+  "91": {
+    "attributes": {
+      "amenity": "clinic",
+      "changeset_id": 61359515,
+      "changeset_timestamp": "2018-08-04T18:25:31",
+      "changeset_user": "mueschel",
+      "changeset_version": 2,
+      "name": "Khantakata Health and Family Welfare Center",
+      "uuid": "252dcd6361b4411c9238f4734c840748"
+    },
+    "centroid": {
+      "coordinates": [
+        89.83490993107506,
+        22.330490389084076
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 5789580700,
+    "osm_type": "node"
+  },
+  "92": {
+    "attributes": {
+      "amenity": "pharmacy",
+      "changeset_id": 38054481,
+      "changeset_timestamp": "2016-03-25T04:20:52",
+      "changeset_user": "mmahmud",
+      "changeset_version": 1,
+      "name": "Care Dental",
+      "uuid": "e7991016c64e45a387ac91902807dbc9"
+    },
+    "centroid": {
+      "coordinates": [
+        90.40900877529145,
+        23.75044957878893
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 4077596429,
+    "osm_type": "node"
+  },
+  "93": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_postcode": "1207",
+      "addr_street": "Ring Road",
+      "amenity": "pharmacy",
+      "changeset_id": 76947752,
+      "changeset_timestamp": "2019-11-12T08:49:29",
+      "changeset_user": "arafin",
+      "changeset_version": 1,
+      "name": "City Farmacy",
+      "uuid": "f671fb9017f540afb46500c3f57af394"
+    },
+    "centroid": {
+      "coordinates": [
+        90.358375542239,
+        23.76456973287503
+      ],
+      "type": "Point"
+    },
+    "completeness": 18,
+    "osm_id": 6968431077,
+    "osm_type": "node"
+  },
+  "94": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "5/16, Block # B",
+      "addr_postcode": "1207",
+      "addr_street": "Humayun Road",
+      "amenity": "pharmacy",
+      "changeset_id": 76228615,
+      "changeset_timestamp": "2019-10-25T20:58:10",
+      "changeset_user": "dgitto",
+      "changeset_version": 2,
+      "name": "DL Pharma",
+      "uuid": "cb94a4b3765947eeb6836b6bf0d6ebb3"
+    },
+    "centroid": {
+      "coordinates": [
+        90.36785279251922,
+        23.76821217271811
+      ],
+      "type": "Point"
+    },
+    "completeness": 21,
+    "osm_id": 6902632987,
+    "osm_type": "node"
+  },
+  "95": {
+    "attributes": {
+      "amenity": "pharmacy",
+      "changeset_id": 52702907,
+      "changeset_timestamp": "2017-10-07T09:18:59",
+      "changeset_user": "AHM Bodruddoza",
+      "changeset_version": 1,
+      "name": "Biswas Medical Hall",
+      "uuid": "7ff169eea5e947aeaea528020bea024f"
+    },
+    "centroid": {
+      "coordinates": [
+        89.14061677464525,
+        24.167099736308927
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 5153235816,
+    "osm_type": "node"
+  },
+  "96": {
+    "attributes": {
+      "addr_city": "Sherpur",
+      "addr_housenumber": "Khoarpar",
+      "addr_postcode": "2100",
+      "addr_street": "Sherpur-Sreebardi Road",
+      "amenity": "pharmacy",
+      "changeset_id": 83282560,
+      "changeset_timestamp": "2020-04-09T05:13:43",
+      "changeset_user": "abedshadin",
+      "changeset_version": 1,
+      "dispensing": "no",
+      "healthcare": "pharmacy",
+      "name": "Rony Medicine Corner",
+      "opening_hours": "24/7",
+      "uuid": "b7950aa4c6ed474cbedc4f93a5da3ee3"
+    },
+    "centroid": {
+      "coordinates": [
+        90.01517281710528,
+        25.0328370946211
+      ],
+      "type": "Point"
+    },
+    "completeness": 31,
+    "osm_id": 7383952090,
+    "osm_type": "node"
+  },
+  "97": {
+    "attributes": {
+      "amenity": "clinic",
+      "changeset_id": 42918060,
+      "changeset_timestamp": "2016-10-15T13:29:59",
+      "changeset_user": "Raven Nahid",
+      "changeset_version": 1,
+      "name": "Sondhany Clinic",
+      "uuid": "921d8aceb264457090a0cf7c5e5d3a2d"
+    },
+    "centroid": {
+      "coordinates": [
+        89.23289205703503,
+        25.763870060498135
+      ],
+      "type": "Point"
+    },
+    "completeness": 9,
+    "osm_id": 4449205753,
+    "osm_type": "node"
+  },
+  "98": {
+    "attributes": {
+      "addr_city": "Dhaka",
+      "addr_housenumber": "১",
+      "addr_street": "৪",
+      "amenity": "clinic",
+      "changeset_id": 41057757,
+      "changeset_timestamp": "2016-07-27T09:45:12",
+      "changeset_user": "mmahmud",
+      "changeset_version": 3,
+      "name": "Maa Dental Care(মা ডেন্টাল কেয়ার)",
+      "uuid": "2e66a10d7c5b4c6bba8bd7da53c3a8cb"
+    },
+    "centroid": {
+      "coordinates": [
+        90.36650732942178,
+        23.816751857814978
+      ],
+      "type": "Point"
+    },
+    "completeness": 18,
+    "osm_id": 4322832996,
+    "osm_type": "node"
+  },
+  "99": {
+    "attributes": {
+      "amenity": "hospital",
+      "changeset_id": 24627733,
+      "changeset_timestamp": "2014-08-09T05:31:39",
+      "changeset_user": "shahin reza",
+      "changeset_version": 1,
+      "emergency": "yes",
+      "name": "PG Outdoor",
+      "uuid": "d843ac0d4f234b37820aa52b5fb76c1c"
+    },
+    "centroid": {
+      "coordinates": [
+        90.395408377957,
+        23.7405930836691
+      ],
+      "type": "Point"
+    },
+    "completeness": 12,
+    "osm_id": 296797390,
+    "osm_type": "way"
+  },
+  "endpoint": {
+    "description": "Returns statistic of facilities with some filtering parameters.",
+    "path": "/api/v2/facilities"
+  },
+  "__query_params": {}
+}
