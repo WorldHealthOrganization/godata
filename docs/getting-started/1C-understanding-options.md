@@ -1,12 +1,12 @@
 ---
 layout: page
 parent: Getting Started
-title: Implementation Considerations 
+title: Evaluating Options 
 nav_order: 3
-permalink: /understanding-io-options/
+permalink: /evaluating-io-options/
 ---
 
-# Understanding Interoperability Options
+# Evaluating Interoperability Options
 ## Go.Data Interoperability
 Revew available [Data Input & Sharing Options](https://worldhealthorganization.github.io/godata/options/), including available API documentation 
 to understand Go.Data's wide range of flexible and robust options for data exchange, including import/export options, API documentation, and scripts 
