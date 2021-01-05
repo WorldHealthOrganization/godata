@@ -84,7 +84,7 @@ To automate data integration from Go.Data to the HMIS, we...
 - We leveraged the adaptor `language-godata` helper function `listCases(...)`](https://openfn.github.io/language-godata/global.html#listCases).
 - We apply a date `cursor` to filter the `GET` request made to `listCases` to ensure we only query `Cases` after a specified date. 
 
-
+{% capture some_var %}
 ```js
 listCases('3b5554d7-2c19-41d0-b9af-475ad25a382b', {}, state => {
   function yesterdayDate() {
@@ -132,6 +132,10 @@ listCases('3b5554d7-2c19-41d0-b9af-475ad25a382b', {}, state => {
   return { ...state, cases, HMISCases };
 });
 ```
+{% endcapture %}
+{% assign some_var = some_var | markdownify %}
+{% include fix_linenos.html code=some_var %}
+
 
 2. In the OpenFn job [`2b-upsertToHMIS.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/2b-upsertToHMIS.js), we then upsert the transformed data in the HMIS system, checking the HMIS external `identifier` to ensure no duplicates are uploaded. 
 ```
