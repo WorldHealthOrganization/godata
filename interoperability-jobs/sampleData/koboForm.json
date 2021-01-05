@@ -1,5 +1,6 @@
 {
   "__query_params": {},
+  "form": "covid19-registration",
   "body": {
     "Age_in_year": "32",
     "Covid_19_suspected_criteria/HF_visited": "no",
@@ -43,6 +44,5 @@
     "_submission_time": "2020-12-15T14:56:25",
     "__version__": "vkHKMmRAxMM5TbxYeJxRrZ",
     "_tags": []
-  },
-  "form": "covid19-registration"
+  }
 }
