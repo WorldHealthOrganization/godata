@@ -43,10 +43,11 @@ Once the integration approach and requirements were determined, we built a **HMI
 ---
 
 ### Considerations for two-way syncing
-1. Unique identifiers are critical to ensuring no duplicate records or efforts and developing a **shared record reference**. 
-2. Determine the system of record...
-3. Consider implementing a date/time `cursor` so that every time you extract data from a source system, you will only extract the _most recent_ data. This minimizes the data load to be exchanged between systems, which is good for efficiency and security. 
-4. Consider what initiates the data `sync`...
+1. Unique identifiers are critical to ensuring no duplicate records or efforts and developing a **shared record reference**. This should be one of your earliest considerations when considering a two-way data sync implementation. If there is no shared external identifier between the 2 systems, you may need to choose 1 from either system to log in both systems and use as the main record reference, or you may need to create a new identifier all together.  
+2. Determine the system of record. In a two-way sync, one system should always be considered the master source of truth in case there are any data conflicts. The system of record will dictate which data values will be preserved/not overwritten in such circumstances. 
+3. Consider implementing a date/time `cursor` so that every time you extract data from a source system, you will only extract the _most recent_ data. This minimizes the data load to be exchanged between systems, which is good for efficiency and data security. For example, only get `Cases` updated in the last 1 week vs. listing ALL cases in the Go.Data system. 
+4. Consider what initiates the data `sync` between the two systems considering the two-way pattern and system of record to ensure no data gaps or overwrites. 
+5. Leverage `upsert` operations wherever possible in data exchange flows to check for existing records and prevent duplicates (upsert = insert if new, update if record existing). 
 
 ## Flow 1. HMIS to Go.Data
 To demonstrate automated data integration between the HMIS database and Go.Data, we...
@@ -69,7 +70,9 @@ See the docs on the Go.Data API adaptor `language-godata` helper function [`upse
 
 ## Flow 2. Go.Data to HMIS & Applying FHIR data standard specs
 To automate data integration from Go.Data to the HMIS, we...
-1. Configured an [OpenFn job](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/1a-getCases.js) to automatically extract cases via an HTTP request to the Go.Data API to `GET /cases`. We leveraged the adaptor `language-godata` helper function `listCases(...)`](https://openfn.github.io/language-godata/global.html#listCases).
+1. Configured an [OpenFn job](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/1a-getCases.js) to automatically extract cases via an HTTP request to the Go.Data API to `GET /cases`. 
+- We leveraged the adaptor `language-godata` helper function `listCases(...)`](https://openfn.github.io/language-godata/global.html#listCases).
+- We apply a date `cursor` to filter the `GET` request made to `listCases` to ensure we only query `Cases` after a specified date. 
 ```.js
 listCases('3b5554d7-2c19-41d0-b9af-475ad25a382b', {}, state => {
   function yesterdayDate() {
@@ -78,8 +81,48 @@ listCases('3b5554d7-2c19-41d0-b9af-475ad25a382b', {}, state => {
     date.setHours(0, 0, 0, 0);
     return date.toISOString();
   }
+  // We add a cursor so that we don't list ALL cases, but filter our search to only list NEW cases
+  
+
+  const yesterday = null; // set to null if we want to use manualCursor as a default date filter. Set to yesterDayDate() to use the date of yesterday.
+  const manualCursor = '2020-07-24T00:00:00.000Z'; //default date filter for listing cases
+
+  const cases = state.data
+    .filter(report => {
+      return report.dateOfReporting === (yesterday || manualCursor); //filter Cases by dateOfReporting = cursor date
+    })
+    .map(report => {
+      return { //Here we map Go.Data variables from response to HMIS 
+        name: `${report.firstName}, ${report.lastName || ''}`,
+        status: report.classification,
+        externalId: report.id,
+        caseId: report.visualId,
+        age: report.age ? report.age.years : report['age:years'],
+        phone:
+          report.addresses && report.addresses[0]
+            ? report.addresses[0].phoneNumber
+            : report['addresses:phoneNumber'],
+        country:
+          report.addresses && report.addresses[0]
+            ? report.addresses[0].country
+            : report['addresses:country'],
+        location:
+          report.addresses && report.addresses[0]
+            ? report.addresses[0].locationId
+            : report['addresses:locationId'],
+      };
+    });
+
+  const HMISCases = state.data.filter(report => {
+    return report.dateOfReporting === (yesterday || manualCursor);
+  });
+
+  console.log('Cases received...');
+  console.log(cases);
+  return { ...state, cases, HMISCases };
+});
 ```
-2.In a [second OpenFn job](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/1b-upsertPostgres.js), we then upsert the transformed data in the HMIS system, matching HMIS `caseId` with the Go.Data `externalId` to ensure no duplicates are uploaded. 
+2.In a [second OpenFn job](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/1b-upsertPostgres.js), we then upsert the transformed data in the HMIS system, matching HMIS `caseId` with the Go.Data external `identifier` to ensure no duplicates are uploaded. 
 ```
 upsertMany('tbl_cases', 'identifier', state => cases)(state);
 ```
