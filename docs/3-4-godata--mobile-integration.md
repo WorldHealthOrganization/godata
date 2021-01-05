@@ -17,6 +17,7 @@ Mobile apps and survey tools are widely used by Go.Data implementers and other h
 In this reference implementation, we integrated a COVID-19 data collection form configured on [Kobo Toolbox](https://docs.openfn.org/) with Go.Data to deliver real-time case registration as mobile data is captured. See diagram below for the data flow. 
 - Kobo Toolbox is a free mobile data collection app with offline support that is widely used in humanitarian response contexts. 
 - Here we leverage the [OpenFn integration platform](https://docs.openfn.org/) to automate the data integration flow & quickly map Kobo data elements to Go.Data. OpenFn offers [open-source](https://openfn.github.io/microservice/readme.html) and hosted implementation options. 
+
 ![dataflow-4](../assets/io-use-case-4.png)
 
 ## Implementation Steps
