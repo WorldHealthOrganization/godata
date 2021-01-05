@@ -11,6 +11,7 @@ Reporting out from Go.Data to an external HMIS/reporting system is a very popula
 Go.Data plans to expand its API to support extraction of automatically aggregated results for common indicators. In the meantime, users can also leverage the Go.Data API to (1) list individual records, and then (2) write a script to sum/aggregate these records before (3) uploading to an external reporting system like DHIS2. We explore this data flow in this reference implementation that integrations Go.Data with DHIS2. 
 
 ![use-case-6](../assets/use-case-6.png)
+
 ---
 **Use Case:**
 **#6.** _As a MOH employee using DHIS2, I would like to receive a weekly summary of Go.Data data cases to monitor performance across key COVID-19 indicators (e.g., # confirmed cases, # hospitalized cases, transmission classifications)._
@@ -22,7 +23,7 @@ Many Go.Data implementers have reported that they are required to regularly repo
 - DHIS2 `Indicators` ([read more here](https://docs.dhis2.org/2.34/pt/dhis2_implementation_guide/indicators.html#:~:text=In%20DHIS2%2C%20the%20indicator%20is,do%20not%20have%20a%20denominator.) are a core unit of aggregate analysis and are based on `data elements`. 
 - We leverage the Go.Data `/cases` API endpoints to list, filter, and extract `Case` data to then aggregate before uploading to DHIS2 `data elements`. 
 
-![use-case-6](../assets/use-case-6.png)
+![use-case-6](../assets/io-use-case-6.png)
 
 
 ## Implementation Steps 
@@ -64,6 +65,7 @@ dataValueSet({
 });
 ```
 - On OpenFn.org, we configured a `cron` timer (e.g. `00 23 * * 1`) to run the jobs every 1 week on Mondays to automate the reporting cycle end-to-end. 
+
 ![openfn-6](../assets/openfn-6.png)
 
 
