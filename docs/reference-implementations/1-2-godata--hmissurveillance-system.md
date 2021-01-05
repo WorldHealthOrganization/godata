@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 1 & 2. Go.Data <> HMIS/Surveillance System Integration
+title: 1 & 2. Go.Data Integration with HMIS/Surveillance System
 parent: Reference Implementations
 nav_order: 1
 permalink: /1-2-godata--hmissurveillance-system/
