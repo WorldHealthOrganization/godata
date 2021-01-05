@@ -1,0 +1,82 @@
+---
+layout: default
+title: 6. Aggregate reporting to DHIS2
+parent: Interoperability Examples
+nav_order: 6
+permalink: /3-6-godata--dhis2-aggregate/
+---
+# Aggregate reporting to DHIS2
+Reporting out from Go.Data to an external HMIS/reporting system is a very popular requirement among implementers, particularly the need to report aggregate/ summary results for key indicators (e.g., # of cases confirmed this week, # of cases hospitalized). 
+
+Go.Data plans to expand its API to support extraction of automatically aggregated results for common indicators. In the meantime, users can also leverage the Go.Data API to (1) list individual records, and then (2) write a script to sum/aggregate these records before (3) uploading to an external reporting system like DHIS2. We explore this data flow in this reference implementation that integrations Go.Data with DHIS2. 
+
+![use-case-6](../assets/use-case-6.png)
+
+---
+**Use Case:**
+**#6.** _As a MOH employee using DHIS2, I would like to receive a weekly summary of Go.Data data cases to monitor performance across key COVID-19 indicators (e.g., # confirmed cases, # hospitalized cases, transmission classifications)._
+
+---
+## Solution Overview
+Many Go.Data implementers have reported that they are required to regularly report summary results to their national-level HMIS, many of which use DHIS2 for country-level reporting and monitoring. Therefore, in this reference implementation we integrated Go.Data with the DHIS2 COVID-19 demo org, summarizing Go.Data `Cases` and uploading them as `dataValueSets` into DHIS2 for aggregate indicator reporting. See the below data flow diagram. 
+- DHIS2 is a popular open-source health information system implemented in several countries worldwide, and provides features for individual- and aggregate-level health record tracking, managament, and analysis. DHIS2 also provides features for common HMIS use cases like the [COVID-19 Surveillance Package](https://www.dhis2.org/covid-19). 
+- DHIS2 `Indicators` ([read more here](https://docs.dhis2.org/2.34/pt/dhis2_implementation_guide/indicators.html#:~:text=In%20DHIS2%2C%20the%20indicator%20is,do%20not%20have%20a%20denominator.) are a core unit of aggregate analysis and are based on `data elements`. 
+- We leverage the Go.Data `/cases` API endpoints to list, filter, and extract `Case` data to then aggregate before uploading to DHIS2 `data elements`. 
+
+![use-case-6](../assets/io-use-case-6.png)
+
+
+## Implementation Steps 
+1. First determine the reporting requirements and how to extract data from Go.Data. Are you reporting on `Cases` or `Contacts`? What attributes will you need to summarize or aggregate results by? Consider what specific data elements you will need to extract and the formulas for different calculations needed (e.g., `COUNT`, `SUM`, `AVG`, etc.). 
+2. Then determine the key data model attributes of the DHIS2 system you would like to integrate with. Are you integrating with DHIS2 `trackedEntities`? `dataElements`? Which `orgUnit` should data map to? 
+3. Map relevant data elements from the Go.Data response to relevant DHIS2 attributes. [See mapping specifications](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII) and see [Integrating with DHIS2](https://worldhealthorganization.github.io/godata/topics/#7-integrating-with-dhis2) docs section for more guidance on the DHIS2 data model and integration considerations. 
+4. Extract relevant data elements from Go.Data per the requirements in step `#1`. In [this OpenFn job script](https://github.com/OpenFn/godata-interoperability/blob/master/jobs/6a-getCasesDHIS.js), we send a `GET` request to the Go.Data API to list and extract `Cases` that are `'confirmed'`.  
+```.js
+getCase(
+  '3b5554d7-2c19-41d0-b9af-475ad25a382b', //outbreak Id 
+  {
+    where: {
+      classification:
+        'LNG_REFERENCE_DATA_CATEGORY_CASE_CLASSIFICATION_CONFIRMED', //filter to extract only confirmed cases
+    },
+  },
+```
+In this same script, we also calculate "summary" results to report to DHIS2. To determine the `# of confirmed cases` to report to DHIS2, in [L46](https://github.com/OpenFn/godata-interoperability/blob/master/jobs/6a-getCasesDHIS.js#L46-L49) we count the number of records returned by our `GET` request and determine the `dateOfReporting`. 
+```.js
+summary = {
+      dateOfReporting: lastDateOfReporting,
+      value: currentCases.length,
+    };
+```
+
+5. We then run another OpenFn [job script here](https://github.com/OpenFn/godata-interoperability/blob/master/jobs/6b-importDHIS2.js) to import this "summary" data into DHIS2 via the API endpoint `/api/dataValueSets`. 
+- We follow the [DHIS2 API docs](https://docs.dhis2.org/master/en/developer/html/dhis2_developer_manual_full.html#webapi_data_values) to determine other required attributes, such as `orgUnit` and `dataElement` Id.
+- We leverage the OpenFn [Go.Data adaptor](https://openfn.github.io/language-dhis2/dataValueSet.html) helper function to access the `dataValueSets` resource. 
+```.js
+//Example job snippet to upload data value sets to DHIS2
+dataValueSet({
+   dataSet: "kIfMNugiTgd",
+   orgUnit: "DiszpKrYNg8",
+   period: dateOfReporting, //we dynamically fill based on Go.Data extract
+   completeData: dateOfReporting,
+   dataValues: [
+     dataElement("CnPsS2xE8UN", summaryValue), //we dynamically fill based on Go.Data extract & calculation
+   ]
+});
+```
+- On OpenFn.org, we configured a `cron` timer (e.g. `00 23 * * 1`) to run the jobs every 1 week on Mondays to automate the reporting cycle end-to-end. 
+
+![openfn-6](../assets/openfn-6.png)
+
+
+## Explore the Implementation
+1. [See this video](https://drive.google.com/drive/folders/1Rf9TXCXkn8_XnjH4FcRsIGqDZ-UkVvdC) of the demo solution configured to demonstrate this use case #6.  
+2. DHIS2: Here we integrated with the public COVID-19 demo instance: [https://covid19.dhis2.org/demo](https://covid19.dhis2.org/demo)
+3. Integration: See [example integration scripts for scenario `6`](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange. Explore the solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `demo@godata.org`; pw: `interop!2021`. 
+4. Go.Data API Wrapper: See the open-source OpenFn adaptor [language-godata](https://openfn.github.io/language-godata/). 
+5. DHIS2 API Wrapper: See the open-source OpenFn adaptor [language-dhis2](https://openfn.github.io/language-dhis2/). 
+6. See the solution [design documentation](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII).
+
+## Other DHIS2 Resources
+1. See DHIS2 documentation for more on aggregate reporting & API docs: https://docs.dhis2.org/2.34/en/dhis2_implementation_guide/integration-concepts.html#aggregate-and-transactional-data
+2. Read more about Go.Data-DHIS2 integration use cases as part of the UPC project where some DHIS2 to Go.Data scripts have been drafted:  https://www.essi.upc.edu/dtim/projects/COVID-19
