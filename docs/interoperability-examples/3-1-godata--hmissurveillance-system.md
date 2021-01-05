@@ -39,8 +39,7 @@ See the Github repo for the raw source code for the following 4 OpenFn job scrip
 
 
 In OpenFn.org, we configured these jobs to run automatically on a cron timer to automate the two-way exchange. 
-![openfn-1](../assets/openfn-1.png)
-![openfn-2](../assets/openfn-2.png)
+![openfn-1-2](../assets/openfn-1-2.png)
 
 ### Integration Approach
 To automate data integration from the HMIS (or any external system) to Go.Data, implementers may consider **2 common integration approaches**: 
