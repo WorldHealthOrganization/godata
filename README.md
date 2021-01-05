@@ -12,6 +12,10 @@ _Visit our Community of Practice website to swap learnings or post queries here:
 
 _R user? Join our slack channel here:https://godata-workspace.slack.com/archives/C01GS9B2RTK_
 
+**Read the docs here:** https://worldhealthorganization.github.io/godata/
+
+
+_**TO MIGRATE TO DOCS SITE**_
 ## Sample Report Scripts
 
 This folder contains example scripts for extracting, cleaning, and running some basic analysis. Output at present includes flattened cleaned .csvs for case/contact linelists and an HTML dashboard displaying operational performance metrics for contact tracing by contact tracing supervisor and teams. Feel free to adapt to your purposes and share back any good stuff you've created!
