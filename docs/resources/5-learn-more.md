@@ -11,7 +11,7 @@ Questions or feedback - please contact us at [godata@who.int](mailto://godata@wh
 
 Visit our Community of Practice website to swap learnings or post queries here: [https://community-godata.who.int/](https://community-godata.who.int/)
 
-**Guides:** See the [Go.Data Community Documents](https://community-godata.who.int/page/documents) for helpful user guides and summaries, including the IT Admin Guide, User Guide, and Implementation Guide. 
+**Templates & Guides:** See the [Go.Data Community Documents](https://community-godata.who.int/page/documents) for helpful user guides and summaries, including the IT Admin Guide, User Guide, and Implementation Guide. 
 
 ## Other Resources
 ### WHO 
