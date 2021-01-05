@@ -5,7 +5,7 @@ parent: Interoperability Examples
 nav_order: 4
 permalink: /3-4-godata--mobile-integration/
 ---
-# Mobile to Go.Data Integration
+# Mobile App to Go.Data Integration
 Mobile apps and survey tools are widely used by Go.Data implementers and other health initiatives for on-the-ground data collection, response, basic monitoring. Many of these tools are open-source and developed on similar frameworks (e.g., ODK, Kobo Toolbox, ONA, CommCare), so the available integration options are very similar. 
 
 ![use-case-4](../assets/use-case-4.png)
@@ -52,6 +52,9 @@ upsertCase( //checks for existing cases & then sends PUT/POST request to Go.Data
     { data } //data mappings
   )
 ```
+Check out the job on OpenFn.org or explore the OpenFn Inbox to see other example `JSON` payloads received from Kobo Toolbox. 
+![openfn-4](../assets/openfn-4.png)
+
 **→ See the full [job script](https://github.com/WorldHealthOrganization/godata/blob/docs-toolkit/interoperability-jobs/4-upsertCases.js).** This job leverages the [language-godata](https://openfn.github.io/language-godata/) API adaptor, which offers helper functions like `upsertCase(...)` for quicker integration setup. 
 
 ## Explore the Implementation
