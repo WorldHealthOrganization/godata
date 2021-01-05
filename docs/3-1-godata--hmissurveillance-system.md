@@ -24,12 +24,23 @@ See below visual for a data flow diagram for a two-way information exchange betw
 ![diagram-1-2](../assets/io-use-case-1-2.png)
 
 
+In OpenFn.org, we configured these jobs to run automatically on a cron timer to automate the two-way exchange. 
+![openfn-1](../assets/openfn-1.png)
+![openfn-2](../assets/openfn-2.png)
+
 ## Determining the Integration Approach
 To automate data integration from the HMIS (or any external system) to Go.Data, implementers may consider **2 common integration approaches**: 
 1. **Data forwarding** - in the source system there may be an option to configure some sort of data forwarding/publishing mechanism like a webhook or REST service. If available, this allows the source system to control what and when information is shared and can enable real-time data sharing. 
 2. **Direct API integration** where you can (1) send a HTTP request to fetch the relevant data from the source system, and then (2) upsert* the data in Go.Data, matching HMIS `caseId` with Go.Data `externalId` to ensure no duplicate records are created. In the approach, the integration implementer can choose what information to fetch and how frequently (and is only limited by the API & user permissions). This approach does not support real-time integration, but data syncs can be scheduled regularly to ensure no lapse in data. 
 
+Once the integration approach and requirements were determined, we built a **HMIS-Go.Data Mapping Specification** to map the data elements between the 2 systems to identify corresponding variables and data transformation steps (e.g., reformatting dates, re-labeling values, mapping categories, etc.). [See example mapping specification](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII). 
+
+---
+**NOTE:**
+
 * _**"Upsert"** operations are a data import pattern where you first check if a record exists using an external identifier, and then either **update** or **insert** a new record dependng on whether an existing record is found. See the [section on Unique Identifiers](https://worldhealthorganization.github.io/godata/topics/1-unique-identifier-schemes) for additional considerations regarding upserts, `externalId` and other unique identifiers._ 
+
+---
 
 ### Considerations for two-way syncing
 1. Unique identifiers are critical to ensuring no duplicate records or efforts and developing a **shared record reference**. 
@@ -39,21 +50,45 @@ To automate data integration from the HMIS (or any external system) to Go.Data, 
 
 ## Flow 1. HMIS to Go.Data
 To demonstrate automated data integration between the HMIS database and Go.Data, we...
-1. Mapped the data elements between the 2 systems to identify corresponding variables and data transformation steps (e.g., reformatting dates, re-labeling values, mapping categories, etc.). [See example mapping specification](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII). 
-2. Configured an OpenFn job script to fetch data from the HMIS system. Here we leveraged the open-sourve OpenFn adaptor [`language-postgresql`](https://github.com/OpenFn/language-postgresql) to connect directly with the database. 
-3. Configured a second job that then maps & loads the data from the HMIS to Go.Data, leveraging Go.Data API adaptor [language-godata](https://openfn.github.io/language-godata/). 
+1. Configured an [OpenFn job script](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/2a-getCasesHMIS.js) to fetch data from the HMIS system. Here we leveraged the open-sourve OpenFn adaptor [`language-postgresql`](https://github.com/OpenFn/language-postgresql) to connect directly with the database and execute a `sql()` statement to list relevant records. 
+```
+sql(state => 'SELECT * FROM tbl_cases WHERE active = true');
+```
+2. Configured a second [OpenFn job](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/2b-upsertCasesGoData.js) that then maps & loads the data from the HMIS to Go.Data, leveraging Go.Data API adaptor [language-godata](https://openfn.github.io/language-godata/). 
+
+In this job script, we have implemented an `upsert` pattern leveraging `language-godata` to (1) search for existing `Cases` by sending a `GET` request to Go.Data filtering by the `visualId` external identifier (e.g., `CASE-100001`) to match, and then (2) create/update `Cases` (send a `POST`/`PUT` HTTP request) depending on whether the `Case` record already exists. 
+```.js
+upsertCase(
+      '3b5554d7-2c19-41d0-b9af-475ad25a382b', // the outbreak ID
+      'visualId', //external ID to upsert cases - this is the Case Mask ID -e.g., CASE-10001
+      { data } //map HMIS variables to Go.Data
+    )
+```
+See the docs on the Go.Data API adaptor `language-godata` helper function [`upsertCase(...)`](https://openfn.github.io/language-godata/global.html#upsertCase) for more on this upsert pattern and the `GET` and `POST`/`PUT` HTTP requests. 
 
 
-## Flow 2. Go.Data to HMIS & Applying FHIR data standard
+## Flow 2. Go.Data to HMIS & Applying FHIR data standard specs
 To automate data integration from Go.Data to the HMIS, we...
-1. Leverage the Go.Data API to automatically extract cases via an HTTP request to `GET /cases`. 
-2. Apply transformation rules determined from [FHIR HL7](...) to clean, re-format, & map the Go.Data information to match the international standard
-3. We then upsert the transformed data in the HMIS system, matching HMIS `caseId` with the Go.Data `externalId` to ensure no duplicates are uploaded
+1. Configured an [OpenFn job](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/1a-getCases.js) to automatically extract cases via an HTTP request to the Go.Data API to `GET /cases`. We leveraged the adaptor `language-godata` helper function `listCases(...)`](https://openfn.github.io/language-godata/global.html#listCases).
+```.js
+listCases('3b5554d7-2c19-41d0-b9af-475ad25a382b', {}, state => {
+  function yesterdayDate() {
+    const date = new Date();
+    date.setDate(date.getDate() - 1);
+    date.setHours(0, 0, 0, 0);
+    return date.toISOString();
+  }
+```
+2.In a [second OpenFn job](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/1b-upsertPostgres.js), we then upsert the transformed data in the HMIS system, matching HMIS `caseId` with the Go.Data `externalId` to ensure no duplicates are uploaded. 
+```
+upsertMany('tbl_cases', 'identifier', state => cases)(state);
+```
 
-In OpenFn.org, we configured these jobs to run automatically on a cron timer to automate the two-way exchange. 
-![openfn-1](../assets/openfn-1.png)
-![openfn-2](../assets/openfn-2.png)
+Before upserting, we apply transformation rules determined from FHIR-HL7 to clean, re-format, & map the Go.Data information to match this international health information exchange standard. See the data cleaning & mapping performed within the [`alterState(...)`](https://github.com/WorldHealthOrganization/godata/blob/docs-toolkit/interoperability-jobs/1b-upsertPostgres.js#L2) method according to the solution mapping specifications. 
 
+Below is a screenshot of the ([FHIR Patient content standards](https://www.hl7.org/fhir/patient.html)) implemented in the HMIS database. We therefore need to map & transform Go.Data variables like `firstName`, `lastName`, `phoneNumber`, `birthYear` to align with the standard variables `name`, `telecome`, `birthDate`, etc. 
+
+![fhir-patient](../assets/fhir-patient.png)
 
 
 ## Demo Solution & Implementation Resources
