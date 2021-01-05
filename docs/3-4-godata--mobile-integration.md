@@ -26,6 +26,9 @@ In this reference implementation, we integrated a COVID-19 data collection form 
 ![kobo-rest-service1](../assets/kobo-rest-1.png)
 ![kobo-rest-service2](../assets/kobo-rest-2.png)
 
+See sample JSON output of a Kobo form submission once forwarded via the REST Service: 
+https://github.com/WorldHealthOrganization/godata/blob/7a516f4a56cf3adabb188fc90d5deff7e87e19d6/interoperability-jobs/sampleData/koboForm.json#L3-L16
+
 2. We then mapped relevant data elements from the Kobo Toolbox survey form to Go.Data `Cases`. See example [mapping specification](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII). In this step, it was important to determine the unique identifier that could be used to look-up existing `Case` records in Go.Data to ensure no duplicates were created (see the [Unique Identifiers](http://worldhealthorganization.github.io/godata/topics/1-unique-identifier-schemes) section for more on this design topic). 
 3. We then drafted an OpenFn integration script (or ["job"](https://docs.openfn.org/documentation.html#jobs)) to automate the data integration mapping whenever a new Kobo form submission is forwarded to the OpenFn project inbox via the Kobo REST Service. 
 
