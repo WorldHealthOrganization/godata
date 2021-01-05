@@ -136,12 +136,12 @@ listCases('3b5554d7-2c19-41d0-b9af-475ad25a382b', {}, state => {
   return { ...state, cases, HMISCases };
 });
 ```
-2.In the OpenFn job [`2b-upsertToHMIS.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/2b-upsertToHMIS.js), we then upsert the transformed data in the HMIS system, matching HMIS `caseId` with the Go.Data external `identifier` to ensure no duplicates are uploaded. 
+2.In the OpenFn job [`2b-upsertToHMIS.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/2b-upsertToHMIS.js), we then upsert the transformed data in the HMIS system, checking the HMIS external `identifier` to ensure no duplicates are uploaded. 
 ```
 upsertMany('tbl_cases', 'identifier', state => cases)(state);
 ```
 
-Before upserting, we apply transformation rules determined from FHIR-HL7 to clean, re-format, & map the Go.Data information to match this international health information exchange standard. See the data cleaning & mapping performed within the [`alterState(...)`](https://github.com/WorldHealthOrganization/godata/blob/docs-toolkit/interoperability-jobs/1b-upsertPostgres.js#L2) method according to the solution mapping specifications. 
+Before upserting, we apply transformation rules determined from FHIR-HL7 to clean, re-format, & map the Go.Data information to match this international health information exchange standard. See the data cleaning & mapping performed within the [`alterState(...)`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/2b-upsertToHMIS.js#L2) method according to the solution mapping specifications. 
 
 Below is a screenshot of the ([FHIR Patient content standards](https://www.hl7.org/fhir/patient.html)) implemented in the HMIS database. We therefore need to map & transform Go.Data variables like `firstName`, `lastName`, `phoneNumber`, `birthYear` to align with the standard variables `name`, `telecome`, `birthDate`, etc. 
 
@@ -149,9 +149,9 @@ Below is a screenshot of the ([FHIR Patient content standards](https://www.hl7.o
 
 
 ## Explore the Implementation
-1. [See this video](https://drive.google.com/drive/folders/1Rf9TXCXkn8_XnjH4FcRsIGqDZ-UkVvdC) of the demo solution configured to demonstrate these use cases #1 and #2.  
+1. [See this video - TO UPDATE](https://drive.google.com/drive/folders/1Rf9TXCXkn8_XnjH4FcRsIGqDZ-UkVvdC) of the demo solution configured to demonstrate these use cases #1 and #2.  
 2. HMIS demo: For this example use case, we configured a demo "HMIS" system on a SQL database and implemented OpenFn jobs that leverage the [`language-postgresql`](https://github.com/OpenFn/language-postgresql) to connect directly with the database. 
-3. Integration: See [example integration scripts](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange for scenarios `1` and `2`. Explore the solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `demo@godata.org`; pw: `interop!2021`. 
+3. Integration: See [example integration scripts](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange for scenarios `1` and `2`. Explore the solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `godata@who.int`; pw: `interoperability`. 
 4. Go.Data API Wrapper: See the open-source OpenFn API adaptor [`language-godata`](https://openfn.github.io/language-godata/)
 5. See the solution [design documentation](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII).
-6. FHIR-HL7 Documentation on the content specifications for [Patient resources](https://www.hl7.org/fhir/patient.html). See the [Applying Data Standards](https://worldhealthorganization.github.io/godata/topics/4-applying-data-standards) section for more information. 
+6. FHIR-HL7 Documentation on the content specifications for [Patient resources](https://www.hl7.org/fhir/patient.html). See the [Applying Data Standards](https://worldhealthorganization.github.io/godata/topics/applying-data-standards) section for more information. 
