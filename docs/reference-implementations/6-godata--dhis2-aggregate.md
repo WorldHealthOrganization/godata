@@ -3,8 +3,9 @@ layout: default
 title: 6. Aggregate Reporting to DHIS2
 parent: Reference Implementations
 nav_order: 6
-permalink: /6-godata--dhis2-aggregate/
+permalink: /godata--dhis2-aggregate/
 ---
+
 # Aggregate Reporting to DHIS2
 Reporting out from Go.Data to an external HMIS/reporting system is a very popular requirement among implementers, particularly the need to report aggregate/ summary results for key indicators (e.g., # of cases confirmed this week, # of cases hospitalized). 
 
