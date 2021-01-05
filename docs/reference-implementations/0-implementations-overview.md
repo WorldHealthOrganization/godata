@@ -3,7 +3,7 @@ layout: page
 title: Reference Implementations
 nav_order: 4
 permalink: /interoperability-examples/
-has_child: true
+has_children: true
 ---
 
 # Interoperability Reference Implementations
