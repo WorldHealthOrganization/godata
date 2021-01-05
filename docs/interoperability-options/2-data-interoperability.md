@@ -2,7 +2,7 @@
 layout: page
 title: Data Interoperability
 nav_order: 3
-permalink: /interoperability-options/
+permalink: /data-interoperability/
 has_children: true
 
 ---
