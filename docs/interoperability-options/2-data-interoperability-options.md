@@ -1,10 +1,9 @@
 ---
-layout: page
-title: Data Interoperability Options
-nav_order: 3
-permalink: /interoperability-options/
-has_children: true
-
+layout: default
+title: Options
+parent: Data Interoperability
+nav_order: 1
+permalink: /options/
 ---
 
 # Data Interoperability Options
