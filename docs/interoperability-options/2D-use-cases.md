@@ -2,14 +2,14 @@
 layout: default
 title: Use Cases
 parent: Data Interoperability Options
-nav_order: 3
+nav_order: 4
 permalink: /use-cases/
 ---
 
 # Go.Data Interoperability Use Cases
 
 ## Common Integration Scenarios
-IIn December 2020, several Go.Data community members and HIS stakeholders were engaged to collect common interoperability requirements for Go.Data implementations. 
+In December 2020, several Go.Data community members and HIS stakeholders were engaged to collect common interoperability requirements for Go.Data implementations. 
 Key requirements for data interoperability were summarized into two main categories:
 
 ## Transactional data exchange  (individual-level sharing)
