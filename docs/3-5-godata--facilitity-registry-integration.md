@@ -95,8 +95,11 @@ See `upsertLocation(...)` function in the Go.Data API adaptor: https://openfn.gi
 See below and p.33 of the [Implementation Guide](https://community-godata.who.int/page/documents) for other data sources you might consider integrating with to automatically register shared `Location` records in Go.Data. 
 1. `HDX` – a clearinghouse of humanitarian open-source data. Included for many countries is the administrative unit boundaries which typically has a unique ID (Pcode) and in some cases this will also include additional data such as “population” that can be used in post analysis.
 https://data.humdata.org/
+
 2.`WHO` – Global coverage of administrative unit boundaries, has centroid and Pcode for unique ID – so could be joined back to GIS data afterwards but only goes to Adm2 and in some countries only ADM 1.
 https://polioboundaries-who.hub.arcgis.com/
+
 3. `Geonames` – has ID, lat/lon and names – may or may not be able to match up to any GIS outside of Go.Data.
 http://download.geonames.org/export/dump/
+
 4. `HealthSites.io` - open source repository of health facility data built in partnership with Open Street Map http://healthsites.io/
