@@ -1,6 +1,6 @@
 ---
 layout: page
-parent: Getting Started
+parent: Getting Started with IO
 title: Evaluating Options 
 nav_order: 3
 permalink: /evaluating-io-options/
