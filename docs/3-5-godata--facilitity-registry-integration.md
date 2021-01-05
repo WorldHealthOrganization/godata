@@ -5,7 +5,7 @@ parent: Interoperability Examples
 nav_order: 5
 permalink: /3-5-godata--facilitity-registry-integration/
 ---
-#  Locations/ Facility Registry Integration to Go.Data
+#  Locations/ Facility Registry Integration with Go.Data
 Importing administrative locations (e.g., `Admin-Level-2` province data) and different `Location` reference data are typically the first steps in setting up a 
 new `Outbreak` in Go.Data. Importing location and facility lists from shared reference sources are important to strengthening interoperability and ensuring information can be easily synced and mapped in other systems. [See p. 33 of the Implementation Guide](https://community-godata.who.int/page/documents) for more information and step-by-step guidance for data imports of Location data. 
 
