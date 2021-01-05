@@ -84,14 +84,14 @@ upsertLocation('name', {
 See `upsertLocation(...)` function in the Go.Data API adaptor: https://openfn.github.io/language-godata/global.html#upsertLocation
 
 
-### Implementation Resources
+## Explore the Implementation
 1. [See this video](...) of the demo solution configured to demonstrate this use case #5.  
 2. [HealthSites.io](https://healthsites.io/): [See here](https://github.com/healthsites/healthsites/wiki/API) for the API docs and instructions for creating your own OpenStreetMap account to access the data source via the API. 
 3. Integration: See [example integration scripts for scenario `5`](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange. Explore the solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `demo@godata.org`; pw: `interop!2021`. 
 4. Go.Data API Wrapper: See the open-source OpenFn adaptor [language-godata](https://openfn.github.io/language-godata/). 
 5. See the solution [design documentation](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII).
 
-### External Data Sources
+## External Data Sources
 See below and p.33 of the [Implementation Guide](https://community-godata.who.int/page/documents) for other data sources you might consider integrating with to automatically register shared `Location` records in Go.Data. 
 1. `HDX` – a clearinghouse of humanitarian open-source data. Included for many countries is the administrative unit boundaries which typically has a unique ID (Pcode) and in some cases this will also include additional data such as “population” that can be used in post analysis.
 https://data.humdata.org/
