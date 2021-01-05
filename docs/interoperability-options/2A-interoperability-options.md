@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Options
-parent: Data Interoperability
+title: Interoperability Options
+parent: Go.Data Interoperability
 nav_order: 1
 permalink: /options/
 ---
