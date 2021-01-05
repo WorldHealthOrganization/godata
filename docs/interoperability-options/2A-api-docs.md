@@ -104,7 +104,7 @@ In the example above, there are two ways that a user could find the ID of the ou
 http://localhost:8000/api/outbreaks/8c71e61f-fb11-4d4f-9130-`b69384b6e4e4?
 access_token=VUCA57YkMIcF5R2M8vl6PuaNHoMU0Q3Mr4cmGEOH06CPblx6xflnAw0AfQaMYdZ
 ```
-![outbreak](../assets/global-ids.png)
+![global-id](../assets/godata-ids.png)
 
 2. If a user needs to look up an ID, then it can always be done via a method also. In this example, the GET outbreaks method can be used to retrieve all outbreaks and then find the ID of the one in which you’re interested.
 ```
