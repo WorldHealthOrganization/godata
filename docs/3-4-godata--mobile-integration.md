@@ -7,6 +7,7 @@ permalink: /3-4-godata--mobile-integration/
 ---
 # Mobile to Go.Data Integration
 Mobile apps and survey tools are widely used by Go.Data implementers and other health initiatives for on-the-ground data collection, response, basic monitoring. Many of these tools are open-source and developed on similar frameworks (e.g., ODK, Kobo Toolbox, ONA, CommCare), so the available integration options are very similar. 
+![use-case-4](../assets/use-case-4.png)
 
 ---
 **Use Case:**
