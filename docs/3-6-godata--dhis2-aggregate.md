@@ -70,7 +70,7 @@ dataValueSet({
 ## Explore the Implementation
 1. [See this video](...) of the demo solution configured to demonstrate this use case #6.  
 2. DHIS2: Here we integrated with the public COVID-19 demo instance: [https://covid19.dhis2.org/demo](https://covid19.dhis2.org/demo)
-3. Integration: See [example integration scripts for scenario `5`](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange. Explore the solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `demo@godata.org`; pw: `interop!2021`. 
+3. Integration: See [example integration scripts for scenario `6`](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange. Explore the solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `demo@godata.org`; pw: `interop!2021`. 
 4. Go.Data API Wrapper: See the open-source OpenFn adaptor [language-godata](https://openfn.github.io/language-godata/). 
 5. See the solution [design documentation](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII).
 
