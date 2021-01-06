@@ -2,7 +2,7 @@
 layout: default
 title: API Documentation
 parent: Go.Data Interoperability
-nav_order: 2
+nav_order: 3
 permalink: /api-docs/
 ---
 
