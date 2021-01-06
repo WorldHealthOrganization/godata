@@ -3,7 +3,7 @@ layout: page
 title: Popular Topics
 parent: Go.Data Interoperability
 permalink: /topics/
-nav_order: 5
+nav_order: 6
 has_children: true
 ---
 
