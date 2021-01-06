@@ -1,6 +1,7 @@
 ---
 layout: page
 parent: Getting Started with IO
+grand_parent: Go.Data Interoperability
 title: Go.Data Implementation Considerations 
 nav_order: 2
 permalink: /implementation-considerations/
