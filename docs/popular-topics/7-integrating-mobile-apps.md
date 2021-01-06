@@ -2,6 +2,7 @@
 layout: default
 title: Integrating with Mobile Apps
 parent: Popular Topics
+grand_parent: Go.Data Interoperability
 nav_order: 7
 permalink: /integrating-mobile-apps/
 ---
