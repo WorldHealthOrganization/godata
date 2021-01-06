@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 3. Importing Lab Sample Data to Go.Data
-parent: Interoperability Examples //Reference Implementations
+parent: Reference Implementations
 nav_order: 3
 permalink: /importing-lab-results/
 ---
