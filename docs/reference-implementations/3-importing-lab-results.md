@@ -18,6 +18,7 @@ For many Go.Data implementers, lab results data will be the starting reference p
 
 ### Standard Import Process
 Typically a lab will provide export of `sample`/ `labResults` data like [this example](https://docs.google.com/spreadsheets/d/1xwqHwjb8aRwycRzz5Sk0MLtoOwSc6UhqLolV4ylcHLc/edit?usp=sharing). In this data source, there might be multiple `Sample` results for 1 unique individual. 
+
 ![lab-samples2](../assets/lab-samples2.png)
 
 Converting the `sample` dataset to individual `Cases` or `Contact` records with `labResults` records is required to align a flat data source with the Go.Data data model. To import this data to the Go.Data system, the user will need to...
@@ -42,6 +43,7 @@ _→ See the [Unique Identifiers](https://worldhealthorganization.github.io/goda
 4. Then prepare to import related `labResults`. Organize the lab data to link every lab `sample` record to an individual person record. 
 - [See this Case - Lab Results](https://docs.google.com/spreadsheets/d/1Z2Duhg43FrIzs63xq3JWcqAXZ16dUYUI30V4D2N3RFg/edit#gid=1067465781) import template where every row is a lab test result record linked to an individual `Case` record. 
 - If the individual's `unique identifier` is not already included in the lab dataset, you may need to export the `Cases` imported in step `3` to extract the newly assigned `case_id` (e.g., `CASE-00001`) or the Go.Data global `id` (e.g., `e2d87af7-fde2-4ea6-a2be-9dc0cc03c2cd`). Then you can include this identifier as a column in your `Lab Results` import (see `column B` in template) so that every `sample` record is linked to an existing individual Go.Data `Case` record. 
+
 ![labsample](../assets/lab-samples.png)
 
 5. Now import the `labResults` records to Go.Data using the standard `import` file wizard or via the API. 
