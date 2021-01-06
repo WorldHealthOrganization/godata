@@ -28,7 +28,7 @@ Go.Data provides a suite of data import & sharing features that can be leveraged
 - See here for a Go.Data Implementation Guide & shareable overviews to share with interested partners: https://community-godata.who.int/page/documents
 
 
-### Connecting other systems
+## Connecting other systems
 When analyzing integration & interoperability options with another system, consider the following questions: 
 1. Who are the other users? What information do they access, when, and for what business purpose? 
 2. Where is the system hosted? And who manages it/ provides ongoing support? If it is hosted locally, is it web accessible or can it only be accessed via the local network? If it is hosted by a third party, do you have access to that third party to request changes, API access, technical documentation, etc.? 
