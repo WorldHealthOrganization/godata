@@ -17,9 +17,10 @@ For many Go.Data implementers, lab results data will be the starting reference p
 ---
 
 ### Standard Import Process
-Typically a lab will provide export of `sample`/ `labResults` data like [this example](https://docs.google.com/spreadsheets/d/1xwqHwjb8aRwycRzz5Sk0MLtoOwSc6UhqLolV4ylcHLc/edit?usp=sharing). In this data source, there might be multiple `Sample` results for 1 individual. Converting the `sample` dataset to individual `Cases` or `Contact` records with `labResults` records is required to align a flat data source with the Go.Data data model. 
+Typically a lab will provide export of `sample`/ `labResults` data like [this example](https://docs.google.com/spreadsheets/d/1xwqHwjb8aRwycRzz5Sk0MLtoOwSc6UhqLolV4ylcHLc/edit?usp=sharing). In this data source, there might be multiple `Sample` results for 1 unique individual. 
+![lab-samples2](../assets/lab-samples2.png)
 
-To import this data to the Go.Data system, the user will need to...
+Converting the `sample` dataset to individual `Cases` or `Contact` records with `labResults` records is required to align a flat data source with the Go.Data data model. To import this data to the Go.Data system, the user will need to...
 
 1. Analyze the dataset to construct unique `Case` and `Contact` records for every unique individual. Consider...
 
