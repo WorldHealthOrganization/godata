@@ -6,9 +6,8 @@ layout: home
 nav_order: 1
 ---
 
-# Welcome to the Go.Data Interoperability Toolkit!
-## Toolkit Overview
-This documentation and linked Github repository ([https://github.com/WorldHealthOrganization/godata](https://github.com/WorldHealthOrganization/godata)) provides a suite of resources to enable and strengthen the interoperability of Go.Data implementations with existing health information systems, data collection tools, and reporting mechanisms. Read on for tools, templates, & real-world examples to help address your interoperability requirements. 
+# Welcome to the Go.Data Github Documentation!
+This is linked to the public Github repository: [https://github.com/WorldHealthOrganization/godata](https://github.com/WorldHealthOrganization/godata)
 
 ## Questions & Contributions
 We are actively seeking feedback and contributions from the community. Please visit our Community of Practice website (https://community-godata.who.int/) or contact us at [godata@who.int](mailto://godata@who.int). 
