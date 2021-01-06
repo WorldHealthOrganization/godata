@@ -2,6 +2,7 @@
 layout: default
 title: Integrating with DHIS2
 parent: Popular Topics
+grand_parent: Go.Data Interoperability
 nav_order: 3
 permalink: /dhis2-integrations/
 ---
