@@ -2,6 +2,7 @@
 layout: default
 title: 5. Facility List to Go.Data
 parent: Reference Implementations
+grand_parent: Go.Data Interoperability
 nav_order: 5
 permalink: /5-godata--facility-registry/
 ---
