@@ -2,7 +2,7 @@
 layout: default
 title: Use Cases
 parent: Go.Data Interoperability
-nav_order: 4
+nav_order: 5
 permalink: /use-cases/
 ---
 
