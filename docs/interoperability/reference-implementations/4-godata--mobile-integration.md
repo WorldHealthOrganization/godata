@@ -2,6 +2,7 @@
 layout: default
 title: 4. Mobile App to Go.Data
 parent: Reference Implementations
+grand_parent: Go.Data Interoperability
 nav_order: 3
 permalink: /godata--mobile-integration/
 ---
