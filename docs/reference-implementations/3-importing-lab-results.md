@@ -44,8 +44,10 @@ _→ See the [Unique Identifiers](https://worldhealthorganization.github.io/goda
 - If the individual's `unique identifier` is not already included in the lab dataset, you may need to export the `Cases` imported in step `3` to extract the newly assigned `case_id` (e.g., `CASE-00001`) or the Go.Data global `id` (e.g., `e2d87af7-fde2-4ea6-a2be-9dc0cc03c2cd`). Then you can include this identifier as a column in your `Lab Results` import (see `column B` in template) so that every `sample` record is linked to an existing individual Go.Data `Case` record. 
 ![labsample](../assets/lab-samples.png)
 
-5. Now import the `Lab Results` records to Go.Data using the standard `import` wizard or the API: 
-`POST '/outbreaks/{id}/cases/{fk}/lab-results'` where `{fk}` is the case foreign key identifier that you will include in your import request. 
+5. Now import the `labResults` records to Go.Data using the standard `import` file wizard or via the API. 
+
+Note: If importing `labResults` via the API, you will need to extract the Go.Data global `id` and not the mask `case_id` (e.g., `3b5554d7-2c19-41d0-b9af-475ad25a382b`) to successfully import...
+`POST '/outbreaks/{id}/cases/{fk}/lab-results'` where `{fk}` is the case foreign key `id` that you will include in your import request. 
 
 
 ### Implementation Resources
