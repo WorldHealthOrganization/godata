@@ -2,6 +2,7 @@
 layout: default
 title: Integrating Lab Results
 parent: Popular Topics
+grand_parent: Go.Data Interoperability
 nav_order: 6
 permalink: /integrating-lab-results/
 ---
