@@ -2,6 +2,7 @@
 layout: default
 title: Data Security Tips
 parent: Popular Topics
+grand_parent: Go.Data Interoperability
 nav_order: 5
 permalink: /data-security/
 ---
