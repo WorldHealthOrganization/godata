@@ -2,6 +2,7 @@
 layout: default
 title: Applying Data Standards
 parent: Popular Topics
+grand_parent: Go.Data Interoperability
 nav_order: 4
 permalink: /applying-data-standards/
 ---
