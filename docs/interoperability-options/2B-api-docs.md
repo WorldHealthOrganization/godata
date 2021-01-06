@@ -1,9 +1,9 @@
 ---
 layout: default
-title: API
-parent: Data Interoperability Options
+title: API Documentation
+parent: Go.Data Interoperability
 nav_order: 2
-permalink: /api/
+permalink: /api-docs/
 ---
 
 # Go.Data API Documentation
@@ -104,7 +104,7 @@ In the example above, there are two ways that a user could find the ID of the ou
 http://localhost:8000/api/outbreaks/8c71e61f-fb11-4d4f-9130-`b69384b6e4e4?
 access_token=VUCA57YkMIcF5R2M8vl6PuaNHoMU0Q3Mr4cmGEOH06CPblx6xflnAw0AfQaMYdZ
 ```
-![outbreak](../assets/global-ids.png)
+![global-id](../assets/godata-ids.png)
 
 2. If a user needs to look up an ID, then it can always be done via a method also. In this example, the GET outbreaks method can be used to retrieve all outbreaks and then find the ID of the one in which you’re interested.
 ```
@@ -157,4 +157,4 @@ A full list of examples is given below.
 `https://godata.gov.mt/api//outbreaks/{OUTBREAK TOKEN}/cases?filter=%7B%22where%22%3A%7B%22createdAt%22%3A%7B%22%24gt%22%3A%222020-04-14T00%3A00%3A00Z%22%7D%7D%7D&access_token={ACCESS TOKEN}`
 
 ## Example Implementations
-- See the [Github Repo](https://github.com/WorldHealthOrganization/godata/tree/master/api) for sample scripts leveraging the API. 
+- See the [Github `api` directory](https://github.com/WorldHealthOrganization/godata/tree/master/api) for sample scripts leveraging the API. 

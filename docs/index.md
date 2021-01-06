@@ -6,24 +6,29 @@ layout: home
 nav_order: 1
 ---
 
-# Welcome to the Go.Data repository!
+# Welcome to the Go.Data Interoperability Toolkit!
+## Toolkit Overview
+This documentation and linked Github repository ([https://github.com/WorldHealthOrganization/godata](https://github.com/WorldHealthOrganization/godata)) provides a suite of resources to enable and strengthen the interoperability of Go.Data implementations with existing health information systems, data collection tools, and reporting mechanisms. Read on for tools, templates, & real-world examples to help address your interoperability requirements. 
 
-This is the public WHO Go.Data repo for sharing scripts and documentation
-related to the Go.Data projects. Currently under construction but adding new
-things each day. Feedback and contributions welcome!
+## Questions & Contributions
+We are actively seeking feedback and contributions from the community. Please visit our Community of Practice website (https://community-godata.who.int/) or contact us at [godata@who.int](mailto://godata@who.int). 
 
-_Questions or feedback - please contact us at godata@who.int_
+## About Go.Data
+[Go.Data](https://www.who.int/godata) is an outbreak investigation tool for public health emergencies, and includes features for contact tracing, contact follow-up, and visualizing chains of transmission. Go.Data is designed to specifically support outbreak responders and intended to be implemented alongside other systems for health surveillance, information management, and service delivery. 
 
-_Visit our Community oF Practice website to swap learnings or post queries here: https://community-godata.who.int/_
+![godata-logo](./assets/godata-logo.png)
 
-## API
+----------
+
+## [TO REMOVE - OLD README]
+### API
 
 This folder contains in it many example R scripts for GET/PUT/POST commands so
 that you can manipulate your Go.Data instance through the API, including bulk
 actions. We have used this for our training instances but think it could be
 helpful for others too.
 
-## Sample Report Scripts
+### Sample Report Scripts
 
 This folder contains example scripts for extracting, cleaning, and running some
 basic analysis. Output at present includes flattened cleaned .csvs for
@@ -31,20 +36,20 @@ case/contact linelists and an HTML dashboard displaying operational performance
 metrics for contact tracing by contact tracing supervisor and teams. Feel free
 to adapt to your purposes.
 
-## DHIS2 to Go.Data
+### DHIS2 to Go.Data
 
 This folder contains the beginnings of interoperability work between DHIS2 COVID
 packages and Go.Data for countries that have requested to push their case and
 contact data to Go.Data from their DHIS2 instance, and vice versa, to benefit
 from core competencies of each tool. More details below:
 
-### Org unit converter:
+#### Org unit converter:
 
 Devleoped by EyeSeeTea LS (http://eyeseetea.com/), this is a Python script to
 take the national org tree from a DHIS2 instance, transform its .json structure
 and input it into Go.Data
 
-### API wrapper:
+#### API wrapper:
 
 Developed by WISCENTD-UPC (https://github.com/WISCENTD-UPC/) - this package
 provides certain common things you may need in order to use Go.Data's API, so
@@ -54,7 +59,7 @@ authorization that would otherwise have to be done for each query separtely.
 
 _see full package here: https://github.com/WISCENTD-UPC/godata-api-wrapper/tree/develop_
 
-### Interoperability scripts:
+#### Interoperability scripts:
 
 Developed by WISCENTD-UPC (https://github.com/WISCENTD-UPC/) - these scripts
 push DHIS2 Tracked Entities for cases and contacts into Go.Data cases and

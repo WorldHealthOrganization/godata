@@ -3,7 +3,7 @@ layout: default
 title: Integrating Lab Results
 parent: Popular Topics
 nav_order: 6
-permalink: /4-6-integrating-lab-results/
+permalink: /integrating-lab-results/
 ---
 # Integrating Lab Results
 Go.Data supports the capture of `Lab Results` records for enhanced tracking and follow-up for individual records. In the Go.Data data model, all `Lab Result` records 
@@ -22,5 +22,5 @@ and an example implementation overview.
 
 
 ## Resources
-1. See the related [reference implementation #3]() for specific step-by-step guidance with a real-world example. 
-2. See the [CSV import templates]() for converting lab results to Contact and Lab Results records. 
+1. See the related [reference implementation #3](https://worldhealthorganization.github.io/godata/lab-results-integration/) for specific step-by-step guidance with a real-world example. 
+2. See the [CSV import templates - TO UPDATE](https://drive.google.com/drive/folders/1QUdtuybc0blUaYugLHwMoBpQapms5ldf) for converting lab results to Contact and Lab Results records. 

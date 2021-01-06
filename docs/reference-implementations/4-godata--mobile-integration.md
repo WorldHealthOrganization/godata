@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 4. Mobile App to Go.Data Integration
-parent: Interoperability Examples
-nav_order: 4
-permalink: /3-4-godata--mobile-integration/
+title: 4. Mobile App to Go.Data
+parent: Reference Implementations
+nav_order: 3
+permalink: /godata--mobile-integration/
 ---
 # Mobile App to Go.Data Integration
 Mobile apps and survey tools are widely used by Go.Data implementers and other health initiatives for on-the-ground data collection, response, basic monitoring. Many of these tools are open-source and developed on similar frameworks (e.g., ODK, Kobo Toolbox, ONA, CommCare), so the available integration options are very similar. 
@@ -29,7 +29,7 @@ In this reference implementation, we integrated a COVID-19 data collection form 
 ![kobo-rest-service2](../assets/kobo-rest-2.png)
 
 See sample [JSON output](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/sampleData/koboForm.json) of a Kobo form submission once forwarded via the REST Service: 
-```.json
+```json
 "form": "covid19-registration",
   "body": {
     "Age_in_year": "32",
@@ -45,7 +45,7 @@ See sample [JSON output](https://github.com/WorldHealthOrganization/godata/blob/
 3. We then drafted an OpenFn integration script (or ["job"](https://docs.openfn.org/documentation.html#jobs)) to automate the data integration mapping whenever a new Kobo form submission is forwarded to the OpenFn project inbox via the Kobo REST Service. 
 
 In [L21](https://github.com/WorldHealthOrganization/godata/blob/docs-toolkit/interoperability-jobs/4-upsertCases.js#L21) we perform an "upsert" operation to (1) check if the case record exists, and then (2) insert/update the record in Go.Data accorndingly. We chose to check for existing Go.Data records using the `visualId` as we are also capturing the external `caseId` (e.g., `C19-930020123`) in Kobo Toolbox and can using this unique identifier for matching resources. 
-```.js
+```js
 upsertCase( //checks for existing cases & then sends PUT/POST request to Go.Data API Cases endpoint
     '3b5554d7-2c19-41d0-b9af-475ad25a382b', // outbreakId in Go.Data
     'visualId', //caseId - shared unique identifier 
@@ -60,6 +60,6 @@ Check out the job on OpenFn.org or explore the OpenFn Inbox to see other example
 ## Explore the Implementation
 1. [See this video](https://drive.google.com/drive/folders/1Rf9TXCXkn8_XnjH4FcRsIGqDZ-UkVvdC) of the demo solution configured to demonstrate this use case #4.  
 2. Kobo Toolbox: Explore the demo Kobo project at [https://kobo.humanitarianresponse.info/](https://kobo.humanitarianresponse.info/) & REST Service configured using the login details: `godata_demo`; pw: `interoperability`. 
-3. Integration: See [example integration scripts](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange. Explore the solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `demo@godata.org`; pw: `interop!2021`. 
+3. Integration: See [example integration scripts](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange. Explore the solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `godata@who.int`; pw: `interop!2021`. 
 4. Go.Data API Wrapper: See the open-source OpenFn adaptor [language-godata](https://openfn.github.io/language-godata/). 
 5. See the solution [design documentation](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII).

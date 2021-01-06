@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Getting Started
-nav_order: 2
-permalink: /getting-started/
+parent: Getting Started with IO
+title: Interoperability QuickStart
+nav_order: 1
+permalink: /interoperability-quickstart/
 ---
 
-# Getting Started with Interoperability
-## Interoperability Planning QuickStart
+# Interoperability Planning QuickStart
 Considering interoperbility solutions for your Go.Data implementation to improve data sharing and collaboration? See the below "Quick Start" steps for getting started. 
 
 Go.Data provides a suite of data import & sharing features that can be leveraged to support a wide range of data interoperability solutions, which may include manual data sharing, reporting, and/or automated data integration to facilitate secure information exchange. When considering which approach is best-fit for your implementation...
@@ -20,7 +20,7 @@ Go.Data provides a suite of data import & sharing features that can be leveraged
 6. Build a map to detail the specific data elements to be exchanged with Go.Data. These specifications should detail how every data point should be mapped to a specific Go.Data field/variable. [See here](https://drive.google.com/drive/folders/1XlIF5cRq1eV499GISPJBc8bidZWkuQAi?usp=sharing) for a **Go.Data mapping specification template**.
 7. Prepare for the technical implementation once requirements & data mapping specifications have been defined. If planning to implement an integration between Go.Data and another system, [see here](https://drive.google.com/drive/folders/1XlIF5cRq1eV499GISPJBc8bidZWkuQAi?usp=sharing) for a template **Go.Data Integration Checklist**. 
 
-### Other Planning Resources
+## Other Planning Resources
 - See the DHIS2 [Implementation Guide](https://docs.dhis2.org/2.34/en/dhis2_implementation_guide/integration-concepts.html#implementation-steps-for-successful-data-and-system-integration) based on the [OpenHIE Implementation Methodology](https://wiki.ohie.org/display/documents/OpenHIE+Planning+and+Implementation+Guides) for additional guidance
 - See the interoperability [reference implementations](https://worldhealthorganization.github.io/godata/interoperability-examples/)
 - See here for example Go.Data interoperability solutions: https://worldhealthorganization.github.io/godata/interoperability-examples/

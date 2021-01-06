@@ -2,10 +2,13 @@
 layout: default
 title: Aggregating Records for Reporting
 parent: Popular Topics
-nav_order: 3
-permalink: /4-3-aggregating-records-for-external-reporting/
+nav_order: 2
+permalink: /aggregate-reporting/
 ---
-# Aggregating records for external reporting
+# Aggregate Reporting
+Go.Data implementers commonly have to report on aggregate results across key indicators to report to external systems and partners. Consider the following when determining your
+approach to aggregate reporting on Go.Data information. 
+
 ## 1. Map your reporting rules.
 When planning to report aggregate results to an external system, build a map of reporting "rules" and calculations that will be required to summarize Go.Data information to generate aggregate reporting results. 
 
@@ -19,4 +22,8 @@ When planning to report aggregate results to an external system, build a map of 
 
 ## 4. Consider your data extraction options. 
 1. Consider your reporting frequency & date/time “cursor” ... 
+
+## Learn More
+- See the [Integrating with DHIS2](https://worldhealthorganization.github.io/godata/dhis2-integration/) section and [Reference Implementation #6](https://worldhealthorganization.github.io/godata/godata--dhis2-aggregate/) for aggregate
+reporting examples specific to DHIS2.  
 
