@@ -1,6 +1,6 @@
 ---
 layout: page
-parent: Getting Started with IO
+parent: Getting Started
 grand_parent: Go.Data Interoperability
 title: Interoperability QuickStart
 nav_order: 1
