@@ -53,5 +53,6 @@ Note: If importing `labResults` via the API, you will need to extract the Go.Dat
 
 
 ### Implementation Resources
-1. See [example import templates](https://drive.google.com/drive/folders/1H0dL6wwkRomNPdugFcUO0Ft0VbLwcxYm). 
-2. See the section on [Unique Identifiers](https://worldhealthorganization.github.io/godata/unique-identifiers/) to support with resource matching during data imports. 
+1. See [video walkthrough](https://drive.google.com/drive/folders/1Rf9TXCXkn8_XnjH4FcRsIGqDZ-UkVvdC) of the lab results import process with a sample dataset.
+2. See [example import templates](https://drive.google.com/drive/folders/1H0dL6wwkRomNPdugFcUO0Ft0VbLwcxYm). 
+3. See the section on [Unique Identifiers](https://worldhealthorganization.github.io/godata/unique-identifiers/) to support with resource matching during data imports. 
