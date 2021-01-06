@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Popular Topics
+parent: Go.Data Interoperability
 permalink: /topics/
 nav_order: 5
 has_children: true
