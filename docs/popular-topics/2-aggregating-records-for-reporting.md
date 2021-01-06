@@ -2,6 +2,7 @@
 layout: default
 title: Aggregating Records for Reporting
 parent: Popular Topics
+grand_parent: Go.Data Interoperability
 nav_order: 2
 permalink: /aggregate-reporting/
 ---
