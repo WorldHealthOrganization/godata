@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Getting Started with IO
-nav_order: 2
+title: Go.Data Interoperability
+nav_order: 1
 permalink: /getting-started/
 has_children: true
 ---
