@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Unique Identifier Schemes
+title: Unique Identifiers & Duplicates
 parent: Popular Topics
 grand_parent: Go.Data Interoperability
 nav_order: 1
