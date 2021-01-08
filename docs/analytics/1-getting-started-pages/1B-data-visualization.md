@@ -1,6 +1,6 @@
 ---
 layout: page
-parent: Getting Started
+parent: Go.Data Data Visualization Considerations
 grand_parent: Analytics & Dashboards
 title: Data Visualization 
 nav_order: 2
