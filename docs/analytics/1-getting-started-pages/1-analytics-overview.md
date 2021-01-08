@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Getting Started
+title: Go.Data Analytics Overview Considerations
 parent: Analytics & Dashboards
 nav_order: 1
-permalink: /getting-started/
+permalink: /analytics-overview/
 has_children: true
 ---
 
