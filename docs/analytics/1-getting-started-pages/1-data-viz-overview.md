@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Go.Data Data Visualization Considerations
+title: Data Viz Overview 
 parent: Analytics & Dashboards
 nav_order: 1
 permalink: /data-viz-overview/
