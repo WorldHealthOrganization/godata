@@ -22,4 +22,4 @@ Go.Data provides a suite of options for extracting data -
 
 ## Additional Resources
 - [Go.Data Community of Practice - Analytics & Interoperability Discussion Forums](https://community-godata.who.int/categories/analytics-interoperability/5fbfba76654a4708eb5069ff)
-- [Loopback Explorer documentation for how to apply filters and other syntax tips when querying API] (https://loopback.io/doc/en/lb3/Querying-data.html)
+- [Loopback Explorer documentation for how to apply filters and other syntax tips when querying API](https://loopback.io/doc/en/lb3/Querying-data.html)
