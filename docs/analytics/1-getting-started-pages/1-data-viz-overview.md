@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Go.Data Analytics Overview Considerations
+title: Go.Data Data Visualization Considerations
 parent: Analytics & Dashboards
 nav_order: 1
-permalink: /analytics-overview/
+permalink: /data-viz-overview/
 has_children: true
 ---
 
