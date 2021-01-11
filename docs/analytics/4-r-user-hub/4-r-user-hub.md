@@ -2,9 +2,9 @@
 layout: page
 title: Go.Data R User Hub
 parent: Analytics & Dashboards
-nav_order: 1
-permalink: /dashboards/
-has_children: false
+nav_order: 4
+permalink: /r-user-hub/
+has_children: true
 ---
 
 # R User Community for Go.Data users
