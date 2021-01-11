@@ -2,7 +2,7 @@
 layout: page
 title: GIS
 parent: Analytics & Dashboards
-nav_order: 1
+nav_order: 3
 permalink: /gis/
 has_children: false
 ---
