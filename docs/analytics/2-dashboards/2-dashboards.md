@@ -14,3 +14,4 @@ has_children: true
 - Tableau
 - Microsoft Excel
 
+![report_screenshot](./assets/report_screenshot.png)
