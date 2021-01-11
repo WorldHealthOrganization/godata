@@ -8,7 +8,7 @@ nav_order: 1
 
 ![godata-logo](./assets/godata-logo.png)
 
-# Welcome to the Go.Data Github documentation site!
+# Welcome to the Go.Data documentation site!
 This is linked to the public Github repository: [https://github.com/WorldHealthOrganization/godata](https://github.com/WorldHealthOrganization/godata)
 
 ## About Go.Data
