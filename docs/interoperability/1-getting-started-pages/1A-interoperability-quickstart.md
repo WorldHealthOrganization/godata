@@ -12,10 +12,9 @@ Considering interoperbility solutions for your Go.Data implementation to improve
 
 Go.Data provides a suite of data import & sharing features that can be leveraged to support a wide range of data interoperability solutions, which may include manual data sharing, reporting, and/or automated data integration to facilitate secure information exchange. When considering which approach is best-fit for your implementation...
 1. First understand your _functional_ interoperability requirements. _What_ information needs to be shared, with _which user groups/organizations_, and _when_? 
-2. Then consider what are your _compliance/legal_ requirements with respect to data sharing and privacy. Are there any country-specific compliance requirements that need to be adhered to? 
-3. What systems/tools do partner organizations use and what are their _technical_ requirements? See below section [Connecting other systems](#connecting-other-systems) for specific questions to ask. 
-4. Document the requirements and consider drafting a **Data Sharing Protocol** agreement with partner organizations to ensure these requirements are clearly understood by all parties involved. 
-- [See example Data Sharing agreement here](https://drive.google.com/drive/folders/1XlIF5cRq1eV499GISPJBc8bidZWkuQAi?usp=sharing). 
+2. Then consider what are your _compliance/legal_ requirements with respect to data sharing and privacy. Are there any country-specific compliance requirements that need to be adhered to? Consider drafitn
+3. What systems/tools do partner organizations use and what are their _technical_ requirements? See below section [Connecting other systems](#connecting-other-systems) for specific questions to ask. Consider drafting a **Data Sharing Protocol** agreement with partner organizations to ensure these requirements are clearly understood by all parties involved. 
+4. Consider users' perspectives
 - Consider documenting specific requirements as _user stories_ to fully detail the functional need, purpose, and people involved. [See here](https://www.atlassian.com/agile/project-management/user-stories) for standard user story templates and see the [Use Cases](https://worldhealthorganization.github.io/godata/interoperability-options/#common-use-cases) sections of this documentation for sample user stories. 
 5. Evaluate your interoperability options. Once you have a clear understanding of the functional, compliance/legal, and technical requirements for your interoperability solution, review available [Data Input & Sharing Options](../2-data-exchange-options.md) to determine the best-fit approach for your requirements.
 6. Build a map to detail the specific data elements to be exchanged with Go.Data. These specifications should detail how every data point should be mapped to a specific Go.Data field/variable. [See here](https://drive.google.com/drive/folders/1XlIF5cRq1eV499GISPJBc8bidZWkuQAi?usp=sharing) for a **Go.Data mapping specification template**.
@@ -26,7 +25,6 @@ Go.Data provides a suite of data import & sharing features that can be leveraged
 - See the interoperability [reference implementations](https://worldhealthorganization.github.io/godata/interoperability-examples/)
 - See here for example Go.Data interoperability solutions: https://worldhealthorganization.github.io/godata/interoperability-examples/
 - See here for a Go.Data Implementation Guide & shareable overviews to share with interested partners: https://community-godata.who.int/page/documents
-
 
 ## Connecting other systems
 When analyzing integration & interoperability options with another system, consider the following questions: 
