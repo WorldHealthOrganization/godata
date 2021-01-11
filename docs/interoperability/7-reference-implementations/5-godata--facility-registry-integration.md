@@ -6,7 +6,7 @@ grand_parent: Go.Data Interoperability
 nav_order: 5
 permalink: /5-godata--facility-registry/
 ---
-#  Facility Registry Integration with Go.Data
+#  Open Source Reference Data Integration with Go.Data (i.e. Country administrative units, health facilities)
 Importing administrative locations (e.g., `Admin-Level-2` province data) and different `Location` reference data are typically the first steps in setting up a 
 new `Outbreak` in Go.Data. Importing location and facility lists from shared reference sources are important to strengthening interoperability and ensuring information can be easily synced and mapped in other systems. [See p. 33 of the Implementation Guide](https://community-godata.who.int/page/documents) for more information and step-by-step guidance for data imports of Location data. 
 
@@ -15,11 +15,11 @@ new `Outbreak` in Go.Data. Importing location and facility lists from shared ref
 
 ---
 **Use Case:**
-**#5.** _As a Go.Data analyst, I would like to import facility and location lists from standard registries and external data sources so that I can more 
+**#5.** _As a Go.Data analyst, I would like to import location lists from standard registries and external data sources so that I can more 
 easily exchange information with the MOH and other partners._
 
 ---
-### Solution Overview
+### Solution Overview (this needs to be updated to just pull from location database....then second example will be putting HF into the reference data dropdown)
 In this reference implementation, we integrated a health facility list extracted from the http://healthsites.io/ API with Go.Data `Location` data. See below for the data flow diagram. 
 - In Go.Data `Location` data must be imported before data collection can begin.  How every country is administratively structured differs (i.e., admin level 0, admin level 1, admin level 2 etc.), but Go.Data supports capture of different location hierarchies, along with the geocodes and coordinates (latitude and longitude). 
 - [HealthSites.io](http://healthsites.io/) is an open source repository of health facility data built in partnership with Open Street Map. It contains several facility lists and geolocation details and provides a [REST API](https://github.com/healthsites/healthsites/wiki/API) that supports data extraction in JSON format. 
