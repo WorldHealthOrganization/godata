@@ -11,8 +11,9 @@ has_children: true
 - R
 ![report_screenshot](../assets/report_screenshot.png)
 - PowerBI
+![power-bi-template](../assets/power-bi-template.png)
 - Google DataStudio
-![report_screenshot](../assets/kosovo-dash-google.png)
+![kosovo-dash-google](../assets/kosovo-dash-google.png)
 - Tableau (_under development_)
 - Microsoft Excel (_under development)
 
