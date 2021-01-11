@@ -14,7 +14,7 @@ This is linked to the public Github repository: [https://github.com/WorldHealthO
 ## About Go.Data
 [Go.Data](https://www.who.int/godata) is an outbreak investigation tool for public health emergencies, and includes features for contact tracing, contact follow-up, and visualizing chains of transmission. Go.Data is designed to specifically support outbreak responders and intended to be implemented alongside other systems for health surveillance, information management, and service delivery. 
 
-# Aim of this documentation site
+## Aim of this documentation site
 This site is a centralized place where you can access _technical documentation and code_ that you may find useful in your Go.Data deployment. This includes code snippets and documentation to access the Go.Data API, perform data exchange / integration with other systems, and conduct additional analysis. 
 
 Any generic information about Go.Data is best accessed through our Community of Practice website (https://community-godata.who.int/), where we link to a range of user guides and training materials. You can dialogue there with the community of Go.Data on a number of discussion forums. You can access our open-access online training course through OpenWHO [here](https://openwho.org/courses/godata-en).
