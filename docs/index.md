@@ -18,7 +18,7 @@ This is linked to the public Github repository: [https://github.com/WorldHealthO
 This site is a centralized place where you can access _technical documentation and code_ that you may find useful in your Go.Data deployment. This includes code snippets and documentation to access the Go.Data API, perform data exchange / integration with other systems, and conduct additional analysis. 
 
 Any generic information about Go.Data is best accessed through our [Community of Practice website](https://community-godata.who.int/)(https://community-godata.who.int/), where we link to a range of user guides and training materials. You can dialogue there with the community of Go.Data on a number of discussion forums. You can access our open-access online training course through OpenWHO [here](https://openwho.org/courses/godata-en).
-![godata-cop](../assets/godata-logo.PNG)
+![godata-cop](../assets/cop.png)
 
 ## Questions & Contributions
 We are actively seeking feedback and contributions from the community. Please visit our Community of Practice website(https://community-godata.who.int/) or contact us at [godata@who.int](mailto://godata@who.int). 
