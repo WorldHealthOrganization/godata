@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 5. Facility List to Go.Data
+title: 5. Administrative Unit Areas to Go.Data
 parent: Reference Implementations
 grand_parent: Go.Data Interoperability
 nav_order: 5
