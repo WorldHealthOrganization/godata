@@ -18,8 +18,8 @@ In the *godata* repo, you can find:
 ## Go.Data Docs Site ([https://worldhealthorganization.github.io/godata/](https://worldhealthorganization.github.io/godata/))
 -This centralized documentation site describes Go.Data Interoperability & Analytics and can point you to where various initiatives are living in Github relating to these topics.
 
-## Go.Data R Report Scripts
-This folder contains example scripts for extracting, cleaning, and running some basic analysis in R. Output at present includes flattened cleaned .csvs for case/contact linelists and an HTML dashboard displaying operational performance metrics for contact tracing by contact tracing supervisor and teams. 
+## Go.Data Analytics Scripts
+The *analytics* folder contains example scripts for extracting, cleaning, and running some basic analysis in R. Output at present includes flattened cleaned .csvs for case/contact linelists and an HTML dashboard displaying operational performance metrics for contact tracing by contact tracing supervisor and teams. 
 
 ## Go.Data API Scripts
 This folder contains in it many example R scripts for GET/PUT/POST commands so that you can manipulate your Go.Data instance through the API, including bulk actions. We have used this for our training instances but think it could be helpful for others too.
