@@ -2,7 +2,7 @@
 layout: page
 title: Explore OpenFn
 parent: Reference Implementations
-nav_order: 8
+nav_order: 7
 permalink: /explore-openfn/
 
 ---
