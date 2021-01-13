@@ -4,7 +4,6 @@ title: Explore OpenFn
 parent: Reference Implementations
 nav_order: 8
 permalink: /explore-openfn/
-has_children: true
 ---
 
 # Exploring the Reference Implementations on OpenFn
