@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Explore OpenFn
-parent: Go.Data Interoperability
+parent: Reference Implementations
 nav_order: 8
 permalink: /explore-openfn/
 has_children: true
