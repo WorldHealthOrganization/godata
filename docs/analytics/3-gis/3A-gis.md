@@ -8,7 +8,7 @@ has_children: false
 ---
 
 # Options and Considerations for GIS Connectors
-- ESTRI / Go.Data Connector
+- ESRI ArcGIS Pro / Go.Data Toolkit
 -
 -
 
