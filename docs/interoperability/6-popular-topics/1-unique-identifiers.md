@@ -45,9 +45,11 @@ Note the following Mask ID* naming conventions when constructing your identifier
 - `Case Mask ID: CASE-99999` might be used if we wanted to auto-assign an autonumber `case_id` with a standard prefix (e.g., `CASE-00001`, `CASE-00002`)
 - `Case Mask ID: @@@-999999999` might be used if we wanted to import `case_id` that included country code and national Id number (e.g., `SEN-021929192`)
 
-* **Note:** 
+---
+***Please Note:** 
 1. If interacting with this `Mask ID` via the API, this is variable is labeled as `visualId` in all the body of API responses. 
 2. If a `Case` or `Contact` record is converted, its Mask ID (and `visualId`) does _not_ change. Consider this when determining your Mask ID naming convention because if you include string values like `CASE` in the identifier, then this might confuse users if a `case` record is converted to a `contact`. 
+---
 
 ### 'Document' variable
 On Case and Contact there is a standard `Document` variable available for users to specify other Document identification (e.g., national ID, passport). 
