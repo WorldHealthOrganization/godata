@@ -28,9 +28,14 @@ baseurl: "/godata" # the subpath of your site, e.g. /blog
 url: "https://worldhealthorganization.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: openfn
 github_username:  openfn
+aux_links:
+  "GoData on GitHub":
+    - "//github.com/WorldHealthOrganization/godata/"
 
 # Build settings
+# theme: "just-the-docs"
 remote_theme: pmarsceill/just-the-docs
+color_scheme: tweaks
 # theme: minima
 plugins:
   - jekyll-feed
