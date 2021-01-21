@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Unique Identifiers & Duplicates
-parent: Popular Topics
+parent: Frequently Asked Questions
 grand_parent: Go.Data Interoperability
 nav_order: 1
 permalink: /unique-identifiers/
@@ -19,17 +19,17 @@ keys for records in the MongoDB, and are **required to request and update Go.Dat
 `POST  /api/outbreaks/8c71e61f-fb11-4d4f-9130-b69384b6e4e4/cases/3b5554d7-2c19-41d0-b9af-475ad25a382b`
 
 On the front end, you can find this `id` in the URL of a record you are viewing...
-![global-ids](../assets/godata-ids.png)
+![global-ids](../assets/godata-ids-outbreak.png)
 
 ### Case & Contact IDs
 Users can also choose to define `ID mask` for `Cases` and `Contacts` to assign a human-readable identification pattern that Go.Data will use to
 create a globally unique identifier to track each case. These IDs can be configured when first setting up an `Outbreak`. 
 
-![outbreak-Ids](../assets/outbreak-Ids.png)
+![outbreak-Ids](../assets/godata-ids-mask.png)
 
 
 
-#### Mask IDs
+### Mask IDs
 Note the following Mask ID* naming conventions when constructing your identifier. 
 - `0`: Digit (0 through 9)
 - `9`: Digit (auto-generated sequence number)
@@ -39,17 +39,17 @@ Note the following Mask ID* naming conventions when constructing your identifier
 - `*`: For any character with no limitations in ID length
 
 
-
 **Examples**
 - `Case Mask ID: *` might be used if we wanted to import an external identifer for `case_id` with no limits on characters (e.g., `028391BX01`, `827JN09K11`)
 - `Case Mask ID: CASE-99999` might be used if we wanted to auto-assign an autonumber `case_id` with a standard prefix (e.g., `CASE-00001`, `CASE-00002`)
 - `Case Mask ID: @@@-999999999` might be used if we wanted to import `case_id` that included country code and national Id number (e.g., `SEN-021929192`)
 
----
-***Please Note:** 
+
+### Notes for Mask ID Creation
 1. If interacting with this `Mask ID` via the API, this is variable is labeled as `visualId` in all the body of API responses. 
 2. If a `Case` or `Contact` record is converted, its Mask ID (and `visualId`) does _not_ change. Consider this when determining your Mask ID naming convention because if you include string values like `CASE` in the identifier, then this might confuse users if a `case` record is converted to a `contact`. 
----
+
+___________________________________________________
 
 ### 'Document' variable
 On Case and Contact there is a standard `Document` variable available for users to specify other Document identification (e.g., national ID, passport). 
@@ -64,7 +64,7 @@ information.
 
 You can choose to add **custom variables** to also capture custom metadata like an external identifier.  
 
-![quesiton-id](../assets/question-id.png)
+![question-id](../assets/question-Id.png)
 
 ### Determining your own custom unique identifier scheme
 If a unique identifier scheme is not already available, consider the following approaches to developing your own custom identifier scheme...
@@ -84,5 +84,5 @@ Therefore if importing data via the API, consider implementing a HTTP request pa
 
 ## Go.Data Duplicate Management Features
 For scenarios where your unique identfier scheme fails, Go.Data offers some out-of-box feature for duplicate-checking across different 
-record attributes (e.g., `name`, `dateOfBirth`). See the **User Guide** to learn more. 
+record attributes (e.g., `name`, `dateOfBirth`). See the [**User Guide**](https://community-godata.who.int/page/documents) to learn more. 
 

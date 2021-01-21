@@ -1,13 +1,14 @@
 ---
 layout: default
 title: Integrating with DHIS2
-parent: Popular Topics
+parent: Frequently Asked Questions
 grand_parent: Go.Data Interoperability
 nav_order: 3
 permalink: /dhis2-integrations/
 ---
 # Go.Data Integrations with DHIS2
 ## 1. DHIS2 to Go.Data
+See the Github folder [dhis2togodata](https://github.com/WorldHealthOrganization/godata/tree/master/dhis2togodata) for the source code and information on available DHIS2-Go.Data integration scripts. These include: 
 ### 1.1. Org unit converter:
 Devleoped by EyeSeeTea LS (http://eyeseetea.com/), this is a Python script to take the national org tree from a DHIS2 instance, transform its .json structure and input it into Go.Data 
 
@@ -30,7 +31,7 @@ Leveraging the Go.Data API and DHIS2 [Tracker Web API](https://docs.dhis2.org/2.
 Interoperability Scripts eveloped by WISCENTD-UPC (see above) will be expanded to demonstrate 2-way exchange of case information between DHIS2 `tracked entity instance` records or `events` and Go.Data `cases` or `contacts`. See more project-related updates here: https://www.essi.upc.edu/dtim/projects/COVID-19
 
 ## 3. Go.Data to DHIS2 Data Values (Aggregate-level data exchange)
-See [reference implementation #6](https://worldhealthorganization.github.io/godata/godata--dhis2-aggregate/) for specific step-by-step guidance with a real-world example of aggregate reporting. 
+See [reference implementation #6](https://worldhealthorganization.github.io/godata/godata--dhis2-aggregate/) for specific step-by-step guidance leveraging [OpenFn](https://docs.openfn.org) jobs with a real-world example of aggregate reporting. 
 One of the first things you’ll need to do is identify the specific DHIS2 `data set` that you plan to integrate your Go.Data data with. In DHIS2, aggregate data captured as `dataValueSets` and is further defined across different dimensions called `orgUnit`, `period`, and `dataElement` & `categories`. 
 
 #### Data sets

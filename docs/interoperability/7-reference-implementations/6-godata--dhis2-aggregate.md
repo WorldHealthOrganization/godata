@@ -10,7 +10,9 @@ permalink: /godata--dhis2-aggregate/
 # Aggregate Reporting to DHIS2
 Reporting out from Go.Data to an external HMIS/reporting system is a very popular requirement among implementers, particularly the need to report aggregate/ summary results for key indicators (e.g., # of cases confirmed this week, # of cases hospitalized). 
 
-Go.Data plans to expand its API to support extraction of automatically aggregated results for common indicators. In the meantime, users can also leverage the Go.Data API to (1) list individual records, and then (2) write a script to sum/aggregate these records before (3) uploading to an external reporting system like DHIS2. We explore this data flow in this reference implementation that integrations Go.Data with DHIS2. 
+Go.Data plans to expand its API to support extraction of automatically aggregated results for common indicators. In the meantime, users can also leverage the Go.Data API ([see API docs](https://github.com/WorldHealthOrganization/godata/api-docs/) to (1) list individual records, and then (2) write a script to sum/aggregate these records before (3) uploading to an external reporting system like DHIS2. We explore this data flow in this below reference implementation with DHIS2. 
+
+Also see [Integration with DHIS2 page](https://worldhealthorganization.github.io/godata/dhis2-integrations/) for other DHIS2 integration scripts developed by UPC and other partners, along with more guidance for DHIS2 integrations. 
 
 ![use-case-6](../assets/use-case-6.png)
 
@@ -39,10 +41,12 @@ On OpenFn.org, we configured a `cron` timer (e.g. `00 23 * * 1`) to run the jobs
 
 ## Implementation Steps 
 1. First determine the reporting requirements and how to extract data from Go.Data. Are you reporting on `Cases` or `Contacts`? What attributes will you need to summarize or aggregate results by? Consider what specific data elements you will need to extract and the formulas for different calculations needed (e.g., `COUNT`, `SUM`, `AVG`, etc.). 
+
 2. Then determine the key data model attributes of the DHIS2 system you would like to integrate with. Are you integrating with DHIS2 `trackedEntities`? Or `dataValueSets` and `dataElements`? Which `orgUnit` and reporting `period` should data map to? 
-→ See [Integrating with DHIS2](https://worldhealthorganization.github.io/godata/topics/dhis2-integration) for more information on identifying different DHIS2 elements when desiging a new integration.
-3. Map relevant data elements from the Go.Data response to relevant DHIS2 attributes. [See mapping specifications](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII) and see [Integrating with DHIS2](https://worldhealthorganization.github.io/godata/topics/#7-integrating-with-dhis2) docs section for more guidance on the DHIS2 data model and integration considerations. 
-4. Extract relevant data elements from Go.Data per the requirements in step `#1`. In this OpenFn job [6a-getCasesDHIS.js](https://github.com/OpenFn/godata-interoperability/blob/master/jobs/6a-getCasesDHIS.js), we send a `GET` request to the Go.Data API to list and extract `Cases` that are `'confirmed'`.  
+→ See [Integrating with DHIS2](https://worldhealthorganization.github.io/godata/dhis2-integrations/) for more information on identifying different DHIS2 elements when desiging a new integration.
+
+3. Map relevant data elements from the Go.Data response to relevant DHIS2 attributes. [See mapping specifications](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII) and see [Integrating with DHIS2](https://worldhealthorganization.github.io/godata/dhis2-integrations/) docs section for more guidance on the DHIS2 data model and integration considerations. 
+4. Extract relevant data elements from Go.Data per the requirements in step `#1`. In this OpenFn job [6a-getCasesDHIS.js](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/6a-getCasesDHIS.js), we send a `GET` request to the Go.Data API to list and extract `Cases` that are `'confirmed'`.  
 
 ```js
 getCase(
@@ -54,7 +58,7 @@ getCase(
     },
   },
 ```
-In this same job, we also calculate "summary" results to report to DHIS2. To determine the `# of confirmed cases` to report to DHIS2, in [L46](https://github.com/OpenFn/godata-interoperability/blob/master/jobs/6a-getCasesDHIS.js#L46-L49) we count the number of records returned by our `GET` request and determine the `dateOfReporting`. 
+In this same job, we also calculate "summary" results to report to DHIS2. To determine the `# of confirmed cases` to report to DHIS2, in [L46]https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/6a-getCasesDHIS.js#L46-L49) we count the number of records returned by our `GET` request and determine the `dateOfReporting`. 
 
 ```js
 summary = {
@@ -63,9 +67,9 @@ summary = {
     };
 ```
 
-5. We then run another OpenFn job [6b-importDHIS2.js](https://github.com/OpenFn/godata-interoperability/blob/master/jobs/6b-importDHIS2.js) to import this "summary" data into DHIS2 via the API endpoint `/api/dataValueSets`. 
+5. We then run another OpenFn job [6b-importDHIS2.js](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/6b-importDHIS2.js) to import this "summary" data into DHIS2 via the API endpoint `/api/dataValueSets`. 
 - We follow the [DHIS2 API docs](https://docs.dhis2.org/master/en/developer/html/dhis2_developer_manual_full.html#webapi_data_values) to determine other required attributes, such as `orgUnit` and `dataElement` Id.
-- We leverage the OpenFn [Go.Data adaptor](https://openfn.github.io/language-dhis2/dataValueSet.html) helper function to access the `dataValueSets` resource. 
+- We leverage the OpenFn [DHIS2 API adaptor](https://openfn.github.io/language-dhis2/dataValueSet.html) helper function to access the `dataValueSets` resource. 
 
 ```js
 //Example job snippet to upload data value sets to DHIS2
@@ -80,15 +84,19 @@ dataValueSet({
 });
 ```
 
-## Explore the Implementation
-1. [See this video](https://drive.google.com/drive/folders/1Rf9TXCXkn8_XnjH4FcRsIGqDZ-UkVvdC) of the demo solution configured to demonstrate this use case #6.  
-2. DHIS2: Here we integrated with the public COVID-19 demo instance: [https://covid19.dhis2.org/demo](https://covid19.dhis2.org/demo)
-3. Integration: See [example integration scripts for scenario `6`](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) implemented on the OpenFn integration platform for automated data exchange. Explore the solution at [OpenFn.org](https://www.openfn.org/login) using the login details: `godata@who.int`; pw: `interop!2021`. 
-4. Go.Data API Wrapper: See the open-source OpenFn adaptor [language-godata](https://openfn.github.io/language-godata/). 
-5. DHIS2 API Wrapper: See the open-source OpenFn adaptor [language-dhis2](https://openfn.github.io/language-dhis2/). 
-6. See the solution [design documentation](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII).
-
 ## Other DHIS2 Resources
-1. See the [Integrating with DHIS2](https://worldhealthorganization.github.io/godata/topics/dhis2-integration) for more on Go.Data integrations with DHIS2. 
-2. Read more about Go.Data-DHIS2 integration use cases as part of the UPC project where some DHIS2 to Go.Data scripts have been drafted:  https://www.essi.upc.edu/dtim/projects/COVID-19
-3. See DHIS2 documentation for more on aggregate reporting & API docs: https://docs.dhis2.org/2.34/en/dhis2_implementation_guide/integration-concepts.html#aggregate-and-transactional-data
+1. See the [Integrating with DHIS2](https://worldhealthorganization.github.io/godata/dhis2-integrations/) for more on Go.Data integrations with DHIS2. 
+2. Read more about Go.Data-DHIS2 integration use cases as part of the UPC project where some DHIS2 to Go.Data scripts have been drafted:  [https://www.essi.upc.edu/dtim/projects/COVID-19](https://www.essi.upc.edu/dtim/projects/COVID-19)
+3. See DHIS2 documentation for more on aggregate reporting & API docs: [https://docs.dhis2.org/2.34/en/dhis2_implementation_guide/integration-concepts.html#aggregate-and-transactional-data](https://docs.dhis2.org/2.34/en/dhis2_implementation_guide/integration-concepts.html#aggregate-and-transactional-data)
+
+
+# Explore the Implementation
+1. See the [Explore OpenFn](https://worldhealthorganization.github.io/godata/explore-openfn/) page to explore the jobs on the live reference project. 
+[video-embed]
+
+2. *[DHIS2**: Here we integrated with the public `COVID-19 Demo` instance: [https://covid19.dhis2.org/demo](https://covid19.dhis2.org/demo)
+
+3. **Job scripts**: See the Github [`interoperability-jobs`](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) to explore the source code used to automate these flows. These leverage an open-source Go.Data API wrapper - the OpenFn adaptor [`language-godata`](https://github.com/WorldHealthOrganization/godata/), as well as the DHIS2 API adaptor [language-dhis2](https://openfn.github.io/language-dhis2/)
+
+4. **Solution Design Documentation**: [See this folder](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII)] for the data flow diagram & data element mapping specifications mentioend above and used to write the integration jobs. 
+

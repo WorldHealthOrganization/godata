@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Integrating with Mobile Apps
-parent: Popular Topics
+parent: Frequently Asked Questions
 grand_parent: Go.Data Interoperability
 nav_order: 7
 permalink: /integrating-mobile-apps/
@@ -23,4 +23,4 @@ by each app's API (for example, see [Kobo Toolbox](https://support.kobotoolbox.o
 
 ## Resources 
 1. See [reference implementation #4](https://worldhealthorganization.github.io/godata/godata--mobile-integration/) for specific step-by-step guidance with a real-world mobile integration example with Kobo Toolbox.
-2. See [OpenFn 'Source Apps' docs](https://docs.openfn.org/source-apps.html) for summarized instructions on REST service setup and API documentation links for popular mobile tools like Kobo Toolbox, ODK, SurveyCTO, etc. 
+2. For summarized instructions on REST service setup and API documentation links for popular mobile tools like Kobo Toolbox, ODK, SurveyCTO, etc., check out each app's technical documentation or see [OpenFn 'Source Apps' docs](https://docs.openfn.org/source-apps.html). 
