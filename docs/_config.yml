@@ -31,8 +31,6 @@ github_username:  openfn
 aux_links:
   "GoData on GitHub":
     - "//github.com/WorldHealthOrganization/godata/"
-   "GoData Community":
-    - "//community-godata.who.int/login
 
 # Build settings
 # theme: "just-the-docs"
