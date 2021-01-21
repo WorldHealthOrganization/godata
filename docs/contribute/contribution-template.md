@@ -1,16 +1,16 @@
 ---
 layout: default
-title: YOUR PROJECT TITLE
-parent: godata-to-specify
-grand_parent: godata-to-specify
-nav_order: 1
+title: Contribute 
+has_children: true
+nav_order: 6
 permalink: /project-name/
 ---
 
 [//]: # (This page should be drafted using Markdown. See the Markdown Guide for syntax guidelines: https://www.markdownguide.org/basic-syntax/)
 
 # Project title
-_This is a template for detailing Go.Data solutions & projects. Please draft this page on a new branch and submit to Go.Data as a pull request. Questions? Email godata@who.int_ 
+_We are actively seeking feedback and contributions from the community. This is a template for detailing Go.Data solutions & projects to add to the Github repo. Please edit this page, draft content on a new branch, and submit to Go.Data as a pull request. Questions? Email godata@who.int_ 
+
 ## Solution Overview
 Summarize your solution, project background, and key requirements. 
 
