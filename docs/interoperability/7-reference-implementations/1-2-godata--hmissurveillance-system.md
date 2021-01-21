@@ -13,6 +13,12 @@ In most country-level implementations, Go.Data needs to interoperate with an exi
 - Skip to [Applying FHIR data standards docs](#applying-fhir-data-standards)
 - [Explore the Implementation](#explore-the-implementation)
 
+<iframe width="560" height="315"
+src="https://www.youtube.com/embed/MUQfKFzIOeU" 
+frameborder="0" 
+allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+allowfullscreen></iframe>
+
 ![implementation-1](../assets/godata-example1.png)
 
 ---
@@ -185,6 +191,6 @@ Mapping data elements to match standard definitions is a great first step in you
 
 4. **HMIS demo**: For this reference implementation, we configured a demo "HMIS" system on a SQL database and implemented OpenFn jobs that leverage the [`language-postgresql`](https://github.com/OpenFn/language-postgresql) to connect directly with the database.
 This demo SQL database was configured on PostgreSQL with 1 data table `tbl_cases`. In practice, your integration implementation may connect with 1 or multiple tables in a connected system.
- 
+
 ![hmis-db-schema](../assets/db-schema.png)
 
