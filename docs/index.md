@@ -22,3 +22,5 @@ Any generic information about Go.Data is best accessed through our [Community of
 
 ## Questions & Contributions
 We are actively seeking feedback and contributions from the community. Please visit our Community of Practice website(https://community-godata.who.int/) or contact us at [godata@who.int](mailto://godata@who.int). 
+
+To contribute this documentation site & submit projects and code samples, summarize your project by drafting a new `Project` page and submitting to the Go.Data repo as a pull request. See the `Contribution Template`: [https://github.com/WorldHealthOrganization/godata/blob/master/docs/contribute/contribution-template.md](https://github.com/WorldHealthOrganization/godata/blob/master/docs/contribute/contribution-template.md)

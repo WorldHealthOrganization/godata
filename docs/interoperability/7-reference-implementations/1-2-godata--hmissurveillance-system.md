@@ -193,4 +193,3 @@ Mapping data elements to match standard definitions is a great first step in you
 This demo SQL database was configured on PostgreSQL with 1 data table `tbl_cases`. In practice, your integration implementation may connect with 1 or multiple tables in a connected system.
 
 ![hmis-db-schema](../assets/db-schema.png)
-
