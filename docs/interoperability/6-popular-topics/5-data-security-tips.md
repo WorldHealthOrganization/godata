@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Data Security Tips
-parent: Popular Topics
+parent: Frequently Asked Questions
 grand_parent: Go.Data Interoperability
 nav_order: 5
 permalink: /data-security/
@@ -10,7 +10,7 @@ permalink: /data-security/
 # Data security tips for information exchange
 1. Capture these security & privacy requirements early on. Document them in detail and seek agreement across all partners exchanging information so that all parties 
 are aware of any specific requirements and have addressed any related legal/admin steps to ensure compliance. 
-2. Consider drafting a **Data Sharing Agreement** to document any protocol or detail requirements. [See sample agreement](https://drive.google.com/drive/folders/1QUdtuybc0blUaYugLHwMoBpQapms5ldf). 
+2. Consider drafting a **Data Sharing Agreement** to document any protocol or detail requirements. [See sample agreement](https://community-godata.who.int/page/documents). 
 3. Always be deliberate about _which_ data points are exchanged and _when_. If a data point is not needed/ not relevant - then do not expose or fetch that information. 
 Apply filters when querying from different source systems. 
 4. Leverage identifiers and autonumbers to mask sensistive information. Consider whether you need to exchange beneficiary identifying information, or whether

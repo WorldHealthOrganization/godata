@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Aggregating Records for Reporting
-parent: Popular Topics
+parent: Frequently Asked Questions
 grand_parent: Go.Data Interoperability
 nav_order: 2
 permalink: /aggregate-reporting/
@@ -16,13 +16,12 @@ When planning to report aggregate results to an external system, build a map of 
 ## 2. Consider your data extraction options. 
 1. Extract individual results and then Transform & Load (E&TL strategy) - Extract individual records from Go.Data and then perform any aggregation & transformation in an outside staging environment or via an integration layer/automation step before uploading to the external reporting system. 
 2. Extract aggregate results and then load (ET&L strategy) - Go.Data already provides some APIs for extraction of pre-aggregated results, and more are in development. 
+3. Consider your reporting frequency & how to save date/time “cursor” (how you will mark the time period for which you last extracted data) to minimize redundancy and sharing of only new or updated records. 
 
 ## 3. Consider standards.
 1. Consider aggregate data standards like ADX to streamline results generation for easy and widespread reporting across ADX-friendly destination systems. 
 2. Reviewing standard indicator definitions may also be critical to the design of your reporting "map" (see `2.1`). 
 
-## 4. Consider your data extraction options. 
-1. Consider your reporting frequency & date/time “cursor” ... 
 
 ## Learn More
 - See the [Integrating with DHIS2](https://worldhealthorganization.github.io/godata/dhis2-integration/) section and [Reference Implementation #6](https://worldhealthorganization.github.io/godata/godata--dhis2-aggregate/) for aggregate

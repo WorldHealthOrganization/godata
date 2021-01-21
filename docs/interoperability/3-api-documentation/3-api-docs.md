@@ -7,23 +7,24 @@ permalink: /api-docs/
 ---
 
 # Go.Data API Documentation
-_This section was originally published in the Go.Data **IT Admin Guide, pg. 53**. Additional resources have been added_
+_This section was originally published in the Go.Data [**IT Admin Guide, pg. 53**](https://community-godata.who.int/page/documents). Additional resources have been added_
 
 ## API Introduction
 Go.Data exposes an Application Programming Interface (API) which is used for all interactions between the web front-end, the smartphone applications and even between copies of Go.Data, if you configure multiple instances of the solution to exchange data in an “upstream sever/client application” model.
 This means that the API is very flexible and any operation possible from the web interface/smartphone can also be made by calling the appropriate method direct.
 
 ## API Explorer 
-The self-documenting description of the API methods can be viewed using Loopback Explorer by adding `/explorer` to the end of any Go.Data URL.  For example, when installing Go.Data on your local machine with default settings: -
+The self-documenting description of the API methods can be viewed using Loopback Explorer by adding `/explorer` to the end of any Go.Data URL.  For example, when installing Go.Data on your local machine with default settings:
+
 `http://localhost:8000/explorer`
 
 Loopack explorer provides some examples of possible operations, lists interface parameters and allows you to manually input json inputs and to test them against the API.
 Methods are present to `GET`, `POST`, `PATCH`, etc. for bidirectional exchange of data with Go.Data. A familiarity with the types of data entities present within Go.Data is essential for understanding the API.
 
-See the API Loopback Explorer for the Go.Data Demo Site: *[INSERT URL]*
+See the API Loopback Explorer for the Go.Data Demo Site: [https://godata-r19.who.int/explorer/](https://godata-r19.who.int/explorer/)
 
 For more information on interacting with the API (e.g., how to add field filters to HTTP requests), see the LoopBack documentation: 
-https://loopback.io/doc/en/lb3/Fields-filter.html
+[https://loopback.io/doc/en/lb3/Fields-filter.html](https://loopback.io/doc/en/lb3/Fields-filter.html)
 
 ## Authentication 
 Almost all methods exposed by Go.Data require the request to be called by an authenticateduser. Authentication works as follows: 
@@ -99,12 +100,12 @@ access_token=VUCA57YkMIcF5R2M8vl6PuaNHoMU0Q3Mr4cmGEOH06CPblx6xflnAw0AfQaMYdZP
 
 The IDs used in these calls are the internal Globally Unique Identifiers (GUIDs) used as primary keys for records in the MongoDB.
 In the example above, there are two ways that a user could find the ID of the outbreak to use: 
-1. If the user logins in Go.Data and navigates to a record, then the ID typically appears in the URL at the top of the page. An example is given below for viewing the example `Kevitis` outbreak and the ID that appears.
+1. If the user logins in Go.Data and navigates to a record, then the ID typically appears in the URL at the top of the page. An example is given below for viewing the example `COVID-19 Demonstration` outbreak and the ID that appears.
 ```
-http://localhost:8000/api/outbreaks/8c71e61f-fb11-4d4f-9130-`b69384b6e4e4?
+http://localhost:8000/api/outbreaks/cd936eee-5bfb-433b-a80e-e26c66bf6a48?
 access_token=VUCA57YkMIcF5R2M8vl6PuaNHoMU0Q3Mr4cmGEOH06CPblx6xflnAw0AfQaMYdZ
 ```
-![global-id](../assets/godata-ids.png)
+![global-id](../assets/godata-ids-outbreak.png)
 
 2. If a user needs to look up an ID, then it can always be done via a method also. In this example, the GET outbreaks method can be used to retrieve all outbreaks and then find the ID of the one in which you’re interested.
 ```
@@ -116,7 +117,7 @@ As a second example, the call to retrieve all cases belonging to a given outbrea
 GET /outbreaks/{id}/cases
 ```
 ```
-http://localhost:8000/api/outbreaks/8c71e61f-fb11-4d4f-9130-b69384b6e4e4/cases?
+http://localhost:8000/api/outbreaks/cd936eee-5bfb-433b-a80e-e26c66bf6a48/cases?
 access_token=VUCA57YkMIcF5R2M8vl6PuaNHoMU0Q3Mr4cmGEOH06CPblx6xflnAw0AfQaMYdZP
 ```
 Note that any security restrictions that limit the data which the user can see will also apply to calls via the API. Users should be careful to authenticate with a user account which has sufficient privilege and access for the data they wish to access/change.
@@ -125,7 +126,7 @@ The call to access the record for a specific case would then incorporate the acc
 GET /outbreaks/{id}/cases/{fk}
 ```
 ```
-http://localhost:8000/api/outbreaks/8c71e61f-fb11-4d4f-9130-b69384b6e4e4/cases/3cd71bf6-afac-40d3-a32d-a1793cfe7638
+http://localhost:8000/api/outbreaks/cd936eee-5bfb-433b-a80e-e26c66bf6a48/cases/3cd71bf6-afac-40d3-a32d-a1793cfe7638
 access_token=HNm29JYiCIa0sNk5kjyTl8FeGKJmhFMiWAhGL6FOBVcBSCc2s2JDQ3EnLH4dFt4l
 ```
 
@@ -140,7 +141,7 @@ And the data passed in would be only the field to be changed:
 ```
 This constructs the following call:
 ```
-http://localhost:8000/api/outbreaks/8c71e61f-fb11-4d4f-9130-b69384b6e4e4/cases/3cd71bf6-afac-40d3-a32d-a1793cfe7638?access_token=HNm29JYiCIa0sNk5kjyTl8FeGKJmhFMiWAhGL6FOBVcBSCc2s2JDQ3EnLH4dFt4l
+http://localhost:8000/api/outbreaks/cd936eee-5bfb-433b-a80e-e26c66bf6a48/cases/3cd71bf6-afac-40d3-a32d-a1793cfe7638?access_token=HNm29JYiCIa0sNk5kjyTl8FeGKJmhFMiWAhGL6FOBVcBSCc2s2JDQ3EnLH4dFt4l
 ```
 ### Filtering example
 To use the filters provided with the method calls, the syntax is to use the keyword “where” and the sequence of elements for filtering: `{"where":{"fieldname": "filtervalue"}}`

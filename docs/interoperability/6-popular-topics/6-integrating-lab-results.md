@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Integrating Lab Results
-parent: Popular Topics
+parent: Frequently Asked Questions
 grand_parent: Go.Data Interoperability
 nav_order: 6
 permalink: /integrating-lab-results/
@@ -22,5 +22,5 @@ Results can be imported using standard Go.Data Excel import features and/or via 
 
 ## Resources
 1. See the related [reference implementation #3](https://worldhealthorganization.github.io/godata/importing-lab-results/) for specific step-by-step guidance with a real-world example. 
-2. See the [CSV import templates - TO UPDATE](https://drive.google.com/drive/folders/1QUdtuybc0blUaYugLHwMoBpQapms5ldf) for converting lab results to Case/Contact and Lab Results records. 
+2. See the [CSV import templates](https://community-godata.who.int/page/documents) for converting lab results to Case/Contact and Lab Results records. 
 3. See the [Unique Identifiers](https://worldhealthorganization.github.io/godata/unique-identifiers/) section for more on assigning unique Ids to individual `Case` and `Contact` records. 
