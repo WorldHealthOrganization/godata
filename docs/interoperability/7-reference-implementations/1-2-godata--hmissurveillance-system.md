@@ -13,12 +13,6 @@ In most country-level implementations, Go.Data needs to interoperate with an exi
 - Skip to [Applying FHIR data standards docs](#applying-fhir-data-standards)
 - [Explore the Implementation](#explore-the-implementation)
 
-<iframe width="560" height="315"
-src="https://www.youtube.com/embed/MUQfKFzIOeU" 
-frameborder="0" 
-allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-allowfullscreen></iframe>
-
 ![implementation-1](../assets/godata-example1.png)
 
 ---
