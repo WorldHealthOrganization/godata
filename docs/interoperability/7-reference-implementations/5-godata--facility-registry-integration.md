@@ -35,7 +35,7 @@ In this reference implementation, we integrated a health facility list extracted
 - [HealthSites.io](http://healthsites.io/) is an open source repository of health facility data built in partnership with Open Street Map. It contains several facility lists and geolocation details and provides a [REST API](https://github.com/healthsites/healthsites/wiki/API) that supports data extraction in JSON format. 
 - Here we leverage the free-tier [OpenFn integration platform](https://docs.openfn.org/) to automate the data integration flow & quickly map Kobo data elements to Go.Data. See [Explore OpenFn](https://github.com/WorldHealthOrganization/godata/explore-openfn) to learn more and explore the live project. 
 
-![dataflow-5](../assets/io-use-case-5.png)
+![dataflow-5](../assets/dataFlow-use-case-5.png)
 ### Implementation Steps
 1. We first identified the external data source to be integrated, data availability, and available APIs - see [HealthSites country data](https://healthsites.io/#country-data). 
 2. Once we've identified the specific facility we'd like to integrate, we then determine how to export the data from the source. [See here](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/5a-GETHealthSitesData.js) for an example OpenFn job script where we send a `GET` HTTP request to `/api/v2/facilities` to list a health facilities for `Bangladesh` in HealthSites.io.
@@ -96,7 +96,7 @@ upsertReferenceData('id', { //where id is reference-data-catefory unique identif
 
 See `upsertReferenceData(...)` function in the [Go.Data API adaptor](https://github.com/WorldHealthOrganization/language-godata/)
 
-![openfn-5](../assets/openfn-5.png)
+![openfn-5](../assets/openfn-jobs-5.png)
 
 ## External Data Sources
 See below and p.33 of the [Implementation Guide](https://community-godata.who.int/page/documents) for other data sources you might consider integrating with to automatically register shared `Location` records in Go.Data. 
