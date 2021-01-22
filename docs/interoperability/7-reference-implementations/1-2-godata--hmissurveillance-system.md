@@ -6,18 +6,12 @@ grand_parent: Go.Data Interoperability
 nav_order: 1
 permalink: /1-2-godata--hmissurveillance-system/
 ---
-# Go.Data <> HMIS/Surveillance System Integration for 2-way Information Exchange
-In most country-level implementations, Go.Data needs to interoperate with an existing HMIS or Surveillance system to ensure no duplication of efforts. These systems might be configured on an application like DHIS2 or are custom developed using other software or databases. In this solution we explore the following use cases by designing for a Go.Data integration with a theoretical SQL-based HMIS for 2-way exchange of case information. 
+# Go.Data <> National Information System Integration for 2-way Information Exchange
+In most country-level implementations, Go.Data needs to interoperate with an existing Health Management Information System (HMIS) or Surveillance system to ensure no duplication of efforts. These systems might be configured on an application like DHIS2 or are custom developed using other software or databases. In this solution we explore the following use cases by designing for a Go.Data integration with a theoretical SQL-based HMIS for 2-way exchange of case information. 
 - Skip to [Use Case #1 docs](#use-case-1-hmis-to-godata-flow)
 - Skip to [Use Case #2 docs](#use-case-2-godata-to-hmis-flow)
 - Skip to [Applying FHIR data standards docs](#applying-fhir-data-standards)
 - [Explore the Implementation](#explore-the-implementation)
-
-<iframe width="560" height="315"
-src="https://www.youtube.com/embed/MUQfKFzIOeU" 
-frameborder="0" 
-allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-allowfullscreen></iframe>
 
 ![implementation-1](../assets/godata-example1.png)
 
@@ -158,7 +152,7 @@ upsertMany('tbl_cases', 'identifier', //destinationTable, lookupIdentifier
 state => cases)(state); //in this cases object, we'll specify the GoData-to-DB mappings
 ```
 ### Applying FHIR Data Standards 
-To ensure greater interoperability with other health information systems, you may consider applying international data standards to any information collected via Go.Data before exchanging with external systems. [FHIR](https://www.hl7.org/fhir/) is the most common international health data standard. 
+To ensure greater interoperability with other health information systems, you may consider applying international data standards to any information collected via Go.Data before exchanging with external systems. Fast Health Interoperability Resources, known as [FHIR](https://www.hl7.org/fhir/), is the most common international data standard for health information exchange. 
 
 There are several technical and security requirements a system must implement to achieve full FHIR interoperability, but **starting with mapping data elements to these standards is typically a great first step to ensuring FHIR compliance.** 
 
@@ -183,13 +177,12 @@ Mapping data elements to match standard definitions is a great first step in you
 
 # Explore the Implementation
 1. See the [Explore OpenFn](https://worldhealthorganization.github.io/godata/explore-openfn/) page to explore the jobs on the live reference project. 
-[video-embed]
 
 2. **Job scripts**: See the Github [`interoperability-jobs`](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) to explore the source code used to automate these flows. These leverage an open-source Go.Data API wrapper - the OpenFn adaptor [`language-godata`](https://github.com/WorldHealthOrganization/godata/). 
 
 3. **Solution Design Documentation**: [See this folder](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII)] for the data flow diagram & data element mapping specifications mentioend above and used to write the integration jobs. 
 
-4. **HMIS demo**: For this reference implementation, we configured a demo "HMIS" system on a SQL database and implemented OpenFn jobs that leverage the [`language-postgresql`](https://github.com/OpenFn/language-postgresql) to connect directly with the database.
+4. **HMIS demo**: For this reference implementation, we configured a demo Health Management Information System ("HMIS") on a SQL database and implemented OpenFn jobs that leverage the [`language-postgresql`](https://github.com/OpenFn/language-postgresql) to connect directly with the database.
 This demo SQL database was configured on PostgreSQL with 1 data table `tbl_cases`. In practice, your integration implementation may connect with 1 or multiple tables in a connected system.
 
 ![hmis-db-schema](../assets/db-schema.png)
