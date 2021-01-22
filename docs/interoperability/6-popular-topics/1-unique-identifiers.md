@@ -27,9 +27,7 @@ create a globally unique identifier to track each case. These IDs can be configu
 
 ![outbreak-Ids](../assets/godata-ids-mask.png)
 
-
-
-### Mask IDs
+#### Mask IDs
 Note the following Mask ID* naming conventions when constructing your identifier. 
 - `0`: Digit (0 through 9)
 - `9`: Digit (auto-generated sequence number)
@@ -38,25 +36,35 @@ Note the following Mask ID* naming conventions when constructing your identifier
 - `&`: Any character including spaces
 - `*`: For any character with no limitations in ID length
 
-
 **Examples**
 - `Case Mask ID: *` might be used if we wanted to import an external identifer for `case_id` with no limits on characters (e.g., `028391BX01`, `827JN09K11`)
 - `Case Mask ID: CASE-99999` might be used if we wanted to auto-assign an autonumber `case_id` with a standard prefix (e.g., `CASE-00001`, `CASE-00002`)
 - `Case Mask ID: @@@-999999999` might be used if we wanted to import `case_id` that included country code and national Id number (e.g., `SEN-021929192`)
 
-
-### Notes for Mask ID Creation
+#### Notes for Mask ID Creation
 1. If interacting with this `Mask ID` via the API, this is variable is labeled as `visualId` in all the body of API responses. 
 2. If a `Case` or `Contact` record is converted, its Mask ID (and `visualId`) does _not_ change. Consider this when determining your Mask ID naming convention because if you include string values like `CASE` in the identifier, then this might confuse users if a `case` record is converted to a `contact`. 
 
-___________________________________________________
+### Determining your own custom unique identifier scheme
+If a unique identifier scheme is not already available, consider the following approaches to developing your own custom identifier scheme...
+1. autonumbers (e.g., `CASE-000001`)
+2. national Ids or other available document-based Ids (see below)
+3. concatenating attributes available in your dataset (e.g., `surname-dateOfBirth`, `location-surname-birthYear`)
+___________________________
 
-### 'Document' variable
+### National IDs and Importing Other Existing Identifiers
+If you have an existing unique identifier used in external systems, such as a `National ID`, you may choose to implement this as the unique identifier scheme in the Go.Data system so that all Go.Data `Contact` or `Case` records will also be tagged with this Id.  
+
+To import this external identifer to Go.Data...
+1. Consider setting the `Case Mask ID: *` so that you can freely import this external identifier with no constraints (or use a `Mask ID` like `99999999` if you know that the Id has a standard format of 8 digits. 
+2. If you prefer that all `Contacts` or `Cases` also be assigned a Go.Data-generated identifier, then you may instead choose to set the `Case Mask ID` to a custom identifier scheme, and rather use the `Document` variable (see below) to also capture the `National ID` or other external identifier. 
+
+#### 'Document' variable
 On Case and Contact there is a standard `Document` variable available for users to specify other Document identification (e.g., national ID, passport). 
 
 ![document-Ids](../assets/document-Id.png)
 
-### Questionnaire custom variables
+#### Questionnaire custom variables
 Questionnaires are essential for collecting and recording data for cases, contacts, and lab results
 during an outbreak. A pre-established questionnaire format for an outbreak ensures that data
 collected is consistent across the outbreak, so you can more easily perform analysis on the
@@ -66,11 +74,6 @@ You can choose to add **custom variables** to also capture custom metadata like 
 
 ![question-id](../assets/question-Id.png)
 
-### Determining your own custom unique identifier scheme
-If a unique identifier scheme is not already available, consider the following approaches to developing your own custom identifier scheme...
-1. autonumbers (e.g., `CASE-000001`)
-2. national Ids or other available document-based Ids
-3. concatenating attributes available in your dataset (e.g., `surname-dateOfBirth`, `location-surname-birthYear`)
 
 ## 'Upsert' Operations
 “Upsert” operations are a data import pattern where you first check if a record exists using an external identifier, and then 
