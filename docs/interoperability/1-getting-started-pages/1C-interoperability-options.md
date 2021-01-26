@@ -1,8 +1,9 @@
 ---
 layout: default
 title: Options
-parent: Go.Data Interoperability
-nav_order: 2
+parent: Getting Started
+grand_parent: Go.Data Interoperability
+nav_order: 3
 permalink: /options/
 ---
 

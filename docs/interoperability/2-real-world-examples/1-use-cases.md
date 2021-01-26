@@ -1,8 +1,9 @@
 ---
 layout: default
 title: Use Cases
-parent: Go.Data Interoperability
-nav_order: 3
+parent: Real-World Examples
+grand_parent: Go.Data Interoperability
+nav_order: 1
 permalink: /use-cases/
 ---
 
