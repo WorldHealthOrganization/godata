@@ -1,13 +1,17 @@
 ---
 layout: default
 title: 4. Mobile App to Go.Data
-parent: Reference Implementations
+parent: Real-World Examples
 grand_parent: Go.Data Interoperability
 nav_order: 3
 permalink: /godata--mobile-integration/
 ---
+
 # Mobile App to Go.Data Integration
 Mobile apps and survey tools are widely used by Go.Data implementers and other health initiatives for on-the-ground data collection, response, basic monitoring. Many of these tools are open-source and developed on similar frameworks (e.g., ODK, Kobo Toolbox, ONA, CommCare), so the available integration options are very similar. 
+
+- [Watch the video overview](https://sprcdn-assets.sprinklr.com/1652/e8900391-692b-4097-ba7c-f5452c4a00e2-248807594.mp4)
+- [Explore the Implementation](#explore-the-implementation)
 
 ![use-case-4](../assets/use-case-4.png)
 
@@ -24,6 +28,7 @@ In this reference implementation, we integrated a COVID-19 data collection form 
 ![dataflow-4](../assets/io-use-case-4.png)
 
 ## Implementation Steps
+**--> [Watch the solution setup](https://sprcdn-assets.sprinklr.com/1652/b7add509-ecd3-4440-8c82-f1a730fd52e9-227382680.mp4)**
 1. Consider how to extract data from your mobile application ([see Integrating Mobile Apps](https://worldhealthorganization.github.io/godata/integrating-mobile-apps/) for an overview of common options). In this implementation we configured a REST Service on Kobo Toolbox ([see technical instructions](https://docs.openfn.org/kobo-toolbox.html)) to automatically forward new Kobo Toolbox form submissions collected via mobile to a specified endpoint–our demo OpenFn integration layer. 
 
 ![kobo-rest-service1](../assets/kobo-rest-1.png)
@@ -66,16 +71,17 @@ Check out the job on the OpenFn.org demo project or explore the OpenFn Inbox to 
 **→ See the full [job script](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/4-upsertCases.js).** This job leverages the [language-godata](https://github.com/WorldHealthOrganization/language-godata) API adaptor, which offers helper functions like `upsertCase(...)` for quicker integration setup. 
 
 # Explore the Implementation
-1. See the [Explore OpenFn](https://worldhealthorganization.github.io/godata/explore-openfn/) page to explore the jobs on the live reference project. 
-[video-embed]
+1. Watch the [video overview](https://sprcdn-assets.sprinklr.com/1652/e8900391-692b-4097-ba7c-f5452c4a00e2-248807594.mp4), and the [solution setup demo](https://sprcdn-assets.sprinklr.com/1652/b7add509-ecd3-4440-8c82-f1a730fd52e9-227382680.mp4).
 
-2. **Kobo Toolbox**: Explore the demo Kobo project & survey form at [https://kobo.humanitarianresponse.info/](https://kobo.humanitarianresponse.info/) & REST Service configured. Use the following login details:
+2. See the [Explore OpenFn](https://worldhealthorganization.github.io/godata/explore-openfn/) page to explore the jobs on the live reference project. 
+
+3. **Kobo Toolbox**: Explore the demo Kobo project & survey form at [https://kobo.humanitarianresponse.info/](https://kobo.humanitarianresponse.info/) & REST Service configured. Use the following login details:
 ```
 username: godata_demo
 password: interoperability
 ``` 
 
-3. **Job scripts**: See the Github [`interoperability-jobs`](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) to explore the source code used to automate these flows. These leverage an open-source Go.Data API wrapper - the OpenFn adaptor [`language-godata`](https://github.com/WorldHealthOrganization/godata/). 
+4. **Job scripts**: See the Github [`interoperability-jobs`](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) to explore the source code used to automate these flows. These leverage an open-source Go.Data API wrapper - the OpenFn adaptor [`language-godata`](https://github.com/WorldHealthOrganization/language-godata/). 
 
-4. **Solution Design Documentation**: [See this folder](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII)] for the data flow diagram & data element mapping specifications mentioend above and used to write the integration jobs. 
+5. **Solution Design Documentation**: [See this folder](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII)] for the data flow diagram & data element mapping specifications mentioend above and used to write the integration jobs. 
 

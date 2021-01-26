@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 3. Importing Lab Sample Data to Go.Data
-parent: Reference Implementations
+parent: Real-World Examples
 grand_parent: Go.Data Interoperability
 nav_order: 3
 permalink: /importing-lab-results/
@@ -9,6 +9,7 @@ permalink: /importing-lab-results/
 # Importing Lab Sample Data to Go.Data
 For many Go.Data implementers, lab results data will be the starting reference point when implementing a new Go.Data instance. This sample data will need to be first be transformed to align with the Go.Data data model, where `Case` and `Contact` records must first be created to track individual beneficiary details. Once these individual records are created, then related `Lab Results` data can be imported. 
 
+- Watch the [video overview](https://sprcdn-assets.sprinklr.com/1652/84761256-ec87-4b94-8b2c-e8ba09a090af-13172065.mp4)
 - [Explore the Implementation](#explore-the-implementation)
 
 
@@ -57,8 +58,7 @@ Note: If importing `labResults` via the API, you will need to extract the Go.Dat
 
 
 # Explore the Implementation
-1. See the video walkthrough of the lab results import process with a sample dataset.
-[video-embed]
+1. Watch the [video walkthrough](https://sprcdn-assets.sprinklr.com/1652/84761256-ec87-4b94-8b2c-e8ba09a090af-13172065.mp4) of the lab results import process with a sample dataset.
 
 2. **Import templates**: See the Excel templates in the [Go.Data Community](https://community-godata.who.int/page/documents). 
 
