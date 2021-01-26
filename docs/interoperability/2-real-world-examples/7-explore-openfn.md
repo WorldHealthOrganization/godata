@@ -1,9 +1,9 @@
 ---
 layout: default
 title: Explore OpenFn
-parent: Reference Implementations
+parent: Real-World Examples
 grand_parent: Go.Data Interoperability
-nav_order: 8
+nav_order: 7
 permalink: /explore-openfn/
 ---
 

@@ -1,13 +1,13 @@
 ---
 layout: page
-title: Reference Implementations
+title: Real-World Examples
 parent: Go.Data Interoperability
-nav_order: 4
+nav_order: 3
 permalink: /interoperability-examples/
 has_children: true
 ---
 
-# Interoperability Reference Implementations
+# Real-World Interoperability Examples
 The following reference implementations were configured to demonstrate common interoperability use cases & potential solutions.
 - Watch the [videos](https://drive.google.com/drive/folders/1Rf9TXCXkn8_XnjH4FcRsIGqDZ-UkVvdC) for demo implementations and additional how-to guidance. 
 - See the [Use Cases](https://worldhealthorganization.github.io/godata/use-cases/) for a summary of the driving requirements and use cases. 

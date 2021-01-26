@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 6. Aggregate Reporting to DHIS2
-parent: Reference Implementations
+parent: Real-World Examples
 grand_parent: Go.Data Interoperability
 nav_order: 6
 permalink: /godata--dhis2-aggregate/
