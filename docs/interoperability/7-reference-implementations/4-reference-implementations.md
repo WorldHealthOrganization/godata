@@ -2,7 +2,7 @@
 layout: page
 title: Reference Implementations
 parent: Go.Data Interoperability
-nav_order: 7
+nav_order: 4
 permalink: /interoperability-examples/
 has_children: true
 ---
