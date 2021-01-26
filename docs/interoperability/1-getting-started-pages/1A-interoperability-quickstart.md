@@ -8,12 +8,6 @@ permalink: /interoperability-quickstart/
 ---
 
 # Interoperability Planning QuickStart
-Go.Data provides a suite of data import & sharing features that can be leveraged to support a wide range of data interoperability solutions, which may include manual data sharing, reporting, and/or automated data integration to facilitate secure information exchange.
-
-![implementation-1](../assets/godata-example1.png)
-
-![implementation-2](../assets/godata-example2.png)
-
 When considering which approach is best-fit for your implementation, ask yourself...
 
 1. What are your _functional_ interoperability requirements. _What_ information needs to be shared, with _which user groups/organizations_, and _when_? 
