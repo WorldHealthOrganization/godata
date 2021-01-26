@@ -2,7 +2,7 @@
 layout: default
 title: Integration Scripts
 parent: Go.Data Interoperability
-nav_order: 4
+nav_order: 6
 permalink: /integration-scripts/
 ---
 
