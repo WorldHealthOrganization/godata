@@ -8,13 +8,14 @@ permalink: /interoperability-quickstart/
 ---
 
 # Interoperability Planning QuickStart
-Considering interoperbility solutions for your Go.Data implementation to improve data sharing and collaboration? See the below "Quick Start" steps for getting started. 
+Go.Data provides a suite of data import & sharing features that can be leveraged to support a wide range of data interoperability solutions, which may include manual data sharing, reporting, and/or automated data integration to facilitate secure information exchange.
 
 ![implementation-1](../assets/godata-example1.png)
 
 ![implementation-2](../assets/godata-example2.png)
 
-Go.Data provides a suite of data import & sharing features that can be leveraged to support a wide range of data interoperability solutions, which may include manual data sharing, reporting, and/or automated data integration to facilitate secure information exchange. When considering which approach is best-fit for your implementation, ask yourself...
+When considering which approach is best-fit for your implementation, ask yourself...
+
 1. What are your _functional_ interoperability requirements. _What_ information needs to be shared, with _which user groups/organizations_, and _when_? 
 2. What are your _compliance/legal_ requirements with respect to data sharing and privacy. Are there any country-specific compliance requirements that need to be adhered to? 
 3. What systems/tools do partner organizations use and what are their _technical_ requirements? See below section [Connecting other systems](#connecting-other-systems) for specific questions to ask.  
