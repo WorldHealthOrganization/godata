@@ -7,7 +7,7 @@ has_children: true
 ---
 
 # Go.Data Analytics Add-Ons & Dashboards
-This documentation and linked Github repository (https://github.com/WorldHealthOrganization/godata) provides a suite of resources to enable and strengthen 
+This documentation and linked [Github repository](https://github.com/WorldHealthOrganization/godata/tree/master/analytics) provides a suite of resources to enable and strengthen 
 extraction, analysis and visualization of the data collected and stored via the Go.Data platform. This section is closely related to interoperability considerations and will make use of the API documentation there.
 
 There are a number of considerations and possibilities for ways to extract your data and tech stacks to connect for data cleaning and analysis, including license-based or open-source dashboard products.
