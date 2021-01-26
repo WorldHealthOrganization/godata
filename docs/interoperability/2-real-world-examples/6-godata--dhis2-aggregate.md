@@ -25,6 +25,7 @@ Go.Data plans to expand its API to support extraction of automatically aggregate
 ---
 ## Solution Overview
 **--> Watch the [video overview](https://sprcdn-assets.sprinklr.com/1652/5a2c79e5-f8b6-473a-b81c-7eba187f1c24-1003632985.mp4)**
+
 Many Go.Data implementers have reported that they are required to regularly report summary results to their national-level HMIS, many of which use DHIS2 for country-level reporting and monitoring. Therefore, in this reference implementation we integrated Go.Data with the DHIS2 COVID-19 demo org, summarizing Go.Data `Cases` and uploading them as `dataValueSets` into DHIS2 for aggregate indicator reporting. See the below data flow diagram. 
 - DHIS2 is a popular open-source health information system implemented in several countries worldwide, and provides features for individual- and aggregate-level health record tracking, managament, and analysis. DHIS2 also provides features for common HMIS use cases like the [COVID-19 Surveillance Package](https://www.dhis2.org/covid-19). 
 - DHIS2 `Indicators` ([read more here](https://docs.dhis2.org/2.34/pt/dhis2_implementation_guide/indicators.html#:~:text=In%20DHIS2%2C%20the%20indicator%20is,do%20not%20have%20a%20denominator.)) are a core unit of aggregate analysis and are based on `data elements`. 
@@ -99,7 +100,7 @@ dataValueSet({
 - Watch the [video overview](https://sprcdn-assets.sprinklr.com/1652/5a2c79e5-f8b6-473a-b81c-7eba187f1c24-1003632985.mp4)
 - Watch the [setup walkthrough](https://sprcdn-assets.sprinklr.com/1652/8cb40700-8b8b-442d-a323-314078cb58d3-623643034.mp4)
 
-2. *[DHIS2**: Here we integrated with the public `COVID-19 Demo` instance: [https://covid19.dhis2.org/demo](https://covid19.dhis2.org/demo)
+2. **DHIS2**: Here we integrated with the public `COVID-19 Demo` instance: [https://covid19.dhis2.org/demo](https://covid19.dhis2.org/demo)
 
 3. **Job scripts**: See the Github [`interoperability-jobs`](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) to explore the source code used to automate these flows. These leverage an open-source Go.Data API wrapper - the OpenFn adaptor [`language-godata`](https://github.com/WorldHealthOrganization/language-godata/), as well as the DHIS2 API adaptor [language-dhis2](https://openfn.github.io/language-dhis2/)
 
