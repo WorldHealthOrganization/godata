@@ -17,10 +17,10 @@ This is linked to the public Github repository: [https://github.com/WorldHealthO
 ## Aim of this documentation site
 This site is a centralized place where you can access _technical documentation and code_ that you may find useful in your Go.Data deployment. This includes code snippets and documentation to access the Go.Data API, perform data exchange / integration with other systems, and conduct additional analysis. 
 
-Any generic information about Go.Data is best accessed through our [Community of Practice website](https://community-godata.who.int/)(https://community-godata.who.int/), where we link to a range of user guides and training materials. You can dialogue there with the community of Go.Data on a number of discussion forums. You can access our open-access online training course through OpenWHO [here](https://openwho.org/courses/godata-en).
+Any generic information about Go.Data is best accessed through our [Community of Practice website](https://community-godata.who.int/) (https://community-godata.who.int/), where we link to a range of user guides and training materials. You can dialogue there with the community of Go.Data on a number of discussion forums. You can access our open-access online training course through OpenWHO [here](https://openwho.org/courses/godata-en).
 ![godata-cop](./assets/cop.PNG)
 
 ## Questions & Contributions
-We are actively seeking feedback and contributions from the community. Please visit our Community of Practice website(https://community-godata.who.int/) or contact us at [godata@who.int](mailto://godata@who.int). 
+We are actively seeking feedback and contributions from the community. Please visit the Go.Data [Community of Practice](https://community-godata.who.int/) or contact us at [godata@who.int](mailto://godata@who.int). 
 
 To contribute this documentation site & submit projects and code samples, summarize your project by drafting a new `Project` page and submitting to the Go.Data repo as a pull request. See the `Contribution Template`: [https://github.com/WorldHealthOrganization/godata/blob/master/docs/contribute/contribution-template.md](https://github.com/WorldHealthOrganization/godata/blob/master/docs/contribute/contribution-template.md)

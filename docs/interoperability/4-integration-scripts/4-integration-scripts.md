@@ -2,34 +2,36 @@
 layout: default
 title: Integration Scripts
 parent: Go.Data Interoperability
-nav_order: 4
+nav_order: 6
 permalink: /integration-scripts/
 ---
 
 # Go.Data Integration Scripts
-_To date, Go.Data partners have written integration code using JavaScript, C#, Python and R. See below and the [Github repo](https://github.com/WorldHealthOrganization/godata/) to learn more, and check out the Go.Data community 
-([https://community-godata.who.int](https://community-godata.who.int)) to engage directly with this community._
+_To date, Go.Data partners have written integration code using JavaScript, C#, Python and R. You can find integration scripts related to the Go.Data project in the WHO repository [here](https://github.com/WorldHealthOrganization?q=go-data&type=&language=)_
+_To engage directly with this community, visit the "Interoperability" forum in the CoP [here](https://community-godata.who.int/topics/interoperability/5fd8ec64f5c77e114e6c6823)_
 
-## 1. Sample Report Scripts
-See Github directory & [Analytics documentation](https://worldhealthorganization.github.io/godata/analytics/). These contain example scripts for extracting, cleaning, and running some basic analysis. Output at present includes flattened cleaned `.csv` files for case/contact linelists 
-and an HTML dashboard displaying operational performance metrics for contact tracing by contact tracing supervisor and teams. Feel free to adapt to your purposes and share back any good stuff you've created!
+## 1. Sample R Report Scripts
+See [Github directory](https://github.com/WorldHealthOrganization/godata/tree/master/analytics/r-reporting) & [Analytics documentation](https://worldhealthorganization.github.io/godata/analytics/). 
 
-## 2. R Scripts for API Actions
-See [Analytics documentation](https://worldhealthorganization.github.io/godata/analytics/) and the Github directory: [api](https://github.com/WorldHealthOrganization/godata/tree/master/api)
+We have developed some template R scripts for extracting, cleaning, and running some basic analysis. Output includes flattened cleaned `.csv` files for case/contact linelists and HTML dashboards displaying operational performance metrics for contact tracing by contact tracing supervisor and teams. 
 
-This contains many example R scripts for GET/PUT/POST commands so that you can manipulate your Go.Data instance through the API, including bulk actions. We have used this for our training instances but think it could be helpful for others too.
+## 2. Scripts for API Actions
+See Github directory: [api](https://github.com/WorldHealthOrganization/godata/tree/master/api) and [Analytics documentation](https://worldhealthorganization.github.io/godata/analytics/).
+
+This contains example R, Pythin and C# scripts for GET/PUT/POST commands so that you can manipulate your Go.Data instance through the API, including bulk actions. We have used this for our training instances but think it could be helpful for others too.
 
 ## 3. Lime Survey to Go.Data
-A project developed internally by WHO IMT to link Daat Form (Lime Survey) to Go.Data API to API for the exchange of COVID-19 tracking data for WHO staff. This then is a very specific solution internal to WHO's need but illustrated using the Lime Survey and Go.Data interfaces using .Net 4.7.2 - C# code. 
+A project developed internally by WHO Information Management and Technology Department to link Data Form (Lime Survey) to Go.Data API for the exchange of COVID-19 tracking data for WHO staff. This is a very specific solution internal to WHO's need but illustrates integrating the Lime Survey and Go.Data interfaces using .Net 4.7.2 - C# code. 
 
-See [Analytics documentation](https://worldhealthorganization.github.io/godata/analytics/) to learn more. 
+_Code and documentation coming soon_
 
 ## 4. DHIS2 to Go.Data
-See Github directory: [dhis2togodata](https://github.com/WorldHealthOrganization/godata/tree/master/dhis2togodata)
+See Github directories: [dhis2-godata-interoperability](https://github.com/WorldHealthOrganization/dhis2-godata-interoperability) & [godata-api-wrapper](https://github.com/WorldHealthOrganization/godata-api-wrapper)
 
-This folder contains the beginnings of interoperability work between DHIS2 COVID packages and Go.Data for countries that 
-have requested to push their case and contact data to Go.Data from their DHIS2 instance, and vice versa, to benefit from core competencies of each tool. 
+-Collaborators at the Polytechnic University of Catalonia (UPC) have developed a DHIS2 app for exporting metadata and data between DHIS2 and Go.Data. This has been a common request for countries who are using DHIS2 COVID-19 package for case registration but would like to utilize Go.Data for contact tracing follow-up. 
 
+See Github directory: [dhis2godata](https://github.com/WorldHealthOrganization/WIDP-DHIS2-scripts/tree/master/dhis2godata)
+-Collaborators at [EyeSeeTea](https://github.com/EyeSeeTea) have developed a script to quickly convert dhis2 Organization Units to Go.Data locations.
 
 ## 5. OpenFn Job Scripts for API Actions
 See Github directory: [interoperability-jobs](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs)
@@ -43,3 +45,8 @@ These jobs leverage OpenFn open-source API adaptors including [`language-godata`
 See [Analytics documentation](https://worldhealthorganization.github.io/godata/analytics/) and the Github directory [analytics](https://github.com/WorldHealthOrganization/godata/tree/master/analytics) for PowerBI and other scripts for exporting data to external dashboards. 
 
 _New scripts - coming soon._ [See the community](https://community-godata.who.int/conversations/dashboards-and-analysis/connecting-power-bi-through-api/5f8033acbd255079ca8ce356) for related discussion. 
+
+## 7. WHO Polio Database to Go.Data
+See Github directory: [PolioDB-GODATA](https://github.com/EyeSeeTea/WHO-scripts)
+
+-Collaborators at [EyeSeeTea](https://github.com/EyeSeeTea) have developed a script to quickly convert admin levels from the WHO Polio GeoDatabase to Go.Data locations.

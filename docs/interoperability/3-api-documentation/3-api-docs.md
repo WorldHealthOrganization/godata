@@ -2,7 +2,7 @@
 layout: default
 title: API Documentation
 parent: Go.Data Interoperability
-nav_order: 3
+nav_order: 5
 permalink: /api-docs/
 ---
 
@@ -21,10 +21,8 @@ The self-documenting description of the API methods can be viewed using Loopback
 Loopack explorer provides some examples of possible operations, lists interface parameters and allows you to manually input json inputs and to test them against the API.
 Methods are present to `GET`, `POST`, `PATCH`, etc. for bidirectional exchange of data with Go.Data. A familiarity with the types of data entities present within Go.Data is essential for understanding the API.
 
-See the API Loopback Explorer for the Go.Data Demo Site: [https://godata-r19.who.int/explorer/](https://godata-r19.who.int/explorer/)
-
-For more information on interacting with the API (e.g., how to add field filters to HTTP requests), see the LoopBack documentation: 
-[https://loopback.io/doc/en/lb3/Fields-filter.html](https://loopback.io/doc/en/lb3/Fields-filter.html)
+For more information on interacting with the API to query data (e.g., how to add field filters to HTTP requests), see the LoopBack documentation here: 
+[here](https://loopback.io/doc/en/lb3/Querying-data.html)
 
 ## Authentication 
 Almost all methods exposed by Go.Data require the request to be called by an authenticateduser. Authentication works as follows: 
