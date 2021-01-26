@@ -12,3 +12,5 @@ This documentation and linked Github repository ([https://github.com/WorldHealth
 ![implementation-1](../assets/godata-example1.png)
 
 ![implementation-2](../assets/godata-example2.png)
+
+Questions or feedback? Mention `@openfn` in the [Go.Data Community](https://community-godata.who.int/). 

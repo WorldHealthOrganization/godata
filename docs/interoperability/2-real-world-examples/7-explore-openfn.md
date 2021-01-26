@@ -18,9 +18,16 @@ Check out a live
   2. Use the demo project's login credentials: 
   ```
   username: godata@who.int
-  password: interoperability
+  password: interop2021
   ```
-  3. Check out [the demo videos](https://worldhealthorganization.github.io/godata/interoperability-examples/)
+  3. Check out [the demo videos](https://community-godata.who.int/categories/videos/5fbfbb05654a4708eb508463)
+
+  4. Explore the **Go.Data Demo Instance**. If you would like to try Go.Data before downloading and installing yourself then a “sandbox” environment has been made available on a WHO server.  This is a play instance of the latest version of the software and you are free to create an outbreak, populate it with data, experiment with reports, exporting data etc.  You can make any changes that you like to explore the tool and see it in practice and an outbreak with dummy data has been provided to give you a head start.
+  - This environment resets every two days however, so should not be used for building demonstrations or for any work that you would like to persist.  Also bear in mind that others may be using the environment at the same time as you
+  - To request your login account please complete the form below/send an email to [godata@who.int](mailto://godata@who.int) including:
+  1. The name of your institution and the country where you are working
+  2. Your intended use of Go.Data
+  3. Your preferred duration for using the demo site
 
 ## Getting started on OpenFn.org&apos;s free forever tier
 OpenFn integration platform provides a *free-forever* tier for users wanting to quickly prototype and test integration flows, or experiment with existing OpenFn jobs (or "integration scripts") implemented by other real-world organizations on the hosted platform [OpenFn.org - register here](https://www.openfn.org/signup).

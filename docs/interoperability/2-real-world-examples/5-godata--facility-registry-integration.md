@@ -1,11 +1,12 @@
 ---
 layout: default
 title: 5. Administrative Unit Areas to Go.Data
-parent: Reference Implementations
+parent: Real-World Examples
 grand_parent: Go.Data Interoperability
 nav_order: 5
 permalink: /5-godata--facility-registry/
 ---
+
 #  Open Source Reference Data Integration with Go.Data (i.e. Country administrative units, health facilities)
 Importing administrative locations (e.g., `Admin-Level-2` province data) and different `Location` reference data are typically the first steps in setting up a 
 new `Outbreak` in Go.Data. Importing locations from shared reference sources are important to strengthening interoperability and ensuring information can be easily synced and mapped in other systems. 
@@ -21,6 +22,10 @@ new `Outbreak` in Go.Data. Importing locations from shared reference sources are
  
 ## Other types of location reference data (i.e., health facilities)
 In this reference implementation (below docs), we demonstrate how Go.Data `Reference Data` may be synced via APIs between Go.Data and an external web-based data source. While this implementation integrates `HealthSites` data, a similar integration approach may be applied to integrate other data sources with an available web API.**  
+
+- [Watch the video overview](https://sprcdn-assets.sprinklr.com/1652/18c30dd7-141d-4f13-9b5b-c4a6f5b35a03-1187367103.mp4)
+- [Explore the Implementation](#explore-the-implementation)
+
 ![use-case-5](../assets/use-case-5.png)
 
 ---
@@ -37,6 +42,7 @@ In this reference implementation, we integrated a health facility list extracted
 
 ![dataflow-5](../assets/dataFlow-use-case-5.png)
 ### Implementation Steps
+**-->[Watch to learn about the solution setup](https://sprcdn-assets.sprinklr.com/1652/ccc28fcf-8fe2-40c0-a743-82f9532cb555-447333759.mp4)**
 1. We first identified the external data source to be integrated, data availability, and available APIs - see [HealthSites country data](https://healthsites.io/#country-data). 
 2. Once we've identified the specific facility we'd like to integrate, we then determine how to export the data from the source. [See here](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/5a-GETHealthSitesData.js) for an example OpenFn job script where we send a `GET` HTTP request to `/api/v2/facilities` to list a health facilities for `Bangladesh` in HealthSites.io.
 ```
@@ -113,7 +119,8 @@ See below and p.33 of the [Implementation Guide](https://community-godata.who.in
 
 # Explore the Implementation
 1. See the [Explore OpenFn](https://worldhealthorganization.github.io/godata/explore-openfn/) page to explore the jobs on the live reference project. 
-[video-embed]
+- [Watch the video overview](https://sprcdn-assets.sprinklr.com/1652/18c30dd7-141d-4f13-9b5b-c4a6f5b35a03-1187367103.mp4)
+- [Learn about the solution setup](https://sprcdn-assets.sprinklr.com/1652/ccc28fcf-8fe2-40c0-a743-82f9532cb555-447333759.mp4)
 
 2. **[HealthSites.io](https://healthsites.io/)**: [See here](https://github.com/healthsites/healthsites/wiki/API) for the API docs and instructions for creating your own OpenStreetMap account to access the data source via the API. 
 
