@@ -28,4 +28,4 @@ Any changes made to the `master` branch will be automatically deployed to the do
 
 
 ## Questions? 
-Mention @aleksa-krolls in Github, or post on the Go.Data Slack channel: [link]
+Mention @openfn on the Go.Data CoP. 

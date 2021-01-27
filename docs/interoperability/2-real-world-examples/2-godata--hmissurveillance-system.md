@@ -8,6 +8,7 @@ permalink: /1-2-godata--hmissurveillance-system/
 ---
 # Go.Data <> National Information System Integration for 2-way Information Exchange
 In most country-level implementations, Go.Data needs to interoperate with an existing Health Management Information System (HMIS) or Surveillance system to ensure no duplication of efforts. These systems might be configured on an application like DHIS2 or are custom developed using other software or databases. In this solution we explore the following use cases by designing for a Go.Data integration with a theoretical SQL-based HMIS for 2-way exchange of case information. 
+- Watch the [video overview](https://sprcdn-assets.sprinklr.com/1652/5c563375-1bfb-4847-be50-4a21c3cc2cc6-1081611361.mp4)
 - Skip to [Use Case #1 docs](#use-case-1-hmis-to-godata-flow)
 - Skip to [Use Case #2 docs](#use-case-2-godata-to-hmis-flow)
 - Skip to [Applying FHIR data standards docs](#applying-fhir-data-standards)
