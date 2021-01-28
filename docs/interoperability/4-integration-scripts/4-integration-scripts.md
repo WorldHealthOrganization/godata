@@ -6,7 +6,7 @@ nav_order: 5
 permalink: /integration-scripts/
 ---
 
-# Go.Data Integration Scripts Under Development
+# Go.Data Integration Scripts
 _To date, Go.Data partners have written integration code using JavaScript, C#, Python and R. You can find integration scripts related to the Go.Data project in the WHO repository [here](https://github.com/WorldHealthOrganization?q=go-data&type=&language=)_
 _To engage directly with this community, visit the "Interoperability" forum in the CoP [here](https://community-godata.who.int/topics/interoperability/5fd8ec64f5c77e114e6c6823)_
 
