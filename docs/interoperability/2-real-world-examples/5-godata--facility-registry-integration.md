@@ -53,7 +53,7 @@ We refer to the data source's [API docs](https://healthsites.io/api/docs/) to de
 3. Analyze the response to #2 to determine the appropriate unique identifiers to matching with Go.Data `reference-data` and to use as an external identifier for future duplicate prevention. For this implementation, we chose to use `name` to map to existing `Health Centres`, but you might also consider using a unique location id or geodata codes (see the [Unique Identifiers](http://worldhealthorganization.github.io/godata/unique-identifiers) section for more on this design topic). 
 
 [See here](https://github.com/WorldHealthOrganization/godata/blob/docs-toolkit/interoperability-jobs/sampleData/bangladeshHealthSites.json) for the full JSON response to the `GET` request made to the API in step 2. 
-```.json
+```json
 {
   "0": {
     "attributes": {
@@ -81,10 +81,10 @@ We refer to the data source's [API docs](https://healthsites.io/api/docs/) to de
 
 5. We then drafted another OpenFn integration script (or "job" - [see here](https://github.com/WorldHealthOrganization/godata/blob/docs-toolkit/interoperability-jobs/5-uploadHealthSites.js)) to automate the data integration mapping of data points between HealthSites and Go.Data (see below snippet). 
 ```js 
-   const data = {
+   const data = { //mapping attributes
       id: `LNG_REFERENCE_DATA_CATEGORY_CENTRE_NAME_${name}`,  //godataVariable: sourceValue,
-      categoryId: 'LNG_REFERENCE_DATA_CATEGORY_CENTRE_NAME',
-      value: attributes.name,
+      categoryId: 'LNG_REFERENCE_DATA_CATEGORY_CENTRE_NAME', //godata reference-data Id
+      value: attributes.name, //map from HealthSites.io ...
       code: attributes.uuid,
       active: true,
       readOnly: false,
@@ -121,10 +121,11 @@ See below and p.33 of the [Implementation Guide](https://community-godata.who.in
 1. See the [Explore OpenFn](https://worldhealthorganization.github.io/godata/explore-openfn/) page to explore the jobs on the live reference project. 
 - [Watch the video overview](https://sprcdn-assets.sprinklr.com/1652/18c30dd7-141d-4f13-9b5b-c4a6f5b35a03-1187367103.mp4)
 - [Learn about the solution setup](https://sprcdn-assets.sprinklr.com/1652/ccc28fcf-8fe2-40c0-a743-82f9532cb555-447333759.mp4)
+- And [see here](https://community-godata.who.int/topics/interoperability/5fd8ec64f5c77e114e6c6823) for other interoperability videos. 
 
 2. **[HealthSites.io](https://healthsites.io/)**: [See here](https://github.com/healthsites/healthsites/wiki/API) for the API docs and instructions for creating your own OpenStreetMap account to access the data source via the API. 
 
-3. **Job scripts**: See the Github [`interoperability-jobs`](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) to explore the source code used to automate these flows. These leverage an open-source Go.Data API wrapper - the OpenFn adaptor [`language-godata`](https://github.com/WorldHealthOrganization/godata/). 
+3. **Job scripts**: See the Github [`interoperability-jobs`](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) to explore the source code used to automate these flows. These leverage an open-source Go.Data API wrapper - the OpenFn adaptor [`language-godata`](https://github.com/WorldHealthOrganization/language-godata/). 
 
 4. **Solution Design Documentation**: [See this folder](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII)] for the data flow diagram & data element mapping specifications mentioend above and used to write the integration jobs. 
 

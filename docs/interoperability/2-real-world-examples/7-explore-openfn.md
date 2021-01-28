@@ -20,7 +20,7 @@ Check out a live
   username: godata@who.int
   password: interop2021
   ```
-  3. Check out [the demo videos](https://community-godata.who.int/categories/videos/5fbfbb05654a4708eb508463)
+  3. **[Watch this video](https://sprcdn-assets.sprinklr.com/1652/d3588bef-95ef-4536-98b6-a33cd6ebf293-797828951.mp4)** walkthrough of the OpenFn jobs. And check out the [other demo videos](https://community-godata.who.int/topics/interoperability/5fd8ec64f5c77e114e6c6823). 
 
   4. Explore the **Go.Data Demo Instance**. If you would like to try Go.Data before downloading and installing yourself then a “sandbox” environment has been made available on a WHO server.  This is a play instance of the latest version of the software and you are free to create an outbreak, populate it with data, experiment with reports, exporting data etc.  You can make any changes that you like to explore the tool and see it in practice and an outbreak with dummy data has been provided to give you a head start.
   - This environment resets every two days however, so should not be used for building demonstrations or for any work that you would like to persist.  Also bear in mind that others may be using the environment at the same time as you
@@ -74,6 +74,6 @@ command line.
 
 ## Questions on OpenFn jobs & Go.Data API integration setup? 
 
-Mention `@openfn` in the [Go.Data Community](https://community-godata.who.int/) or post questions on the [OpenFn Community](https://community.openfn.org/). 
+Mention `@openfn` in the [Go.Data Community](https://community-godata.who.int/). 
 
 Also check out the OpenFn documentation [docs.openfn.org](https://docs.openfn.org) and [Github](https://github.com/OpenFn). 

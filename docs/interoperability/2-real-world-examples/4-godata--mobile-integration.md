@@ -71,14 +71,14 @@ Check out the job on the OpenFn.org demo project or explore the OpenFn Inbox to 
 **→ See the full [job script](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/4-upsertCases.js).** This job leverages the [language-godata](https://github.com/WorldHealthOrganization/language-godata) API adaptor, which offers helper functions like `upsertCase(...)` for quicker integration setup. 
 
 # Explore the Implementation
-1. Watch the [video overview](https://sprcdn-assets.sprinklr.com/1652/e8900391-692b-4097-ba7c-f5452c4a00e2-248807594.mp4), and the [solution setup demo](https://sprcdn-assets.sprinklr.com/1652/b7add509-ecd3-4440-8c82-f1a730fd52e9-227382680.mp4).
+1. Watch the [video overview](https://sprcdn-assets.sprinklr.com/1652/e8900391-692b-4097-ba7c-f5452c4a00e2-248807594.mp4), and the [solution setup demo](https://sprcdn-assets.sprinklr.com/1652/b7add509-ecd3-4440-8c82-f1a730fd52e9-227382680.mp4). And [see here](https://community-godata.who.int/topics/interoperability/5fd8ec64f5c77e114e6c6823) for other interoperability videos. 
 
 2. See the [Explore OpenFn](https://worldhealthorganization.github.io/godata/explore-openfn/) page to explore the jobs on the live reference project. 
 
 3. **Kobo Toolbox**: Explore the demo Kobo project & survey form at [https://kobo.humanitarianresponse.info/](https://kobo.humanitarianresponse.info/) & REST Service configured. Use the following login details:
 ```
 username: godata_demo
-password: interoperability
+password: Interoperability
 ``` 
 
 4. **Job scripts**: See the Github [`interoperability-jobs`](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs) to explore the source code used to automate these flows. These leverage an open-source Go.Data API wrapper - the OpenFn adaptor [`language-godata`](https://github.com/WorldHealthOrganization/language-godata/). 

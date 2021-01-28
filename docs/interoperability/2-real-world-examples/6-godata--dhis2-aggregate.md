@@ -99,6 +99,7 @@ dataValueSet({
 1. See the [Explore OpenFn](https://worldhealthorganization.github.io/godata/explore-openfn/) page to explore the jobs on the live reference project. 
 - Watch the [video overview](https://sprcdn-assets.sprinklr.com/1652/5a2c79e5-f8b6-473a-b81c-7eba187f1c24-1003632985.mp4)
 - Watch the [setup walkthrough](https://sprcdn-assets.sprinklr.com/1652/8cb40700-8b8b-442d-a323-314078cb58d3-623643034.mp4)
+- And [see here](https://community-godata.who.int/topics/interoperability/5fd8ec64f5c77e114e6c6823) for other interoperability videos
 
 2. **DHIS2**: Here we integrated with the public `COVID-19 Demo` instance: [https://covid19.dhis2.org/demo](https://covid19.dhis2.org/demo)
 

@@ -22,7 +22,7 @@ For many Go.Data implementers, lab results data will be the starting reference p
 ---
 
 ### Standard Import Process
-Typically a lab will provide export of `sample`/ `labResults` data like [this example](https://docs.google.com/spreadsheets/d/1xwqHwjb8aRwycRzz5Sk0MLtoOwSc6UhqLolV4ylcHLc/edit?usp=sharing). In this data source, there might be multiple `Sample` results for 1 unique individual. 
+Typically a lab will provide export of `sample`/ `labResults` data like [this example file](https://sprcdn-assets.sprinklr.com/1652/3b12476b-0d12-4d85-a3f9-c748a69c7856-960273073.xlsx). In this data source, there might be multiple `Sample` results for 1 unique individual. 
 
 ![lab-samples2](../assets/lab-samples2.png)
 
@@ -58,9 +58,12 @@ Note: If importing `labResults` via the API, you will need to extract the Go.Dat
 
 
 # Explore the Implementation
-1. Watch the [video walkthrough](https://sprcdn-assets.sprinklr.com/1652/84761256-ec87-4b94-8b2c-e8ba09a090af-13172065.mp4) of the lab results import process with a sample dataset.
+1. Watch the [video walkthrough](https://sprcdn-assets.sprinklr.com/1652/84761256-ec87-4b94-8b2c-e8ba09a090af-13172065.mp4) of the lab results import process with a sample dataset. And [see here](https://community-godata.who.int/topics/interoperability/5fd8ec64f5c77e114e6c6823) for other interoperability videos. 
 
-2. **Import templates**: See the Excel templates in the [Go.Data Community](https://community-godata.who.int/page/documents). 
+2. **Import templates**: See the Excel templates in the [Go.Data Community](https://community-godata.who.int/topics/interoperability/5fd8ec64f5c77e114e6c6823): 
+- [Case Import Template](https://sprcdn-assets.sprinklr.com/1652/81f8ca3b-85dd-4227-ba38-07a3fd7602dc-1433384782.xlsx)
+- [Contact Import Template](https://sprcdn-assets.sprinklr.com/1652/c6e81e6d-a1d7-497e-befe-b4c901771a22-1696387742.xlsx)
+- [Lab Results Import Template](https://sprcdn-assets.sprinklr.com/1652/3b12476b-0d12-4d85-a3f9-c748a69c7856-960273073.xlsx)
 
 3. **Learn More**: See the section on [Unique Identifiers](https://worldhealthorganization.github.io/godata/unique-identifiers/) to support with resource matching during data imports. 
 

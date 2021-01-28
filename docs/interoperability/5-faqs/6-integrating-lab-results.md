@@ -22,5 +22,9 @@ Results can be imported using standard Go.Data Excel import features and/or via 
 
 ## Resources
 1. See the related [reference implementation #3](https://worldhealthorganization.github.io/godata/importing-lab-results/) for specific step-by-step guidance with a real-world example. 
-2. See the [CSV import templates](https://community-godata.who.int/page/documents) for converting lab results to Case/Contact and Lab Results records. 
+2. See the [Go.Data Community](https://community-godata.who.int/topics/interoperability/5fd8ec64f5c77e114e6c6823) for import templates converting lab results to Case/Contact and Lab Results records. These include: 
+- [Case Import Template](https://sprcdn-assets.sprinklr.com/1652/81f8ca3b-85dd-4227-ba38-07a3fd7602dc-1433384782.xlsx)
+- [Contact Import Template](https://sprcdn-assets.sprinklr.com/1652/c6e81e6d-a1d7-497e-befe-b4c901771a22-1696387742.xlsx)
+- [Lab Results Import Template](https://sprcdn-assets.sprinklr.com/1652/3b12476b-0d12-4d85-a3f9-c748a69c7856-960273073.xlsx)
+
 3. See the [Unique Identifiers](https://worldhealthorganization.github.io/godata/unique-identifiers/) section for more on assigning unique Ids to individual `Case` and `Contact` records. 
