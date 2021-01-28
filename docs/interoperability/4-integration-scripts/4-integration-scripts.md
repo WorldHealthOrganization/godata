@@ -21,6 +21,8 @@ See [Analytics documentation](https://worldhealthorganization.github.io/godata/a
 ## 2. DHIS2 to Go.Data
 See Github directories: [dhis2-godata-interoperability](https://github.com/WorldHealthOrganization/dhis2-godata-interoperability) & [godata-api-wrapper](https://github.com/WorldHealthOrganization/godata-api-wrapper)
 
+![architecture-summary](../assets/dhis2togodata.PNG)
+
 -Collaborators at the Polytechnic University of Catalonia (UPC) have developed a DHIS2 app for exporting metadata and data between DHIS2 and Go.Data. This has been a common request for countries who are using DHIS2 COVID-19 package for case registration but would like to utilize Go.Data for contact tracing follow-up. 
 
 See Github directory: [dhis2godata](https://github.com/WorldHealthOrganization/WIDP-DHIS2-scripts/tree/master/dhis2godata)
