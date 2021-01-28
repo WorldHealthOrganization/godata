@@ -73,7 +73,7 @@ _**"Upsert"** operations are a data import pattern where you first check if a re
 # Use Case #1. HMIS to Go.Data flow
 **--> Watch the [video overview](https://sprcdn-assets.sprinklr.com/1652/de049c96-3f74-488a-98e7-4d09246ce431-1141987205.mp4).**
 To demonstrate automated data integration between the HMIS database and Go.Data, we...
-1. Configured OpenFn job [`1a-getCasesHMIS.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/1a-getCasesHMIS.js) to fetch data from the HMIS system. Here we leveraged the open-source OpenFn adaptor [`language-postgresql`](https://github.com/OpenFn/language-postgresql) to connect directly with the database and execute a `sql()` statement to list relevant records. 
+1. Configured OpenFn job [`1a-getCasesHMIS.js`](https://github.com/WorldHealthOrganization/godata/blob/master/interoperability-jobs/1a-getCasesHMIS.js) to fetch data from the HMIS system. Here we leveraged the open-source OpenFn API adaptor [`language-postgresql`](https://github.com/OpenFn/language-postgresql) to connect directly with the database and execute a `sql()` statement to list relevant records. 
 ```js
 sql(state => 'SELECT * FROM tbl_cases WHERE active = true'); //query from source table
 ```
@@ -184,6 +184,7 @@ Mapping data elements to match standard definitions is a great first step in you
 - [Solution overview](https://sprcdn-assets.sprinklr.com/1652/fa2f3315-b8ee-4470-b97a-54a0bac4a739-484921231.mp4)
 - [Use Case 1: 2-way record exchange](https://sprcdn-assets.sprinklr.com/1652/de049c96-3f74-488a-98e7-4d09246ce431-1141987205.mp4)
 - [Use case 2: Applying data standards](https://sprcdn-assets.sprinklr.com/1652/7c2bedc4-e46c-4bd0-8993-160de8e851fc-2083360164.mp4)
+- [See all interoperability videos](https://community-godata.who.int/topics/interoperability/5fd8ec64f5c77e114e6c6823)
 
 2.  See the [Explore OpenFn](https://worldhealthorganization.github.io/godata/explore-openfn/) page to explore the jobs on the live reference project. 
 
@@ -191,7 +192,7 @@ Mapping data elements to match standard definitions is a great first step in you
 
 4. **Solution Design Documentation**: [See this folder](https://drive.google.com/drive/folders/1qL3el6F2obdmtu2QKgcWYoXWsqBkhtII)] for the data flow diagram & data element mapping specifications mentioend above and used to write the integration jobs. 
 
-5. **HMIS demo**: For this reference implementation, we configured a demo Health Management Information System ("HMIS") on a SQL database and implemented OpenFn jobs that leverage the [`language-postgresql`](https://github.com/OpenFn/language-postgresql) to connect directly with the database.
+5. **HMIS demo**: For this reference implementation, we configured a demo Health Management Information System ("HMIS") on a SQL database and implemented OpenFn jobs that leverage the API adaptor [`language-postgresql`](https://github.com/OpenFn/language-postgresql) to connect directly with the database.
 This demo SQL database was configured on PostgreSQL with 1 data table `tbl_cases`. In practice, your integration implementation may connect with 1 or multiple tables in a connected system.
 
 ![hmis-db-schema](../assets/db-schema.png)
