@@ -179,14 +179,20 @@ This could be useful to reduce the memory load; if you are only focusing on core
 
 *Example of filtering your cases dataset to only bring back visualId, firstName, lastName and createdAt fields*
 - JSON QUERY:  
-`{"fields": {"firstName":"true","lastName":"true","visualId":"true","createdAt":"true"}}`
+```json
+{"fields": {"firstName":"true","lastName":"true","visualId":"true","createdAt":"true"}}
+```
 
 - URL ENCODED: 
-`%7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%7D%7D%7D`
+```curl
+%7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%7D%7D%7D
+```
 
 - FINAL GET REQUEST:
-`https://{yourgodataurl.com}/api/outbreaks/{outbreak_id}/cases?
-%7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%7D%7D%7D&access_token={your_access_token}`
+```curl
+https://{yourgodataurl.com}/api/outbreaks/{outbreak_id}/cases?
+%7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%7D%7D%7D&access_token={your_access_token}
+```
 
 - in R, using HTTR package:
 ```
