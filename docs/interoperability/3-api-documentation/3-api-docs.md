@@ -210,5 +210,13 @@ This could be useful to reduce the memory load; if you are only focusing on core
 https://{yourgodataurl.com}/api/outbreaks/{outbreak_id}/cases?filter=%7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%7D%7D%7D&access_token={your_access_token}
 ```
 
+- in R, using HTTR package:
+```{r}
+response_cases_short <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/cases/?filter={%22fields%22:{%22firstName%22:%22true%22,%22lastName%22:%22true%22}}"),
+                      add_headers(Authorization = paste("Bearer", access_token, sep = " ")))
+json_cases_short <- content(response_cases_short, as = "text")
+cases_short <- as_tibble(fromJSON(json_cases_short, flatten = TRUE))
+```
+
 ## Example Implementations
 - See the [Github `api` directory](https://github.com/WorldHealthOrganization/godata/tree/master/api) for sample scripts leveraging the API. 
