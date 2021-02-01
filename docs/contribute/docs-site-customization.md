@@ -22,13 +22,13 @@ All docs pages are written in `Markdown`. See here for basic syntax guide: [http
 ### Code Blocks
 [See Markdown](https://www.markdownguide.org/extended-syntax/#:~:text=The%20basic%20Markdown%20syntax%20allows,and%20after%20the%20code%20block.) guidance for basic code block syntax tips. 
 
-**Note for R code blocks:** To ensure the site does not evaluate the R code, include the tags `r{% raw %}`  and `{% endraw %}` at the start and end of your code block. 
+**Note for R code blocks:** To ensure the site does not evaluate the R code, include the tags `` `r{% raw %}` ``  and `` `{% endraw %}` `` at the start and end of your code block. 
 
 For example...
 ```txt
-```r{% raw %}
+`` r{% raw %} ``
 json_cases_short <- content(response_cases_short, as = "text")
-{% endraw %}```
+`` {% endraw %} ``
 ```
 ... will render as...
 ```txt
