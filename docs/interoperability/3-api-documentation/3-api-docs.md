@@ -152,19 +152,19 @@ For example, if filtering the method `GET /outbreak/{id}/cases` based on the Cas
 *Example of filtering for cases created AFTER a given date*
 - JSON QUERY:  
 ```
-{"where":{"createdAt":{"$gt":"2020-04-14T00:00:00Z"}}}
+`{"where":{"createdAt":{"$gt":"2020-04-14T00:00:00Z"}}}`
 ```
 - URL ENCODED: 
 ```
-%7B%22where%22%3A%7B%22createdAt%22%3A%7B%22%24gt%22%3A%222020-04-14T00%3A00%3A00Z%22%7D%7D%7D
+`%7B%22where%22%3A%7B%22createdAt%22%3A%7B%22%24gt%22%3A%222020-04-14T00%3A00%3A00Z%22%7D%7D%7D`
 ```
 - REQUEST COMMAND: 
 ```
-/outbreaks/{outbreak_id}/cases?filter=%7B%22where%22%3A%7B%22createdAt%22%3A%7B%22%24gt%22%3A%222020-04-14T00%3A00%3A00Z%22%7D%7D%7D&access_token={your_access_token}
+`/outbreaks/{outbreak_id}/cases?filter=%7B%22where%22%3A%7B%22createdAt%22%3A%7B%22%24gt%22%3A%222020-04-14T00%3A00%3A00Z%22%7D%7D%7D&access_token={your_access_token}`
 ```
 - FINAL GET REQUEST: 
 ```
-https://godata.gov.mt/api//outbreaks/{OUTBREAK TOKEN}/cases?filter=%7B%22where%22%3A%7B%22createdAt%22%3A%7B%22%24gt%22%3A%222020-04-14T00%3A00%3A00Z%22%7D%7D%7D&access_token={your_access_token}
+`https://godata.gov.mt/api//outbreaks/{OUTBREAK TOKEN}/cases?filter=%7B%22where%22%3A%7B%22createdAt%22%3A%7B%22%24gt%22%3A%222020-04-14T00%3A00%3A00Z%22%7D%7D%7D&access_token={your_access_token}`
 
 ```
 
@@ -191,18 +191,18 @@ This could be useful to reduce the memory load; if you are only focusing on core
 ```
 - URL ENCODED: 
 ```
-%7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%7D%7D%7D
+`%7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%7D%7D%7D`
 ```
 - REQUEST COMMAND: 
 ```
-/outbreaks/{outbreak_id}/cases?
-%7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%22%7D%7D%7D&access_token={your_access_token}
+`/outbreaks/{outbreak_id}/cases?
+%7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%22%7D%7D%7D&access_token={your_access_token}`
 
 ```
 - FINAL GET REQUEST:
 ```
-https://{yourgodataurl.com}/api/outbreaks/{outbreak_id}/cases?
-%7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%7D%7D%7D&access_token={your_access_token}
+`https://{yourgodataurl.com}/api/outbreaks/{outbreak_id}/cases?
+%7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%7D%7D%7D&access_token={your_access_token}`
 ```
 - in R, using HTTR package:
 ```
