@@ -184,10 +184,6 @@ This could be useful to reduce the memory load; if you are only focusing on core
 - URL ENCODED: 
 `%7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%7D%7D%7D`
 
-- REQUEST COMMAND: 
-`/outbreaks/{outbreak_id}/cases?
-%7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%22%7D%7D%7D&access_token={your_access_token}`
-
 - FINAL GET REQUEST:
 `https://{yourgodataurl.com}/api/outbreaks/{outbreak_id}/cases?
 %7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%7D%7D%7D&access_token={your_access_token}`
