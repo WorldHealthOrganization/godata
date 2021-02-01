@@ -149,34 +149,43 @@ For example, if filtering the method `GET /outbreak/{id}/cases` based on the Cas
 
 *Example of filtering for cases created AFTER a given date*
 - JSON QUERY:  
-```{"where":{"createdAt":{"$gt":"2020-04-14T00:00:00Z"}}}
+```
+{"where":{"createdAt":{"$gt":"2020-04-14T00:00:00Z"}}}
 ```
 - URL ENCODED: 
 ```
-`%7B%22where%22%3A%7B%22createdAt%22%3A%7B%22%24gt%22%3A%222020-04-14T00%3A00%3A00Z%22%7D%7D%7D`
+%7B%22where%22%3A%7B%22createdAt%22%3A%7B%22%24gt%22%3A%222020-04-14T00%3A00%3A00Z%22%7D%7D%7D
 ```
 - REQUEST COMMAND: 
 ```
-`/outbreaks/{outbreak_id}/cases?filter=%7B%22where%22%3A%7B%22createdAt%22%3A%7B%22%24gt%22%3A%222020-04-14T00%3A00%3A00Z%22%7D%7D%7D&access_token={your_access_token}`
+/outbreaks/{outbreak_id}/cases?filter=%7B%22where%22%3A%7B%22createdAt%22%3A%7B%22%24gt%22%3A%222020-04-14T00%3A00%3A00Z%22%7D%7D%7D&access_token={your_access_token}
 ```
 - FINAL GET REQUEST: 
 ```
-`https://godata.gov.mt/api//outbreaks/{OUTBREAK TOKEN}/cases?filter=%7B%22where%22%3A%7B%22createdAt%22%3A%7B%22%24gt%22%3A%222020-04-14T00%3A00%3A00Z%22%7D%7D%7D&access_token={your_access_token}`
+https://godata.gov.mt/api//outbreaks/{OUTBREAK TOKEN}/cases?filter=%7B%22where%22%3A%7B%22createdAt%22%3A%7B%22%24gt%22%3A%222020-04-14T00%3A00%3A00Z%22%7D%7D%7D&access_token={your_access_token}
+
 ```
 
 *Example of filtering on more than 1 condition, i.e. retrieve only deleted records updated before a given date*
 
 - JSON QUERY: 
 ```
-`{"where": {"and": [{"deleted": {"eq": true}},{"updatedAt": {"lte": "2021-01-01T00:00:00.000Z"}}]},"deleted": true}`
+{"where": {"and": [{"deleted": {"eq": true}},{"updatedAt": {"lte": "2021-01-01T00:00:00.000Z"}}]},"deleted": true}
 ```
 
 
 ### Filtering examples to retrieve only certain field attributes needed for analysis (i.e. only selecting certain "columns" across observations)
 
 *Example of filtering your cases dataset to only bring back visualId, firstName, lastName and createdAt fields*
-- JSON QUERY:  `{"fields": {"firstName":"true","lastName":"true","visualId":"true","createdAt":"true"}}`
-- URL ENCODED: `%7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%7D%7D%7D`
+- JSON QUERY:  
+```
+{"fields": {"firstName":"true","lastName":"true","visualId":"true","createdAt":"true"}}
+
+```
+- URL ENCODED: 
+```
+`%7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%7D%7D%7D`
+```
 - REQUEST COMMAND: 
 `/outbreaks/{outbreak_id}/cases?
 %7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%7D%7D%7D&access_token={your_access_token}`
