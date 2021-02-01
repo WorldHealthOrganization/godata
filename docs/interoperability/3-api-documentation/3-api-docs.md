@@ -179,22 +179,26 @@ This could be useful to reduce the memory load; if you are only focusing on core
 
 *Example of filtering your cases dataset to only bring back visualId, firstName, lastName and createdAt fields*
 - JSON QUERY:  
+
 ```json
 {"fields": {"firstName":"true","lastName":"true","visualId":"true","createdAt":"true"}}
 ```
 
 - URL ENCODED: 
+
 ```curl
 %7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%7D%7D%7D
 ```
 
 - FINAL GET REQUEST:
+
 ```curl
-https://{yourgodataurl.com}/api/outbreaks/{outbreak_id}/cases?
+https://{ yourGodataUrl.com]/api/outbreaks/{outbreak_id}/cases?
 %7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%7D%7D%7D&access_token={your_access_token}
 ```
 
 - in R, using HTTR package:
+
 ```
 response_cases_short <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/cases/?filter={%22fields%22:{%22firstName%22:%22true%22,%22lastName%22:%22true%22}}"),
                       add_headers(Authorization = paste("Bearer", access_token, sep = " "))
