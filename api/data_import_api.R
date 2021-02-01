@@ -52,7 +52,7 @@ content <-
   fromJSON(flatten = TRUE) %>%
   glimpse()
 
-access_token <- content$response$access_token                 ## this is your access token !!! that allows API calls
+access_token <- content$access_token                 ## this is your access token !!! that allows API calls
 
 ###################################################################################################
 # specify date ranges, for follow up filters - if your volume of follow up gets too large 
@@ -250,3 +250,6 @@ if (nrow(users) == 0) {
   users <- data.frame(matrix(ncol=length(cols.users)))
   colnames(users) <- cols.users 
 }
+
+
+
