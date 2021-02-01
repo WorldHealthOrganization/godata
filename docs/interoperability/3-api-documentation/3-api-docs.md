@@ -141,11 +141,13 @@ This constructs the following call:
 ```
 http://localhost:8000/api/outbreaks/cd936eee-5bfb-433b-a80e-e26c66bf6a48/cases/3cd71bf6-afac-40d3-a32d-a1793cfe7638?access_token=HNm29JYiCIa0sNk5kjyTl8FeGKJmhFMiWAhGL6FOBVcBSCc2s2JDQ3EnLH4dFt4l
 ```
-### Filtering examples to retrieve only records with given conditions met (i.e. only selecting certain "rows" of observations)
+### Filter to retrieve only records with given conditions met, using WHERE filter (i.e. only selecting certain "rows" of observations)
 To use the filters provided with the method calls, the syntax is to use the keyword “where” and the sequence of elements for filtering: `{"where":{"fieldname": "filtervalue"}}`
-For more on filtering, view the full LoopBack documentation [here](https://loopback.io/doc/en/lb3/Where-filter.html)
+For more on filtering, view the full LoopBack documentation [here](https://loopback.io/doc/en/lb3/Where-filter.html). 
 
-For example, if filtering the method `GET /outbreak/{id}/cases` based on the Case ID, the filter would be `{"where":{"visualId": "CA00000001"}}`. This string will need URL encoding if passed as part of the URL. 
+For example, if filtering the method `GET /outbreak/{id}/cases` based on the Case ID, the filter would be `{"where":{"visualId": "CA00000001"}}`. This string will need URL encoding if passed as part of the URL (see screenshot below).
+
+![where_filter](../assets/where_filter_url_encoding.PNG)
 
 *Example of filtering for cases created AFTER a given date*
 - JSON QUERY:  
@@ -174,7 +176,13 @@ https://godata.gov.mt/api//outbreaks/{OUTBREAK TOKEN}/cases?filter=%7B%22where%2
 ```
 
 
-### Filtering examples to retrieve only certain field attributes needed for analysis (i.e. only selecting certain "columns" across observations)
+### Filter to retrieve only certain fields needed for analysis using FIELDS filter (i.e. only selecting certain "columns" across observations)
+Here, you will use "fields" to g: `{"fields":{"fieldname1": "true","fieldname2": "true"}}`
+For more on filtering, view the full LoopBack documentation [here](https://loopback.io/doc/en/lb3/Where-filter.html). 
+
+Similar URL encoding is required, see screenshot and below examples to get you started:
+
+![fields_filter](../assets/fields_filter_url_encoding.PNG)
 
 *Example of filtering your cases dataset to only bring back visualId, firstName, lastName and createdAt fields*
 - JSON QUERY:  
