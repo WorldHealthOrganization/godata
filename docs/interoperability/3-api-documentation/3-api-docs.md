@@ -180,7 +180,7 @@ https://godata.gov.mt/api//outbreaks/{OUTBREAK TOKEN}/cases?filter=%7B%22where%2
 Here, you will use "fields" to g: `{"fields":{"fieldname1": "true","fieldname2": "true"}}`
 For more on filtering, view the full LoopBack documentation [here](https://loopback.io/doc/en/lb3/Where-filter.html). 
 
-Similar URL encoding is required, see screenshot and below examples to get you started:
+This could be useful to reduce the memory load; if you are only focusing on core case/contact variables and do not need bulky questionnaire variables. Similar URL encoding is required, see screenshot and below examples to get you started:
 
 ![fields_filter](../assets/fields_filter_url_encoding.PNG)
 
