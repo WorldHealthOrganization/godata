@@ -211,8 +211,12 @@ https://{yourgodataurl.com}/api/outbreaks/{outbreak_id}/cases?filter=%7B%22field
 ```
 
 - in R, using HTTR package:
-```
-TO UPDATE
+```r
+response_cases_short <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/cases/?filter={%22fields%22:{%22firstName%22:%22true%22,%22lastName%22:%22true%22}}"),
+                      add_headers(Authorization = paste("Bearer", access_token, sep = " "))
+                      )
+json_cases_short <- content(response_cases_short, as = "text")
+cases_short <- as_tibble(fromJSON(json_cases_short, flatten = TRUE))
 ```
 
 ## Example Implementations
