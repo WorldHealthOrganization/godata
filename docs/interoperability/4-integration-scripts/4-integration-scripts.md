@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Integration Scripts
+title: Live Integrations
 parent: Go.Data Interoperability
 nav_order: 5
 permalink: /integration-scripts/
@@ -10,7 +10,7 @@ permalink: /integration-scripts/
 _To date, Go.Data partners have written integration code using JavaScript, C#, Python and R. You can find integration scripts related to the Go.Data project in the WHO repository [here](https://github.com/WorldHealthOrganization?q=go-data&type=&language=)_
 _To engage directly with this community, visit the "Interoperability" forum in the CoP [here](https://community-godata.who.int/topics/interoperability/5fd8ec64f5c77e114e6c6823)_
 
-## 1. Integrations with external Analytics Tools
+## 1. Connectors to external Analytics Tools
 See [Analytics documentation](https://worldhealthorganization.github.io/godata/analytics/) and the Github directory [analytics](https://github.com/WorldHealthOrganization/godata/tree/master/analytics) to learn more, including:
 
 -*Exporting to R for analysis & Dashboards:* We have developed some template R scripts for extracting, cleaning, and running some basic analysis. Output includes flattened cleaned `.csv` files for case/contact linelists and HTML dashboards displaying operational performance metrics for contact tracing by contact tracing supervisor and teams. See 
@@ -18,12 +18,14 @@ See [Analytics documentation](https://worldhealthorganization.github.io/godata/a
 
 -*PowerBI:* _New scripts and template dashboards under review and coming soon._ [See the community](https://community-godata.who.int/conversations/dashboards-and-analysis/connecting-power-bi-through-api/5f8033acbd255079ca8ce356) for related discussion. 
 
-## 2. DHIS2 to Go.Data
+## 2. DHIS2 to Go.Data App
 See Github directories: [dhis2-godata-interoperability](https://github.com/WorldHealthOrganization/dhis2-godata-interoperability) & [godata-api-wrapper](https://github.com/WorldHealthOrganization/godata-api-wrapper)
 
 ![architecture-summary](../assets/dhis2togodata.PNG)
 
--Collaborators at the Polytechnic University of Catalonia (UPC) have developed a DHIS2 app for exporting metadata and data between DHIS2 and Go.Data. This has been a common request for countries who are using DHIS2 COVID-19 package for case registration but would like to utilize Go.Data for contact tracing follow-up. 
+-Collaborators at the Polytechnic University of Catalonia (UPC) have developed a DHIS2 app for exporting metadata and data between DHIS2 and Go.Data. This has been a common request for countries who are using DHIS2 COVID-19 package for case registration but would like to utilize Go.Data for contact tracing follow-up. See demo video below:
+
+<video src="https://sprcdn-assets.sprinklr.com/1652/152d4a27-00c3-4a21-aaf0-0eb437906b55-881951577.mp4" controls />
 
 See Github directory: [dhis2godata](https://github.com/WorldHealthOrganization/WIDP-DHIS2-scripts/tree/master/dhis2godata)
 -Collaborators at [EyeSeeTea](https://github.com/EyeSeeTea) have developed a script to quickly convert dhis2 Organization Units to Go.Data locations.
