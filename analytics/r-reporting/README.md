@@ -14,7 +14,7 @@ This includes scripts for
 3. running basic analysis for these data collections and outputting into .HTML dashboard using flexdashboard package (see screenshot above for an example)
 
 ### tips on data extraction from API
-- the script 02_clean_data_api.R only includes "core variables" (i.e. excluding questionnaire variables) since we wanted this to be able to be run without bugs across any Go.Data deployment and each project may have a different customizable questionnaire. This is why you will see that all fields from API starting with `questionnaireAnswers` are taken out of data frames, for this template starter cleaning script; since we only are un-nesting and cleaning the list fields (like `addresses` or `dateRanges`) that every Go.Data project will have, in separate data frames, and then joining them to the cleaned case data frame.
+- the script 02_clean_data_api.R only includes "core variables" (i.e. excluding questionnaire variables) since we wanted these scripts to work without bugs across any variation of Go.Data deployment (as each project may have a different customizable questionnaire). This is why you will see that all fields from API starting with `questionnaireAnswers` are taken out of data frames, for this template starter cleaning script; since we only are un-nesting and cleaning the list fields (like `addresses` or `dateRanges`) that every Go.Data project will have, in separate data frames, and then joining them to the cleaned case data frame.
 
 ```
 cases_clean <- cases %>%
