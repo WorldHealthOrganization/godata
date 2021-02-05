@@ -25,7 +25,7 @@ See Github directories: [dhis2-godata-interoperability](https://github.com/World
 
 -Collaborators at the Polytechnic University of Catalonia (UPC) have developed a DHIS2 app for exporting metadata and data between DHIS2 and Go.Data. This has been a common request for countries who are using DHIS2 COVID-19 package for case registration but would like to utilize Go.Data for contact tracing follow-up. See demo video below:
 
-<video src="https://sprcdn-assets.sprinklr.com/1652/67feefd9-83ea-40c3-b0fc-c4f0c0180b9d-36486025.mp4" controls />
+<video width="1098" height="604" src="https://sprcdn-assets.sprinklr.com/1652/67feefd9-83ea-40c3-b0fc-c4f0c0180b9d-36486025.mp4" controls />
 
 See Github directory: [dhis2godata](https://github.com/WorldHealthOrganization/WIDP-DHIS2-scripts/tree/master/dhis2godata)
 -Collaborators at [EyeSeeTea](https://github.com/EyeSeeTea) have developed a script to quickly convert dhis2 Organization Units to Go.Data locations.
