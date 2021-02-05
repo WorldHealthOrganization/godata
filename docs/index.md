@@ -20,6 +20,8 @@ This site is a centralized place where you can access _technical documentation a
 Any generic information about Go.Data is best accessed through our [Community of Practice website](https://community-godata.who.int/) (https://community-godata.who.int/), where we link to a range of user guides and training materials. You can dialogue there with the community of Go.Data on a number of discussion forums. You can access our open-access online training course through OpenWHO [here](https://openwho.org/courses/godata-en).
 ![godata-cop](./assets/cop.PNG)
 
+Go.Data development and implementation is centered around a collaborative approach, and we look forward to engaging the open source commnity of developers, ICT4D professionals, epis and more through this Github site. To learn more on how the Go.Data team and wider WHO is using the Github platform to engage the open source community, feel free to check out a recording of our [Panel Session at Github Universe 2020!](https://www.youtube.com/watch?v=clm5Ee6O_4o)
+
 ## Go.Data Demo Instance
 If you would like to try Go.Data before downloading and installing yourself then a “sandbox” environment has been made available on a WHO server.  This is a play instance of the latest version of the software and you are free to create an outbreak, populate it with data, experiment with reports, exporting data etc.  You can make any changes that you like to explore the tool and see it in practice and an outbreak with dummy data has been provided to give you a head start.
   - This environment resets every two days however, so should not be used for building demonstrations or for any work that you would like to persist.  Also bear in mind that others may be using the environment at the same time as you
