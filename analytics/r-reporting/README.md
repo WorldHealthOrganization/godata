@@ -1,4 +1,4 @@
-# Go.Data SOP - Retrieving your data from API for additional analysis in R
+# Automated R Reporting Using Go.Data API
 
 ![](https://github.com/WorldHealthOrganization/godata/blob/master/docs/assets/R_reporting_workflow.PNG)
 
