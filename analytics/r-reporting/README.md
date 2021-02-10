@@ -1,4 +1,6 @@
-# Go.Data SOP - Retrieving your data collections from API for additional analysis in R
+# Go.Data SOP - Retrieving your data from API for additional analysis in R
+
+![](https://github.com/WorldHealthOrganization/godata/blob/master/docs/assets/R_reporting_workflow.PNG)
 
 Below we will outline some instructions for obtaining your data directly from your Go.Data instance application programming interface (API) using R, for further data cleaning and analysis. This process will provide you with cleaned, flattened excel files and sample dashboard output that you can adapt for your purposes. Although there are multiple ways to retrieve the data collections including installing and connecting directly to the MongoDB database on your machine, this SOP outlines how to do this simply using the open-source software R – where advanced R skills are not required. 
 
