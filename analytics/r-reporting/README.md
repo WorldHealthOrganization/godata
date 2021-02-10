@@ -74,7 +74,7 @@ Screenshots below show some of these graphics, such as contact follow-up status 
 ![](https://github.com/WorldHealthOrganization/godata/blob/master/docs/assets/report_screenshot.png)
 
 
-### Tips on extracing additional questionnaire variables
+### Tips on extracting additional questionnaire variables
 - the script 02_clean_data_api.R only includes "core variables" (i.e. excluding questionnaire variables) since we wanted these scripts to work without bugs across any variation of Go.Data deployment (as each project may have a different customizable questionnaire). This is why you will see that all fields from API starting with `questionnaireAnswers` are taken out of data frames, for this template starter cleaning script; since we only are un-nesting and cleaning the list fields (like `addresses` or `dateRanges`) that every Go.Data project will have, in separate data frames, and then joining them to the cleaned case data frame.
 
 ```
