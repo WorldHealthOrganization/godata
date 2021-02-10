@@ -1,7 +1,5 @@
 # Go.Data SOP - Retrieving your data collections from API for additional analysis in R
 
-![Go.Data Sample Dashboard](https://github.com/WorldHealthOrganization/godata/blob/master/assets/report_screenshot.png)
-
 Below we will outline some instructions for obtaining your data directly from your Go.Data instance application programming interface (API) using R, for further data cleaning and analysis. This process will provide you with cleaned, flattened excel files and sample dashboard output that you can adapt for your purposes. Although there are multiple ways to retrieve the data collections including installing and connecting directly to the MongoDB database on your machine, this SOP outlines how to do this simply using the open-source software R – where advanced R skills are not required. 
 
 _Requirements:_
@@ -17,7 +15,7 @@ In order for the scripts to work it is essential for you to have the same folder
 - reprt_outputs (_a place for dashboard outputs to be stored_)
 - R project (_double click here to open R; so that each time your working directory is properly set_)
 
-<< screenshot >>
+![](https://github.com/WorldHealthOrganization/godata/blob/master/docs/assets/R_folder_hierarchy.PNG)
 
 Please be sure that you check your folder contents are up to date with what is living on Github. If you are able to connect dynmaically to Github in R via Git to pull most recent version, this is preferred. If you don't feel comfrotable with this, you can simply copy/paste the script contents into your local folder hierarchy. The rationale behind this folder hierarchy and set-up was borrowed from RECON's _reportfactory_ templates repository (https://github.com/reconhub/report_factories_templates) and has been simplified for our purposes.
 
@@ -28,23 +26,23 @@ Open up R project by double-clicking on godata.Rroj.
 
 Navigate to 01_data_import_api.R in the *report_sources* folder and click to open it in your R console. 
 
-<< screenshot >>
-<< screenshot >>
+![](https://github.com/WorldHealthOrganization/godata/blob/master/docs/assets/R_report_sources.PNG)
+![](https://github.com/WorldHealthOrganization/godata/blob/master/docs/assets/R_data_import_api.PNG)
 
 At the top of the script, fill in the appropriate URL, your Go.Data username and password, and outbreak_id of interest. 
 
-<< screenshot >>
+![](https://github.com/WorldHealthOrganization/godata/blob/master/docs/assets/R_script_credentials.PNG)
 
 TIP: In order to obtain your outbreak ID, navigate to View Outbreak in Go.Data and you can find it in the URL. You can only extract data from one outbreak at a time. Before running, ensure this is your active outbreak in the platform. 
 
-<< screenshot >>
+![](https://github.com/WorldHealthOrganization/godata/blob/master/docs/assets/R_outbreak_id.PNG)
 
 Run the script by clicking "Source".
 NOTE: you will receive an error if you do not have proper contents in the *scripts* (necessary for downloading pre-requisite packages & setting core fields).
 
 Once the script has succesfully completed, you should have created several data frames in your R global environment that will be used in subsequent cleaning scripts.
 
-<< screenshot >>
+![](https://github.com/WorldHealthOrganization/godata/blob/master/docs/assets/R_collections.PNG)
 
 NOTE: please switch your language to English in your Go.Data instance before running this API script, to ensure core data elements are all brought back in a consistent form.
 
@@ -53,7 +51,7 @@ The dataframes as retrieved straight from API contain many nested arrays in list
 
 Navigate to *02_clean_data_api.R*, (also in *report_sources folder*), click to open, and run script.
 
-<< screenshot >>
+![](https://github.com/WorldHealthOrganization/godata/blob/master/docs/assets/R_clean_data_api.PNG)
 
 This will result in the following cleaned .csv files saved in the data foler, with format matching the pattern below, updated each time you run the script to contain the most recent data.
 - contacts_clean.csv
@@ -71,8 +69,7 @@ We have created some sample scripts to get you started in some basic dashboard a
 
 Screenshots below show some of these graphics, such as contact follow-up status by a given admin level. These will be printed to the *report_outputs* folder.
 
-<< screenshot >> 
-<< screenshot >>
+![](https://github.com/WorldHealthOrganization/godata/blob/master/docs/assets/report_screenshot.png)
 
 
 ### Tips on extracing additional questionnaire variables
