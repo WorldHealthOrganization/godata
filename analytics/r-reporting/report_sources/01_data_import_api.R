@@ -15,25 +15,26 @@ outbreak_id <- "xxxxxx-xxxx-xxxx-xxxx-xxxxxxx"   # <--------------- insert your 
 # Script authored and maintained by Go.Data team (godata@who.int): Sara Hollis (holliss@who.int); James Fuller (fullerj@who.int)
 ###################################################################################################
 
-# this script currently will give us: 
+# this script currently returns: 
 #                                     cases, 
 #                                     contacts,
 #                                     contacts of contacts,
-#                                     follow ups, 
-#                                     locations,
-#                                     users,
-#                                     teams,
-#                                     relationships, 
 #                                     events
+#                                     follow ups, 
+#                                     lab results,
+#                                     locations,
+#                                     relationships,
+#                                     teams,
+#                                     users
+
 ###################################################################################################
 # source required scripts, including packages that need to be installed
 #       this includes set_core_fields.R script, which ensures that collections have all the columns they need and set to NA those that don't exist
 #       otherwise, the JSON drops it if these questions were consistently not answered, which can break the scripts if its a core variable
 ###################################################################################################
 
-path_to_functions <- here::here("scripts")
-scripts_files <- dir(path_to_functions, pattern = ".R$", full.names=TRUE)
-for (file in scripts_files) source(file, local = TRUE)
+source(here::here("scripts", "aaa_load_packages.R"))
+source(here::here("scripts", "set_core_fields.R"))
 
 ###################################################################################################
 # get access token
@@ -80,6 +81,8 @@ response_followups <- GET(paste0(
   add_headers(Authorization = paste("Bearer", access_token, sep = " ")))
 json_followups <- content(response_followups, as="text")
 followups <- as_tibble(fromJSON(json_followups, flatten = TRUE)) 
+rm(response_followups)
+
 
 
 # import outbreak Cases 
@@ -88,6 +91,7 @@ response_cases <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/cases"),
 )
 json_cases <- content(response_cases, as = "text")
 cases <- as_tibble(fromJSON(json_cases, flatten = TRUE))
+rm(response_cases)
 
 # import oubtreak Contacts 
 response_contacts <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/contacts"), 
@@ -95,6 +99,7 @@ response_contacts <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/contacts"),
 )
 json_contacts <- content(response_contacts, as = "text")
 contacts <- as_tibble(fromJSON(json_contacts, flatten = TRUE))
+rm(response_contacts)
 
 # import oubtreak Events 
 response_events <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/events"), 
@@ -102,6 +107,7 @@ response_events <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/events"),
 )
 json_events <- content(response_events, as = "text")
 events <- as_tibble(fromJSON(json_events, flatten = TRUE))
+rm(response_events)
 
 # import oubtreak Contact of Contacts 
 response_contacts_of_contacts <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/contacts-of-contacts"), 
@@ -109,6 +115,7 @@ response_contacts_of_contacts <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/c
 )
 json_contacts_of_contacts <- content(response_contacts_of_contacts, as = "text")
 contacts_of_contacts <- as_tibble(fromJSON(json_contacts_of_contacts, flatten = TRUE))
+rm(response_contacts_of_contacts)
 
 # import oubtreak Lab Results 
 response_lab_results <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/lab-results/aggregate"), 
@@ -116,6 +123,7 @@ response_lab_results <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/lab-result
 )
 json_lab_results <- content(response_lab_results, as = "text")
 lab_results <- as_tibble(fromJSON(json_lab_results, flatten = TRUE))
+rm(response_lab_results)
 
 
 # import outbreak Relationships
@@ -124,6 +132,7 @@ response_relationships <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/relation
 )
 json_relationships <- content(response_relationships, as = "text")
 relationships <- as_tibble(fromJSON(json_relationships, flatten = TRUE))
+rm(response_relationships)
 
 
 # import location hierarchy (outbreak agnostic)
@@ -132,6 +141,7 @@ response_locations <- GET(paste0(url,"api/locations"),
 )
 json_locations <- content(response_locations, as = "text")
 locations <- as_tibble(fromJSON(json_locations, flatten = TRUE))
+rm(response_locations)
 
 
 # import Teams (outbreak agnostic)
@@ -140,6 +150,7 @@ response_teams <- GET(paste0(url,"api/teams"),
 )
 json_teams <- content(response_teams, as = "text")
 teams <- as_tibble(fromJSON(json_teams, flatten = TRUE))
+rm(response_teams)
 
 # import Users (outbreak agnostic)
 response_users <- GET(paste0(url,"api/users"), 
@@ -147,10 +158,11 @@ response_users <- GET(paste0(url,"api/users"),
 )
 json_users <- content(response_users, as = "text")
 users <- as_tibble(fromJSON(json_users, flatten = TRUE))
+rm(response_users)
 
 
 ################################################################################################
-# Create empty data frames if needed, Otherwise if unutilized, API JSON leaves it out
+# Create empty data frames if needed
 ################################################################################################
 
 #Locations
@@ -170,14 +182,6 @@ if (nrow(cases)==0) {
   colnames(cases_address_history) <- cols.cases_addresses
   cases <- cases %>% bind_cols(cases_address_history) %>% nest(addresses=cols.cases_addresses)
   
-  cols.cases_hosp <- c("typeId","centerName","locationId","comments","startDate","endDate")
-  cases_hosp <- data.frame(matrix(ncol=length(cols.cases_hosp)))
-  colnames(cases_hosp) <- cols.cases_hosp
-  cases <- cases %>% bind_cols(cases_hosp) %>% nest(dateRanges=cols.cases_hosp)
-}
-
-#DateRanges for Cases
-if (!("dateRanges" %in% colnames(cases))) {
   cols.cases_hosp <- c("typeId","centerName","locationId","comments","startDate","endDate")
   cases_hosp <- data.frame(matrix(ncol=length(cols.cases_hosp)))
   colnames(cases_hosp) <- cols.cases_hosp
@@ -251,5 +255,5 @@ if (nrow(users) == 0) {
   colnames(users) <- cols.users 
 }
 
-
-
+rm(content)
+rm(response)
