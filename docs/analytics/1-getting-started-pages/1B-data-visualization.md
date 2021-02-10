@@ -8,14 +8,18 @@ permalink: /data-visualization/
 ---
 
 # Data Visualizations and Dashboards connected to Go.Data Instance
-There are a number of options for connectors and technical resources to viusalize your data outside of the application if more advanced analysis is required above and beyond the basic in-app dashboards.
+There are a number of options for connectors and technical resources to viusalize your data outside of the application if more advanced analysis is required above and beyond the basic in-app dashboards. We have examples to get you started for the following:
 
-##1.
+- rmarkdown HTML dashboards 
 
-##2.
+- Google Data Studio 
 
-##3.
+- PowerBI
 
-##4.
+- ESRI
 
-##5.
+- Tableau (_coming soon_)
+
+- R Shiny (_coming soon_)
+
+- Microsoft Excel (_coming soon_)
