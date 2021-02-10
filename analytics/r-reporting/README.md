@@ -4,10 +4,10 @@
 
 Below we will outline some instructions for obtaining your data directly from your Go.Data instance application programming interface (API) using R, for further data cleaning and analysis. This process will provide you with cleaned, flattened excel files and sample dashboard output that you can adapt for your purposes. Although there are multiple ways to retrieve the data collections including installing and connecting directly to the MongoDB database on your machine, this SOP outlines how to do this simply using the open-source software R – where advanced R skills are not required. 
 
-_Requirements:_
-•	R (version 3.6.1 or higher is recommended) – download here: https://www.r-project.org/
-•	Valid Go.Data login credentials for the instance you are accessing, with the minimum permissions to _view_ data collections you are trying to extract
-•	Folder directory matching what is outlined in this Github repository, with recent contents of this Github repository, in an easily accessible place on your computer (i.e. Desktop)
+## Step 0. Before beginning:
+- Download R (version 3.6.1 or higher is recommended) here: https://www.r-project.org/
+- Obtain valid Go.Data login credentials for the instance you are accessing, with the minimum permissions to _view_ data collections you are trying to extract (i.e if you want to extract laboratory data, you need the "Laboratory Personnel" role)
+- Create folder directory on your local machine matching what is outlined in this Github repository, with recent contents of this Github repository, in an easily accessible place on your computer (i.e. Desktop)
 
 ## Step 1. Replicate folder directory to your local machine
 In order for the scripts to work it is essential for you to have the same folder hierarchy and contents. Your folder directory should include:
