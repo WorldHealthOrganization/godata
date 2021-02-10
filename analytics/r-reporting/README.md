@@ -49,7 +49,7 @@ Once the script has succesfully completed, you should have created several data 
 NOTE: please switch your language to English in your Go.Data instance before running this API script, to ensure core data elements are all brought back in a consistent form.
 
 ## Step 3. Run cleaning scripts and export to excel 
-The dataframes as retrieved straight from API contain many nested arrays in lists. The cleaning script helps to properly un-nest relevant fields and do some basic data manipulation to these data frames before exporting to .CSV (or prepping for additional analysis in R).
+The dataframes as retrieved straight from API can contain some nested arrays in lists; for fields that can have multiple responses for one case or contact (i.e. more than one address can be registered if person has moved; repeat hospitalizations can be recorded; followUp history is stored). The cleaning script helps to properly un-nest relevant fields and do some basic data manipulation to these data frames before exporting to .CSV (or prepping for additional analysis in R).
 
 Navigate to *02_clean_data_api.R*, (also in *report_sources folder*), click to open, and run script.
 
