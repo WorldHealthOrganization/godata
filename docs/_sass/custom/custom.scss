@@ -1,12 +1,13 @@
-// TODO: Tweak these and other styles so that small screen and/or mobile view work
+// Comment out L3-12 to revert back to default media query dynamic formatting and styles 
+// Tweak these margins and other styles so that small screen and/or mobile view work
 .side-bar {
-  width: calc((100% - 1440px) / 4 + 264px);
+  width: calc((100% - 1240px) / 4 + 264px);
   min-width: 264px;
 }
 
 .main {
-  margin-left: calc((100% - 940px) / 4 + 264px);
-  margin-right: calc((100% - 1240px) / 4);
+  margin-left: calc((100% - 1000px) / 4 + 264px);
+  margin-right: calc((100% - 1000px) / 4);
   max-width: none;
 }
 
