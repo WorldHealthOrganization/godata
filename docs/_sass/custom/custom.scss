@@ -1,14 +1,22 @@
 // TODO: potential adjustments to the media queries and content width...
-// .side-bar {
-//   width: calc((100% - 1440px) / 2 + 264px);
-//   min-width: 264px;
+ .side-bar {
+   width: calc((100% - 1440px) / 2 + 264px);
+   min-width: 264px;
+ }
+ .main {
+   margin-left: calc( (100% - 1440px) / 2 + 264px );
+   min-width: 0px;
 // }
-// .main {
-//   margin-left: calc( (100% - 1440px) / 2 + 264px );
-// }
 
 
 
-.inner {
-  max-width: 75%;
-}
+//.inner {
+ // max-width: 75%;
+//}
+
+
+// Print-only styles.
+//@media print {
+  //.side-bar, .page-header { display: none; }
+  //.main-content { max-width: auto; margin: 1em;}
+//}
