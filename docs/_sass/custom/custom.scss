@@ -1,29 +1,26 @@
-// TODO: potential adjustments to the media queries and content width...
- //.side-bar {
-  // width: calc((100% - 1440px) / 2 + 264px);
-  // min-width: 264px;
-// }
-// .main {
- //  margin-left: calc( (100% - 1440px) / 2 + 264px );
- //  min-width: 0px;
-// }
+// TODO: Tweak these and other styles so that small screen and/or mobile view work
+.side-bar {
+  width: calc((100% - 1440px) / 4 + 264px);
+  min-width: 264px;
+}
 
-
+.main {
+  margin-left: calc((100% - 1440px) / 4 + 264px);
+  margin-right: calc((100% - 1440px) / 4);
+  max-width: none;
+}
 
 //.inner {
- // max-width: 75%;
+// max-width: 75%;
 //}
-
 
 // Print-only styles.
 //@media print {
-  //.side-bar, .page-header { display: none; }
-  //.main-content { max-width: auto; margin: 1em;}
+//.side-bar, .page-header { display: none; }
+//.main-content { max-width: auto; margin: 1em;}
 //}
 
-  
-  
- // @import "{{ site.theme }}";
+// @import "{{ site.theme }}";
 
 //.inner {
 //  max-width: 75%;
