@@ -18,18 +18,21 @@ See [Analytics documentation](https://worldhealthorganization.github.io/godata/a
 
 -*PowerBI:* _New scripts and template dashboards under review and coming soon._ [See the community](https://community-godata.who.int/conversations/dashboards-and-analysis/connecting-power-bi-through-api/5f8033acbd255079ca8ce356) for related discussion. 
 
-## 2. DHIS2 to Go.Data App
-See [Project Documentation Site](https://wiscentd-upc.github.io/godata-dhis2-interoperability-app/)
-See Github directories: [dhis2-godata-interoperability](https://github.com/WorldHealthOrganization/dhis2-godata-interoperability) & [godata-api-wrapper](https://github.com/WorldHealthOrganization/godata-api-wrapper)
+## 2. DHIS2 to Go.Data
+### [Go.Data-DHIS2 Interoperability App](https://wiscentd-upc.github.io/godata-dhis2-interoperability-app/)
 
 ![architecture-summary](../assets/dhis2togodata.PNG)
 
--Collaborators at the Polytechnic University of Catalonia (UPC) have developed a DHIS2 app for exporting metadata and data between DHIS2 and Go.Data. This has been a common request for countries who are using DHIS2 COVID-19 package for case registration but would like to utilize Go.Data for contact tracing follow-up. See demo video below:
+Collaborators at the Polytechnic University of Catalonia (UPC) have developed a DHIS2 app for exporting metadata and data between DHIS2 and Go.Data. This has been a common request for countries who are using DHIS2 COVID-19 package for case registration but would like to utilize Go.Data for contact tracing follow-up. See demo video below, and instructions on how to install at the project site linked above.
 
 <video width="1098" height="604" src="https://sprcdn-assets.sprinklr.com/1652/67feefd9-83ea-40c3-b0fc-c4f0c0180b9d-36486025.mp4" controls />
 
+See Github directories: [dhis2-godata-interoperability](https://github.com/WorldHealthOrganization/dhis2-godata-interoperability) & [godata-api-wrapper](https://github.com/WorldHealthOrganization/godata-api-wrapper)
+
+### DHIS2 to Go.Data Metadata Sync
+Collaborators at [EyeSeeTea](https://github.com/EyeSeeTea) have developed a script to quickly convert dhis2 Organization Units to Go.Data locations.
+
 See Github directory: [dhis2godata](https://github.com/WorldHealthOrganization/WIDP-DHIS2-scripts/tree/master/dhis2godata)
--Collaborators at [EyeSeeTea](https://github.com/EyeSeeTea) have developed a script to quickly convert dhis2 Organization Units to Go.Data locations.
 
 ## 3. OpenFn Job Scripts for API Actions
 See Github directory: [interoperability-jobs](https://github.com/WorldHealthOrganization/godata/tree/master/interoperability-jobs)
