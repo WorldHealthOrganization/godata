@@ -1,0 +1,1544 @@
+---
+title: "IEDCR COVID-19 Daily Summary Dashboard"
+date: "`r format(Sys.time(), '%A %d %B %Y')`"
+output:
+    flexdashboard::flex_dashboard:
+      theme: cosmo
+      orientation: rows
+      logo: C:/Users/holliss/World Health Organization/Go.Data - General/Roll-out activities/In-country deployments/Bangladesh/R project/report_sources/logos/godatalogo_green.png
+      
+---
+
+<style>                     
+.navbar {
+  background-color:#4db0a0;
+  border-color:white;
+}
+.navbar-brand {
+color:white!important;
+}
+</style>   
+
+<style type="text/css">
+
+.chart-title {  /* chart_title  */
+   font-size: 18px
+
+</style>
+
+
+
+```{r setup, include=FALSE}
+library(htmlwidgets)
+library(flexdashboard)
+library(lubridate)
+library(sqldf)
+library(formattable)
+library(kableExtra)
+require(dplyr)
+library(ggplot2)
+library(purrr)
+library(stringr)
+library(viridis)
+library(pals)
+library(RColorBrewer)
+library(qdapTools)
+library(tidyr)
+library(sf)
+library(tidyverse)
+library(DT)
+
+```
+
+```{r themes, include = FALSE}
+# Create cusotmized color scales for graphs and tables
+custom_green0 = "#E3FCEE"
+custom_green = "#71CA97"
+custom_red0 = "#FFAAAA"
+custom_red = "#ff7f7f"
+custom_grey0 = "#ADADAD"
+custom_grey = "#818181"
+custom_orange0 = "#FFD6CA"
+custom_orange = "#FF9270"
+custom_blue0 = "#79C5FF"
+custom_blue = "#004F8B"
+godata_orange = "#ff884d"
+godata_green = "#4db0a0"
+
+custom_case_color = "#005252"
+custom_contact_color = "#e26d5c"
+
+scale_status <- scale_fill_manual(
+    "Statut",
+    values = c(seen            = "#71CA97",
+               not_seen        = "#5d6d75",
+               not_performed   = "#D3C9C6",
+               seen_no_signs   = "#A0E2BD",
+               seen_with_signs = "#E94B25",
+               missed          = "#020202"),
+                
+    labels = c(seen            = "Reached",
+               not_seen        = "Not Reached",
+               not_performed   = "Not Performed",
+               seen_no_signs   = "Reached - without signs",
+               seen_with_signs = "Reached - with signs",
+               missed          = "Missed"))
+
+
+statuscols <- c(missed = 0, 
+                seen_with_signs = 0, 
+                seen_no_signs = 0,
+                not_seen = 0,
+                not_performed = 0)
+
+completioncols <- c(completed = 0,
+                    partial = 0,
+                    not_attempted = 0)
+
+scale_completion <- scale_fill_manual(
+  name = "Follow Up:",
+  values = c("#E94B25",
+             "#ABADAB"),
+  
+  labels = c(fu_incomplete = "Incomplete",
+             fu_complete = "Completed"))
+
+ scale_crf_completion <- scale_fill_manual(
+      "Case Communication:",
+      values = c(total_case_reg    = custom_grey0,
+                 reached    = custom_blue,
+                 crf_complete = custom_green
+                 ),
+
+      labels = c(total_case_reg  = "Total Cases Registered",
+                 reached     = "Initially Reached",
+                 crf_complete     = "CRF Complete"))
+ 
+ 
+
+
+```
+
+
+```{r load_data, include = FALSE}
+current_clean_cases <- here::here("data",
+                                  "cases_clean.rds")
+
+current_clean_contacts <- here::here("data",
+                                      "contacts_clean.rds")
+
+
+current_clean_relationships <- here::here("data",
+                                          "relationships_clean.rds")
+
+current_clean_followups <- here::here("data",
+                                      "followups_clean.rds")
+
+current_clean_events <- here::here("data",
+                                      "events_clean.rds")
+
+
+current_clean_users <- here::here("data",
+                                      "users_clean.rds")
+
+current_clean_teams <- here::here("data",
+                                      "teams_clean.rds")
+
+
+current_clean_cases
+cases <- rio::import(current_clean_cases) %>%
+  as_tibble()
+
+current_clean_contacts
+contacts <- rio::import(current_clean_contacts) %>%
+  as_tibble()
+
+current_clean_relationships
+relationships <- rio::import(current_clean_relationships) %>%
+  as_tibble()
+
+current_clean_followups
+followups <- rio::import(current_clean_followups) %>%
+  # filter(followup_number == 14 | followup_number == 7) %>%
+  as_tibble()
+
+current_clean_events
+events <- rio::import(current_clean_events) %>%
+  as_tibble()
+
+current_clean_teams
+teams <- rio::import(current_clean_teams) %>%
+  as_tibble() %>%
+  distinct(uuid, .keep_all = TRUE) %>%
+  mutate(team_name = name) %>%
+  select(uuid,team_name)
+
+current_clean_users
+users <- rio::import(current_clean_users) %>%
+  as_tibble() %>%
+  filter(!is.na(role)) %>%
+  mutate(user_name = paste0(firstname," ",lastname)) %>%
+  select(-firstname) %>%
+  select(-lastname) %>%
+  distinct(uuid, .keep_all = TRUE) 
+
+
+
+
+#Import Shapefile 
+#Process Shapefile & join to cases & contacts
+#export shp to .shp folder in data/clean
+
+
+```
+
+```{r define_time_periods, include = FALSE}
+
+database_date <- Sys.Date()  
+database_week <- isoweek(database_date)
+prev_1_date <- database_date - 1
+before_prev_1_date <- prev_1_date -1
+prev_7_date <- prev_1_date - 7
+before_prev_7_date <- prev_7_date -7
+prev_21_date <- prev_1_date -21
+min_date_case_reg <- min(cases$date_of_data_entry)
+min_date_contact_reg <- min(contacts$date_of_reporting)
+
+# scale_epicurve_day <-
+#  
+#   scale_x_date(expand            = c(0,0), # remove excess x-axis space below and after case bars
+#                limits = as.Date(min(cases$date_of_data_entry),max(prev_1_date)),
+#                date_breaks       = "3 days",      # labels appear every 3 Monday weeks
+#                date_minor_breaks = "week",         # vertical lines appear every Monday week
+#                date_labels       = "%d\n%b\n'%y") # date labels format
+# 
+# 
+#   scale_day_overall <- ggplot2::scale_x_date(breaks = "1 days",
+#                                        expand=c(0,0),
+#                                        limits = c(min_date_of_reporting, prev_1_date),
+#                                        date_label = format("%d %b %Y"))
+
+
+```
+
+
+```{r case_linelist, include = FALSE}
+
+case_linelist <- cases %>%
+  
+  left_join(select(users, uuid, user_name), by = c("updatedBy" = "uuid")) %>%
+  left_join(select(teams, uuid, team_name), by = c("team_id" = "uuid")) %>%
+      
+  mutate(reached = 
+             case_when(communication_to_case == "yes" ~ TRUE,
+                       TRUE ~ FALSE)) %>%
+  mutate(not_reached = 
+             case_when(communication_to_case == "no" ~ TRUE,
+                       TRUE ~ FALSE)) %>%
+  mutate(crf_complete = 
+             case_when(!is.na(q_initial_outcome) ~ TRUE,
+                       TRUE ~ FALSE)) %>%
+  
+  mutate(followup_14d_req_last7d = 
+             case_when(date_of_reporting + 14 >= prev_7_date ~ TRUE,
+                       TRUE ~ FALSE)) %>%
+  
+  mutate(followup_14d_complete_last7d = 
+             case_when(!is.na(q_final_outcome) & (date_of_reporting + 14) >= prev_7_date 
+                         ~ TRUE,
+                       TRUE ~ FALSE)) %>%
+  mutate(followup_14d_req = 
+             case_when(prev_1_date - date_of_reporting >= 14 ~ TRUE, 
+                       TRUE ~ FALSE)) %>%
+  
+  mutate(followup_14d_complete = 
+             case_when(!is.na(q_final_outcome) ~ TRUE,
+                       TRUE ~ FALSE)) %>%
+  
+  
+  
+  mutate(date_of_followup_end = date_of_reporting + 14) %>%
+  select(
+    uuid,
+    case_id,
+    assigned_doctor_name,
+    user_name, #updated_by
+    team_name,
+    
+    
+    
+    date_of_reporting,
+    date_of_data_entry,
+    date_of_followup_end,
+    
+    reached,
+    not_reached,
+    why_not_reached,
+    crf_complete,
+    followup_14d_req,
+    followup_14d_complete,
+    followup_14d_req_last7d,
+    followup_14d_complete_last7d,
+    was_contact,
+    
+    admin_1_name,
+    admin_2_name,
+    admin_3_name,
+    
+    gender,
+    age_class,
+    occupation,
+    contacts_per_case
+    
+    
+  ) 
+  
+
+```
+
+```{r contact_linelist, include = FALSE}
+
+######################################################
+
+contacts_7d_visit <- followups %>%
+  filter(followup_number == 7) %>%
+  arrange(contact_uuid, desc(updatedAt)) %>%
+  distinct(contact_uuid, .keep_all = TRUE) %>%
+  select(uuid = contact_uuid,
+         contact_id, 
+         followup_number,
+         date_of_followup_7d = date_of_followup,
+         followup_status_7d = followup_status,
+         team_id,
+         location_id)
+
+contacts_14d_visit <- followups %>%
+  filter(followup_number == 14) %>%
+  arrange(contact_uuid, desc(updatedAt)) %>%
+  distinct(contact_uuid, .keep_all = TRUE) %>%
+  select(uuid = contact_uuid,
+         contact_id, 
+         followup_number,
+         date_of_followup_14d = date_of_followup,
+         followup_status_14d = followup_status,
+         team_id,
+         location_id)
+
+
+contacts_seen_ever <- followups %>%
+  filter(followup_status == "SEEN_OK" | followup_status == "SEEN_NOT_OK") %>%
+  arrange(contact_uuid, desc(updatedAt)) %>%
+  distinct(contact_uuid, .keep_all = TRUE) %>%
+  select(uuid = contact_uuid,
+         contact_id, 
+         date_of_last_followup_seen = date_of_followup,
+         number_of_last_followup_seen = followup_number)
+
+contacts_seen_ever_with_signs <- followups %>%
+  filter(followup_status == "SEEN_NOT_OK") %>%
+  arrange(contact_uuid, desc(updatedAt)) %>%
+  distinct(contact_uuid, .keep_all = TRUE) %>%
+  select(uuid = contact_uuid,
+         contact_id, 
+         date_of_last_followup_seen_with_signs = date_of_followup,
+         number_of_last_followup_seen_with_signs = followup_number)
+
+##################################################################################
+
+contact_visit_status <- contacts %>%
+  # filter(contact_status == "UNDER_FOLLOW_UP") %>%
+  left_join(select(users, uuid, user_name), by = c("updatedBy" = "uuid")) %>%
+  left_join(select(teams, uuid, team_name), by = c("team_id" = "uuid")) %>%
+  left_join(select(contacts_7d_visit, uuid, date_of_followup_7d, followup_status_7d), by = "uuid") %>%
+  left_join(select(contacts_14d_visit, uuid, date_of_followup_14d, followup_status_14d), by = "uuid") %>%
+  left_join(select(contacts_seen_ever, uuid, date_of_last_followup_seen, number_of_last_followup_seen), by = "uuid") %>%
+  mutate_if(is_character, funs(na_if(.,""))) %>%
+  mutate(days_since_followup_seen = difftime(prev_1_date,
+                                        date_of_last_followup_seen, 
+                                        units = "day")) %>%
+  mutate(days_since_exp = difftime(prev_1_date,
+                                   date_of_last_contact, 
+                                   units = "day")) %>%
+  mutate(second_week_followup = case_when(
+                                  days_since_exp < 15
+                                  & days_since_exp >= 8 ~ TRUE,
+                                  TRUE ~ FALSE)) %>%
+  mutate(first_week_followup = case_when(
+                                  days_since_exp < 8 ~ TRUE,
+                                  TRUE ~ FALSE)) %>%
+  
+  mutate(need_fu_7d = case_when( date_of_followup_7d >= prev_7_date ~ TRUE,
+                                  TRUE ~ FALSE)) %>%
+  mutate(seen_7d = case_when(
+                                  followup_status_7d == "SEEN_NOT_OK" | followup_status_7d == "SEEN_OK" 
+                                  & date_of_followup_7d >= prev_7_date ~ TRUE,
+                                  TRUE ~ FALSE)) %>%
+  mutate(need_fu_14d = case_when( date_of_followup_14d >= prev_7_date ~ TRUE,
+                                  TRUE ~ FALSE)) %>%
+  mutate(seen_14d = case_when(
+                                  followup_status_14d == "SEEN_NOT_OK" | followup_status_14d == "SEEN_OK" 
+                                  & date_of_followup_14d >= prev_7_date ~ TRUE,
+                                  TRUE ~ FALSE)) %>%
+  mutate(seen_ever = uuid %in% contacts_seen_ever$uuid) %>%
+  mutate(seen_ever_with_signs = uuid %in% contacts_seen_ever_with_signs$uuid) %>%
+  mutate(never_seen = !(uuid %in% contacts_seen_ever$uuid)) %>%
+  mutate(lost_to_followup = case_when(
+                                  days_since_followup_seen >= 3 ~ TRUE,
+                                  TRUE ~ FALSE)) %>%
+  
+
+select(
+  
+  uuid,
+  contact_id,
+  assigned_doctor_name,
+  user_name, #updated_by
+  team_name,
+  
+  
+  date_of_reporting,
+  contact_status,
+  date_of_last_followup_seen,
+  number_of_last_followup_seen,
+  
+  need_fu_7d,
+  seen_7d,
+  need_fu_14d,
+  seen_14d,
+  
+  seen_ever,
+  seen_ever_with_signs,
+  lost_to_followup,
+  never_seen,
+  
+
+  admin_1_name,
+  admin_2_name,
+  admin_3_name
+  
+  
+) 
+
+```
+
+
+```{r summary_counts, include = FALSE}
+
+
+total_cases_reg <- cases %>%
+  filter(date_of_data_entry <= prev_1_date) %>%
+  count()
+
+cases_reg_last7d <- cases %>%
+  filter(date_of_data_entry >= prev_7_date &
+           date_of_data_entry <= prev_1_date) %>%
+  count()
+
+cases_reg_last1d <- cases %>%
+  filter(date_of_data_entry == prev_1_date) %>%
+  count()
+
+
+############################################
+
+cases_reg_prev_last7d <- cases %>%
+  filter(date_of_data_entry >= before_prev_7_date & date_of_data_entry < prev_7_date) %>%
+  count()
+
+perc_change_7d <- round(((cases_reg_last7d - cases_reg_prev_last7d) / cases_reg_prev_last7d)*100, digits = 0) 
+perc_change_7d <- sprintf("%+3.0f %%", perc_change_7d)
+
+############################################
+
+total_cases_from_known_contact <- cases %>%
+  filter(was_contact) %>%
+  count()
+
+perc_from_known_contact <-
+  round((total_cases_from_known_contact / total_cases_reg)*100, digits = 1)
+
+
+cases_from_known_contact_last7d <- cases %>%
+  filter(date_of_data_entry >= prev_7_date) %>%
+  filter(was_contact) %>%
+  count()
+
+perc_from_known_contact_last7d <-
+  round((cases_from_known_contact_last7d / cases_reg_last7d)*100, digits = 1)
+
+############################################
+
+# communication to case = YES (Q1)
+total_cases_reached <- case_linelist %>%
+  filter(reached) %>%
+  count()
+
+############################################
+
+# outcome is filled (Q17)
+total_cases_crf_filled <- case_linelist %>%
+  filter(crf_complete) %>%
+  count()
+
+############################################
+
+# outcome is needed (day 14)
+total_cases_followup_14d_req <- case_linelist %>%
+  filter(followup_14d_req) %>%
+  count()
+
+
+# outcome is also filled (Q17)
+total_cases_followup_14d_complete <- case_linelist %>%
+  filter(followup_14d_req) %>%
+  filter(followup_14d_complete) %>%
+  count()
+
+############################################
+
+total_contacts_reg <- contacts %>%
+  filter(date_of_reporting <= prev_1_date) %>%
+  count() 
+
+
+total_contacts_active <- contact_visit_status %>%
+  filter(contact_status == "UNDER_FOLLOW_UP") %>%
+  count() 
+
+############################################
+# need to decide here whether to do overall, or daily.
+
+contacts_reg_last7d <- contacts %>%
+  filter(date_of_reporting >= prev_7_date &
+            date_of_data_entry <= prev_1_date) %>%
+  count()
+
+contacts_reg_last1d <- contacts %>%
+  filter(date_of_reporting == prev_1_date) %>%
+  count()
+
+contacts_reg_prev_last7d <- contacts %>%
+  filter(date_of_reporting >= before_prev_7_date & date_of_reporting < prev_7_date) %>%
+  count()
+
+perc_change_7d_contacts <- round(((contacts_reg_last7d - contacts_reg_prev_last7d) / contacts_reg_prev_last7d)*100, digits = 0) 
+perc_change_7d_contacts <- sprintf("%+3.0f %%", perc_change_7d_contacts)
+
+############################################
+
+contacts_active_reached <- contact_visit_status %>%
+  filter(contact_status == "UNDER_FOLLOW_UP") %>%
+  filter(!never_seen) %>%
+  count()
+
+contacts_active_ltfu <- contact_visit_status %>%
+  filter(contact_status == "UNDER_FOLLOW_UP") %>%
+  filter(lost_to_followup) %>%
+  count()
+
+
+# total contacts needing 7d follow up, 1 day ago
+
+contacts_7d_last7d <- followups %>%
+  filter(followup_number == 7) %>%
+  filter(date_of_followup >= prev_7_date) %>%
+  count()
+
+contacts_7d_seen_last7d <- followups %>%
+  filter(followup_number == 7) %>%
+  filter(date_of_followup >= prev_7_date) %>%
+  filter(followup_status == "SEEN_OK" | followup_status == "SEEN_NOT_OK") %>%
+  count()
+
+
+perc_contacts_7d_seen_last7d <-
+  round((contacts_7d_seen_last7d/contacts_7d_last7d)*100,digits = 1)
+
+
+######################################################################3
+
+contacts_7d <- followups %>%
+  filter(followup_number == 7) %>%
+  count()
+
+contacts_7d_seen <- followups %>%
+  filter(followup_number == 7) %>%
+  filter(followup_status == "SEEN_OK" | followup_status == "SEEN_NOT_OK") %>%
+  count()
+
+
+perc_contacts_7d_seen <-
+  round((contacts_7d_seen/contacts_7d)*100,digits = 1)
+
+
+# total contacts needing 14d follow up, 1 day ago
+
+contacts_14d_last7d <- followups %>%
+  filter(followup_number == 14) %>%
+  filter(date_of_followup >= prev_7_date) %>%
+  count()
+
+contacts_14d_seen_last7d <- followups %>%
+  filter(followup_number == 14) %>%
+  filter(date_of_followup >= prev_7_date) %>%
+  filter(followup_status == "SEEN_OK" | followup_status == "SEEN_NOT_OK") %>%
+  count()
+
+
+perc_contacts_14d_seen_last7d <-
+  round((contacts_14d_seen_last7d/contacts_14d_last7d)*100,digits = 1)
+
+
+#################################################################3
+
+contacts_14d <- followups %>%
+  filter(followup_number == 14) %>%
+  count()
+
+contacts_14d_seen <- followups %>%
+  filter(followup_number == 14) %>%
+  filter(followup_status == "SEEN_OK" | followup_status == "SEEN_NOT_OK") %>%
+  count()
+
+
+perc_contacts_14d_seen <-
+  round((contacts_14d_seen/contacts_14d)*100,digits = 1)
+
+```
+
+
+
+KEY PERFORMANCE INDICATORS {data-icon="fa-chart-line"} 
+=====================================================
+
+Row {data-height=200}
+-------------------------------------
+
+### Total Cases
+```{r total_cases_reg, echo = FALSE}
+
+
+valueBox(total_cases_reg, 
+         icon = "fa-user-plus", 
+         caption = "Total Confirmed Cases",
+         color = "#005252")
+
+```
+
+### Newly Assigned Cases, last 7d
+```{r cases_reg_last1d, echo = FALSE}
+
+
+valueBox(cases_reg_last7d,
+         caption = "Newly Assigned Cases, Last 7d",
+         color = "#005252"
+         # color = ifelse(perc_change_1d >=1, custom_green, "#E94B25")
+         )
+
+```
+
+
+### Cases from Contact List
+```{r perc_from_known_contact, echo = FALSE}
+
+
+
+valueBox(total_cases_from_known_contact, 
+         caption = "Cases from known contact",
+         color =  "#005252")
+
+```
+
+### Cases Reached for Initial Case Investigation
+```{r cases_reached, echo = FALSE}
+
+
+valueBox(total_cases_reached, 
+         caption = "Cases reached",
+         color =  "#005252")
+
+
+```
+
+### Cases with CRF Completed
+```{r cases_crf_completed, echo = FALSE}
+
+
+valueBox(total_cases_crf_filled, 
+         caption = "Cases with CRF Complete",
+         color =  "#005252")
+
+```
+
+### Cases Followed Up, Day 14
+```{r cases_fu_completed, echo = FALSE}
+
+
+valueBox(total_cases_followup_14d_complete, 
+         color =  "#005252")
+
+```
+
+
+### Active Contacts
+
+```{r total_active_contacts_reg, echo = FALSE}
+
+
+valueBox(total_contacts_active, 
+         icon = "fa-users",
+         color = "#e26d5c")
+
+```
+
+### New Contacts Listed, last 7d
+```{r contacts_reg_last1d, echo = FALSE}
+
+
+valueBox(contacts_reg_last7d, 
+         caption = "New Contacts Listed, Last 7d",
+         color = "#e26d5c")
+
+```
+
+### Contacts Reached, of Active
+
+```{r contacts_active_reached, echo = FALSE}
+
+valueBox(contacts_active_reached,
+                  color = "#e26d5c")
+
+```
+
+### Contacts Lost To Follow Up, of Active
+
+```{r contacts_active_ltfu, echo = FALSE}
+
+
+valueBox(contacts_active_ltfu,
+                  color = "#e26d5c")
+
+```
+
+### Contacts Followed Up, Day 7
+
+```{r contacts_active_followed_7d, echo = FALSE}
+
+
+valueBox(paste0(perc_contacts_7d_seen,"%"), 
+                  color = "#e26d5c")
+
+```
+
+
+### Contacts Followed Up, Day 14
+
+```{r contacts_active_followed_14d, echo = FALSE}
+
+
+valueBox(paste0(perc_contacts_14d_seen,"%"), 
+                  color = "#e26d5c")
+
+
+```
+
+Row {.tabset data-height=875}
+-------------------------------------
+
+### Demographics
+
+```{r demographics, fig.width=9, fig.height=6, fig.show="hold", out.width="50%"}
+
+### count those without reported age or sex or occupation
+case_unknown_age <- sum(cases$age_class == "unknown")
+case_unknown_sex <- sum(is.na(cases$gender))
+case_with_age_and_sex <- sum(!is.na(cases$gender) & cases$age_class != "unknown") 
+
+#############################################################
+### age sex pryamid
+############################################################
+case_age_sex_breakdown <- cases %>%
+  filter(age_class != "unknown") %>%
+  filter(!is.na(gender)) %>%
+  group_by(gender, age_class) %>%
+  summarise(num = n()) %>%
+  ungroup() %>%
+  mutate(prop_case = num / sum(num) * 100)
+
+drop_levels <- levels(droplevels(case_age_sex_breakdown$age_class))
+
+age_pyramid_case <- 
+  ggplot(data = case_age_sex_breakdown, aes(x = age_class, fill = gender)) + 
+  geom_bar(data = subset(case_age_sex_breakdown, gender == "FEMALE"), aes(y = prop_case),
+           stat = "identity",width=1,  alpha = 0.6, col = "white") +
+  geom_bar(data = subset(case_age_sex_breakdown, gender == "MALE"),
+           stat = "identity",width=1,  aes(y = prop_case*(-1)), alpha = 0.6, col = "white") +
+  geom_label(
+    label= paste0(round(sum(case_age_sex_breakdown$prop_case[case_age_sex_breakdown$gender == "MALE"]),digits=1),"% Male"),
+    label.padding = unit(0.55, "lines"), # Rectangle size around label
+    label.size = 0.4,
+    x=13,
+    y=7,
+    color = "white",
+    fill="#00bfbf"
+  ) +
+  geom_label(
+    label= paste0(round(sum(case_age_sex_breakdown$prop_case[case_age_sex_breakdown$gender == "FEMALE"]),digits=1),"% Female"), 
+    label.padding = unit(0.55, "lines"), # Rectangle size around label
+    label.size = 0.4,
+    x=12,
+    y=7,
+    color = "white",
+    fill="#005252"
+  ) +
+  geom_label(
+    label= paste0(round(case_unknown_sex/total_cases_reg,digits=2),"% Unknown"), 
+    label.padding = unit(0.55, "lines"), # Rectangle size around label
+    label.size = 0.4,
+    x=11,
+    y=7,
+    color = "white",
+    fill=custom_grey
+  ) +
+
+  scale_fill_manual(
+    values=c(
+      "MALE" = "#00bfbf", 
+      "FEMALE" = "#005252"),
+    guide = guide_legend(reverse = TRUE)
+  ) + 
+  coord_flip() + 
+  theme_classic() +
+  # theme_pubr() + 
+  
+  labs(y = "Percent of total",
+       x = "",
+       fill = "Sex",
+       title = "Age/sex pyramid of COVID-19 cases",
+       subtitle = paste0("n = ", case_unknown_age, " with no age recorded, n = ", case_unknown_sex, " with no sex recorded")) +
+       # caption = paste0("Source: Go.Data Core Case Registration Module 
+       #      Excludes cases without reported age (n = ", case_unknown_age, ") and sex (n = ", case_unknown_sex, ")")) 
+  scale_x_discrete(limits = rev(drop_levels)) +
+  theme(
+    legend.title = element_text(size=10, face = "bold"),
+    plot.title = element_text(size=12, face = "bold"),
+    axis.ticks.y.left = element_line(size = 0.5, colour = "grey"),
+    axis.title.y = element_text(size = 12),
+    plot.subtitle = element_text(size=11),
+    plot.caption = element_text(size = 8, face = "italic"),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank()) 
+
+##############################################3
+
+### count those without reported age or sex or occupation
+contact_unknown_age <- sum(contacts$age == "unknown")
+contact_unknown_sex <- sum(is.na(contacts$gender))
+contact_with_age_and_sex <- sum(!is.na(contacts$gender) & contacts$age_class != "unknown") 
+
+#############################################################
+### age sex pryamid
+############################################################
+contact_age_sex_breakdown <- contacts %>%
+  filter(age_class != "unknown") %>%
+  filter(!is.na(gender)) %>%
+  group_by(gender, age_class) %>%
+  summarise(num = n()) %>%
+  ungroup() %>%
+  mutate(prop = num / sum(num) * 100)
+
+drop_levels <- levels(droplevels(contact_age_sex_breakdown$age_class))
+
+age_pyramid_contact <- 
+  ggplot(data = contact_age_sex_breakdown, aes(x = age_class, fill = gender)) + 
+  geom_bar(data = subset(contact_age_sex_breakdown, gender == "FEMALE"), aes(y = prop),
+           stat = "identity",width=1,  alpha = 0.6, col = "white") +
+  geom_bar(data = subset(contact_age_sex_breakdown, gender == "MALE"),
+           stat = "identity",width=1,  aes(y = prop*(-1)), alpha = 0.6, col = "white") +
+  geom_label(
+    label= paste0(round(sum(contact_age_sex_breakdown$prop[contact_age_sex_breakdown$gender == "MALE"]),digits=1),"% Male"),
+    label.padding = unit(0.55, "lines"), # Rectangle size around label
+    label.size = 0.4,
+    x=13,
+    y=7,
+    color = "white",
+    fill="#ffac81"
+  ) +
+  geom_label(
+    label= paste0(round(sum(contact_age_sex_breakdown$prop[contact_age_sex_breakdown$gender == "FEMALE"]),digits=1),"% Female"), 
+    label.padding = unit(0.55, "lines"), # Rectangle size around label
+    label.size = 0.4,
+    x=12,
+    y=7,
+    color = "white",
+    fill="#e26d5c"
+  ) +
+  geom_label(
+    label= paste0(round(contact_unknown_sex/total_contacts_reg,digits=2),"% Unknown"), 
+    label.padding = unit(0.55, "lines"), # Rectangle size around label
+    label.size = 0.4,
+    x=11,
+    y=7,
+    color = "white",
+    fill=custom_grey
+  ) +
+
+  scale_fill_manual(
+    values=c(
+      "MALE" = "#ffac81", 
+      "FEMALE" = "#e26d5c"),
+    guide = guide_legend(reverse = TRUE)
+  ) + 
+  coord_flip() + 
+  theme_classic() +
+  # theme_pubr() + 
+  
+  labs(y = "Percent of total",
+       x = "",
+       fill = "Sex",
+       title = "Age/sex pyramid of COVID-19 contacts",
+       subtitle = paste0("n = ", contact_unknown_age, " with no age recorded, n = ", contact_unknown_sex, " with no sex recorded")) +
+       # caption = paste0("Source: Go.Data Core Case Registration Module 
+       #      Excludes cases without reported age (n = ", case_unknown_age, ") and sex (n = ", case_unknown_sex, ")")) 
+  scale_x_discrete(limits = rev(drop_levels)) +
+  theme(
+    legend.title = element_text(size=10, face = "bold"),
+    plot.title = element_text(size=12, face = "bold"),
+    axis.ticks.y.left = element_line(size = 0.5, colour = "grey"),
+    axis.title.y = element_text(size = 12),
+    plot.subtitle = element_text(size=11),
+    plot.caption = element_text(size = 8, face = "italic"),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank()) 
+
+############################################################
+pacman::p_load(incidence)
+## plot by date of case creation
+case_reg_day   <- incidence(cases$date_of_data_entry,  # the linelist date column of interest
+                       interval = "day") 
+
+# plot incidence object
+plot_case_reg_day <-
+plot(case_reg_day,
+     xlab = "Day of Case Registration",
+     ylab = "Count",
+     # show_cases = TRUE,
+     alpha = 0.5,
+     color = custom_case_color,
+     border = "black") +
+  # scale_epicurve_day +
+  
+    # Add some modifications using ggplot() functions
+  scale_x_date(
+    expand = c(0,0)) +      # remove excess space on left and right
+  scale_y_continuous(
+    expand = c(0,0)) +      # remove excess space below 0 on y-axis
+  labs(
+    title = "Daily cases registered in Go.Data",
+    caption = "") +
+  theme_classic() +         # simplify background
+  theme(
+    plot.title = element_text(size = 14,
+                              face = "bold"),
+    axis.title = element_text(size = 10),   # axis titles larger and bold,
+    axis.text = element_text(size = 10),
+    plot.caption = element_text(hjust = 0)   # move caption to left
+        )
+
+
+## plot by date of contact creation
+contact_reg_day   <- incidence(contacts$date_of_reporting,  # the linelist date column of interest
+                       interval = "day") 
+
+# plot incidence object
+plot_contact_reg_day <-
+plot(contact_reg_day,
+     xlab = "Day of Contact Registration",
+     ylab = "Count",
+     # show_cases = TRUE,
+     alpha = 0.5,
+     color = custom_contact_color,
+     border = "black") +
+  
+    # Add some modifications using ggplot() functions
+  # scale_x_date(
+  #   expand = c(0,0))+      # remove excess space on left and right
+  scale_y_continuous(
+    expand = c(0,0)) +      # remove excess space below 0 on y-axis
+  labs(
+    title = "Daily contacts listed in Go.Data",
+    caption = "") +
+  theme_classic() +         # simplify background
+  theme(
+    plot.title = element_text(size = 14,
+                              face = "bold"),
+    axis.title = element_text(size = 10),   # axis titles larger and bold,
+    axis.text = element_text(size = 10),
+    plot.caption = element_text(hjust = 0)   # move caption to left
+        )
+
+age_pyramid_case
+age_pyramid_contact
+plot_case_reg_day
+plot_contact_reg_day
+
+```
+
+### Last 7d Performance Table - By Division
+
+```{r}
+
+
+tab_weekly_perf_admin_1_cases <- case_linelist %>%
+  group_by(admin_1_name) %>%
+  summarise(
+    cases_reg = n(),
+    cases_reg_last7d = sum(date_of_reporting >= prev_7_date),
+    cases_from_known_contact_last7d = sum(was_contact & date_of_reporting >= prev_7_date),
+    cases_reached = sum(reached & date_of_reporting >= prev_7_date),
+    cases_crf_filled = sum(crf_complete & date_of_reporting >= prev_7_date),
+    cases_followup_14d_req = sum(followup_14d_req),
+    cases_followup_14d_complete = sum(followup_14d_complete)) %>%
+  arrange(desc(cases_reg_last7d)) %>%
+    replace(is.na(is.integer(.)), 0) 
+
+
+tab_weekly_perf_admin_1_contacts <- contact_visit_status %>%
+  group_by(admin_1_name) %>%
+  summarise(
+    contacts_reg = n(),
+    contacts_active = sum(contact_status == "UNDER_FOLLOW_UP"),
+    contacts_reg_last7d = sum(date_of_reporting >= prev_7_date),
+    contacts_followup_7d_req = sum(need_fu_7d),
+    contacts_followup_7d_complete = sum(seen_7d),
+    contacts_followup_14d_req = sum(need_fu_14d),
+    contacts_followup_14d_complete = sum(seen_14d)) %>%
+    replace(is.na(is.integer(.)), 0) 
+
+
+tab_weekly_perf_admin_1_combined <- tab_weekly_perf_admin_1_cases %>%
+  left_join(tab_weekly_perf_admin_1_contacts, by = "admin_1_name") %>%
+  
+    select(
+    `Division` = admin_1_name,
+    
+    # `Total Registered Cases` = cases_reg,
+    `Newly Assigned Cases` = cases_reg_last7d,
+    `From Known Contact` = cases_from_known_contact_last7d,
+    `Reached` = cases_reached,
+    `CRF Filled` = cases_crf_filled,
+    `Needing 14d Case Followup` = cases_followup_14d_req,
+    `Completed 14d Case Followup` = cases_followup_14d_complete,
+
+    # `Total Registered Contacts` = contacts_reg,
+    `Currently Active Contacts` = contacts_active,
+    `Newly Listed Contacts` = contacts_reg_last7d,
+    `Needing 7d Followup` = contacts_followup_7d_req,
+    `Completed 7d Followup` = contacts_followup_7d_complete,
+    `Needing 14d Followup` = contacts_followup_14d_req,
+    `Completed 14d Followup` = contacts_followup_14d_complete
+
+  ) 
+
+
+formattable_weekly_perf_admin_1_combined <-tab_weekly_perf_admin_1_combined %>% 
+
+  # maybe add some sort of spark chart
+  # replace NA with "-"
+  
+  mutate(
+    `Division` = formatter("span", style = ~ formattable::style(
+      color = ifelse(`Division` == "NOT FILLED", "red", "grey"),
+      font.weight = "bold",font.style = "italic"))(`Division`),
+    `Newly Assigned Cases` = color_bar("#337575")(`Newly Assigned Cases`),          ## case color #005252
+    `Needing 14d Case Followup`= color_tile("white", custom_grey0)(`Needing 14d Case Followup`),
+    `Completed 14d Case Followup`= color_tile("white", custom_green0)(`Completed 14d Case Followup`),
+    `Newly Listed Contacts` = color_bar("#e26d5c")(`Newly Listed Contacts`),## contact color #e26d5c
+    `From Known Contact` = color_tile("white",godata_orange)(`From Known Contact`),
+    `Needing 7d Followup`= color_tile("white", custom_grey0)(`Needing 7d Followup`),
+    `Completed 7d Followup`= color_tile("white", custom_green0)(`Completed 7d Followup`),
+    `Needing 14d Followup`= color_tile("white", custom_grey0)(`Needing 14d Followup`),
+    `Completed 14d Followup`= color_tile("white", custom_green0)(`Completed 14d Followup`)
+    
+       ) %>%
+  kable("html", escape = F, align =c("l","c","c","c","c","c","c","c","c","c","c","c","c","c")) %>%
+  kable_styling("hover", full_width = FALSE) %>%
+  add_header_above(c(" " = 1,
+                     "Case Investigation & 14d Follow Up - Last 7d" = 6,
+                     "Contact Listnig & 7/14d Follow Up - Last 7d" = 6))
+
+formattable_weekly_perf_admin_1_combined
+
+
+```
+
+
+### Last 7d Performance Table - By District 
+
+```{r }
+
+tab_weekly_perf_admin_2_cases <- case_linelist %>%
+  mutate(admin_2_name = str_replace_na(admin_2_name, replacement = "NOT FILLED" )) %>%
+  mutate(admin_1_name = str_replace_na(admin_1_name, replacement = "NOT FILLED" )) %>%
+  group_by(admin_2_name, admin_1_name) %>%
+  summarise(
+    cases_reg = n(),
+    cases_reg_last7d = sum(date_of_reporting >= prev_7_date),
+    cases_from_known_contact_last7d = sum(was_contact & date_of_reporting >= prev_7_date),
+    cases_reached = sum(reached & date_of_reporting >= prev_7_date),
+    cases_crf_filled = sum(crf_complete & date_of_reporting >= prev_7_date),
+    cases_followup_14d_req = sum(followup_14d_req),
+    cases_followup_14d_complete = sum(followup_14d_complete)) %>%
+  arrange(desc(cases_reg_last7d)) %>%
+    replace(is.na(is.integer(.)), 0) 
+
+
+tab_weekly_perf_admin_2_contacts <- contact_visit_status %>%
+  mutate(admin_2_name = str_replace_na(admin_2_name, replacement = "NOT FILLED" )) %>%
+  mutate(admin_1_name = str_replace_na(admin_1_name, replacement = "NOT FILLED" )) %>%
+  group_by(admin_2_name, admin_1_name) %>%
+  summarise(
+    contacts_reg = n(),
+    contacts_active = sum(contact_status == "UNDER_FOLLOW_UP"),
+    contacts_reg_last7d = sum(date_of_reporting >= prev_7_date),
+    contacts_followup_7d_req = sum(need_fu_7d),
+    contacts_followup_7d_complete = sum(seen_7d),
+    contacts_followup_14d_req = sum(need_fu_14d),
+    contacts_followup_14d_complete = sum(seen_14d)) %>%
+    replace(is.na(is.integer(.)), 0) 
+
+
+tab_weekly_perf_admin_2_combined <-
+sqldf('select *
+                from tab_weekly_perf_admin_2_cases as cases
+                  inner join tab_weekly_perf_admin_2_contacts as contacts on cases.admin_1_name = contacts.admin_1_name 
+                                                  AND cases.admin_2_name = contacts.admin_2_name 
+                  ')  %>%
+  setNames(., make.names(colnames(.), unique = TRUE)) %>%
+  arrange(admin_1_name, admin_2_name) %>%
+
+# tab_weekly_perf_admin_2_combined <- tab_weekly_perf_admin_2_cases %>%
+#   left_join(tab_weekly_perf_admin_2_contacts, by = "admin_2_name") %>%
+#     rename_at(vars(ends_with(".x")),
+#             ~str_replace(., "\\..$","")) %>% 
+#     select_at(vars(-ends_with(".y"))) %>%
+  
+    select(
+    `District` = admin_2_name,
+    `Division` = admin_1_name,
+    # `Total Registered Cases` = cases_reg,
+    `Newly Assigned Cases` = cases_reg_last7d,
+    `From Known Contact` = cases_from_known_contact_last7d,
+    `Reached` = cases_reached,
+    `CRF Filled` = cases_crf_filled,
+    `Needing 14d Case Followup` = cases_followup_14d_req,
+    `Completed 14d Case Followup` = cases_followup_14d_complete,
+
+    # `Total Registered Contacts` = contacts_reg,
+    `Currently Active Contacts` = contacts_active,
+    `Newly Listed Contacts` = contacts_reg_last7d,
+    `Needing 7d Followup` = contacts_followup_7d_req,
+    `Completed 7d Followup` = contacts_followup_7d_complete,
+    `Needing 14d Followup` = contacts_followup_14d_req,
+    `Completed 14d Followup` = contacts_followup_14d_complete
+
+  ) 
+
+
+formattable_weekly_perf_admin_2_combined <-tab_weekly_perf_admin_2_combined %>% 
+
+  # maybe add some sort of spark chart
+  # replace NA with "-"
+  
+  mutate(
+    `District` = formatter("span", style = ~ formattable::style(
+      color = ifelse(`District` == "NOT FILLED", "red", "grey"),
+      font.weight = "bold",font.style = "italic"))(`District`),
+    `Division` = formatter("span", style = ~ formattable::style(
+      color = ifelse(`Division` == "NOT FILLED", "red", "grey")))(`Division`),
+    `Newly Assigned Cases` = color_bar("#337575")(`Newly Assigned Cases`),          ## case color #005252
+    `Needing 14d Case Followup`= color_tile("white", custom_grey0)(`Needing 14d Case Followup`),
+    `Completed 14d Case Followup`= color_tile("white", custom_green0)(`Completed 14d Case Followup`),
+    `From Known Contact` = color_tile("white",godata_orange)(`From Known Contact`),
+    `Newly Listed Contacts` = color_bar("#e26d5c")(`Newly Listed Contacts`),          ## contact color #e26d5c
+    `Needing 7d Followup`= color_tile("white", custom_grey0)(`Needing 7d Followup`),
+    `Completed 7d Followup`= color_tile("white", custom_green0)(`Completed 7d Followup`),
+    `Needing 14d Followup`= color_tile("white", custom_grey0)(`Needing 14d Followup`),
+    `Completed 14d Followup`= color_tile("white", custom_green0)(`Completed 14d Followup`)
+    
+       ) %>%
+  kable("html", escape = F, align =c("l","l","c","c","c","c","c","c","c","c","c","c","c","c")) %>%
+  kable_styling("hover", full_width = FALSE) %>%
+  add_header_above(c(" " = 2,
+                     "Case Investigation & 14d Follow Up - Last 7d" = 6,
+                     "Contact Listnig & 7/14d Follow Up - Last 7d" = 6))
+
+formattable_weekly_perf_admin_2_combined
+
+
+
+```
+
+### Last 7d Performance Table - By Upazila 
+
+```{r }
+
+tab_weekly_perf_admin_3_cases <- case_linelist %>%
+  mutate(admin_3_name = str_replace_na(admin_3_name, replacement = "NOT FILLED" )) %>%
+  mutate(admin_2_name = str_replace_na(admin_2_name, replacement = "NOT FILLED" )) %>%
+  mutate(admin_1_name = str_replace_na(admin_1_name, replacement = "NOT FILLED" )) %>%
+  group_by(admin_3_name, admin_2_name, admin_1_name) %>%
+  summarise(
+    cases_reg = n(),
+    cases_reg_last7d = sum(date_of_reporting >= prev_7_date),
+    cases_from_known_contact_last7d = sum(was_contact & date_of_reporting >= prev_7_date),
+    cases_reached = sum(reached & date_of_reporting >= prev_7_date),
+    cases_crf_filled = sum(crf_complete & date_of_reporting >= prev_7_date),
+    cases_followup_14d_req = sum(followup_14d_req),
+    cases_followup_14d_complete = sum(followup_14d_complete)) %>%
+  arrange(desc(cases_reg_last7d)) %>%
+    replace(is.na(is.integer(.)), 0) 
+
+
+tab_weekly_perf_admin_3_contacts <- contact_visit_status %>%
+  mutate(admin_3_name = str_replace_na(admin_3_name, replacement = "NOT FILLED" )) %>%
+  mutate(admin_2_name = str_replace_na(admin_2_name, replacement = "NOT FILLED" )) %>%
+  mutate(admin_1_name = str_replace_na(admin_1_name, replacement = "NOT FILLED" )) %>%
+  group_by(admin_3_name, admin_2_name, admin_1_name) %>%
+  summarise(
+    contacts_reg = n(),
+    contacts_active = sum(contact_status == "UNDER_FOLLOW_UP"),
+    contacts_reg_last7d = sum(date_of_reporting >= prev_7_date),
+    contacts_followup_7d_req = sum(need_fu_7d),
+    contacts_followup_7d_complete = sum(seen_7d),
+    contacts_followup_14d_req = sum(need_fu_14d),
+    contacts_followup_14d_complete = sum(seen_14d)) %>%
+    replace(is.na(is.integer(.)), 0) 
+
+
+tab_weekly_perf_admin_3_combined <-
+sqldf('select *
+                from tab_weekly_perf_admin_3_cases as cases
+                  inner join tab_weekly_perf_admin_3_contacts as contacts on cases.admin_3_name = contacts.admin_3_name AND cases.admin_2_name = contacts.admin_2_name AND cases.admin_1_name = contacts.admin_1_name
+                  ')  %>%
+  setNames(., make.names(colnames(.), unique = TRUE)) %>%
+  arrange(admin_1_name, admin_2_name) %>%
+  
+    select(
+    `Upazila` = admin_3_name,
+    `District` = admin_2_name,
+    `Division` = admin_1_name,
+    # `Total Registered Cases` = cases_reg,
+    `Newly Assigned Cases` = cases_reg_last7d,
+    `From Known Contact` = cases_from_known_contact_last7d,
+    `Reached` = cases_reached,
+    `CRF Filled` = cases_crf_filled,
+    `Needing 14d Case Followup` = cases_followup_14d_req,
+    `Completed 14d Case Followup` = cases_followup_14d_complete,
+
+    # `Total Registered Contacts` = contacts_reg,
+    `Currently Active Contacts` = contacts_active,
+    `Newly Listed Contacts` = contacts_reg_last7d,
+    `Needing 7d Followup` = contacts_followup_7d_req,
+    `Completed 7d Followup` = contacts_followup_7d_complete,
+    `Needing 14d Followup` = contacts_followup_14d_req,
+    `Completed 14d Followup` = contacts_followup_14d_complete
+
+  ) 
+
+
+formattable_weekly_perf_admin_3_combined <-tab_weekly_perf_admin_3_combined %>% 
+
+  # maybe add some sort of spark chart
+  # replace NA with "-"
+  
+  mutate(
+      `Upazila` = formatter("span", style = ~ formattable::style(
+      color = ifelse(`Upazila` == "NOT FILLED", "red", "grey"),
+      font.weight = "bold",font.style = "italic"))(`Upazila`),
+      `District` = formatter("span", style = ~ formattable::style(
+      color = ifelse(`District` == "NOT FILLED", "red", "grey")))(`District`),
+    `Division` = formatter("span", style = ~ formattable::style(
+      color = ifelse(`Division` == "NOT FILLED", "red", "grey")))(`Division`),
+    `Newly Assigned Cases` = color_bar("#337575")(`Newly Assigned Cases`),
+    # `Newly Assigned Cases` = color_bar("#005252")(`Newly Assigned Cases`),          ## case color #005252
+    `Needing 14d Case Followup`= color_tile("white", custom_grey0)(`Needing 14d Case Followup`),
+    `Completed 14d Case Followup`= color_tile("white", custom_green0)(`Completed 14d Case Followup`),
+    
+    `Newly Listed Contacts` = color_bar("#e26d5c")(`Newly Listed Contacts`),          ## contact color #e26d5c
+     `From Known Contact` = color_tile("white",godata_orange)(`From Known Contact`),
+    `Needing 7d Followup`= color_tile("white", custom_grey0)(`Needing 7d Followup`),
+    `Completed 7d Followup`= color_tile("white", custom_green0)(`Completed 7d Followup`),
+    `Needing 14d Followup`= color_tile("white", custom_grey0)(`Needing 14d Followup`),
+    `Completed 14d Followup`= color_tile("white", custom_green0)(`Completed 14d Followup`)
+    
+       ) %>%
+  kable("html", escape = F, align =c("l","l","l","c","c","c","c","c","c","c","c","c","c","c")) %>%
+  kable_styling("hover", full_width = FALSE) %>%
+  add_header_above(c(" " = 3,
+                     "Case Investigation & 14d Follow Up - Last 7d" = 6,
+                     "Contact Listnig & 7/14d Follow Up - Last 7d" = 6))
+
+formattable_weekly_perf_admin_3_combined
+
+
+
+```
+
+### Last 7d Performance Table - By Assigned Doctor 
+
+```{r }
+
+tab_weekly_perf_OIO_cases <- case_linelist %>%
+  mutate(assigned_doctor_name = str_replace_na(assigned_doctor_name, replacement = "NOT FILLED" )) %>%
+  mutate(admin_1_name = str_replace_na(admin_1_name, replacement = "NOT FILLED" )) %>%
+  group_by(assigned_doctor_name, admin_1_name) %>%
+  summarise(
+    cases_reg = n(),
+    cases_reg_last7d = sum(date_of_reporting >= prev_7_date),
+    cases_from_known_contact_last7d = sum(was_contact & date_of_reporting >= prev_7_date),
+    cases_reached = sum(reached & date_of_reporting >= prev_7_date),
+    cases_crf_filled = sum(crf_complete & date_of_reporting >= prev_7_date),
+    cases_followup_14d_req = sum(followup_14d_req),
+    cases_followup_14d_complete = sum(followup_14d_complete)) %>%
+  # arrange(desc(cases_reg_last7d)) %>%
+  arrange(admin_1_name, assigned_doctor_name) %>%
+    replace(is.na(is.integer(.)), 0) 
+
+
+tab_weekly_perf_OIO_contacts <- contact_visit_status %>%
+  mutate(assigned_doctor_name = str_replace_na(assigned_doctor_name, replacement = "NOT FILLED" )) %>%
+  mutate(admin_1_name = str_replace_na(admin_1_name, replacement = "NOT FILLED" )) %>%
+  group_by(assigned_doctor_name, admin_1_name) %>%
+  summarise(
+    contacts_reg = n(),
+    contacts_active = sum(contact_status == "UNDER_FOLLOW_UP"),
+    contacts_reg_last7d = sum(date_of_reporting >= prev_7_date),
+    contacts_followup_7d_req = sum(need_fu_7d),
+    contacts_followup_7d_complete = sum(seen_7d),
+    contacts_followup_14d_req = sum(need_fu_14d),
+    contacts_followup_14d_complete = sum(seen_14d)) %>%
+    replace(is.na(is.integer(.)), 0) 
+
+
+tab_weekly_perf_OIO_combined <- tab_weekly_perf_OIO_cases %>%
+  inner_join(tab_weekly_perf_OIO_contacts, by = "assigned_doctor_name") %>%
+    rename_at(vars(ends_with(".x")),
+            ~str_replace(., "\\..$","")) %>% 
+    select_at(vars(-ends_with(".y"))) %>%
+  
+    select(
+    `Assigned Doctor` = assigned_doctor_name,
+    `Division` = admin_1_name,
+    # `Total Registered Cases` = cases_reg,
+    `Newly Assigned Cases` = cases_reg_last7d,
+    `From Known Contact` = cases_from_known_contact_last7d,
+    `Reached` = cases_reached,
+    `CRF Filled` = cases_crf_filled,
+    `Needing 14d Case Followup` = cases_followup_14d_req,
+    `Completed 14d Case Followup` = cases_followup_14d_complete,
+
+    # `Total Registered Contacts` = contacts_reg,
+    `Currently Active Contacts` = contacts_active,
+    `Newly Listed Contacts` = contacts_reg_last7d,
+    `Needing 7d Followup` = contacts_followup_7d_req,
+    `Completed 7d Followup` = contacts_followup_7d_complete,
+    `Needing 14d Followup` = contacts_followup_14d_req,
+    `Completed 14d Followup` = contacts_followup_14d_complete
+
+  ) 
+
+
+formattable_weekly_perf_OIO_combined <-tab_weekly_perf_OIO_combined %>% 
+
+  # maybe add some sort of spark chart
+  # replace NA with "-"
+  
+  mutate(
+    `Division` = formatter("span", style = ~ formattable::style(
+      color = ifelse(`Division` == "NA", "red", "grey"),
+      font.weight = "bold",font.style = "italic"))(`Division`),
+    `Newly Assigned Cases` = color_bar("#337575")(`Newly Assigned Cases`),          ## case color #005252
+    `Needing 14d Case Followup`= color_tile("white", custom_grey0)(`Needing 14d Case Followup`),
+    `Completed 14d Case Followup`= color_tile("white", custom_green0)(`Completed 14d Case Followup`),
+    
+    `Newly Listed Contacts` = color_bar("#e26d5c")(`Newly Listed Contacts`),          ## contact color #e26d5c
+    `Needing 7d Followup`= color_tile("white", custom_grey0)(`Needing 7d Followup`),
+    `From Known Contact` = color_tile("white",godata_orange)(`From Known Contact`),
+    `Completed 7d Followup`= color_tile("white", custom_green0)(`Completed 7d Followup`),
+    `Needing 14d Followup`= color_tile("white", custom_grey0)(`Needing 14d Followup`),
+    `Completed 14d Followup`= color_tile("white", custom_green0)(`Completed 14d Followup`)
+    
+       ) %>%
+  kable("html", escape = F, align =c("l","l","c","c","c","c","c","c","c","c","c","c","c","c")) %>%
+  kable_styling("hover", full_width = FALSE) %>%
+  add_header_above(c(" " = 2,
+                     "Case Investigation & 14d Follow Up - Last 7d" = 6,
+                     "Contact Listnig & 7/14d Follow Up - Last 7d" = 6))
+
+formattable_weekly_perf_OIO_combined
+
+
+
+```
+
+CASE INVESTIGATION {data-icon="fa-clipboard-list"} 
+=====================================================
+
+Row {.tabset data-height=875}
+-------------------------------------
+
+### CRF Completion & Follow Up
+
+```{r case_follow_up, fig.width=9, fig.height=6, fig.show="hold", out.width="50%"}
+
+# by date of data entry - of cases registered; how many of them were reached - last 21d
+## breakdown across divisions
+
+crf_completion_by_week <- case_linelist %>%
+  mutate(iso_week = isoweek(date_of_data_entry)) %>%
+  # filter(date_of_data_entry >= prev_21_date) %>%
+  group_by(iso_week) %>%
+  summarize(total_case_reg = n(),
+            reached = sum(reached),
+            crf_complete = sum(crf_complete),
+            perc_reached = reached/total_case_reg,
+            perc_crf_complete = crf_complete / total_case_reg) %>%
+  pivot_longer(-c(iso_week,perc_reached,perc_crf_complete),
+               names_to = "action", 
+               values_to = "count") 
+  
+
+plot_reached_crf_completion_by_week <-
+  ggplot2::ggplot(crf_completion_by_week, aes(x = iso_week, y = count, fill = action)) +
+  geom_col(position = "dodge") +
+  geom_line(mapping = aes(x = iso_week, y = perc_crf_complete*2800), size = 1, color = "#F55927") +
+  scale_y_continuous(name = "Cases registered/week",
+    sec.axis = sec_axis(~./2800, name = "% Cases with CRF Completed",
+      labels = function(b) { paste0(round(b*100), "%")})) +
+  theme(
+      axis.title.y = element_text(color = "grey"),
+      axis.title.y.right = element_text(color = "blue")) +
+  scale_crf_completion +
+  # scale_day_21d +
+  # scale_weeks +
+  theme_classic() +
+  # guides(
+  #   fill = guide_legend(reverse = TRUE)) +
+  # rotate_x_text(45) +
+  labs(title = "Cases Registered, Reached and Investigated",
+       subtitle = "Weekly Cases registered into Go.Data by date of upload, last 21 days",
+      x = "Epi week of case creation",
+       y = " ") +
+  theme(
+    legend.title = element_text(size=10, face = "bold"),
+    legend.position = "top",
+    plot.title = element_text(size=12, face = "bold"),
+    axis.ticks.y.left = element_line(size = 0.5, colour = "grey"),
+    axis.title.y = element_text(size = 12),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.subtitle = element_text(size=11),
+    plot.caption = element_text(size = 8, face = "italic"),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank()) +
+  theme(plot.margin=unit(c(1,1,1.5,1.2),"cm"))
+
+plot_reached_crf_completion_by_week
+
+
+# by date of 14d follow-up end - of cases ending 14d period; how many of them were followed up - last 21d
+## breakdown across divisions
+
+case_14d_fu_by_week <- case_linelist %>%
+  filter(followup_14d_req) %>%
+  mutate(iso_week = isoweek(date_of_followup_end)) %>%
+  filter(iso_week <= 52) %>%
+  # filter(date_of_data_entry >= prev_21_date) %>%
+  group_by(iso_week) %>%
+  summarize(fu_req = n(),
+            fu_complete = sum(followup_14d_complete),
+            fu_incomplete = fu_req - fu_complete,
+            perc_fu_complete = fu_complete / fu_req) %>%
+  pivot_longer(-c(iso_week,perc_fu_complete),
+               names_to = "action", 
+               values_to = "count") %>%
+  filter(action!="fu_req")
+  
+
+plot_case_14d_fu_by_week <-
+  ggplot2::ggplot(case_14d_fu_by_week, aes(x = iso_week, y = count, fill = action)) +
+  geom_col(position = "stack") +
+  theme(
+      axis.title.y = element_text(color = "grey"),
+      axis.title.y.right = element_text(color = "blue")) +
+  scale_completion +
+  # scale_day_21d +
+  # scale_weeks +
+  theme_classic() +
+  # guides(
+  #   fill = guide_legend(reverse = TRUE)) +
+  # rotate_x_text(45) +
+  labs(title = "Cases Followed up for Final Outcome",
+       subtitle = "Weekly Cases registered into Go.Data by end of 14d Period",
+      x = "Epi week of 14d end",
+       y = " ") +
+  theme(
+    legend.title = element_text(size=10, face = "bold"),
+    legend.position = "top",
+    plot.title = element_text(size=12, face = "bold"),
+    axis.ticks.y.left = element_line(size = 0.5, colour = "grey"),
+    axis.title.y = element_text(size = 12),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.subtitle = element_text(size=11),
+    plot.caption = element_text(size = 8, face = "italic"),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank()) +
+  theme(plot.margin=unit(c(1,1,1.5,1.2),"cm"))
+
+plot_case_14d_fu_by_week
+
+
+
+```
+
+
+### Cases Not Reached
+
+```{r cases_not_reached}
+
+
+cases_not_reached  <- case_linelist %>%
+  filter(not_reached) %>%
+  select(
+  case_id,
+  date_of_reporting,
+  why_not_reached,
+  assigned_doctor_name,
+  admin_1_name,
+  admin_2_name,
+  admin_3_name) %>%
+  arrange(desc(date_of_reporting))
+
+formattable_cases_not_reached <-cases_not_reached %>%
+  kable("html", escape = F) %>%
+  kable_styling("hover", full_width = FALSE) %>%
+  add_header_above(c("Cases with `Communication To Case` = No" = 3,
+                     "Responsible OIO & Area" = 4))
+
+formattable_cases_not_reached
+
+```
+
+CONTACT FOLLOW UP {data-icon="fa-calendar"} 
+=====================================================
+
+Row {.tabset data-height=875}
+-------------------------------------
+
+### Follow Up Completion
+
+```{r }
+
+
+```
+
