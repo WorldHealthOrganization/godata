@@ -17,3 +17,14 @@ This process will provide you with cleaned, flattened excel files and HTML dashb
 - Mockups of Time Periods & Levels of Granularity Breakdowns
 - Breakdown of R tasks
 
+## Please follow the following steps in order to use the data and the dashboard
+
+   ## Step 1. Replicate folder directory to your local machine
+In order for the scripts to work it is essential for you to have the same folder hierarchy and contents. Your folder directory should include:
+- data (_a place for csv and rds file outputs to be stored_)
+- scripts (_containing starter scripts and parameters, like necessary packages to be loaded or formatting, that are sourced in the report sources scripts_).
+- report_sources (_contains script to import; script to clean; script to product dashboard_)
+- reprt_outputs (_a place for dashboard outputs to be stored_)
+- R project (_double click here to open R; so that each time your working directory is properly set_)
+
+![](https://github.com/WorldHealthOrganization/godata/edit/joaquin_b/analytics/country_use_cases/godata-evd/R_folder_hierarchy.PNG)
