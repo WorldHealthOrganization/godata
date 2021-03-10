@@ -27,4 +27,4 @@ In order for the scripts to work it is essential for you to have the same folder
 - reprt_outputs (_a place for dashboard outputs to be stored_)
 - R project (_double click here to open R; so that each time your working directory is properly set_)
 
-![](https://github.com/WorldHealthOrganization/godata/blob/joaquin_b/analytics/country_use_cases/godata-evd/R_folder_hierarchy.PNG)
+![](https://github.com/WorldHealthOrganization/godata/blob/joaquin_b/analytics/country_use_cases/godata-evd/images/R_folder_hierarchy.PNG)
