@@ -10,6 +10,10 @@ This process will provide you with cleaned, flattened excel files and HTML dashb
 - Obtain valid Go.Data login credentials for the instance you are accessing, with the minimum permissions to _view_ data collections you are trying to extract (i.e if you want to extract laboratory data, you need the "Laboratory Personnel" role)
 - Create folder directory on your local machine matching what is outlined in the SOP in an easily accessible place on your computer (i.e. Desktop)
 
-## DOCUMENTATION:
+## [DOCUMENTATION](https://docs.google.com/spreadsheets/d/1lZzfBUtMRwSVTs6IZpLxPBk0UMVXPWhAPFXRgwr11mo/edit#gid=1896084498)
+- Contains Data Dictionary for EVD Go.Data outbreak
+- Contains Indicator Dictionary (indicator definitions, variables required for each calculation)
+- Assumptions, inclusion/exclusion criteria for calculations if any
+- Mockups of Time Periods & Levels of Granularity Breakdowns
+- Breakdown of R tasks
 
-### [Google Sheet with Data Dictionary & Indicator Dictionary outlining variables used, inclusion/exclusion criteria, calculations](https://docs.google.com/spreadsheets/d/1lZzfBUtMRwSVTs6IZpLxPBk0UMVXPWhAPFXRgwr11mo/edit#gid=1896084498)
