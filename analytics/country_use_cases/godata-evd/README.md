@@ -2,8 +2,8 @@
 
 ![](https://github.com/WorldHealthOrganization/godata/blob/master/docs/assets/R_reporting_workflow.PNG)
 
-Below we will outline further instructions for obtaining your data directly from your Go.Data instance application programming interface (API) using R, for further data cleaning and analysis for EVD Performance Reports and Inidcators on Contact Tracing. 
-This process will provide you with cleaned, flattened excel files and sample dashboard output that you can adapt for your purposes. 
+Below we will outline instructions for running R scripts to produce field-level dashboards to display EVD Contact Tracing Performance using R, connected to the Go.Data API.
+This process will provide you with cleaned, flattened excel files and HTML dashboard outputs that can be adapted for various audiences or settings. 
 
 ## NOTE: this builds on already existing SOP [here](https://github.com/WorldHealthOrganization/godata/blob/master/analytics/r-reporting/README.md). Other prerequisites are:
 - Download R (version 3.6.1 or higher is recommended) here: https://www.r-project.org/
