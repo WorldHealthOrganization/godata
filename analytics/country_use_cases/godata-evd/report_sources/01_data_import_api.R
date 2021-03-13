@@ -36,7 +36,6 @@ outbreak_id <- "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 source(here::here("scripts", "aaa_load_packages.R"))
 source(here::here("scripts", "set_core_fields.R"))
 source(here::here("scripts", "guess_dates.R"))
-source(here::here("scripts", "analysis_preparation.R"))
 ###################################################################################################
 # get access token
 ###################################################################################################
