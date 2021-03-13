@@ -28,7 +28,6 @@ library(tidyr)
 library(tibble)
 library(stringr)
 
-source(here::here("scripts", "analysis_preparation.R"))
 
 
 ```
@@ -113,6 +112,8 @@ current_cases_probables_confirmes <- current_clean_cases %>%
 #Process Shapefile & join to cases & contacts
 #export shp to .shp folder in data/clean
 
+#Get the file with the tables
+source(here::here("report_sources", "ref_scripts_tables.R"))
 
 ```
 
@@ -316,36 +317,36 @@ total_cas_vivants <- current_clean_cases %>%
 
 valueBox(total_cas_vivants, 
          # icon = "fa-user-plus", 
-         caption = "vivants",
+         caption = "Vivants",
          color = godata_green)
 
 ```
 
 
-### Total EDS
+### Total décédé
 ```{r total_eds1, echo = FALSE}
 
-total_cas_eds <- current_clean_cases %>%
-  filter(outcome_id=='EDS') %>%
+total_cas_decede <- current_clean_cases %>%
+  filter(outcome_id=='décédé') %>%
   count()
 
-valueBox(total_cas_eds, 
+valueBox(total_cas_decede, 
          # icon = "fa-user-plus", 
-         caption = "EDS",
+         caption = "Décédé",
          color = "#F9D173")
 
 ```
 
-### Total nonEDS
+### Total non décédé
 ```{r total_noneds1, echo = FALSE}
 
-total_cas_noneds <- current_clean_cases %>%
-  filter(outcome_id=='pas de EDS') %>%
+total_cas_nondecede <- current_clean_cases %>%
+  filter(outcome_id !='décédé') %>%
   count()
 
-valueBox(total_cas_noneds, 
+valueBox(total_cas_nondecede, 
          # icon = "fa-user-plus", 
-         caption = "pas de EDS",
+         caption = "Pas décédé",
          color = "#824427")
 
 ```
@@ -359,7 +360,7 @@ total_cas_retabli <- current_clean_cases %>%
 
 valueBox(total_cas_retabli, 
          # icon = "fa-user-plus", 
-         caption = "rétabli",
+         caption = "Rétabli",
          color = "#B7D5DF")
 
 ```
@@ -391,7 +392,7 @@ valueBox(total_cas_contacts_suivis,
 
 ```
 
-Column {data-width=93%}
+Column {data-width=50%}
 -------------------------------------
 ### courbe épidémique
 
@@ -405,15 +406,17 @@ df_courbe=current_clean_cases %>%
 df_courbe <- na.omit(df_courbe) #Remove all rows contents NA
 
 df_courbe$date_of_onset <- as.character(df_courbe$date_of_onset) #Convert date field to string
+df_courbe$date_of_onset <- as.Date(df_courbe$date_of_onset, "%Y-%m-%d")
   
 p1=ggplot(df_courbe, aes(x=date_of_onset, y=n, fill=classification)) +
 geom_bar(stat="identity") +
   theme_classic() +
-  xlab("") + ylab("nombre de cas") + labs(fill="") +
-  ggtitle("courbe épidémique des cas confirmés de MVE") +
+  xlab("") + ylab("Nombre de cas") + labs(fill="") +
+  ggtitle("Courbe épidémique des cas confirmés de MVE") +
   theme(plot.title = element_text(color="#666666", size=11)) +theme(axis.text.x = element_text(angle = 40, hjust = 1)) +
-  scale_fill_manual(values=c('#7D0633','#4E89AE','#8D93AB','#E8FFC1'))
-
+  scale_fill_manual(values=c('#7D0633','#4E89AE','#8D93AB','#E8FFC1')) + 
+  scale_x_date(date_breaks = "1 day",
+               limits = as.Date(c('2021-01-13','2021-03-13', "%Y-%m-%d")))
 p1
 
 ```
@@ -446,35 +449,35 @@ total_cas_vivants <- current_clean_cases %>%
 
 valueBox(total_cas_vivants, 
          # icon = "fa-user-plus", 
-         caption = "vivants",
+         caption = "Vivants",
          color = godata_green)
 
 ```
 
-### Total EDS
+### Total décédé
 ```{r total_eds, echo = FALSE}
 
-total_cas_eds <- current_clean_cases %>%
-  filter(outcome_id=='EDS') %>%
+total_cas_decede <- current_clean_cases %>%
+  filter(outcome_id=='décédé') %>%
   count()
 
-valueBox(total_cas_eds, 
+valueBox(total_cas_decede, 
          # icon = "fa-user-plus", 
-         caption = "EDS",
+         caption = "Décédé",
          color = "#F9D173")
 
 ```
 
-### Total nonEDS
+### Total non décédé
 ```{r total_noneds, echo = FALSE}
 
-total_cas_noneds <- current_clean_cases %>%
-  filter(outcome_id=='pas de EDS') %>%
+total_cas_nondecede <- current_clean_cases %>%
+  filter(outcome_id !='décédé') %>%
   count()
 
-valueBox(total_cas_noneds, 
+valueBox(total_cas_nondecede, 
          # icon = "fa-user-plus", 
-         caption = "pas de EDS",
+         caption = "Pas décédé",
          color = "#824427")
 
 ```
@@ -488,7 +491,7 @@ total_cas_retabli <- current_clean_cases %>%
 
 valueBox(total_cas_retabli, 
          # icon = "fa-user-plus", 
-         caption = "rétabli",
+         caption = "Rétabli",
          color = "#B7D5DF")
 
 ```
@@ -777,5 +780,50 @@ graph_contact_status_by_team <- contact_status_by_team %>%
 
 
 graph_contact_status_by_team
+```
+
+
+
+
+
+
+LISTE DE LIGNE - INDICATEURS {data-icon="fa-list"} 
+=====================================================
+Column {.tabset data-width=100%}
+-------------------------------------
+### Demographique
+
+```{r, echo = FALSE}
+format_tab_demographics
+```
+
+### Taxonomie
+
+```{r, echo = FALSE}
+
+```
+  
+### Surveillance
+
+```{r, echo = FALSE}
+
+```
+ 
+### Vaccination
+
+```{r, echo = FALSE}
+
+```
+
+### PCI
+
+```{r, echo = FALSE}
+
+```
+
+### Laboratoire
+
+```{r, echo = FALSE}
+
 ```
 
