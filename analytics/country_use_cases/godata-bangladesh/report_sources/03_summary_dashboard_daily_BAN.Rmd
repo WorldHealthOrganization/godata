@@ -47,6 +47,7 @@ library(tidyr)
 library(sf)
 library(tidyverse)
 library(DT)
+library(ggrepel)
 
 ```
 
@@ -115,6 +116,20 @@ scale_completion <- scale_fill_manual(
                  crf_complete     = "CRF Complete"))
  
  
+ theme_preset <-  theme(
+    legend.title = element_text(size=10, face = "bold"),
+    legend.position = "top",
+    plot.title = element_text(size=12, face = "bold"),
+    axis.ticks.y.left = element_line(size = 0.5, colour = "grey"),
+    # axis.ticks.x = element_blank(),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.subtitle = element_text(size=11),
+    plot.caption = element_text(size = 8, face = "italic"),
+    panel.grid.major.y = element_line(size = 0.2, colour = "grey"),
+    panel.grid = element_blank()) +
+    theme(plot.margin=unit(c(1,1,1.5,1.2),"cm"))
+ 
+ 
 
 
 ```
@@ -147,6 +162,7 @@ current_clean_teams <- here::here("data",
 
 current_clean_cases
 cases <- rio::import(current_clean_cases) %>%
+  filter(classification != "NOT_A_CASE_DISCARDED") %>%
   as_tibble()
 
 current_clean_contacts
@@ -195,6 +211,7 @@ users <- rio::import(current_clean_users) %>%
 ```{r define_time_periods, include = FALSE}
 
 database_date <- Sys.Date()  
+database_time <- Sys.time()
 database_week <- isoweek(database_date)
 prev_1_date <- database_date - 1
 before_prev_1_date <- prev_1_date -1
@@ -213,18 +230,27 @@ min_date_contact_reg <- min(contacts$date_of_reporting)
 #                date_labels       = "%d\n%b\n'%y") # date labels format
 # 
 # 
-#   scale_day_overall <- ggplot2::scale_x_date(breaks = "1 days",
-#                                        expand=c(0,0),
-#                                        limits = c(min_date_of_reporting, prev_1_date),
-#                                        date_label = format("%d %b %Y"))
+  scale_day_overall_case <- ggplot2::scale_x_date(breaks = "1 days",
+                                       expand=c(0,0),
+                                       limits = c(min_date_case_reg, prev_1_date),
+                                       date_label = format("%d %m %Y"))
+  
+    scale_day_overall_contact <- ggplot2::scale_x_date(breaks = "1 days",
+                                       expand=c(0,0),
+                                       limits = c(min_date_contact_reg, prev_1_date),
+                                       date_label = format("%d %m %Y"))
 
 
 ```
 
+The data in this report reflects the cases/contacts in the Go.Data instance, from beginning of Go.Data Launch (Jan 2021) up until **`r format(prev_1_date, format = "%A %d %b %Y")`**. 
+Data was extracted from Go.Data API at **`r database_time`**.
 
 ```{r case_linelist, include = FALSE}
 
 case_linelist <- cases %>%
+  
+  filter(date_of_data_entry <= prev_1_date) %>%
   
   left_join(select(users, uuid, user_name), by = c("updatedBy" = "uuid")) %>%
   left_join(select(teams, uuid, team_name), by = c("team_id" = "uuid")) %>%
@@ -264,12 +290,14 @@ case_linelist <- cases %>%
     assigned_doctor_name,
     user_name, #updated_by
     team_name,
+    classification,
     
     
     
     date_of_reporting,
     date_of_data_entry,
     date_of_followup_end,
+    date_of_onset,
     
     reached,
     not_reached,
@@ -346,6 +374,7 @@ contacts_seen_ever_with_signs <- followups %>%
 ##################################################################################
 
 contact_visit_status <- contacts %>%
+  filter(!is.na(contact_status)) %>%
   # filter(contact_status == "UNDER_FOLLOW_UP") %>%
   left_join(select(users, uuid, user_name), by = c("updatedBy" = "uuid")) %>%
   left_join(select(teams, uuid, team_name), by = c("team_id" = "uuid")) %>%
@@ -425,24 +454,33 @@ select(
 ```{r summary_counts, include = FALSE}
 
 
-total_cases_reg <- cases %>%
+total_cases_reg <- case_linelist %>%
   filter(date_of_data_entry <= prev_1_date) %>%
+  filter(classification == "CONFIRMED" | classification == "CONFIRMED_ASYMPTOMATIC") %>%
   count()
 
-cases_reg_last7d <- cases %>%
+total_suspect_cases_reg <- case_linelist %>%
+  filter(date_of_data_entry <= prev_1_date) %>%
+  filter(classification == "SUSPECT") %>%
+  count()
+
+cases_reg_last7d <- case_linelist %>%
   filter(date_of_data_entry >= prev_7_date &
            date_of_data_entry <= prev_1_date) %>%
+  filter(classification == "CONFIRMED" | classification == "CONFIRMED_ASYMPTOMATIC") %>%
   count()
 
-cases_reg_last1d <- cases %>%
+cases_reg_last1d <- case_linelist %>%
   filter(date_of_data_entry == prev_1_date) %>%
+  filter(classification == "CONFIRMED" | classification == "CONFIRMED_ASYMPTOMATIC") %>%
   count()
 
 
 ############################################
 
-cases_reg_prev_last7d <- cases %>%
+cases_reg_prev_last7d <- case_linelist %>%
   filter(date_of_data_entry >= before_prev_7_date & date_of_data_entry < prev_7_date) %>%
+  filter(classification == "CONFIRMED" | classification == "CONFIRMED_ASYMPTOMATIC") %>%
   count()
 
 perc_change_7d <- round(((cases_reg_last7d - cases_reg_prev_last7d) / cases_reg_prev_last7d)*100, digits = 0) 
@@ -450,7 +488,7 @@ perc_change_7d <- sprintf("%+3.0f %%", perc_change_7d)
 
 ############################################
 
-total_cases_from_known_contact <- cases %>%
+total_cases_from_known_contact <- case_linelist %>%
   filter(was_contact) %>%
   count()
 
@@ -458,7 +496,7 @@ perc_from_known_contact <-
   round((total_cases_from_known_contact / total_cases_reg)*100, digits = 1)
 
 
-cases_from_known_contact_last7d <- cases %>%
+cases_from_known_contact_last7d <- case_linelist %>%
   filter(date_of_data_entry >= prev_7_date) %>%
   filter(was_contact) %>%
   count()
@@ -606,21 +644,29 @@ perc_contacts_14d_seen <-
 
 ```
 
-
-
-KEY PERFORMANCE INDICATORS {data-icon="fa-chart-line"} 
+SUMMARY {data-icon="fa-globe"} 
 =====================================================
 
 Row {data-height=200}
 -------------------------------------
 
-### Total Cases
+### Total Confirmed Cases
 ```{r total_cases_reg, echo = FALSE}
 
 
 valueBox(total_cases_reg, 
          icon = "fa-user-plus", 
          caption = "Total Confirmed Cases",
+         color = "#005252")
+
+```
+
+### Total Suspect Cases
+```{r total_suspect_cases_reg, echo = FALSE}
+
+
+valueBox(total_suspect_cases_reg, 
+         caption = "Total Suspect Cases",
          color = "#005252")
 
 ```
@@ -670,14 +716,14 @@ valueBox(total_cases_crf_filled,
 
 ```
 
-### Cases Followed Up, Day 14
-```{r cases_fu_completed, echo = FALSE}
+<!-- ### Cases Followed Up, Day 14 -->
+<!-- ```{r cases_fu_completed, echo = FALSE} -->
 
 
-valueBox(total_cases_followup_14d_complete, 
-         color =  "#005252")
+<!-- valueBox(total_cases_followup_14d_complete,  -->
+<!--          color =  "#005252") -->
 
-```
+<!-- ``` -->
 
 
 ### Active Contacts
@@ -742,6 +788,7 @@ valueBox(paste0(perc_contacts_14d_seen,"%"),
 
 ```
 
+
 Row {.tabset data-height=875}
 -------------------------------------
 
@@ -778,7 +825,7 @@ age_pyramid_case <-
     label.padding = unit(0.55, "lines"), # Rectangle size around label
     label.size = 0.4,
     x=13,
-    y=7,
+    y=6,
     color = "white",
     fill="#00bfbf"
   ) +
@@ -787,7 +834,7 @@ age_pyramid_case <-
     label.padding = unit(0.55, "lines"), # Rectangle size around label
     label.size = 0.4,
     x=12,
-    y=7,
+    y=6,
     color = "white",
     fill="#005252"
   ) +
@@ -796,7 +843,7 @@ age_pyramid_case <-
     label.padding = unit(0.55, "lines"), # Rectangle size around label
     label.size = 0.4,
     x=11,
-    y=7,
+    y=6,
     color = "white",
     fill=custom_grey
   ) +
@@ -860,7 +907,7 @@ age_pyramid_contact <-
     label.padding = unit(0.55, "lines"), # Rectangle size around label
     label.size = 0.4,
     x=13,
-    y=7,
+    y=6,
     color = "white",
     fill="#ffac81"
   ) +
@@ -869,7 +916,7 @@ age_pyramid_contact <-
     label.padding = unit(0.55, "lines"), # Rectangle size around label
     label.size = 0.4,
     x=12,
-    y=7,
+    y=6,
     color = "white",
     fill="#e26d5c"
   ) +
@@ -878,7 +925,7 @@ age_pyramid_contact <-
     label.padding = unit(0.55, "lines"), # Rectangle size around label
     label.size = 0.4,
     x=11,
-    y=7,
+    y=6,
     color = "white",
     fill=custom_grey
   ) +
@@ -912,77 +959,624 @@ age_pyramid_contact <-
     panel.grid.minor.y = element_blank()) 
 
 ############################################################
-pacman::p_load(incidence)
-## plot by date of case creation
-case_reg_day   <- incidence(cases$date_of_data_entry,  # the linelist date column of interest
-                       interval = "day") 
+# pacman::p_load(incidence)
+# ## plot by date of case creation
+# case_reg_day   <- incidence(cases$date_of_data_entry,  # the linelist date column of interest
+#                        interval = "day")
+# 
+# # plot incidence object
+# plot_case_reg_day <-
+# plot(case_reg_day,
+#      xlab = "Day of Case Registration",
+#      ylab = "Count",
+#      # show_cases = TRUE,
+#      alpha = 0.5,
+#      color = custom_case_color,
+#      border = "white") +
+#      # Add some modifications using ggplot() functions
+#   # scale_day_overall_case +
+#   scale_y_continuous(
+#     expand = c(0,0)) +      # remove excess space below 0 on y-axis
+#   labs(
+#     title = "Daily cases registered in Go.Data",
+#     subtitle = paste0("n = ",total_cases_reg, "confirmed, n= ", total_suspect_cases_reg, "suspect"),
+#     caption = "") +
+#   theme_classic() +         # simplify background
+#   theme_preset
+# 
+# 
+# ## plot by date of contact creation
+# contact_reg_day   <- incidence(contacts$date_of_reporting,  # the linelist date column of interest
+#                        interval = "day")
+# 
+# # plot incidence object
+# plot_contact_reg_day <-
+# plot(contact_reg_day,
+#      xlab = "Day of Contact Registration",
+#      ylab = "Count",
+#      # show_cases = TRUE,
+#      alpha = 0.5,
+#      color = custom_contact_color,
+#      border = "white") +
+#   # scale_day_overall_contact +
+#   scale_y_continuous(
+#     expand = c(0,0)) +      # remove excess space below 0 on y-axis
+#   labs(
+#     title = "Daily contacts listed in Go.Data",
+#     subtitle = paste0("n = ",total_contacts_reg),
+#     caption = "") +
+#   theme_classic() +         # simplify background
+#   theme_preset
+################################################################################3
+cases_per_week <- cases %>%
+  filter(age_class != "unknown") %>%
+  mutate(iso_week = isoweek(date_of_reporting)) %>%
+  group_by(iso_week) %>%
+  summarise(weekly_total = n()) 
 
-# plot incidence object
-plot_case_reg_day <-
-plot(case_reg_day,
-     xlab = "Day of Case Registration",
-     ylab = "Count",
-     # show_cases = TRUE,
-     alpha = 0.5,
-     color = custom_case_color,
-     border = "black") +
-  # scale_epicurve_day +
+case_age_breakdown_over_time <- cases %>%
+  filter(age_class != "unknown") %>%
+  mutate(age_class = as.factor(age_class)) %>%
+  mutate(iso_week = isoweek(date_of_reporting)) %>%
+  mutate(week_of_reporting = cut(date_of_reporting, breaks = "week")) %>%
+  group_by(week_of_reporting, iso_week, age_class) %>%
+  summarise(count = n()) %>%
+  ungroup() %>%
+  inner_join(cases_per_week, by = "iso_week") %>%
+  mutate(prop = count/weekly_total*100) %>%
+  filter(iso_week >=3) %>%
+  filter(iso_week !=51)
+
+case_age_breakdown_over_time_line <- 
+  case_age_breakdown_over_time %>%
+  mutate(label = if_else(iso_week == max(iso_week), 
+                         as.character(age_class), NA_character_)) 
   
-    # Add some modifications using ggplot() functions
-  scale_x_date(
-    expand = c(0,0)) +      # remove excess space on left and right
-  scale_y_continuous(
-    expand = c(0,0)) +      # remove excess space below 0 on y-axis
-  labs(
-    title = "Daily cases registered in Go.Data",
-    caption = "") +
-  theme_classic() +         # simplify background
+  case_age_breakdown_over_time_line <-  
+  ggplot(case_age_breakdown_over_time_line, 
+    aes(x = week_of_reporting, y = prop, color = age_class, group = age_class)) +
+  scale_fill_viridis(discrete = TRUE, option = "magma") +
+  geom_line(aes(group = age_class)) +
+  geom_point(aes(group = age_class)) +
+  theme_minimal() +
+  geom_label_repel(aes(label = label),
+                   nudge_x = 0.1,
+                   na.rm = TRUE) +
+
+  labs(x = "Week of Reporting",
+       y = "Proportion of cases falling within age group",
+       fill = "Age group",
+       title = "Age breakdown of COVID-19 cases in IEDCR Go.Data Platform",
+       subtitle = paste0("n = ", case_unknown_age, " with no age recorded")
+  ) + 
   theme(
-    plot.title = element_text(size = 14,
-                              face = "bold"),
-    axis.title = element_text(size = 10),   # axis titles larger and bold,
-    axis.text = element_text(size = 10),
-    plot.caption = element_text(hjust = 0)   # move caption to left
-        )
-
-
-## plot by date of contact creation
-contact_reg_day   <- incidence(contacts$date_of_reporting,  # the linelist date column of interest
-                       interval = "day") 
-
-# plot incidence object
-plot_contact_reg_day <-
-plot(contact_reg_day,
-     xlab = "Day of Contact Registration",
-     ylab = "Count",
-     # show_cases = TRUE,
-     alpha = 0.5,
-     color = custom_contact_color,
-     border = "black") +
+    legend.position = "none",
+    plot.title = element_text(size=12, face = "bold"),
+    axis.ticks.y.left = element_line(size = 0.5, colour = "grey"),
+    axis.title.y = element_text(size = 12),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.subtitle = element_text(size=11),
+    plot.caption = element_text(size = 8, face = "italic"),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank())
   
-    # Add some modifications using ggplot() functions
-  # scale_x_date(
-  #   expand = c(0,0))+      # remove excess space on left and right
-  scale_y_continuous(
-    expand = c(0,0)) +      # remove excess space below 0 on y-axis
-  labs(
-    title = "Daily contacts listed in Go.Data",
-    caption = "") +
-  theme_classic() +         # simplify background
+####################################################3
+  
+contacts_per_week <- contacts %>%
+  filter(age_class != "unknown") %>%
+  mutate(iso_week = isoweek(date_of_reporting)) %>%
+  group_by(iso_week) %>%
+  summarise(weekly_total = n())
+  
+  contact_age_breakdown_over_time <- contacts %>%
+  filter(age_class != "unknown") %>%
+  mutate(age_class = as.factor(age_class)) %>%
+  mutate(iso_week = isoweek(date_of_reporting)) %>%
+  mutate(week_of_reporting = cut(date_of_reporting, breaks = "week")) %>%
+  group_by(week_of_reporting, iso_week, age_class) %>%
+  summarise(count = n()) %>%
+  ungroup() %>%
+  inner_join(contacts_per_week, by = "iso_week") %>%
+  mutate(prop = count/weekly_total*100) %>%
+  filter(iso_week >=3) %>%
+  filter(iso_week !=53) 
+
+contact_age_breakdown_over_time_line <- 
+  contact_age_breakdown_over_time %>%
+  mutate(label = if_else(iso_week == max(iso_week), 
+                         as.character(age_class), NA_character_)) 
+  
+  contact_age_breakdown_over_time_line <-  
+  ggplot(contact_age_breakdown_over_time_line,
+         aes(x = week_of_reporting, y = prop, color = age_class, group = age_class)) +
+  scale_fill_viridis(discrete = TRUE, option = "magma") +
+  geom_line(aes(group = age_class)) +
+  geom_point(aes(group = age_class)) +
+  theme_minimal() +
+  geom_label_repel(aes(label = label),
+                   nudge_x = 0.1,
+                   na.rm = TRUE) +
+
+  labs(x = "Week of Reporting",
+       y = "Proportion of contacts falling within age group",
+       fill = "Age group",
+       title = "Age breakdown of COVID-19 contacts in IEDCR Go.Data Platform",
+       subtitle = paste0("n = ", contact_unknown_age, " with no age recorded")
+  ) + 
   theme(
-    plot.title = element_text(size = 14,
-                              face = "bold"),
-    axis.title = element_text(size = 10),   # axis titles larger and bold,
-    axis.text = element_text(size = 10),
-    plot.caption = element_text(hjust = 0)   # move caption to left
-        )
+    legend.position = "none",
+    plot.title = element_text(size=12, face = "bold"),
+    axis.ticks.y.left = element_line(size = 0.5, colour = "grey"),
+    axis.title.y = element_text(size = 12),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.subtitle = element_text(size=11),
+    plot.caption = element_text(size = 8, face = "italic"),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank())
+
+############################################################3
+    #############################################################
+### occupation pie chart
+############################################################
+cases$occupation <- as.factor(cases$occupation)
+case_unknown_occupation <- sum(is.na(cases$occupation) | cases$occupation == "UNKNOWN")
+case_other_occupation <- sum(cases$occupation == "OTHER")   ### why is this not working??
+
+
+case_occupation_breakdown <- cases %>%
+  # filter(!is.na(occupation),
+  #        occupation != "OTHER") %>%
+  group_by(occupation) %>%
+  count() %>%
+  arrange(desc(n)) 
+
+# case_occupation_breakdown_plot_freq <- 
+#   ggplot(subset(case_occupation_breakdown, !is.na(occupation)), aes(x = occupation, y = n)) +
+#   geom_bar(stat = "identity") +
+#   coord_flip() +
+#   theme_classic()
+
+
+color_count = length(unique(cases$occupation))
+getPalette = colorRampPalette(brewer.pal(9, "Set1"))
+
+case_occupation_pie_chart <-
+  ggplot(subset(case_occupation_breakdown, !is.na(occupation) & !(occupation == "OTHER")), aes(x = "", y = n, fill = occupation)) +
+  geom_bar(width = 1, stat = "identity") +
+  coord_polar("y", start = 0) +
+  theme_minimal() +
+  scale_fill_manual(values = getPalette(color_count)) +
+  labs(
+    fill = "Occupation",
+    title = "Occupational breakdown of COVID-19 cases",
+    subtitle = paste0("n = ", case_unknown_occupation," without occupation recorded,", " n = ", case_other_occupation," where 'OTHER'")
+  ) +
+  theme(axis.line = element_blank(),
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        legend.position = "right",
+        legend.title = element_text(size=10, face = "bold"),
+        plot.title = element_text(size=12, face = "bold"),
+        plot.subtitle = element_text(size=11),
+        plot.caption = element_text(size = 8, face = "italic"))
+
+
+#############################################################
+### occupation pie chart
+############################################################
+contacts$occupation <- as.factor(contacts$occupation)
+contact_unknown_occupation <- sum(is.na(contacts$occupation) | contacts$occupation == "UNKNOWN")
+contact_other_occupation <- sum(contacts$occupation == "OTHER")   ### why is this not working??
+
+
+contact_occupation_breakdown <- contacts %>%
+  # filter(!is.na(occupation),
+  #        occupation != "OTHER") %>%
+  group_by(occupation) %>%
+  count() %>%
+  arrange(desc(n)) 
+
+# case_occupation_breakdown_plot_freq <- 
+#   ggplot(subset(case_occupation_breakdown, !is.na(occupation)), aes(x = occupation, y = n)) +
+#   geom_bar(stat = "identity") +
+#   coord_flip() +
+#   theme_classic()
+
+
+color_count = length(unique(contacts$occupation))
+getPalette = colorRampPalette(brewer.pal(9, "Set1"))
+
+contact_occupation_pie_chart <-
+  ggplot(subset(contact_occupation_breakdown, !is.na(occupation) & !(occupation == "OTHER")), aes(x = "", y = n, fill = occupation)) +
+  geom_bar(width = 1, stat = "identity") +
+  coord_polar("y", start = 0) +
+  theme_minimal() +
+  scale_fill_manual(values = getPalette(color_count)) +
+  labs(
+    fill = "Occupation",
+    title = "Occupational breakdown of COVID-19 contacts",
+    subtitle = paste0("n = ", contact_unknown_occupation," without occupation recorded,", " n = ", contact_other_occupation," where 'OTHER'")
+  ) +
+  theme(axis.line = element_blank(),
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        legend.position = "right",
+        legend.title = element_text(size=10, face = "bold"),
+        plot.title = element_text(size=12, face = "bold"),
+        plot.subtitle = element_text(size=11),
+        plot.caption = element_text(size = 8, face = "italic"))
 
 age_pyramid_case
 age_pyramid_contact
-plot_case_reg_day
-plot_contact_reg_day
+case_age_breakdown_over_time_line
+contact_age_breakdown_over_time_line
+case_occupation_pie_chart
+contact_occupation_pie_chart
+
+# plot_case_reg_day
+# plot_contact_reg_day
 
 ```
+
+### Epidemic Curves
+
+```{r epicurve_daily, fig.width=9, fig.height=6, fig.show="hold", out.width="50%"}
+
+case_known_date_of_onset <- sum(!is.na(case_linelist$date_of_onset))
+
+
+cases_by_date_of_reporting <- cases %>%
+  filter(date_of_reporting >= "2021-01-01") %>%
+  filter(date_of_reporting <= prev_1_date) %>%
+  group_by(date_of_reporting) %>%
+  count()
+
+epicurve_cases_by_date_of_reporting <- 
+  ggplot(cases_by_date_of_reporting, aes(x = date_of_reporting, y = n)) +
+  geom_col(color = custom_case_color, fill= custom_case_color) +
+  theme_classic() +
+  scale_x_date(breaks = "1 day",
+                expand=c(0,0),
+                date_label = format("%d %m %Y")) +
+  labs(x = "Date of Reporting",
+       y = "",
+       title = "COVID-19 cases in IEDCR Go.Data Platform",
+       subtitle = paste0("Overall n = ", nrow(case_linelist), " as of ",prev_1_date)
+  ) + 
+  theme(
+    legend.title = element_text(size=10, face = "bold"),
+    legend.position = "top",
+    plot.title = element_text(size=12, face = "bold"),
+    axis.ticks.y.left = element_line(size = 0.5, colour = "grey"),
+    # axis.ticks.x = element_blank(),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.subtitle = element_text(size=11),
+    plot.caption = element_text(size = 8, face = "italic"),
+    panel.grid.major.y = element_line(size = 0.2, colour = "grey"),
+    panel.grid = element_blank()) +
+  theme(plot.margin=unit(c(1,1,1.5,1.2),"cm"))
+
+
+
+#########################################33
+contacts_by_date_of_reporting <- contacts %>%
+  filter(date_of_reporting >= "2021-01-01") %>%
+  filter(date_of_reporting <= prev_1_date) %>%
+  group_by(date_of_reporting) %>%
+  count()
+
+epicurve_contacts_by_date_of_reporting <- 
+  ggplot(contacts_by_date_of_reporting, aes(x = date_of_reporting, y = n)) +
+  geom_col(color = custom_contact_color, fill= custom_contact_color) +
+  theme_classic() +
+  scale_x_date(breaks = "1 day",
+                expand=c(0,0),
+                date_label = format("%d %m %Y")) +
+  labs(x = "Date of Reporting",
+       y = "",
+       title = "COVID-19 contacts in IEDCR Go.Data Platform",
+       subtitle = paste0("Overall n = ", nrow(contacts), " as of ",prev_1_date)
+  ) +
+  theme(
+    legend.title = element_text(size=10, face = "bold"),
+    legend.position = "top",
+    plot.title = element_text(size=12, face = "bold"),
+    axis.ticks.y.left = element_line(size = 0.5, colour = "grey"),
+    # axis.ticks.x = element_blank(),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.subtitle = element_text(size=11),
+    plot.caption = element_text(size = 8, face = "italic"),
+    panel.grid.major.y = element_line(size = 0.2, colour = "grey"),
+    panel.grid = element_blank()) +
+  theme(plot.margin=unit(c(1,1,1.5,1.2),"cm"))
+
+#############################################################3
+
+cases_by_date_of_data_entry <- cases %>%
+  filter(date_of_data_entry >= "2021-01-01") %>%
+  filter(date_of_data_entry <= prev_1_date) %>%
+  group_by(date_of_data_entry) %>%
+  count()
+
+epicurve_cases_by_date_of_data_entry <- 
+  ggplot(cases_by_date_of_data_entry, aes(x = date_of_data_entry, y = n)) +
+  geom_col(color = custom_case_color, fill= custom_case_color) +
+  theme_classic() +
+  scale_x_date(breaks = "1 day",
+                expand=c(0,0),
+                date_label = format("%d %m %Y")) +
+  labs(x = "Date of Data Entry into Go.Data",
+       y = "",
+       title = "COVID-19 cases in IEDCR Go.Data Platform",
+       subtitle = paste0("Overall n = ", nrow(case_linelist), " as of ",prev_1_date)
+  ) + 
+  theme(
+    legend.title = element_text(size=10, face = "bold"),
+    legend.position = "top",
+    plot.title = element_text(size=12, face = "bold"),
+    axis.ticks.y.left = element_line(size = 0.5, colour = "grey"),
+    # axis.ticks.x = element_blank(),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.subtitle = element_text(size=11),
+    plot.caption = element_text(size = 8, face = "italic"),
+    panel.grid.major.y = element_line(size = 0.2, colour = "grey"),
+    panel.grid = element_blank()) +
+  theme(plot.margin=unit(c(1,1,1.5,1.2),"cm"))
+
+
+
+#########################################33
+contacts_by_date_of_data_entry <- contacts %>%
+  filter(date_of_data_entry >= "2021-01-01") %>%
+  filter(date_of_data_entry <= prev_1_date) %>%
+  group_by(date_of_data_entry) %>%
+  count()
+
+epicurve_contacts_by_date_of_data_entry <- 
+  ggplot(contacts_by_date_of_data_entry, aes(x = date_of_data_entry, y = n)) +
+  geom_col(color = custom_contact_color, fill= custom_contact_color) +
+  theme_classic() +
+  scale_x_date(breaks = "1 day",
+                expand=c(0,0),
+                date_label = format("%d %m %Y")) +
+  labs(x = "Date of Data Entry into Go.Data",
+       y = "",
+       title = "COVID-19 contacts in IEDCR Go.Data Platform",
+       subtitle = paste0("Overall n = ", nrow(contacts), " as of ",prev_1_date)
+  ) +
+  theme(
+    legend.title = element_text(size=10, face = "bold"),
+    legend.position = "top",
+    plot.title = element_text(size=12, face = "bold"),
+    axis.ticks.y.left = element_line(size = 0.5, colour = "grey"),
+    # axis.ticks.x = element_blank(),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.subtitle = element_text(size=11),
+    plot.caption = element_text(size = 8, face = "italic"),
+    panel.grid.major.y = element_line(size = 0.2, colour = "grey"),
+    panel.grid = element_blank()) +
+  theme(plot.margin=unit(c(1,1,1.5,1.2),"cm"))
+
+
+#############################################################3
+
+cases_by_date_of_onset <- cases %>%
+  filter(date_of_onset >= "2021-01-01") %>%
+  filter(date_of_onset <= prev_1_date) %>%
+  group_by(date_of_onset) %>%
+  count()
+
+epicurve_cases_by_date_of_onset <- 
+  ggplot(cases_by_date_of_onset, aes(x = date_of_onset, y = n)) +
+  geom_col(color = custom_case_color, fill= custom_case_color) +
+  theme_classic() +
+  scale_x_date(breaks = "1 day",
+                expand=c(0,0),
+                date_label = format("%d %m %Y")) +
+  labs(x = "Date of Symptom Onset, if Reported",
+       y = "",
+       title = "COVID-19 cases in IEDCR Go.Data Platform",
+       subtitle = paste0("n = ", case_known_date_of_onset, "with recorded date of onset, as of ",prev_1_date)
+  ) + 
+  theme(
+    legend.title = element_text(size=10, face = "bold"),
+    legend.position = "top",
+    plot.title = element_text(size=12, face = "bold"),
+    axis.ticks.y.left = element_line(size = 0.5, colour = "grey"),
+    # axis.ticks.x = element_blank(),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.subtitle = element_text(size=11),
+    plot.caption = element_text(size = 8, face = "italic"),
+    panel.grid.major.y = element_line(size = 0.2, colour = "grey"),
+    panel.grid = element_blank()) +
+  theme(plot.margin=unit(c(1,1,1.5,1.2),"cm"))
+
+
+
+#########################################33
+contacts_by_date_of_last_contact <- contacts %>%
+  filter(date_of_last_contact >= "2021-01-01") %>%
+  filter(date_of_last_contact <= prev_1_date) %>%
+  group_by(date_of_last_contact) %>%
+  count()
+
+epicurve_contacts_by_date_of_last_contact <- 
+  ggplot(contacts_by_date_of_last_contact, aes(x = date_of_last_contact, y = n)) +
+  geom_col(color = custom_contact_color, fill= custom_contact_color) +
+  theme_classic() +
+  scale_x_date(breaks = "1 day",
+                expand=c(0,0),
+                date_label = format("%d %m %Y")) +
+  labs(x = "Date of Last Contact",
+       y = "",
+       title = "COVID-19 contacts in IEDCR Go.Data Platform",
+       subtitle = paste0("Overall n = ", nrow(contacts), " as of ",prev_1_date)
+  ) +
+  theme(
+    legend.title = element_text(size=10, face = "bold"),
+    legend.position = "top",
+    plot.title = element_text(size=12, face = "bold"),
+    axis.ticks.y.left = element_line(size = 0.5, colour = "grey"),
+    # axis.ticks.x = element_blank(),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.subtitle = element_text(size=11),
+    plot.caption = element_text(size = 8, face = "italic"),
+    panel.grid.major.y = element_line(size = 0.2, colour = "grey"),
+    panel.grid = element_blank()) +
+  theme(plot.margin=unit(c(1,1,1.5,1.2),"cm"))
+
+
+
+epicurve_cases_by_date_of_reporting
+epicurve_contacts_by_date_of_reporting
+epicurve_cases_by_date_of_data_entry
+epicurve_contacts_by_date_of_data_entry
+epicurve_cases_by_date_of_onset
+epicurve_contacts_by_date_of_last_contact
+
+
+
+```
+
+
+
+KEY PERFORMANCE INDICATORS {data-icon="fa-chart-line"} 
+=====================================================
+
+Row {data-height=200}
+-------------------------------------
+
+### Total Cases
+```{r }
+
+
+valueBox(total_cases_reg, 
+         icon = "fa-user-plus", 
+         caption = "Total Confirmed Cases",
+         color = "#005252")
+
+```
+
+### Newly Assigned Cases, last 7d
+```{r }
+
+
+valueBox(cases_reg_last7d,
+         caption = "Newly Assigned Cases, Last 7d",
+         color = "#005252"
+         # color = ifelse(perc_change_1d >=1, custom_green, "#E94B25")
+         )
+
+```
+
+
+### Cases from Contact List
+```{r }
+
+
+
+valueBox(total_cases_from_known_contact, 
+         caption = "Cases from known contact",
+         color =  "#005252")
+
+```
+
+### Cases Reached for Initial Case Investigation
+```{r }
+
+
+valueBox(total_cases_reached, 
+         caption = "Cases reached",
+         color =  "#005252")
+
+
+```
+
+### Cases with CRF Completed
+```{r }
+
+
+valueBox(total_cases_crf_filled, 
+         caption = "Cases with CRF Complete",
+         color =  "#005252")
+
+```
+
+### Cases Followed Up, Day 14
+```{r }
+
+
+valueBox(total_cases_followup_14d_complete, 
+         color =  "#005252")
+
+```
+
+
+### Active Contacts
+
+```{r }
+
+
+valueBox(total_contacts_active, 
+         icon = "fa-users",
+         color = "#e26d5c")
+
+```
+
+### New Contacts Listed, last 7d
+```{r }
+
+
+valueBox(contacts_reg_last7d, 
+         caption = "New Contacts Listed, Last 7d",
+         color = "#e26d5c")
+
+```
+
+### Contacts Reached, of Active
+
+```{r }
+
+valueBox(contacts_active_reached,
+                  color = "#e26d5c")
+
+```
+
+### Contacts Lost To Follow Up, of Active
+
+```{r }
+
+
+valueBox(contacts_active_ltfu,
+                  color = "#e26d5c")
+
+```
+
+### Contacts Followed Up, Day 7
+
+```{r }
+
+
+valueBox(paste0(perc_contacts_7d_seen,"%"), 
+                  color = "#e26d5c")
+
+```
+
+
+### Contacts Followed Up, Day 14
+
+```{r }
+
+
+valueBox(paste0(perc_contacts_14d_seen,"%"), 
+                  color = "#e26d5c")
+
+
+```
+
+Row {.tabset data-height=875}
+-------------------------------------
+
 
 ### Last 7d Performance Table - By Division
 
@@ -1541,4 +2135,5 @@ Row {.tabset data-height=875}
 
 
 ```
+
 
