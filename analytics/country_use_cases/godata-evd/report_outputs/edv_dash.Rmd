@@ -784,46 +784,194 @@ graph_contact_status_by_team
 
 
 
+Aujourd'hui {data-navmenu="LISTE DE LIGNES - INDICATEURS" data-icon=""}
+==============================================================================================
 
 
-
-LISTE DE LIGNE - INDICATEURS {data-icon="fa-list"} 
-=====================================================
 Column {.tabset data-width=100%}
 -------------------------------------
-### Demographique
+### Données démographiques
 
-```{r, echo = FALSE}
-format_tab_demographics
+```{r donnees_demographiques}
+today_date <- Sys.Date()
+
+demograph_tab <- current_clean_cases %>%
+  filter(classification=="confirmé" | classification=="probable") %>%
+  filter(date_of_data_entry==today_date) %>%
+  select(
+    full_name,
+    age,
+    gender,
+    city,
+    sous_prefecture,
+    prefecture
+  ) %>%
+  arrange(prefecture, sous_prefecture, city, full_name)%>%
+  kbl( caption = "", align=c(rep('c',times=100)),
+       col.names = c("Noms et prénoms du malade","Age/année","Sexe","Quartier","Aire de santé", "District sanitaire")) %>%
+   kable_styling(font_size = 14,fixed_thead = T,bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+
+demograph_tab
+
+
 ```
 
 ### Taxonomie
 
-```{r, echo = FALSE}
+```{r taxonomie}
+
+taxonomie_tab <- current_clean_cases %>%
+  filter(classification=="confirmé" | classification=="probable") %>%
+  filter(date_of_data_entry==today_date)
+
+taxonomie_tab[ , "date_investigation"] <- NA #Adding date_investigation column with NA value
+  
+taxonomie_tab <- taxonomie_tab %>%
+  select(
+    full_name,
+    age,
+    gender,
+    classification,
+    date_of_onset,
+    date_of_data_entry,
+    date_investigation,
+    date_become_case
+  ) %>%
+  arrange(date_of_onset,date_of_data_entry, classification, full_name) %>%
+  kbl( caption = "", align=c(rep('c',times=100)),
+       col.names = c("Noms et prénoms du malade","Age/année","Sexe","Classification","Date de début de symptômes","Date de notification","Date de début de l'investigation","Date de confirmation")) %>%
+   kable_styling(font_size = 14,fixed_thead = T,bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+
+taxonomie_tab
+
 
 ```
-  
+
 ### Surveillance
 
-```{r, echo = FALSE}
+```{r surveillance}
+
+surveillance_tab <- current_clean_cases %>%
+  filter(classification=="confirmé" | classification=="probable") %>%
+  filter(date_of_data_entry==today_date)
+
+  surveillance_tab [ , "date_investigation"] <- NA #Adding date_investigation column filled NA value
+  
+surveillance_tab  <- surveillance_tab  %>%
+  select(
+    full_name,
+    age,
+    gender,
+    outcome_id,
+    date_of_onset,
+    date_of_data_entry,
+    date_investigation,
+    date_become_case
+  ) %>%
+  arrange(date_of_onset,date_of_data_entry, outcome_id, full_name) %>%
+  kbl( caption = "", align=c(rep('c',times=100)),
+       col.names = c("Noms et prénoms du malade","Age/année","Sexe","Classification","Date de début de symptômes","Date de notification","Date de début de l'investigation","Date de confirmation")) %>%
+   kable_styling(font_size = 14,fixed_thead = T,bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+
+surveillance_tab 
 
 ```
- 
-### Vaccination
 
-```{r, echo = FALSE}
+
+
+7 derniers jours {data-navmenu="LISTE DE LIGNES - INDICATEURS" data-icon=""}
+====================================================================================================
+
+
+Column {.tabset data-width=100%}
+-------------------------------------
+### Données démographiques
+
+```{r donnees_demographiques-7days}
+
+demograph_tab <- current_clean_cases %>%
+  filter(classification=="confirmé" | classification=="probable") %>%
+  filter( prev_7_date >=date_of_data_entry) %>%
+  select(
+    full_name,
+    age,
+    gender,
+    city,
+    sous_prefecture,
+    prefecture
+  ) %>%
+  arrange(prefecture, sous_prefecture, city, full_name)%>%
+  kbl( caption = "", align=c(rep('c',times=100)),
+       col.names = c("Noms et prénoms du malade","Age/année","Sexe","Quartier","Aire de santé", "District sanitaire")) %>%
+   kable_styling(font_size = 14,fixed_thead = T,bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+
+demograph_tab
+
 
 ```
 
-### PCI
+### Taxonomie
 
-```{r, echo = FALSE}
+```{r taxonomie-7days}
+
+taxonomie_tab <- current_clean_cases %>%
+  filter(classification=="confirmé" | classification=="probable") %>%
+  filter( prev_7_date >=date_of_data_entry)
+
+taxonomie_tab[ , "date_investigation"] <- NA #Adding date_investigation column with NA value
+  
+taxonomie_tab <- taxonomie_tab %>%
+  select(
+    full_name,
+    age,
+    gender,
+    classification,
+    date_of_onset,
+    date_of_data_entry,
+    date_investigation,
+    date_become_case
+  ) %>%
+  arrange(date_of_onset,date_of_data_entry, classification, full_name) %>%
+  kbl( caption = "", align=c(rep('c',times=100)),
+       col.names = c("Noms et prénoms du malade","Age/année","Sexe","Classification","Date de début de symptômes","Date de notification","Date de début de l'investigation","Date de confirmation")) %>%
+   kable_styling(font_size = 14,fixed_thead = T,bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+
+taxonomie_tab
+
 
 ```
 
-### Laboratoire
+### Surveillance
 
-```{r, echo = FALSE}
+```{r surveillance-7days}
+
+surveillance_tab <- current_clean_cases %>%
+  filter(classification=="confirmé" | classification=="probable") %>%
+  filter( prev_7_date >=date_of_data_entry )
+
+  surveillance_tab [ , "date_investigation"] <- NA #Adding date_investigation column filled NA value
+  
+surveillance_tab  <- surveillance_tab  %>%
+  select(
+    full_name,
+    age,
+    gender,
+    outcome_id,
+    date_of_onset,
+    date_of_data_entry,
+    date_investigation,
+    date_become_case
+  ) %>%
+  arrange(date_of_onset,date_of_data_entry, outcome_id, full_name) %>%
+  kbl( caption = "", align=c(rep('c',times=100)),
+       col.names = c("Noms et prénoms du malade","Age/année","Sexe","Classification","Date de début de symptômes","Date de notification","Date de début de l'investigation","Date de confirmation")) %>%
+   kable_styling(font_size = 14,fixed_thead = T,bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+
+surveillance_tab 
 
 ```
 
+21 jours {data-navmenu="LISTE DE LIGNES - INDICATEURS" data-icon=""}
+===========================================================================================
