@@ -188,7 +188,7 @@ today=Sys.Date()-1 #RDN-X
 
 prev_1_date <- today - 1
 prev_7_date <- prev_1_date - 7
-prev_21_date <- prev_1_date - 21
+prev_21_date <- prev_1_date - 30
 
 # Create data of these time points, by filtering follow up list for only these date ranges 
 f_1day <- current_clean_followups %>% 
@@ -397,6 +397,7 @@ Column {data-width=50%}
 ### courbe épidémique
 
 ```{r courbe_epidemique,fig.width=10, fig.height=7}
+today_epicurve <- Sys.Date()
 
 df_courbe=current_clean_cases %>% 
   filter() %>%
@@ -415,8 +416,8 @@ geom_bar(stat="identity") +
   ggtitle("Courbe épidémique des cas confirmés de MVE") +
   theme(plot.title = element_text(color="#666666", size=11)) +theme(axis.text.x = element_text(angle = 40, hjust = 1)) +
   scale_fill_manual(values=c('#7D0633','#4E89AE','#8D93AB','#E8FFC1')) + 
-  scale_x_date(date_breaks = "1 day",
-               limits = as.Date(c('2021-01-13','2021-03-13', "%Y-%m-%d")))
+  scale_x_date(date_breaks = "5 day",
+               limits = as.Date(c('2021-01-13','2021-03-19', "%Y-%m-%d")))
 p1
 
 ```
@@ -797,7 +798,7 @@ today_date <- Sys.Date()
 
 demograph_tab <- current_clean_cases %>%
   filter(classification=="confirmé" | classification=="probable") %>%
-  filter(date_of_data_entry==today_date) %>%
+  filter(date_of_onset >= (today_date-1)) %>%
   select(
     full_name,
     age,
@@ -822,7 +823,7 @@ demograph_tab
 
 taxonomie_tab <- current_clean_cases %>%
   filter(classification=="confirmé" | classification=="probable") %>%
-  filter(date_of_data_entry==today_date)
+  filter(date_of_onset  >= (today_date-1))
 
 taxonomie_tab[ , "date_investigation"] <- NA #Adding date_investigation column with NA value
   
@@ -854,7 +855,7 @@ taxonomie_tab
 
 surveillance_tab <- current_clean_cases %>%
   filter(classification=="confirmé" | classification=="probable") %>%
-  filter(date_of_data_entry==today_date)
+  filter(date_of_onset  >= (today_date-1))
 
   surveillance_tab [ , "date_investigation"] <- NA #Adding date_investigation column filled NA value
   
@@ -892,7 +893,7 @@ Column {.tabset data-width=100%}
 
 demograph_tab <- current_clean_cases %>%
   filter(classification=="confirmé" | classification=="probable") %>%
-  filter( prev_7_date >=date_of_data_entry) %>%
+  filter(date_of_onset >=  prev_7_date) %>%
   select(
     full_name,
     age,
@@ -915,9 +916,10 @@ demograph_tab
 
 ```{r taxonomie-7days}
 
+
 taxonomie_tab <- current_clean_cases %>%
   filter(classification=="confirmé" | classification=="probable") %>%
-  filter( prev_7_date >=date_of_data_entry)
+  filter(date_of_onset >=  prev_7_date)
 
 taxonomie_tab[ , "date_investigation"] <- NA #Adding date_investigation column with NA value
   
@@ -949,7 +951,7 @@ taxonomie_tab
 
 surveillance_tab <- current_clean_cases %>%
   filter(classification=="confirmé" | classification=="probable") %>%
-  filter( prev_7_date >=date_of_data_entry )
+  filter(date_of_onset >=  prev_7_date)
 
   surveillance_tab [ , "date_investigation"] <- NA #Adding date_investigation column filled NA value
   
@@ -975,3 +977,187 @@ surveillance_tab
 
 21 jours {data-navmenu="LISTE DE LIGNES - INDICATEURS" data-icon=""}
 ===========================================================================================
+
+
+Column {.tabset data-width=100%}
+-------------------------------------
+### Données démographiques
+
+```{r donnees_demographiques-21days}
+
+demograph_tab <- current_clean_cases %>%
+  filter(classification=="confirmé" | classification=="probable") %>%
+  filter(date_of_onset >=  prev_21_date) %>%
+  select(
+    full_name,
+    age,
+    gender,
+    city,
+    sous_prefecture,
+    prefecture
+  ) %>%
+  arrange(prefecture, sous_prefecture, city, full_name)%>%
+  kbl( caption = "", align=c(rep('c',times=100)),
+       col.names = c("Noms et prénoms du malade","Age/année","Sexe","Quartier","Aire de santé", "District sanitaire")) %>%
+   kable_styling(font_size = 14,fixed_thead = T,bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+
+demograph_tab
+
+
+```
+
+### Taxonomie
+
+```{r taxonomie-21days}
+
+taxonomie_tab <- current_clean_cases %>%
+  filter(classification=="confirmé" | classification=="probable") %>%
+  filter(date_of_onset >=  prev_21_date)
+
+taxonomie_tab[ , "date_investigation"] <- NA #Adding date_investigation column with NA value
+  
+taxonomie_tab <- taxonomie_tab %>%
+  select(
+    full_name,
+    age,
+    gender,
+    classification,
+    date_of_onset,
+    date_of_data_entry,
+    date_investigation,
+    date_become_case
+  ) %>%
+  arrange(date_of_onset,date_of_data_entry, classification, full_name) %>%
+  kbl( caption = "", align=c(rep('c',times=100)),
+       col.names = c("Noms et prénoms du malade","Age/année","Sexe","Classification","Date de début de symptômes","Date de notification","Date de début de l'investigation","Date de confirmation")) %>%
+   kable_styling(font_size = 14,fixed_thead = T,bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+
+taxonomie_tab
+
+
+```
+
+### Surveillance
+
+```{r surveillance-21days}
+
+surveillance_tab <- current_clean_cases %>%
+  filter(classification=="confirmé" | classification=="probable") %>%
+  filter(date_of_onset >= prev_21_date)
+
+  surveillance_tab [ , "date_investigation"] <- NA #Adding date_investigation column filled NA value
+  
+surveillance_tab  <- surveillance_tab  %>%
+  select(
+    full_name,
+    age,
+    gender,
+    outcome_id,
+    date_of_onset,
+    date_of_data_entry,
+    date_investigation,
+    date_become_case
+  ) %>%
+  arrange(date_of_onset,date_of_data_entry, outcome_id, full_name) %>%
+  kbl( caption = "", align=c(rep('c',times=100)),
+       col.names = c("Noms et prénoms du malade","Age/année","Sexe","Classification","Date de début de symptômes","Date de notification","Date de début de l'investigation","Date de confirmation")) %>%
+   kable_styling(font_size = 14,fixed_thead = T,bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+
+surveillance_tab 
+
+```
+
+
+
+Tous les cas {data-navmenu="LISTE DE LIGNES - INDICATEURS" data-icon=""}
+===========================================================================================
+
+
+Column {.tabset data-width=100%}
+-------------------------------------
+### Données démographiques
+
+```{r donnees_demographiques-tous}
+
+demograph_tab <- current_clean_cases %>%
+  filter(classification=="confirmé" | classification=="probable") %>%
+  
+  select(
+    full_name,
+    age,
+    gender,
+    city,
+    sous_prefecture,
+    prefecture
+  ) %>%
+  arrange(prefecture, sous_prefecture, city, full_name)%>%
+  kbl( caption = "", align=c(rep('c',times=100)),
+       col.names = c("Noms et prénoms du malade","Age/année","Sexe","Quartier","Aire de santé", "District sanitaire")) %>%
+   kable_styling(font_size = 14,fixed_thead = T,bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+
+demograph_tab
+
+
+```
+
+### Taxonomie
+
+```{r taxonomie-tous}
+
+taxonomie_tab <- current_clean_cases %>%
+  filter(classification=="confirmé" | classification=="probable") 
+
+taxonomie_tab[ , "date_investigation"] <- NA #Adding date_investigation column with NA value
+  
+taxonomie_tab <- taxonomie_tab %>%
+  select(
+    full_name,
+    age,
+    gender,
+    classification,
+    date_of_onset,
+    date_of_data_entry,
+    date_investigation,
+    date_become_case
+  ) %>%
+  arrange(date_of_onset,date_of_data_entry, classification, full_name) %>%
+  kbl( caption = "", align=c(rep('c',times=100)),
+       col.names = c("Noms et prénoms du malade","Age/année","Sexe","Classification","Date de début de symptômes","Date de notification","Date de début de l'investigation","Date de confirmation")) %>%
+   kable_styling(font_size = 14,fixed_thead = T,bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+
+taxonomie_tab
+
+
+```
+
+### Surveillance
+
+```{r surveillance-tous}
+
+surveillance_tab <- current_clean_cases %>%
+  filter(classification=="confirmé" | classification=="probable") 
+
+  surveillance_tab [ , "date_investigation"] <- NA #Adding date_investigation column filled NA value
+  
+surveillance_tab  <- surveillance_tab  %>%
+  select(
+    full_name,
+    age,
+    gender,
+    outcome_id,
+    date_of_onset,
+    date_of_data_entry,
+    date_investigation,
+    date_become_case
+  ) %>%
+  arrange(date_of_onset,date_of_data_entry, outcome_id, full_name) %>%
+  kbl( caption = "", align=c(rep('c',times=100)),
+       col.names = c("Noms et prénoms du malade","Age/année","Sexe","Classification","Date de début de symptômes","Date de notification","Date de début de l'investigation","Date de confirmation")) %>%
+   kable_styling(font_size = 14,fixed_thead = T,bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+
+surveillance_tab 
+
+```
+
