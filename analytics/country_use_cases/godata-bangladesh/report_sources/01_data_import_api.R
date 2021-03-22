@@ -100,7 +100,7 @@ rm(response_cases)
 ##########################################################################################################3
 
 ###################################################################################################
-# get access token again, if time-out
+# get access token
 ###################################################################################################
 
 url_request <- paste0(url,"api/oauth/token?access_token=123")
@@ -143,6 +143,27 @@ response_contacts_of_contacts <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/c
 json_contacts_of_contacts <- content(response_contacts_of_contacts, as = "text")
 contacts_of_contacts <- as_tibble(fromJSON(json_contacts_of_contacts, flatten = TRUE))
 rm(response_contacts_of_contacts)
+
+###################################################################################################
+# get access token
+###################################################################################################
+
+url_request <- paste0(url,"api/oauth/token?access_token=123")
+
+response <- POST(url=url_request,  
+                 body = list(
+                   username = username,                                          
+                   password = password),                                       
+                 encode = "json")
+
+content <-
+  content(response, as = "text") %>%
+  fromJSON(flatten = TRUE) %>%
+  glimpse()
+
+access_token <- content$access_token                 ## this is your access token !!! that allows API calls
+
+
 
 # import oubtreak Lab Results 
 response_lab_results <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/lab-results/aggregate"), 
