@@ -7,6 +7,7 @@ outbreak_id <- "xxxxxxxxxxxxxxxxxxxxxx"   # <--------------- insert your outbrea
 
 ###################################################################################################
 
+
 # SCRIPT TO PULL IN COLLECTIONS ACROSS ANY GO.DATA INSTANCE #
 
 ###################################################################################################
@@ -66,17 +67,19 @@ access_token <- content$access_token                 ## this is your access toke
 # IMPORT ALL RELEVANT API COLLECTIONS BELOW 
 ###################################################################################################
 
+date_21d_ago = Sys.Date()-21
+date_now = Sys.Date()
+
 # import contact follow-ups (could filter last 21 days only to avoid system time-out)
 response_followups <- GET(paste0(
   url,
   "api/outbreaks/",
   outbreak_id,
-  "/follow-ups"
-  # /?filter={%22where%22:{%22and%22:[{%22date%22:{%22between%22:[%22",
-  # date_21d_ago,
-  # "%22,%22",
-  # date_now,
-  # "%22]}}]}}"
+  "/follow-ups/?filter={%22where%22:{%22and%22:[{%22date%22:{%22between%22:[%22",
+  date_21d_ago,
+  "%22,%22",
+  date_now,
+  "%22]}}]}}"
 ),
 add_headers(Authorization = paste("Bearer", access_token, sep = " ")))
 json_followups <- content(response_followups, as="text")
@@ -92,6 +95,29 @@ response_cases <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/cases"),
 json_cases <- content(response_cases, as = "text")
 cases <- as_tibble(fromJSON(json_cases, flatten = TRUE))
 rm(response_cases)
+
+
+##########################################################################################################3
+
+###################################################################################################
+# get access token again, if time-out
+###################################################################################################
+
+url_request <- paste0(url,"api/oauth/token?access_token=123")
+
+response <- POST(url=url_request,  
+                 body = list(
+                   username = username,                                          
+                   password = password),                                       
+                 encode = "json")
+
+content <-
+  content(response, as = "text") %>%
+  fromJSON(flatten = TRUE) %>%
+  glimpse()
+
+access_token <- content$access_token                 ## this is your access token !!! that allows API calls
+
 
 
 # import oubtreak Contacts 
