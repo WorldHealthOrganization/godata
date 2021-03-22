@@ -230,15 +230,15 @@ min_date_contact_reg <- min(contacts$date_of_reporting)
 #                date_labels       = "%d\n%b\n'%y") # date labels format
 # 
 # 
-  scale_day_overall_case <- ggplot2::scale_x_date(breaks = "1 days",
-                                       expand=c(0,0),
-                                       limits = c(min_date_case_reg, prev_1_date),
-                                       date_label = format("%d %m %Y"))
-  
-    scale_day_overall_contact <- ggplot2::scale_x_date(breaks = "1 days",
-                                       expand=c(0,0),
-                                       limits = c(min_date_contact_reg, prev_1_date),
-                                       date_label = format("%d %m %Y"))
+  # scale_day_overall_case <- ggplot2::scale_x_date(breaks = "1 days",
+  #                                      expand=c(0,0),
+  #                                      limits = c(min_date_case_reg, prev_1_date),
+  #                                      date_label = format("%d %m %Y"))
+  # 
+  #   scale_day_overall_contact <- ggplot2::scale_x_date(breaks = "1 days",
+  #                                      expand=c(0,0),
+  #                                      limits = c(min_date_contact_reg, prev_1_date),
+  #                                      date_label = format("%d %m %Y"))
 
 
 ```
@@ -2095,6 +2095,37 @@ plot_case_14d_fu_by_week
 
 ```
 
+### Cases Needing 14d Follow Up
+
+```{r cases_needing_14d_fu}
+
+
+cases_needing_14d_fu  <- case_linelist %>%
+  filter(followup_14d_req) %>%
+  filter(followup_14d_complete == "FALSE") %>%
+  
+  select(
+  case_id,
+  date_of_reporting,
+  date_of_data_entry,
+  date_of_onset,
+  followup_14d_complete,
+  assigned_doctor_name,
+  admin_1_name,
+  admin_2_name,
+  admin_3_name) %>%
+  arrange(desc(date_of_reporting),assigned_doctor_name)
+
+formattable_cases_needing_14d_fu <- cases_needing_14d_fu %>%
+  kable("html", escape = F) %>%
+  kable_styling("hover", full_width = FALSE) %>%
+  add_header_above(c("Cases Requiring a 14d Follow Up, As of Yesterday" = 5,
+                     "Responsible OIO & Area" = 4))
+
+formattable_cases_needing_14d_fu
+
+```
+
 
 ### Cases Not Reached
 
@@ -2135,5 +2166,3 @@ Row {.tabset data-height=875}
 
 
 ```
-
-
