@@ -104,6 +104,16 @@ cases_hosp_history_clean <- cases %>%
                                        TRUE ~ "date_missing")) 
 
 
+# Unnest Vaccines Received
+cases_vaccines_clean <- cases %>%
+  filter(deleted == FALSE | is.na(deleted)) %>%
+  unnest(vaccinesReceived, names_sep = "_") %>%
+  select_at(vars(id, starts_with("vaccinesReceived"),-vaccinesReceived_vaccinesReceived), tolower) %>%
+  mutate(vaccinesreceived_vaccine = sub(".*VACCINE_", "", vaccinesreceived_vaccine)) %>%
+  mutate(vaccinesreceived_status = sub(".*STATUS_", "", vaccinesreceived_status)) %>%
+  mutate_at(vars(vaccinesreceived_date), as.Date)
+
+
 
 
 ################################################################################  
@@ -152,6 +162,9 @@ cases_questionnaire_unnest_final_outcome <- cases %>%
   unite(q_final_outcome, c(2:4),
         sep = "",
         na.rm = TRUE)
+
+
+
   
 
 ######################################################################################################
@@ -190,6 +203,8 @@ cases_clean <- cases_clean %>%
   rename_at(vars(starts_with("dateranges")), funs(str_replace(., "dateranges", "isolation"))) %>%
   left_join(cases_hosp_history_clean %>% filter(dateranges_typeid=="HOSPITALIZATION"), by="id") %>%
   rename_at(vars(starts_with("dateranges")), funs(str_replace(., "dateranges", "hospitalization"))) %>%
+  #join in vaccination history
+  left_join(cases_vaccines_clean, by = "id") %>%
   # if there happen to be any duplicate column names, rename them here
   rename_at(vars(ends_with(".x")),
             ~str_replace(., "\\..$","")) %>% 
@@ -303,6 +318,9 @@ cases_clean <- cases_clean %>%
     why_not_reached,
     q_initial_outcome,
     q_final_outcome,
+    vaccinesreceived_vaccine,
+    vaccinesreceived_date,
+    vaccinesreceived_status,
     updatedAt,
     updatedBy
     
@@ -336,6 +354,7 @@ contacts_becoming_cases <- cases_clean %>%
     date_of_followup_start, 
     date_of_followup_end,
     risk_level, risk_reason, was_case,
+    vaccinesreceived_vaccine, vaccinesreceived_date, vaccinesreceived_status,
     starts_with("admin_"),
     createdBy,
     updatedAt,
@@ -363,6 +382,15 @@ contacts_address_history_clean <- contacts %>%
 missing_columns_contacts_addresses <- setdiff(address_columns, names(contacts_address_history_clean))
 contacts_address_history_clean[missing_columns_contacts_addresses] <- NA
 
+# Unnest Vaccines Received
+contacts_vaccines_clean <- contacts %>%
+  filter(deleted == FALSE | is.na(deleted)) %>%
+  unnest(vaccinesReceived, names_sep = "_") %>%
+  select_at(vars(id, starts_with("vaccinesReceived"),-vaccinesReceived_vaccinesReceived), tolower) %>%
+  mutate(vaccinesreceived_vaccine = sub(".*VACCINE_", "", vaccinesreceived_vaccine)) %>%
+  mutate(vaccinesreceived_status = sub(".*STATUS_", "", vaccinesreceived_status)) %>%
+  mutate_at(vars(vaccinesreceived_date), as.Date)
+
 
 # if you have a question about quarantine in your questionnaire, could unnest that here and then do a left join later to join this to main table
 
@@ -388,6 +416,8 @@ date_fields_contacts <- c("dateOfReporting","dateOfLastContact","createdAt","fol
 contacts_clean <- contacts_clean %>%
   #join in current address from address history
   left_join(contacts_address_history_clean %>% filter(addresses_typeid=="USUAL_PLACE_OF_RESIDENCE"), by="id") %>%
+  #join in vaccination history
+  left_join(contacts_vaccines_clean, by = "id") %>%
   # if there happen to be any duplicate column names, rename them here
   rename_at(vars(ends_with(".x")),
             ~str_replace(., "\\..$","")) %>% 
@@ -479,6 +509,7 @@ contacts_clean <- contacts_clean %>%
     risk_level = riskLevel,
     risk_reason = riskReason,
     was_case = wasCase,
+    vaccinesreceived_vaccine, vaccinesreceived_date, vaccinesreceived_status,
     starts_with("quarantine_"),
     starts_with("admin_"),
     createdBy,
