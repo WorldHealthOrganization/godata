@@ -7,7 +7,6 @@ outbreak_id <- "xxxxxxxxxxxxxxxxxxxxxx"   # <--------------- insert your outbrea
 
 ###################################################################################################
 
-
 # SCRIPT TO PULL IN COLLECTIONS ACROSS ANY GO.DATA INSTANCE #
 
 ###################################################################################################
@@ -68,6 +67,7 @@ access_token <- content$access_token                 ## this is your access toke
 ###################################################################################################
 
 date_21d_ago = Sys.Date()-21
+date_7d_ago = Sys.Date()-7
 date_now = Sys.Date()
 
 # import contact follow-ups (could filter last 21 days only to avoid system time-out)
@@ -76,7 +76,7 @@ response_followups <- GET(paste0(
   "api/outbreaks/",
   outbreak_id,
   "/follow-ups/?filter={%22where%22:{%22and%22:[{%22date%22:{%22between%22:[%22",
-  date_21d_ago,
+  date_7d_ago,
   "%22,%22",
   date_now,
   "%22]}}]}}"
@@ -86,7 +86,26 @@ json_followups <- content(response_followups, as="text")
 followups <- as_tibble(fromJSON(json_followups, flatten = TRUE)) 
 rm(response_followups)
 
+###################################################################################################
+# get access token
+###################################################################################################
 
+url_request <- paste0(url,"api/oauth/token?access_token=123")
+
+response <- POST(url=url_request,  
+                 body = list(
+                   username = username,                                          
+                   password = password),                                       
+                 encode = "json")
+
+content <-
+  content(response, as = "text") %>%
+  fromJSON(flatten = TRUE) %>%
+  glimpse()
+
+access_token <- content$access_token                 ## this is your access token !!! that allows API calls
+
+###################################################################################################
 
 # import outbreak Cases 
 response_cases <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/cases"), 
@@ -118,7 +137,7 @@ content <-
 
 access_token <- content$access_token                 ## this is your access token !!! that allows API calls
 
-
+########################################################################################################
 
 # import oubtreak Contacts 
 response_contacts <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/contacts"), 
@@ -128,6 +147,28 @@ json_contacts <- content(response_contacts, as = "text")
 contacts <- as_tibble(fromJSON(json_contacts, flatten = TRUE))
 rm(response_contacts)
 
+
+###################################################################################################
+# get access token
+###################################################################################################
+
+url_request <- paste0(url,"api/oauth/token?access_token=123")
+
+response <- POST(url=url_request,  
+                 body = list(
+                   username = username,                                          
+                   password = password),                                       
+                 encode = "json")
+
+content <-
+  content(response, as = "text") %>%
+  fromJSON(flatten = TRUE) %>%
+  glimpse()
+
+access_token <- content$access_token                 ## this is your access token !!! that allows API calls
+
+###################################################################################################
+
 # import oubtreak Events 
 response_events <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/events"), 
                        add_headers(Authorization = paste("Bearer", access_token, sep = " "))
@@ -135,6 +176,27 @@ response_events <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/events"),
 json_events <- content(response_events, as = "text")
 events <- as_tibble(fromJSON(json_events, flatten = TRUE))
 rm(response_events)
+
+###################################################################################################
+# get access token
+###################################################################################################
+
+url_request <- paste0(url,"api/oauth/token?access_token=123")
+
+response <- POST(url=url_request,  
+                 body = list(
+                   username = username,                                          
+                   password = password),                                       
+                 encode = "json")
+
+content <-
+  content(response, as = "text") %>%
+  fromJSON(flatten = TRUE) %>%
+  glimpse()
+
+access_token <- content$access_token                 ## this is your access token !!! that allows API calls
+
+###################################################################################################
 
 # import oubtreak Contact of Contacts 
 response_contacts_of_contacts <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/contacts-of-contacts"), 
@@ -173,7 +235,26 @@ json_lab_results <- content(response_lab_results, as = "text")
 lab_results <- as_tibble(fromJSON(json_lab_results, flatten = TRUE))
 rm(response_lab_results)
 
+###################################################################################################
+# get access token
+###################################################################################################
 
+url_request <- paste0(url,"api/oauth/token?access_token=123")
+
+response <- POST(url=url_request,  
+                 body = list(
+                   username = username,                                          
+                   password = password),                                       
+                 encode = "json")
+
+content <-
+  content(response, as = "text") %>%
+  fromJSON(flatten = TRUE) %>%
+  glimpse()
+
+access_token <- content$access_token                 ## this is your access token !!! that allows API calls
+
+###################################################################################################
 # import outbreak Relationships
 response_relationships <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/relationships/export"), 
                               add_headers(Authorization = paste("Bearer", access_token, sep = " "))
@@ -182,6 +263,26 @@ json_relationships <- content(response_relationships, as = "text")
 relationships <- as_tibble(fromJSON(json_relationships, flatten = TRUE))
 rm(response_relationships)
 
+###################################################################################################
+# get access token
+###################################################################################################
+
+url_request <- paste0(url,"api/oauth/token?access_token=123")
+
+response <- POST(url=url_request,  
+                 body = list(
+                   username = username,                                          
+                   password = password),                                       
+                 encode = "json")
+
+content <-
+  content(response, as = "text") %>%
+  fromJSON(flatten = TRUE) %>%
+  glimpse()
+
+access_token <- content$access_token                 ## this is your access token !!! that allows API calls
+
+###################################################################################################
 
 # import location hierarchy (outbreak agnostic)
 response_locations <- GET(paste0(url,"api/locations"), 
