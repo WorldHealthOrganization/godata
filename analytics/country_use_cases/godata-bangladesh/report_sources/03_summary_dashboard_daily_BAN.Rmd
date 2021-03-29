@@ -70,26 +70,23 @@ custom_case_color = "#005252"
 custom_contact_color = "#e26d5c"
 
 scale_status <- scale_fill_manual(
-    "Statut",
-    values = c(seen            = "#71CA97",
-               not_seen        = "#5d6d75",
+    "Status",
+    values = c(
                not_performed   = "#D3C9C6",
-               seen_no_signs   = "#A0E2BD",
-               seen_with_signs = "#E94B25",
+               seen_ok   = "#A0E2BD",
+               seen_not_ok = "#E94B25",
                missed          = "#020202"),
                 
-    labels = c(seen            = "Reached",
-               not_seen        = "Not Reached",
+    labels = c(
                not_performed   = "Not Performed",
-               seen_no_signs   = "Reached - without signs",
-               seen_with_signs = "Reached - with signs",
+               seen_ok   = "Reached - without signs",
+               seen_not_ok = "Reached - with signs",
                missed          = "Missed"))
 
 
 statuscols <- c(missed = 0, 
-                seen_with_signs = 0, 
-                seen_no_signs = 0,
-                not_seen = 0,
+                seen_not_ok = 0, 
+                seen_ok = 0,
                 not_performed = 0)
 
 completioncols <- c(completed = 0,
@@ -281,6 +278,9 @@ case_linelist <- cases %>%
              case_when(!is.na(q_final_outcome) ~ TRUE,
                        TRUE ~ FALSE)) %>%
   
+  mutate(vaccinated = 
+             case_when(vaccinesreceived_status == "VACCINATED" ~ TRUE,
+                       TRUE ~ FALSE)) %>%
   
   
   mutate(date_of_followup_end = date_of_reporting + 14) %>%
@@ -298,6 +298,7 @@ case_linelist <- cases %>%
     date_of_data_entry,
     date_of_followup_end,
     date_of_onset,
+    date_of_vaccination = vaccinesreceived_date,
     
     reached,
     not_reached,
@@ -308,6 +309,8 @@ case_linelist <- cases %>%
     followup_14d_req_last7d,
     followup_14d_complete_last7d,
     was_contact,
+    vaccinated,
+    vaccinted_dose = vaccinesreceived_vaccine,
     
     admin_1_name,
     admin_2_name,
@@ -414,6 +417,8 @@ contact_visit_status <- contacts %>%
   mutate(lost_to_followup = case_when(
                                   days_since_followup_seen >= 3 ~ TRUE,
                                   TRUE ~ FALSE)) %>%
+  mutate(vaccinated = case_when(vaccinesreceived_status == "VACCINATED" ~ TRUE,
+                                TRUE ~ FALSE)) %>%
   
 
 select(
@@ -426,9 +431,11 @@ select(
   
   
   date_of_reporting,
+  date_of_vaccination = vaccinesreceived_date,
   contact_status,
   date_of_last_followup_seen,
   number_of_last_followup_seen,
+  
   
   need_fu_7d,
   seen_7d,
@@ -439,6 +446,8 @@ select(
   seen_ever_with_signs,
   lost_to_followup,
   never_seen,
+  vaccinated,
+  vaccinated_dose = vaccinesreceived_vaccine,
   
 
   admin_1_name,
@@ -503,6 +512,20 @@ cases_from_known_contact_last7d <- case_linelist %>%
 
 perc_from_known_contact_last7d <-
   round((cases_from_known_contact_last7d / cases_reg_last7d)*100, digits = 1)
+
+############################################
+# cases vaccinated
+
+total_vaccinated_became_case <- case_linelist %>%
+  filter(vaccinated) %>%
+  filter(date_of_vaccination <= date_of_reporting) %>%
+  count()
+
+total_cases_later_vaccinated <- case_linelist %>%
+  filter(vaccinated) %>%
+  filter(date_of_vaccination >= date_of_reporting) %>%
+  count()
+
 
 ############################################
 
@@ -641,6 +664,26 @@ contacts_14d_seen <- followups %>%
 
 perc_contacts_14d_seen <-
   round((contacts_14d_seen/contacts_14d)*100,digits = 1)
+
+############################################
+# contacts vaccinated
+
+total_contacts_vaccinated <- contact_visit_status %>%
+  filter(vaccinated) %>%
+  count()
+
+total_vaccinated_became_contact <- contact_visit_status %>%
+  filter(vaccinated) %>%
+  filter(date_of_vaccination < date_of_reporting) %>%
+  count()
+
+total_contacts_later_vaccinated <- contact_visit_status %>%
+  filter(vaccinated) %>%
+  filter(date_of_vaccination >= date_of_reporting) %>%
+  count()
+
+
+############################################
 
 ```
 
@@ -1589,6 +1632,8 @@ tab_weekly_perf_admin_1_cases <- case_linelist %>%
     cases_reg = n(),
     cases_reg_last7d = sum(date_of_reporting >= prev_7_date),
     cases_from_known_contact_last7d = sum(was_contact & date_of_reporting >= prev_7_date),
+    cases_vaccinated = sum(vaccinated &
+                                         date_of_reporting >= prev_7_date),
     cases_reached = sum(reached & date_of_reporting >= prev_7_date),
     cases_crf_filled = sum(crf_complete & date_of_reporting >= prev_7_date),
     cases_followup_14d_req = sum(followup_14d_req),
@@ -1603,10 +1648,13 @@ tab_weekly_perf_admin_1_contacts <- contact_visit_status %>%
     contacts_reg = n(),
     contacts_active = sum(contact_status == "UNDER_FOLLOW_UP"),
     contacts_reg_last7d = sum(date_of_reporting >= prev_7_date),
+    contacts_vaccinated = sum(vaccinated &
+                                         date_of_reporting >= prev_7_date),
     contacts_followup_7d_req = sum(need_fu_7d),
     contacts_followup_7d_complete = sum(seen_7d),
     contacts_followup_14d_req = sum(need_fu_14d),
     contacts_followup_14d_complete = sum(seen_14d)) %>%
+  
     replace(is.na(is.integer(.)), 0) 
 
 
@@ -1623,6 +1671,7 @@ tab_weekly_perf_admin_1_combined <- tab_weekly_perf_admin_1_cases %>%
     `CRF Filled` = cases_crf_filled,
     `Needing 14d Case Followup` = cases_followup_14d_req,
     `Completed 14d Case Followup` = cases_followup_14d_complete,
+    `Case Vaccinated` = cases_vaccinated,
 
     # `Total Registered Contacts` = contacts_reg,
     `Currently Active Contacts` = contacts_active,
@@ -1630,7 +1679,8 @@ tab_weekly_perf_admin_1_combined <- tab_weekly_perf_admin_1_cases %>%
     `Needing 7d Followup` = contacts_followup_7d_req,
     `Completed 7d Followup` = contacts_followup_7d_complete,
     `Needing 14d Followup` = contacts_followup_14d_req,
-    `Completed 14d Followup` = contacts_followup_14d_complete
+    `Completed 14d Followup` = contacts_followup_14d_complete,
+    `Contact Vaccinated` = contacts_vaccinated
 
   ) 
 
@@ -1652,14 +1702,16 @@ formattable_weekly_perf_admin_1_combined <-tab_weekly_perf_admin_1_combined %>%
     `Needing 7d Followup`= color_tile("white", custom_grey0)(`Needing 7d Followup`),
     `Completed 7d Followup`= color_tile("white", custom_green0)(`Completed 7d Followup`),
     `Needing 14d Followup`= color_tile("white", custom_grey0)(`Needing 14d Followup`),
-    `Completed 14d Followup`= color_tile("white", custom_green0)(`Completed 14d Followup`)
+    `Completed 14d Followup`= color_tile("white", custom_green0)(`Completed 14d Followup`),
+    `Case Vaccinated`= color_tile("white", custom_blue)(`Case Vaccinated`),
+    `Contact Vaccinated`= color_tile("white", custom_blue)(`Contact Vaccinated`)
     
        ) %>%
-  kable("html", escape = F, align =c("l","c","c","c","c","c","c","c","c","c","c","c","c","c")) %>%
+  kable("html", escape = F, align =c("l","c","c","c","c","c","c","c","c","c","c","c","c","c","c","c")) %>%
   kable_styling("hover", full_width = FALSE) %>%
   add_header_above(c(" " = 1,
-                     "Case Investigation & 14d Follow Up - Last 7d" = 6,
-                     "Contact Listnig & 7/14d Follow Up - Last 7d" = 6))
+                     "Case Investigation & 14d Follow Up - Last 7d" = 7,
+                     "Contact Listing & 7/14d Follow Up - Last 7d" = 7))
 
 formattable_weekly_perf_admin_1_combined
 
@@ -1679,6 +1731,8 @@ tab_weekly_perf_admin_2_cases <- case_linelist %>%
     cases_reg = n(),
     cases_reg_last7d = sum(date_of_reporting >= prev_7_date),
     cases_from_known_contact_last7d = sum(was_contact & date_of_reporting >= prev_7_date),
+    cases_vaccinated = sum(vaccinated &
+                                         date_of_reporting >= prev_7_date),
     cases_reached = sum(reached & date_of_reporting >= prev_7_date),
     cases_crf_filled = sum(crf_complete & date_of_reporting >= prev_7_date),
     cases_followup_14d_req = sum(followup_14d_req),
@@ -1695,6 +1749,8 @@ tab_weekly_perf_admin_2_contacts <- contact_visit_status %>%
     contacts_reg = n(),
     contacts_active = sum(contact_status == "UNDER_FOLLOW_UP"),
     contacts_reg_last7d = sum(date_of_reporting >= prev_7_date),
+    contacts_vaccinated = sum(vaccinated &
+                                         date_of_reporting >= prev_7_date),
     contacts_followup_7d_req = sum(need_fu_7d),
     contacts_followup_7d_complete = sum(seen_7d),
     contacts_followup_14d_req = sum(need_fu_14d),
@@ -1727,6 +1783,7 @@ sqldf('select *
     `CRF Filled` = cases_crf_filled,
     `Needing 14d Case Followup` = cases_followup_14d_req,
     `Completed 14d Case Followup` = cases_followup_14d_complete,
+    `Case Vaccinated` = cases_vaccinated,
 
     # `Total Registered Contacts` = contacts_reg,
     `Currently Active Contacts` = contacts_active,
@@ -1734,7 +1791,8 @@ sqldf('select *
     `Needing 7d Followup` = contacts_followup_7d_req,
     `Completed 7d Followup` = contacts_followup_7d_complete,
     `Needing 14d Followup` = contacts_followup_14d_req,
-    `Completed 14d Followup` = contacts_followup_14d_complete
+    `Completed 14d Followup` = contacts_followup_14d_complete,
+    `Contact Vaccinated` = contacts_vaccinated
 
   ) 
 
@@ -1758,17 +1816,19 @@ formattable_weekly_perf_admin_2_combined <-tab_weekly_perf_admin_2_combined %>%
     `Needing 7d Followup`= color_tile("white", custom_grey0)(`Needing 7d Followup`),
     `Completed 7d Followup`= color_tile("white", custom_green0)(`Completed 7d Followup`),
     `Needing 14d Followup`= color_tile("white", custom_grey0)(`Needing 14d Followup`),
-    `Completed 14d Followup`= color_tile("white", custom_green0)(`Completed 14d Followup`)
+    `Completed 14d Followup`= color_tile("white", custom_green0)(`Completed 14d Followup`),
+    `Case Vaccinated`= color_tile("white", custom_blue)(`Case Vaccinated`),
+    `Contact Vaccinated`= color_tile("white", custom_blue)(`Contact Vaccinated`)
+    
     
        ) %>%
-  kable("html", escape = F, align =c("l","l","c","c","c","c","c","c","c","c","c","c","c","c")) %>%
+  kable("html", escape = F, align =c("l","l","c","c","c","c","c","c","c","c","c","c","c","c","c","c")) %>%
   kable_styling("hover", full_width = FALSE) %>%
   add_header_above(c(" " = 2,
-                     "Case Investigation & 14d Follow Up - Last 7d" = 6,
-                     "Contact Listnig & 7/14d Follow Up - Last 7d" = 6))
+                     "Case Investigation & 14d Follow Up - Last 7d" = 7,
+                     "Contact Listing & 7/14d Follow Up - Last 7d" = 7))
 
 formattable_weekly_perf_admin_2_combined
-
 
 
 ```
@@ -1885,29 +1945,33 @@ formattable_weekly_perf_admin_3_combined
 
 tab_weekly_perf_OIO_cases <- case_linelist %>%
   mutate(assigned_doctor_name = str_replace_na(assigned_doctor_name, replacement = "NOT FILLED" )) %>%
-  mutate(admin_1_name = str_replace_na(admin_1_name, replacement = "NOT FILLED" )) %>%
-  group_by(assigned_doctor_name, admin_1_name) %>%
+  # mutate(admin_1_name = str_replace_na(admin_1_name, replacement = "NOT FILLED" )) %>%
+  group_by(assigned_doctor_name) %>%
+  filter(assigned_doctor_name != "NOT FILLED") %>%
   summarise(
     cases_reg = n(),
     cases_reg_last7d = sum(date_of_reporting >= prev_7_date),
     cases_from_known_contact_last7d = sum(was_contact & date_of_reporting >= prev_7_date),
+    cases_vaccinated = sum(vaccinated & date_of_reporting >= prev_7_date),
     cases_reached = sum(reached & date_of_reporting >= prev_7_date),
     cases_crf_filled = sum(crf_complete & date_of_reporting >= prev_7_date),
     cases_followup_14d_req = sum(followup_14d_req),
     cases_followup_14d_complete = sum(followup_14d_complete)) %>%
   # arrange(desc(cases_reg_last7d)) %>%
-  arrange(admin_1_name, assigned_doctor_name) %>%
+  arrange(assigned_doctor_name) %>%
     replace(is.na(is.integer(.)), 0) 
 
 
 tab_weekly_perf_OIO_contacts <- contact_visit_status %>%
   mutate(assigned_doctor_name = str_replace_na(assigned_doctor_name, replacement = "NOT FILLED" )) %>%
-  mutate(admin_1_name = str_replace_na(admin_1_name, replacement = "NOT FILLED" )) %>%
-  group_by(assigned_doctor_name, admin_1_name) %>%
+  # mutate(admin_1_name = str_replace_na(admin_1_name, replacement = "NOT FILLED" )) %>%
+  group_by(assigned_doctor_name) %>%
+  filter(assigned_doctor_name != "NOT FILLED") %>%
   summarise(
     contacts_reg = n(),
     contacts_active = sum(contact_status == "UNDER_FOLLOW_UP"),
     contacts_reg_last7d = sum(date_of_reporting >= prev_7_date),
+    contacts_vaccinated = sum(vaccinated & date_of_reporting >= prev_7_date),
     contacts_followup_7d_req = sum(need_fu_7d),
     contacts_followup_7d_complete = sum(seen_7d),
     contacts_followup_14d_req = sum(need_fu_14d),
@@ -1923,7 +1987,7 @@ tab_weekly_perf_OIO_combined <- tab_weekly_perf_OIO_cases %>%
   
     select(
     `Assigned Doctor` = assigned_doctor_name,
-    `Division` = admin_1_name,
+    # `Division` = admin_1_name,
     # `Total Registered Cases` = cases_reg,
     `Newly Assigned Cases` = cases_reg_last7d,
     `From Known Contact` = cases_from_known_contact_last7d,
@@ -1931,6 +1995,7 @@ tab_weekly_perf_OIO_combined <- tab_weekly_perf_OIO_cases %>%
     `CRF Filled` = cases_crf_filled,
     `Needing 14d Case Followup` = cases_followup_14d_req,
     `Completed 14d Case Followup` = cases_followup_14d_complete,
+    `Case Vaccinated` = cases_vaccinated,
 
     # `Total Registered Contacts` = contacts_reg,
     `Currently Active Contacts` = contacts_active,
@@ -1938,7 +2003,8 @@ tab_weekly_perf_OIO_combined <- tab_weekly_perf_OIO_cases %>%
     `Needing 7d Followup` = contacts_followup_7d_req,
     `Completed 7d Followup` = contacts_followup_7d_complete,
     `Needing 14d Followup` = contacts_followup_14d_req,
-    `Completed 14d Followup` = contacts_followup_14d_complete
+    `Completed 14d Followup` = contacts_followup_14d_complete,
+    `Contact Vaccinated` = contacts_vaccinated
 
   ) 
 
@@ -1949,9 +2015,9 @@ formattable_weekly_perf_OIO_combined <-tab_weekly_perf_OIO_combined %>%
   # replace NA with "-"
   
   mutate(
-    `Division` = formatter("span", style = ~ formattable::style(
-      color = ifelse(`Division` == "NA", "red", "grey"),
-      font.weight = "bold",font.style = "italic"))(`Division`),
+    `Assigned Doctor` = formatter("span", style = ~ formattable::style(
+      color = ifelse(`Assigned Doctor` == "NOT FILLED", "red", "grey"),
+      font.weight = "bold",font.style = "italic"))(`Assigned Doctor`),
     `Newly Assigned Cases` = color_bar("#337575")(`Newly Assigned Cases`),          ## case color #005252
     `Needing 14d Case Followup`= color_tile("white", custom_grey0)(`Needing 14d Case Followup`),
     `Completed 14d Case Followup`= color_tile("white", custom_green0)(`Completed 14d Case Followup`),
@@ -1961,14 +2027,17 @@ formattable_weekly_perf_OIO_combined <-tab_weekly_perf_OIO_combined %>%
     `From Known Contact` = color_tile("white",godata_orange)(`From Known Contact`),
     `Completed 7d Followup`= color_tile("white", custom_green0)(`Completed 7d Followup`),
     `Needing 14d Followup`= color_tile("white", custom_grey0)(`Needing 14d Followup`),
-    `Completed 14d Followup`= color_tile("white", custom_green0)(`Completed 14d Followup`)
+    `Completed 14d Followup`= color_tile("white", custom_green0)(`Completed 14d Followup`),
+    `Case Vaccinated`= color_tile("white", custom_blue)(`Case Vaccinated`),
+    `Contact Vaccinated`= color_tile("white", custom_blue)(`Contact Vaccinated`)
+    
     
        ) %>%
-  kable("html", escape = F, align =c("l","l","c","c","c","c","c","c","c","c","c","c","c","c")) %>%
+  kable("html", escape = F, align =c("l","c","c","c","c","c","c","c","c","c","c","c","c","c","c")) %>%
   kable_styling("hover", full_width = FALSE) %>%
-  add_header_above(c(" " = 2,
-                     "Case Investigation & 14d Follow Up - Last 7d" = 6,
-                     "Contact Listnig & 7/14d Follow Up - Last 7d" = 6))
+  add_header_above(c(" " = 1,
+                     "Case Investigation & 14d Follow Up - Last 7d" = 7,
+                     "Contact Listing & 7/14d Follow Up - Last 7d" = 7))
 
 formattable_weekly_perf_OIO_combined
 
@@ -2160,9 +2229,193 @@ CONTACT FOLLOW UP {data-icon="fa-calendar"}
 Row {.tabset data-height=875}
 -------------------------------------
 
-### Follow Up Completion
+### Follow Up Completion - Division
 
-```{r }
+```{r followup_completion, fig.width=9, fig.show="hold", out.width="50%"}
 
+
+## Follow Up Completion by Division - 7d Follow Up; from last 7d
+
+fu_subset_7d_last7d <- followups %>%
+  filter(followup_number == 7) %>%
+  mutate(admin_1_name = str_replace_na(admin_1_name, replacement = "Division Not Filled" )) %>%
+  arrange(contact_id, desc(updatedAt)) %>%
+  distinct(contact_id, .keep_all = TRUE) %>%
+  mutate(followup_status = case_when(followup_status == "NOT_ATTEMPTED" ~ "NOT_PERFORMED",
+                                     TRUE ~ followup_status)) %>%
+  mutate(followup_status = tolower(followup_status)) %>%
+  mutate(division = str_to_title(admin_1_name)) %>%
+  group_by(division, followup_status) %>%
+  tally() %>%
+  pivot_wider(names_from = followup_status, values_from = n, values_fill = list(n=0)) %>%
+  add_column(!!!statuscols[!names(statuscols)%in% names(.)]) %>%                                      ## forcing in status columns that might have been dropped
+  gather("followup_status", "n", -division) %>%
+  arrange(division, followup_status) 
+
+graph_fu_completion_7d_last7d <- fu_subset_7d_last7d %>%
+    ggplot(aes(x = reorder(division, n), y = n, fill = followup_status, label = ifelse(n>0, n, NA))) +
+    geom_col(position = "stack") +
+    coord_flip() +
+    theme_classic() +
+    labs(x = "",
+         y = "Number of Contacts requiring 7d Follow Up",
+         title = "7-Day Follow Up Status, by Division",
+         subtitle = paste0("Data for week of ", prev_7_date, " to ",prev_1_date)) +
+  theme(plot.title = element_text(face = "bold", color = "#011822", size = 14),
+        plot.subtitle = element_text(size = 11, color = "#011822")
+        # ,legend.position = "top"
+        ) +
+  geom_text(size = 3, position = position_stack(vjust = 0.5), color = "white", check_overlap = TRUE, fontface = "bold") +
+  scale_status +
+    # scale_x_discrete(drop = TRUE) +
+    # facet_wrap(~aire, strip.position = "right", scales = "free_y", ncol = 1) +
+    # facet_grid(.~zone, scales = "free_y", space = "free", drop = TRUE) +
+    theme(panel.spacing = unit(1, "lines"), 
+         strip.background = element_blank(),
+         strip.placement = "outside")  
+
+graph_fu_completion_7d_last7d
+
+#############################################################################################3
+
+## Follow Up Completion by Division - 14d Follow Up; from last 7d
+
+fu_subset_14d_last7d <- followups %>%
+  filter(followup_number == 14) %>%
+  mutate(admin_1_name = str_replace_na(admin_1_name, replacement = "Division Not Filled" )) %>%
+  arrange(contact_id, desc(updatedAt)) %>%
+  distinct(contact_id, .keep_all = TRUE) %>%
+  mutate(followup_status = case_when(followup_status == "NOT_ATTEMPTED" ~ "NOT_PERFORMED",
+                                     TRUE ~ followup_status)) %>%
+  mutate(followup_status = tolower(followup_status)) %>%
+  mutate(division = str_to_title(admin_1_name)) %>%
+  group_by(division, followup_status) %>%
+  tally() %>%
+  pivot_wider(names_from = followup_status, values_from = n, values_fill = list(n=0)) %>%
+  add_column(!!!statuscols[!names(statuscols)%in% names(.)]) %>%                                      ## forcing in status columns that might have been dropped
+  gather("followup_status", "n", -division) %>%
+  arrange(division, followup_status) 
+
+graph_fu_completion_14d_last7d <- fu_subset_14d_last7d %>%
+    ggplot(aes(x = reorder(division, n), y = n, fill = followup_status, label = ifelse(n>0, n, NA))) +
+    geom_col(position = "stack") +
+    coord_flip() +
+    theme_classic() +
+    labs(x = "",
+         y = "Number of Contacts requiring 14d Follow Up",
+         title = "14-Day Follow Up Status, by Division",
+         subtitle = paste0("Data for week of ", prev_7_date, " to ",prev_1_date)) +
+  theme(plot.title = element_text(face = "bold", color = "#011822", size = 14),
+        plot.subtitle = element_text(size = 11, color = "#011822")
+        # ,legend.position = "top"
+        ) +
+  geom_text(size = 3, position = position_stack(vjust = 0.5), color = "white", check_overlap = TRUE, fontface = "bold") +
+  scale_status +
+    # scale_x_discrete(drop = TRUE) +
+    # facet_wrap(~aire, strip.position = "right", scales = "free_y", ncol = 1) +
+    # facet_grid(.~zone, scales = "free_y", space = "free", drop = TRUE) +
+    theme(panel.spacing = unit(1, "lines"), 
+         strip.background = element_blank(),
+         strip.placement = "outside")  
+
+graph_fu_completion_14d_last7d
+
+
+```
+
+### Follow Up Completion - District
+
+```{r followup_completion_district, fig.width=9, fig.height=12, fig.show="hold", out.width="50%"}
+
+
+###################################################################
+
+## Follow Up Completion by District - 7d Follow Up; from last 7d
+
+fu_subset_7d_last7d_district <- followups %>%
+  filter(followup_number == 7) %>%
+  mutate(admin_2_name = str_replace_na(admin_2_name, replacement = "District Not Filled" )) %>%
+  arrange(contact_id, desc(updatedAt)) %>%
+  distinct(contact_id, .keep_all = TRUE) %>%
+  mutate(followup_status = case_when(followup_status == "NOT_ATTEMPTED" ~ "NOT_PERFORMED",
+                                     TRUE ~ followup_status)) %>%
+  mutate(followup_status = tolower(followup_status)) %>%
+  mutate(division = str_to_title(admin_1_name)) %>%
+  mutate(district = str_to_title(admin_2_name)) %>%
+  group_by(district,followup_status) %>%
+  tally() %>%
+  pivot_wider(names_from = followup_status, values_from = n, values_fill = list(n=0)) %>%
+  add_column(!!!statuscols[!names(statuscols)%in% names(.)]) %>%                                      ## forcing in status columns that might have been dropped
+  gather("followup_status", "n", -district) %>%
+  arrange(district, followup_status) 
+
+graph_fu_completion_7d_last7d_district <- fu_subset_7d_last7d_district %>%
+    ggplot(aes(x = reorder(district, n), y = n, fill = followup_status)) +
+    geom_col(position = "stack") +
+    coord_flip() +
+    theme_classic() +
+    labs(x = "",
+         y = "Number of Contacts Requiring 7d Follow Up",
+         title = "7-Day Follow Up Status, by District",
+         subtitle = paste0("Data for week of ", prev_7_date, " to ",prev_1_date)) +
+  theme(plot.title = element_text(face = "bold", color = "#011822", size = 14),
+        plot.subtitle = element_text(size = 11, color = "#011822")
+        # ,legend.position = "top"
+        ) +
+  # geom_text(size = 3, position = position_stack(vjust = 0.5), color = "white", check_overlap = TRUE, fontface = "bold") +
+  scale_status +
+    scale_x_discrete(drop = TRUE) +
+    # facet_wrap(~district, strip.position = "right", scales = "free_y", ncol = 1) +
+    # facet_grid(.~zone, scales = "free_y", space = "free", drop = TRUE) +
+    theme(panel.spacing = unit(1, "lines"), 
+         strip.background = element_blank(),
+         strip.placement = "outside")  
+
+graph_fu_completion_7d_last7d_district
+
+#############################################################################################3
+
+## Follow Up Completion by District - 14d Follow Up; from last 7d
+
+fu_subset_14d_last7d_district <- followups %>%
+  filter(followup_number == 14) %>%
+  mutate(admin_2_name = str_replace_na(admin_2_name, replacement = "District Not Filled" )) %>%
+  arrange(contact_id, desc(updatedAt)) %>%
+  distinct(contact_id, .keep_all = TRUE) %>%
+  mutate(followup_status = case_when(followup_status == "NOT_ATTEMPTED" ~ "NOT_PERFORMED",
+                                     TRUE ~ followup_status)) %>%
+  mutate(followup_status = tolower(followup_status)) %>%
+  mutate(division = str_to_title(admin_1_name)) %>%
+  mutate(district = str_to_title(admin_2_name)) %>%
+  group_by(district, followup_status) %>%
+  tally() %>%
+  pivot_wider(names_from = followup_status, values_from = n, values_fill = list(n=0)) %>%
+  add_column(!!!statuscols[!names(statuscols)%in% names(.)]) %>%                                      ## forcing in status columns that might have been dropped
+  gather("followup_status", "n", -district) %>%
+  arrange(district, followup_status) 
+
+graph_fu_completion_14d_last7d_district <- fu_subset_14d_last7d_district %>%
+    ggplot(aes(x = reorder(district, n), y = n, fill = followup_status)) +
+    geom_col(position = "stack") +
+    coord_flip() +
+    theme_classic() +
+    labs(x = "",
+         y = "Number of Contacts requiring 14d Follow Up",
+         title = "14-Day Follow Up Status, by District",
+         subtitle = paste0("Data for week of ", prev_7_date, " to ",prev_1_date)) +
+  theme(plot.title = element_text(face = "bold", color = "#011822", size = 14),
+        plot.subtitle = element_text(size = 11, color = "#011822")
+        # ,legend.position = "top"
+        ) +
+  # geom_text(size = 3, position = position_stack(vjust = 0.5), color = "white", check_overlap = TRUE, fontface = "bold") +
+  scale_status +
+    # scale_x_discrete(drop = TRUE) +
+    # facet_wrap(~aire, strip.position = "right", scales = "free_y", ncol = 1) +
+    # facet_grid(.~zone, scales = "free_y", space = "free", drop = TRUE) +
+    theme(panel.spacing = unit(1, "lines"), 
+         strip.background = element_blank(),
+         strip.placement = "outside")  
+
+graph_fu_completion_14d_last7d_district
 
 ```
