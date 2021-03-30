@@ -10,16 +10,14 @@ permalink: /data-visualization/
 # Data Visualizations and Dashboards connected to Go.Data Instance
 There are a number of options for connectors and technical resources to viusalize your data outside of the application if more advanced analysis is required above and beyond the basic in-app dashboards. We have examples to get you started for the following:
 
-- rmarkdown HTML dashboards 
+## [Rmarkdown HTML dashboards using `flexdashboard`](https://github.com/WorldHealthOrganization/godata/tree/master/analytics/r-reporting) 
 
-- Google Data Studio 
+## [Google Data Studio](https://github.com/WorldHealthOrganization/godata/tree/master/analytics/country_use_cases/godata-Kosovo) 
 
-- PowerBI
+## PowerBI
 
-- ESRI
+## [Tableau](https://github.com/WorldHealthOrganization/godata/tree/master/analytics/country_use_cases/godata-universityoftexas)
 
-- [Tableau](https://github.com/WorldHealthOrganization/godata/tree/master/analytics/country_use_cases/godata-universityoftexas)
+## R Shiny (_coming soon_)
 
-- R Shiny (_coming soon_)
-
-- Microsoft Excel (_coming soon_)
+## Microsoft Excel (_coming soon_)
