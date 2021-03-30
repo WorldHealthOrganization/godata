@@ -15,7 +15,7 @@ Go.Data provides a suite of options for extracting data -
 ![analysis_export](../assets/analysis_export.PNG)
 
 ## 2. *Connect to API* via scripts
-![R](../assets/R_logo.PNG) ![python](../assets/python_logo.png) ![mongoDB](../assets/MongoDB_logo.png)
+![script_sources](../assets/script_sources.PNG) 
 
 ### *R USERS* 
 - [See the R Reporting page](https://github.com/WorldHealthOrganization/godata/blob/master/analytics/r-reporting) documentation which contains a script to easily connect to API and extract relevant database collections directly into your R console 
