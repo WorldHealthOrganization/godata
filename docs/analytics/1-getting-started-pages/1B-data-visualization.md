@@ -18,7 +18,7 @@ There are a number of options for connectors and technical resources to viusaliz
 
 - ESRI
 
-- Tableau (_coming soon_)
+- [Tableau](https://github.com/WorldHealthOrganization/godata/tree/master/analytics/country_use_cases/godata-universityoftexas)
 
 - R Shiny (_coming soon_)
 
