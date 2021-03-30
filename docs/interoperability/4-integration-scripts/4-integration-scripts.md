@@ -18,6 +18,8 @@ See [Analytics documentation](https://worldhealthorganization.github.io/godata/a
 
 -*PowerBI:* _New scripts and template dashboards under review and coming soon._ [See the community](https://community-godata.who.int/conversations/dashboards-and-analysis/connecting-power-bi-through-api/5f8033acbd255079ca8ce356) for related discussion. 
 
+-*PandasGUI* _Example of Python/Pandas interface built by Canton Vaud, Switzerland for their Go.Data implementation_ - repository [here](https://github.com/WorldHealthOrganization/pygodata)
+
 ## 2. DHIS2 to Go.Data
 ### [Go.Data-DHIS2 Interoperability App](https://wiscentd-upc.github.io/godata-dhis2-interoperability-app/)
 
