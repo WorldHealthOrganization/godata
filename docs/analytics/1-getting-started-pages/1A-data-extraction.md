@@ -12,7 +12,7 @@ Considering extracting data from your Go.Data instance for advanced analysis, re
 
 Go.Data provides a suite of options for extracting data -
 1. File-based export to .csv, .xlsx, JSON, xml via in-app functionality 
-![](https://github.com/WorldHealthOrganization/godata/blob/master/docs/assets/analysis_export.PNG)
+![](../assets/analysis_export.PNG)
 
 2. Connect to API via scripts
 - [See the R Reporting page](https://github.com/WorldHealthOrganization/godata/blob/master/analytics/r-reporting) documentation which contains a script to easily connect to API and extract relevant database collections directly into your R console 
