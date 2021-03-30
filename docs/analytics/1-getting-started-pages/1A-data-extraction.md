@@ -17,6 +17,7 @@ Go.Data provides a suite of options for extracting data -
 2. Connect to API via scripts
 - [See the R Reporting page](https://github.com/WorldHealthOrganization/godata/blob/master/analytics/r-reporting) documentation which contains a script to easily connect to API and extract relevant database collections directly into your R console 
 - Python script to connect to API and extract relevant collections, as above, at Github repo [here](https://github.com/WorldHealthOrganization/godata/blob/master/analytics/country_use_cases/godata-Kosovo/scripts/kosovo_dashboard_data_extraction.py)
+- Python package `pygodata` developed used by University of Texas at Austin to pull from Go.Data API and sent to Tableau dashboards at Github repo [here](https://github.com/WorldHealthOrganization/godata/tree/master/analytics/country_use_cases/godata-universityoftexas)
 - [See the API page](https://worldhealthorganization.github.io/godata/api-docs/) for more information on accessing and working with the API. 
 
 3. Connect directly to MongoDB database 
