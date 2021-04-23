@@ -841,9 +841,9 @@ contacts_per_case <- relationships_clean %>%
          contacts_per_case = n)
 
 
-# cases linelist, now with contacts per case
+# cases linelist, now with contacts per case (can add other vars here as needed)
 
-cases_join_clean <- cases_clean %>%
+cases_clean <- cases_clean %>%
   left_join(contacts_per_case, by = c("uuid" = "source_uuid")) %>%
   mutate(contacts_per_case = replace(contacts_per_case, is.na(contacts_per_case),0))
 
