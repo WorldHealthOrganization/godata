@@ -51,36 +51,23 @@ library(tidyverse)
 
 ```{r load_data, include = FALSE}
 current_clean_cases <- here::here("data",
-                                  "clean",
-                                  "rds",
                                   "cases_clean.rds")
 
 current_clean_contacts <- here::here("data",
-                                      "clean",
-                                     "rds",
                                       "contacts_clean.rds")
 
 
 current_clean_relationships <- here::here("data",
-                                          "clean",
-                                          "rds",
                                           "relationships_clean.rds")
 
 current_clean_followups <- here::here("data",
-                                      "clean",
-                                      "rds",
                                       "followups_clean.rds")
 
-current_clean_events <- here::here("data",
-                                      "clean",
-                                      "rds",
-                                      "events_clean.rds")
-
-
 current_clean_users <- here::here("data",
-                                      "clean",
-                                      "rds",
                                       "users_clean.rds")
+
+current_clean_teams <- here::here("data",
+                                      "teams_clean.rds")
 
 
 current_clean_cases
@@ -97,10 +84,6 @@ relationships <- rio::import(current_clean_relationships) %>%
 
 current_clean_followups
 followups <- rio::import(current_clean_followups) %>%
-  as_tibble()
-
-current_clean_events
-events <- rio::import(current_clean_events) %>%
   as_tibble()
 
 current_clean_users
