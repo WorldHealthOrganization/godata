@@ -1,4 +1,4 @@
-# SAMPLE DUMMY DATA output after connecting to Go.Data sandbox instance
+# SAMPLE DUMMY DATA output 
 
 ## Example output; connected to Go.Data sandbox instance. PLEASE NOTE: this is not real data.
 
