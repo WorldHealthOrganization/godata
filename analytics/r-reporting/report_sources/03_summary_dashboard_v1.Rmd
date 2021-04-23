@@ -1,13 +1,13 @@
 ---
-title: "COVID-19 Summary Dashboard"
+title: "COVID-19 Summary Dashboard - DEMO Report V1"
 date: "`r format(Sys.time(), '%A %d %B %Y')`"
 output:
     flexdashboard::flex_dashboard:
       theme: cosmo
       orientation: rows
-      logo: C:/Users/holliss/World Health Organization/Go.Data - General/Roll-out activities/Analytics/COVID-19/Generic/report_sources/logos/godatalogo_green.png
       
 ---
+
 
 <style>                     
 .navbar {
@@ -46,65 +46,45 @@ library(qdapTools)
 library(tidyr)
 library(sf)
 library(tidyverse)
-
 ```
 
 ```{r load_data, include = FALSE}
 current_clean_cases <- here::here("data",
                                   "cases_clean.rds")
-
 current_clean_contacts <- here::here("data",
                                       "contacts_clean.rds")
-
-
 current_clean_relationships <- here::here("data",
                                           "relationships_clean.rds")
-
 current_clean_followups <- here::here("data",
                                       "followups_clean.rds")
-
 current_clean_users <- here::here("data",
                                       "users_clean.rds")
-
-current_clean_teams <- here::here("data",
-                                      "teams_clean.rds")
-
-
 current_clean_cases
 cases <- rio::import(current_clean_cases) %>%
   as_tibble()
-
 current_clean_contacts
 contacts <- rio::import(current_clean_contacts) %>%
   as_tibble()
-
 current_clean_relationships
 relationships <- rio::import(current_clean_relationships) %>%
   as_tibble()
-
 current_clean_followups
 followups <- rio::import(current_clean_followups) %>%
   as_tibble()
-
 current_clean_users
 users <- rio::import(current_clean_users) %>%
   as_tibble()
-
 #Import Shapefile 
 #Process Shapefile & join to cases & contacts
 #export shp to .shp folder in data/clean
-
-
 ```
 
 ```{r define_time_periods, include = FALSE}
-
 database_date <- Sys.Date()  
 database_week <- isoweek(database_date)
 prev_1_date <- database_date - 1
 prev_7_date <- prev_1_date - 7
 before_prev_7_date <- prev_7_date -7
-
 ```
 
 
@@ -122,7 +102,6 @@ custom_blue0 = "#79C5FF"
 custom_blue = "#004F8B"
 godata_orange = "#ff884d"
 godata_green = "#4db0a0"
-
 scale_status <- scale_fill_manual(
     "Statut",
     values = c(seen            = "#71CA97",
@@ -138,18 +117,14 @@ scale_status <- scale_fill_manual(
                seen_no_signs   = "Vu sans signes",
                seen_with_signs = "Vu avec signes",
                missed          = "Décédé"))
-
-
 statuscols <- c(missed = 0, 
                 seen_with_signs = 0, 
                 seen_no_signs = 0,
                 not_seen = 0,
                 not_performed = 0)
-
 completioncols <- c(completed = 0,
                     partial = 0,
                     not_attempted = 0)
-
 scale_completion <- scale_fill_manual(
   name = "Completed",
   values = c("#E94B25",
@@ -157,7 +132,6 @@ scale_completion <- scale_fill_manual(
   
   labels = c("Incomplete",
              "Completed"))
-
 scale_risk_factors <- scale_fill_manual(
   name = "Status",
   values = c("#ff5c33",
@@ -167,18 +141,13 @@ scale_risk_factors <- scale_fill_manual(
   labels = c("Yes",
              "No",
              "Unknown"))
-
 ```
 
 ```{r case_linelist, include = FALSE}
-
-
 ### data collectors
-
 data_collector_names <- users %>%
   mutate(data_collector_name = paste0(firstname, " ", lastname)) %>%
   select(uuid,data_collector_name)
-
 ### case linelist core vars that are not required
 ### here, we have 19 essential vars that are not required....
 case_linelist_essential <- cases %>%
@@ -226,36 +195,28 @@ case_linelist_essential <- cases %>%
         ) %>%
   left_join(data_collector_names, by = c("createdBy" = "uuid")) %>%
   select(-createdBy)
-
-
 case_linelist_essential$total_na <- 
   apply(case_linelist_essential,
                 MARGIN = 1, function(x) sum(is.na(x))) 
-
 # calculate % NA of required
-
 case_linelist_essential <- case_linelist_essential %>%
   mutate(perc_na = round((total_na / 20)*100,digits=1))
-
 ```
 
 
 
 ```{r contact_linelist, include = FALSE}
-
 ## FUs, last visit per contact, use for contact linelist to give snapshot
 fu_subset <- followups %>%
   # filter(date_of_followup == prev_1_date) %>%
   arrange(contact_uuid, desc(date_of_followup)) %>%
   distinct(contact_uuid, .keep_all = TRUE) 
-
-
 ## contact linelist, with info about last visit and who turn into cases 
 ## all contacts registered historically, not just currently active contacts
 contact_linelist_essential <- contacts %>%
     select(
          uuid, 
-         visual_id,
+         contact_id,
          contact_status,
          gender,
          age,
@@ -282,16 +243,11 @@ contact_linelist_essential <- contacts %>%
         ) %>%
   left_join(data_collector_names, by = c("createdBy" = "uuid")) %>%
   select(-createdBy)
-
-
   contact_linelist_essential$total_na <- 
   apply(contact_linelist_essential,
                 MARGIN = 1, function(x) sum(is.na(x))) 
-
 contact_linelist_essential <- contact_linelist_essential %>%
   mutate(perc_na = round((total_na / 20)*100,digits=1))
-
-
 contacts_seen_ever <- followups %>%
   filter(followup_status == "SEEN_OK" | followup_status == "SEEN_NOT_OK") %>%
   arrange(contact_uuid, desc(date_of_followup)) %>%
@@ -299,7 +255,6 @@ contacts_seen_ever <- followups %>%
   select(uuid = contact_uuid,
          contact_id, 
          date_of_last_followup_seen = date_of_followup)
-
 contacts_last_visit <- followups %>%
   arrange(contact_uuid, desc(date_of_followup)) %>%
   distinct(contact_uuid, .keep_all = TRUE) %>%
@@ -307,8 +262,6 @@ contacts_last_visit <- followups %>%
          contact_id, 
          date_of_last_followup = date_of_followup,
          status_of_last_followup = followup_status)
-
-
 # could do same thing for contacts vaccinated ever
   
 contact_linelist_status <- contact_linelist_essential %>%
@@ -340,7 +293,6 @@ contact_linelist_status <- contact_linelist_essential %>%
                                 # & date_of_last_followup == database_date ~ TRUE,
                                   TRUE ~ FALSE)) %>%
   # mutate(vaccine = (contact_status_linelist$contact_id %in% contacts_vaccinated_ever$contact_id)) %>%
-
   mutate(lost_to_followup = case_when(
                                   days_since_followup_seen >= 3 ~ TRUE,
                                   TRUE ~ FALSE)) %>%
@@ -352,8 +304,6 @@ contact_linelist_status <- contact_linelist_essential %>%
                                   days_since_exp < 8 ~ TRUE,
                                   TRUE ~ FALSE)) %>%
   mutate(never_seen = !(uuid %in% contacts_seen_ever$uuid)) 
-
-
 ```
 
 
@@ -365,64 +315,49 @@ Row {data-height=125}
 
 ### Total Cases
 ```{r total_cases_reg, echo = FALSE}
-
 total_cases_reg <- cases %>%
   count()
-
 valueBox(total_cases_reg, 
          icon = "fa-user-plus", 
          caption = "Total Confirmed Cases",
          color = godata_orange)
-
 ```
 
 ### New Cases, last 7d
 ```{r cases_reg_last7d, echo = FALSE}
-
 cases_reg_last7d <- cases %>%
   filter(date_of_reporting >= prev_7_date) %>%
   count()
-
 cases_reg_prev_last7d <- cases %>%
   filter(date_of_reporting >= before_prev_7_date & date_of_reporting < prev_7_date) %>%
   count()
-
 perc_change_7d <- round(((cases_reg_last7d - cases_reg_prev_last7d) / cases_reg_prev_last7d)*100, digits = 0) 
 perc_change_7d <- sprintf("%+3.0f %%", perc_change_7d)
-
 valueBox(cases_reg_last7d, 
          caption = "New Cases, Last 7d",
          color = custom_grey0)
-
 # valueBox(cases_reg_last7d, 
 #          caption = paste0("New Cases, Last 7d (%",perc_change_7d,"change vs. last week)"),
 #          color = ifelse(perc_change_7d >=1, custom_green, "#E94B25"))
-
 ```
 
 
 ### Cases from Contact List
 ```{r perc_from_known_contact, echo = FALSE}
-
 cases_from_known_contact <- cases %>%
   filter(was_contact) %>%
   count()
-
 cases_from_known_contact_last7d <- cases %>%
   filter(date_of_reporting >= prev_7_date) %>%
   filter(was_contact) %>%
   count()
-
 perc_from_known_contact <-
   round((cases_from_known_contact / total_cases_reg)*100, digits = 1)
-
 perc_from_known_contact_last7d <-
   round((cases_from_known_contact_last7d / cases_reg_last7d)*100, digits = 1)
-
 valueBox(paste0(perc_from_known_contact,"%"), 
          caption = "Cases from known contacts",
          color =  custom_grey0)
-
 ```
 
 <!-- ### Cases with contacts listed/contacted within 48hrs -->
@@ -437,93 +372,70 @@ valueBox(paste0(perc_from_known_contact,"%"),
 
 ### Cases Died / Recovered
 ```{r cases_died, echo = FALSE}
-
 cases_died <- cases %>%
   filter(outcome_id == "DECEASED") %>%
   count()
-
 cases_recovered <- cases %>%
   filter(outcome_id == "RECOVERED") %>%
   count()
-
-
 valueBox(paste0(cases_died," / ",cases_recovered),
          caption = "Cases died / recovered",
          color = custom_grey0)
-
 ```
 
 
 ### Active Contacts
 
 ```{r total_active_contacts_reg, echo = FALSE}
-
 total_contacts_reg <- contact_linelist_status %>%
   count() 
-
-
 contacts_active <- contact_linelist_status %>%
   filter(contact_status == "UNDER_FOLLOW_UP") %>%
   count() 
-
 valueBox(contacts_active, 
          icon = "fa-users",
          color = godata_orange)
-
 ```
 
 ### New Contacts Listed, last 7d
 ```{r contacts_reg_last7d, echo = FALSE}
-
 contacts_reg_last7d <- contacts %>%
   filter(date_of_reporting >= prev_7_date) %>%
   count()
-
 contacts_reg_prev_last7d <- contacts %>%
   filter(date_of_reporting >= before_prev_7_date & date_of_reporting < prev_7_date) %>%
   count()
-
 perc_change_7d_contacts <- round(((contacts_reg_last7d - contacts_reg_prev_last7d) / contacts_reg_prev_last7d)*100, digits = 0) 
 perc_change_7d_contacts <- sprintf("%+3.0f %%", perc_change_7d_contacts)
-
 valueBox(contacts_reg_last7d, 
          caption = "New Contacts Listed, Last 7d",
          color = custom_grey0)
-
 ```
 
 ### Contacts Followed
 
 ```{r contacts_active_followed, echo = FALSE}
-
 contacts_active_followed <- contact_linelist_status %>%
   filter(contact_status == "UNDER_FOLLOW_UP") %>%
   filter(seen_with_signs | seen_without_signs) %>%
   count()
-
 perc_contacts_active_followed <-
   round((contacts_active_followed/contacts_active)*100,digits = 1)
-
 valueBox(paste0(perc_contacts_active_followed,"%"), 
                   color = custom_grey0)
-
 ```
 
 ### Contacts Lost To Follow Up
 
 ```{r contacts_active_ltfu, echo = FALSE}
-
 contacts_active_ltfu <- contact_linelist_status %>%
   filter(contact_status == "UNDER_FOLLOW_UP") %>%
   filter(lost_to_followup) %>%
   count()
-
 perc_contacts_active_ltfu <-
   round((contacts_active_ltfu/contacts_active)*100,digits = 1)
-
 valueBox(paste0(perc_contacts_active_ltfu,"%"), 
                   color = custom_grey0)
-
 ```
 
 
@@ -533,26 +445,20 @@ Row {.tabset data-height=875}
 ### Case Demographics
 
 ```{r case_demographics, fig.width=9, fig.height=6, out.width="50%"}
-
 ### count those without reported age or sex or occupation
 case_unknown_age <- sum(cases$age_class == "unknown")
 case_unknown_sex <- sum(is.na(cases$gender))
 case_with_age_and_sex <- sum(!is.na(cases$gender) & cases$age_class != "unknown") 
-
-
 #############################################################
 ### case age breakdown over time
 ############################################################
 cases$date_of_reporting <- as.Date(cases$date_of_reporting)
-
 cases_per_week <- cases %>%
   filter(age_class != "unknown") %>%
   mutate(iso_week = isoweek(date_of_reporting)) %>%
   filter(iso_week < database_week & iso_week >= 20) %>%
   group_by(iso_week) %>%
   summarise(weekly_total = n()) 
-
-
 cases$age_class_v2 <- fct_collapse(cases$age_class, 
                           "0-4" = c("0-4"), 
                           "5-14" = c("5-9", "10-14"), 
@@ -560,7 +466,6 @@ cases$age_class_v2 <- fct_collapse(cases$age_class,
                           "40-64" = c("40-49", "50-59","60-64"), 
                           "65-79" = c("65-69", "70-74","75-79"),
                           "80+" = "80+")
-
 case_age_breakdown_over_time <- cases %>%
   mutate(iso_week = isoweek(date_of_reporting)) %>%
   filter(age_class != "unknown",
@@ -572,8 +477,6 @@ case_age_breakdown_over_time <- cases %>%
   ungroup() %>%
   inner_join(cases_per_week, by = "iso_week") %>%
   mutate(prop = count/weekly_total*100)
-
-
 case_age_breakdown_over_time_plot <- 
   ggplot(case_age_breakdown_over_time, aes(x = week_of_reporting, y = count, fill = age_class_v2 )) +
   # geom_line(size = 1.3) +
@@ -601,7 +504,6 @@ case_age_breakdown_over_time_plot <-
     plot.caption = element_text(size = 8, face = "italic"),
     panel.grid.major.y = element_line(size = 0.2, colour = "grey"),
     panel.grid = element_blank())
-
 #############################################################
 ### age sex pryamid
 ############################################################
@@ -612,9 +514,7 @@ case_age_sex_breakdown <- cases %>%
   summarise(num = n()) %>%
   ungroup() %>%
   mutate(prop_case = num / sum(num) * 100)
-
 drop_levels <- levels(droplevels(case_age_sex_breakdown$age_class))
-
 age_pyramid_case <- 
   ggplot(data = case_age_sex_breakdown, aes(x = age_class, fill = gender)) + 
   geom_bar(data = subset(case_age_sex_breakdown, gender == "FEMALE"), aes(y = prop_case),
@@ -648,7 +548,6 @@ age_pyramid_case <-
     color = "white",
     fill=custom_grey
   ) +
-
   scale_fill_manual(
     values=c(
       "MALE" = "#00bfbf", 
@@ -677,33 +576,25 @@ age_pyramid_case <-
     panel.grid.major.y = element_blank(),
     panel.grid.minor.y = element_blank()) 
   
-
-
 #############################################################
 ### occupation pie chart
 ############################################################
 cases$occupation <- as.factor(cases$occupation)
 case_unknown_occupation <- sum(is.na(cases$occupation) | cases$occupation == "UNKNOWN")
 case_other_occupation <- sum(cases$occupation == "OTHER")   ### why is this not working??
-
-
 case_occupation_breakdown <- cases %>%
   # filter(!is.na(occupation),
   #        occupation != "OTHER") %>%
   group_by(occupation) %>%
   count() %>%
   arrange(desc(n)) 
-
 # case_occupation_breakdown_plot_freq <- 
 #   ggplot(subset(case_occupation_breakdown, !is.na(occupation)), aes(x = occupation, y = n)) +
 #   geom_bar(stat = "identity") +
 #   coord_flip() +
 #   theme_classic()
-
-
 color_count = length(unique(cases$occupation))
 getPalette = colorRampPalette(brewer.pal(9, "Set1"))
-
 case_occupation_pie_chart <-
   ggplot(subset(case_occupation_breakdown, !is.na(occupation) & !(occupation == "OTHER")), aes(x = "", y = n, fill = occupation)) +
   geom_bar(width = 1, stat = "identity") +
@@ -723,9 +614,6 @@ case_occupation_pie_chart <-
         plot.title = element_text(size=12, face = "bold"),
         plot.subtitle = element_text(size=11),
         plot.caption = element_text(size = 8, face = "italic"))
-
-
-
 #############################################################
 ### high risk groups
 ############################################################
@@ -776,8 +664,6 @@ cases_high_risk <- cases %>%
   
   mutate(prop = (count/total*100)) %>%
   arrange(risk_factor, category)
-
-
 cases_high_risk$category<-factor(cases_high_risk$category, levels=c('Unknown','No','Yes'), ordered = TRUE)
 plot_cases_high_risk <- 
   ggplot(cases_high_risk, aes(x = risk_factor, y = count, fill = category)) + 
@@ -796,40 +682,31 @@ plot_cases_high_risk <-
       "No" = "#c2d6d6",
       "Unknown" = custom_grey0),
     guide = guide_legend(reverse = TRUE))  
-
   
-
 #########################################
 case_age_breakdown_over_time_plot
 age_pyramid_case
 case_occupation_pie_chart
 plot_cases_high_risk
-
 ```
 
 ### Contact Demographics
 
 ```{r contact_demographics, fig.width=9, fig.height=6, fig.show="hold", out.width="50%"}
-
 ### count those without reported age or sex or occupation
 contact_unknown_age <- sum(contacts$age == "unknown")
 contact_unknown_sex <- sum(is.na(contacts$gender))
 contact_with_age_and_sex <- sum(!is.na(contacts$gender) & contacts$age_class != "unknown") 
-
-
 #############################################################
 ### contact age breakdown over time
 ############################################################
 contacts$date_of_reporting <- as.Date(contacts$date_of_reporting)
-
 contacts_per_week <- contacts %>%
   filter(age_class != "unknown") %>%
   mutate(iso_week = isoweek(date_of_reporting)) %>%
   filter(iso_week < database_week & iso_week >= 20) %>%
   group_by(iso_week) %>%
   summarise(weekly_total = n()) 
-
-
 contacts$age_class_v2 <- fct_collapse(contacts$age_class, 
                           "0-4" = c("0-4"), 
                           "5-14" = c("5-9", "10-14"), 
@@ -837,7 +714,6 @@ contacts$age_class_v2 <- fct_collapse(contacts$age_class,
                           "40-64" = c("40-49", "50-59","60-64"), 
                           "65-79" = c("65-69", "70-74","75-79"),
                           "80+" = "80+")
-
 contact_age_breakdown_over_time <- contacts %>%
   mutate(iso_week = isoweek(date_of_reporting)) %>%
   filter(age_class != "unknown",
@@ -849,8 +725,6 @@ contact_age_breakdown_over_time <- contacts %>%
   ungroup() %>%
   inner_join(contacts_per_week, by = "iso_week") %>%
   mutate(prop = count/weekly_total*100)
-
-
 contact_age_breakdown_over_time_plot <- 
   ggplot(contact_age_breakdown_over_time, aes(x = week_of_reporting, y = count, fill = age_class_v2 )) +
   # geom_line(size = 1.3) +
@@ -878,7 +752,6 @@ contact_age_breakdown_over_time_plot <-
     plot.caption = element_text(size = 8, face = "italic"),
     panel.grid.major.y = element_line(size = 0.2, colour = "grey"),
     panel.grid = element_blank())
-
 #############################################################
 ### age sex pryamid
 ############################################################
@@ -889,9 +762,7 @@ contact_age_sex_breakdown <- contacts %>%
   summarise(num = n()) %>%
   ungroup() %>%
   mutate(prop = num / sum(num) * 100)
-
 drop_levels <- levels(droplevels(contact_age_sex_breakdown$age_class))
-
 age_pyramid_contact <- 
   ggplot(data = contact_age_sex_breakdown, aes(x = age_class, fill = gender)) + 
   geom_bar(data = subset(contact_age_sex_breakdown, gender == "FEMALE"), aes(y = prop),
@@ -925,7 +796,6 @@ age_pyramid_contact <-
     color = "white",
     fill=custom_grey
   ) +
-
   scale_fill_manual(
     values=c(
       "MALE" = "#ffac81", 
@@ -954,33 +824,25 @@ age_pyramid_contact <-
     panel.grid.major.y = element_blank(),
     panel.grid.minor.y = element_blank()) 
   
-
-
 #############################################################
 ### occupation pie chart
 ############################################################
 contacts$occupation <- as.factor(contacts$occupation)
 contact_unknown_occupation <- sum(is.na(contacts$occupation) | contacts$occupation == "UNKNOWN")
 contact_other_occupation <- sum(contacts$occupation == "OTHER")   ### why is this not working??
-
-
 contact_occupation_breakdown <- contacts %>%
   # filter(!is.na(occupation),
   #        occupation != "OTHER") %>%
   group_by(occupation) %>%
   count() %>%
   arrange(desc(n)) 
-
 # case_occupation_breakdown_plot_freq <- 
 #   ggplot(subset(case_occupation_breakdown, !is.na(occupation)), aes(x = occupation, y = n)) +
 #   geom_bar(stat = "identity") +
 #   coord_flip() +
 #   theme_classic()
-
-
 color_count = length(unique(contacts$occupation))
 getPalette = colorRampPalette(brewer.pal(9, "Set1"))
-
 contact_occupation_pie_chart <-
   ggplot(subset(contact_occupation_breakdown, !is.na(occupation) & !(occupation == "OTHER")), aes(x = "", y = n, fill = occupation)) +
   geom_bar(width = 1, stat = "identity") +
@@ -1000,9 +862,6 @@ contact_occupation_pie_chart <-
         plot.title = element_text(size=12, face = "bold"),
         plot.subtitle = element_text(size=11),
         plot.caption = element_text(size = 8, face = "italic"))
-
-
-
 #############################################################
 ### high risk groups
 ############################################################
@@ -1052,10 +911,7 @@ contacts_high_risk <- contacts %>%
                       ) %>%
   
   mutate(prop = (count/total*100))
-
-
 contacts_high_risk$category<-factor(contacts_high_risk$category, levels=c('Unknown','No','Yes'), ordered = TRUE)
-
 plot_contacts_high_risk <- 
   ggplot(contacts_high_risk, aes(x = risk_factor, y = count, fill = category)) + 
   geom_col() +
@@ -1073,15 +929,12 @@ plot_contacts_high_risk <-
       "No" = "#c2d6d6",
       "Unknown" = custom_grey0),
     guide = guide_legend(reverse = TRUE))
-
   
-
 #########################################
 contact_age_breakdown_over_time_plot
 age_pyramid_contact
 contact_occupation_pie_chart
 plot_contacts_high_risk
-
 ```
 
 ### Other
@@ -1094,121 +947,87 @@ Row {data-height=200}
 
 ### New Cases From Contact List
 ```{r perc_from_known_contact_last7d, echo = FALSE}
-
 perc_from_known_contact_last7d <-
   round((cases_from_known_contact_last7d / cases_reg_last7d)*100, digits = 1)
-
 valueBox(paste0(perc_from_known_contact_last7d,"%"), 
          caption = "New Cases among known contacts, last 7d",
          color =  custom_grey0)
-
 ```
 
 ### New Cases Unlinked to Source of Infection
 ```{r perc_cases_without_epilink_last7d, echo = FALSE}
-
 cases_without_epilink_last7d <- case_linelist_essential %>%
   filter(!is.na(source_case_id),
          date_of_reporting >= prev_7_date) %>%
   count()
-
 perc_cases_without_epilink_last7d <-
   round((cases_without_epilink_last7d / cases_reg_last7d)*100, digits = 1)
-
 valueBox(paste0(perc_cases_without_epilink_last7d,"%"),  
          caption = "New cases with no epi-link, last 7d",
          color = custom_grey0)
-
 ```
 
 ### New cases reported within 24h of specimen collection
 ```{r kpi_3, echo = FALSE}
-
-
 valueBox("75%", 
          caption = "New cases reported within 24h of specimen collection",
          color = custom_grey0)
-
 ```
 
 ### New cases interviewed within 24h of reporting 
 ```{r kpi_4, echo = FALSE}
-
-
 valueBox("67%", 
          caption = "New cases interviewed within 24h of reporting",
          color = custom_grey0)
-
 ```
 
 ### Contacts notified within 24h of listing 
 ```{r kpi_5, echo = FALSE}
-
-
 valueBox("88%", 
          caption = "% of contacts notified within 24h of listing",
          color = custom_grey0)
-
 ```
 
 ### New (symptomatic) cases tested and interviewed within 3 days of symptom onset
 ```{r kpi_6, echo = FALSE}
-
-
 valueBox("57%", 
          caption = "% of New (symptomatic) cases tested and interviewed within 3 days of symptom onset",
          color = custom_grey0)
-
 ```
 
 ### Cases whose contacts are followed within 48h
 ```{r kpi_7, echo = FALSE}
-
-
 valueBox("80%", 
          caption = "% Cases whose contacts are followed within 48h",
          color = custom_grey0)
-
 ```
 
 ### Median contacts per case
 ```{r kpi_8, echo = FALSE}
-
-
 valueBox("4.5", 
          caption = "Median contacts per case",
          color = custom_grey0)
-
 ```
 
 ### Case interviews eliciting zero contacts
 ```{r kpi_9, echo = FALSE}
-
-
 valueBox("4%", 
          caption = "% of case interviews eliciting zero contacts",
          color = custom_grey0)
-
 ```
 
 ### Median time from exposure of contact to contact notification
 ```{r kpi_10, echo = FALSE}
-
-
 valueBox("4 days", 
          caption = "Median time from exposure of contact to contact notification",
          color = custom_grey0)
-
 ```
 
 ### Proportion of contacts symptomatic upon notification
 ```{r kpi_11, echo = FALSE}
-
-
 valueBox("52%", 
          caption = "% of contacts symptomatic upon notification",
          color = custom_grey0)
-
 ```
 
 Row {.tabset data-height=800}
@@ -1216,7 +1035,6 @@ Row {.tabset data-height=800}
 
 ### By Admin 1
 ```{r contact_kpi_table, fig.width=10, fig.height=7}
-
 tab_contact_status <- contact_linelist_status %>%
   # filter(!is.na(admin_2_name)) %>%
   group_by(admin_1_name) %>%
@@ -1255,7 +1073,6 @@ tab_contact_status <- contact_linelist_status %>%
     `% Not yet followed` = perc_not_yet_seen,
     `% Lost to follow up` = perc_lost_to_followup
   ) 
-
 formattable_tab_contact_status <-tab_contact_status %>%
   
   mutate(
@@ -1274,15 +1091,12 @@ formattable_tab_contact_status <-tab_contact_status %>%
   add_header_above(c(" " = 2, 
                      "Contact registration" = 4,
                      "Contact follow-up" = 4))
-
 formattable_tab_contact_status
-
 ```
 
 ### By Admin 2
 
 ```{r contact_kpi_table_2, fig.width=10, fig.height=7}
-
 tab_contact_status_2 <- contact_linelist_status %>%
   # filter(!is.na(admin_2_name)) %>%
   group_by(admin_2_name) %>%
@@ -1321,7 +1135,6 @@ tab_contact_status_2 <- contact_linelist_status %>%
     `% Not yet followed` = perc_not_yet_seen,
     `% Lost to follow up` = perc_lost_to_followup
   ) 
-
 formattable_tab_contact_status_2 <-tab_contact_status_2 %>%
   
   mutate(
@@ -1340,14 +1153,11 @@ formattable_tab_contact_status_2 <-tab_contact_status_2 %>%
   add_header_above(c(" " = 2, 
                      "Contact registration" = 4,
                      "Contact follow-up" = 4))
-
 formattable_tab_contact_status_2
-
 ```
 
 ### By Admin 3
 ```{r contact_kpi_table_3, fig.width=10, fig.height=7}
-
 tab_contact_status_3 <- contact_linelist_status %>%
   # filter(!is.na(admin_2_name)) %>%
   group_by(admin_3_name) %>%
@@ -1386,7 +1196,6 @@ tab_contact_status_3 <- contact_linelist_status %>%
     `% Not yet followed` = perc_not_yet_seen,
     `% Lost to follow up` = perc_lost_to_followup
   ) 
-
 formattable_tab_contact_status_3 <-tab_contact_status_3 %>%
   
   mutate(
@@ -1405,9 +1214,7 @@ formattable_tab_contact_status_3 <-tab_contact_status_3 %>%
   add_header_above(c(" " = 2, 
                      "Contact registration" = 4,
                      "Contact follow-up" = 4))
-
 formattable_tab_contact_status_3
-
 ```
 
 ### By Contact Tracer
@@ -1417,19 +1224,16 @@ DATA QUALITY {data-icon="fa-clipboard"}
 =====================================================
 
 ```{r data_completion, fig.width=9, fig.height=6, fig.show="hold", out.width="50%"}
-
 # TO DO:
 #  1. Add composite avg for relationship data completion
 #  2. change colors so that they are diff, and so that lines match bars
 #  3. think about adding events???
-
 #overall data completion by variable 
 # CASES
-
 completion_table_cases <- cases %>%
   
   transmute(
-    visual_id = case_when(is.na(visual_id) ~ FALSE, TRUE ~ TRUE),
+    case_id = case_when(is.na(case_id) ~ FALSE, TRUE ~ TRUE),
     classification = case_when(is.na(classification) ~ FALSE, TRUE ~ TRUE),
     gender = case_when(is.na(gender) ~ FALSE, TRUE ~ TRUE),
     age = case_when(is.na(age) ~ FALSE, TRUE ~ TRUE),
@@ -1458,8 +1262,6 @@ completion_table_cases_pivot <- completion_table_cases %>%
   tibble::rownames_to_column("variable") %>%
   pivot_longer(-variable, names_to = "completed", values_to = "count") %>%
   arrange(variable, desc(count))
-
-
 plot_completion_table_cases <- 
   ggplot(completion_table_cases_pivot, aes(x = variable, y = count, fill = completed)) + 
   geom_col() +
@@ -1478,12 +1280,11 @@ plot_completion_table_cases <-
         plot.caption = element_text(size = 8, face = "italic")) +
   scale_completion +
   theme_classic()
-
 ######################################################################
 # Contacts
 completion_table_contacts <- contact_linelist_essential %>%
   transmute(
-    visual_id = case_when(is.na(visual_id) ~ FALSE, TRUE ~ TRUE),
+    contact_id = case_when(is.na(contact_id) ~ FALSE, TRUE ~ TRUE),
     gender = case_when(is.na(gender) ~ FALSE, TRUE ~ TRUE),
     age = case_when(is.na(age) ~ FALSE, TRUE ~ TRUE),
     occupation = case_when(is.na(occupation) ~ FALSE, TRUE ~ TRUE),
@@ -1506,8 +1307,6 @@ completion_table_contacts_pivot <- completion_table_contacts %>%
   tibble::rownames_to_column("variable") %>%
   pivot_longer(-variable, names_to = "completed", values_to = "count") %>%
   arrange(variable, desc(count))
-
-
 plot_completion_table_contacts <- 
   ggplot(completion_table_contacts_pivot, aes(x = variable, y = count, fill = completed)) + 
   geom_col() +
@@ -1520,10 +1319,7 @@ plot_completion_table_contacts <-
         plot.subtitle = element_text(size = 10)) +
   scale_completion +
   theme_minimal()   
-
-
 # Relationships
-
 completion_table_relationships <- relationships %>%
   transmute(
     source_visualid = case_when(is.na(source_visualid) ~ FALSE, TRUE ~ TRUE),
@@ -1542,8 +1338,6 @@ completion_table_relationships_pivot <- completion_table_relationships %>%
   tibble::rownames_to_column("variable") %>%
   pivot_longer(-variable, names_to = "completed", values_to = "count") %>%
   arrange(variable, desc(count))
-
-
 plot_completion_table_relationships <- 
   ggplot(completion_table_relationships_pivot, aes(x = variable, y = count, fill = completed)) + 
   geom_col() +
@@ -1556,10 +1350,8 @@ plot_completion_table_relationships <-
         plot.subtitle = element_text(size = 10)) +
   scale_completion +
   theme_minimal()  
-
 ###########################################################################3333
 # avg data completion over time
-
 completion_rate_by_week <- case_linelist_essential %>%
   filter(date_of_reporting <= prev_7_date) %>%
   mutate(week_of_reporting = cut(date_of_reporting, breaks = "week")) %>%
@@ -1567,8 +1359,6 @@ completion_rate_by_week <- case_linelist_essential %>%
   group_by(week_of_reporting) %>%
   summarize(mean_case_completion = round(mean(100-perc_na),digits=1)) %>%
   ungroup() 
-
-
 # plot_completion_rate_by_reporting_week <-
 #   ggplot(completion_rate_by_week, aes(x = week_of_reporting,  y = mean_case_completion)) +
 #   geom_line(color="darkblue", size = 1.3) +
@@ -1588,8 +1378,6 @@ completion_rate_by_week <- case_linelist_essential %>%
 #         plot.subtitle = element_text(size=11),
 #         plot.caption = element_text(size = 8, face = "italic"),
 #         axis.text.x = element_text(angle = 45, hjust = 1)) 
-
-
 completion_rates_by_week <- contact_linelist_essential %>%
   filter(date_of_reporting > "2020-01-01") %>%
   filter(date_of_reporting < prev_7_date) %>%
@@ -1602,8 +1390,6 @@ completion_rates_by_week <- contact_linelist_essential %>%
   rename(contact_registration = mean_contact_completion,
          case_registration = mean_case_completion) %>%
   pivot_longer(-week_of_reporting, names_to = "type", values_to = "mean")
-
-
 plot_completion_rates_by_week <-
   ggplot(completion_rates_by_week, aes(x = week_of_reporting,  y = mean, color = type )) +
   geom_line(size = 1.3) +
@@ -1623,20 +1409,16 @@ plot_completion_rates_by_week <-
         plot.subtitle = element_text(size=11),
         plot.caption = element_text(size = 8, face = "italic"),
         axis.text.x = element_text(angle = 45, hjust = 1)) 
-
-
 plot_completion_table_cases
 plot_completion_table_contacts
 plot_completion_table_relationships
 plot_completion_rates_by_week
-
 ```
 
 MAPS {data-icon="fa-map-marker"}
 =====================================================
 
 ```{r maps, fig.width=9, fig.height=6, fig.show="hold", out.width="50%"}
-
 # ###################################################################
 # # cumul map cases
 # 
@@ -1724,14 +1506,12 @@ MAPS {data-icon="fa-map-marker"}
 # map_cases_gps
 # cumul_contact_map_admin_2
 # map_contacts_gps
-
 ```
 
 LABS {data-icon="fa-vial"} 
 =====================================================
 
 ```{r labs, echo=FALSE}
-
 ```
 
 
@@ -1739,14 +1519,9 @@ USERS / ADMINISTRATION {data-icon="fa-globe"}
 =====================================================
 
 ```{r user_details, echo = FALSE}
-
 ### here put a formattable with users, area, last login, total records submitted, roles
-
 ```
 
 ```{r resources, echo = FALSE}
-
 ### here put links to github, community of practice, etc
-
 ```
-
