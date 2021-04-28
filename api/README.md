@@ -1,5 +1,11 @@
-# Overview of API scripts
-Note: before running these scripts, make sure that the user used to send the request to the API has access to ALL outbreaks that you are referencing in script. To do this, you have to UNSELECT all outbreaks in the “available outbreak” dropdown menu from the user configuration page in Go.Data.
+# Working with Go.Data API - sample code snippets
+- go back to API Page on Go.Data Documentation Site [here](https://worldhealthorganization.github.io/godata/api-docs/)
+
+## General Principles:
+- You can interact with the Go.Data REST API in a number of ways, most code snippets we have here are in R (using *httr* and *jsonlite* packages) or Python.
+- The self-documenting description of the API methods can be viewed using Loopback Explorer by adding /explorer to the end of any Go.Data URL
+- There is extensive documentation on working with Loopback Explorer, including how to query effectively, [here](https://loopback.io/doc/en/lb3/Querying-data.html)
+- To send requests to API, user must have access to ALL outbreaks that you are referencing in script. To do this, you have to UNSELECT all outbreaks in the “available outbreak” dropdown menu from the user configuration page in Go.Data.
 
 ## GET data collections from your Go.Data instance 
 #### data_import_api.R
@@ -109,4 +115,34 @@ _Authors	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
 
 _Authors	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
 
+## OTHER TIPS:
 
+Receiving time-outs? You may need to apply special filters. Below is an example in Python:
+```
+def load_labs(token, base_url, outbreak_id):
+        n =  0
+        new_results = True
+        export = []
+        try:
+            while new_results:
+                lab_filter = f'{{"limit":10000, "skip":{n}}}'
+                header = {
+			'Authorization': token,
+			'filter': lab_filter,
+			'format': 'json'
+			}
+
+		        response = requests.get(
+            			url = f'{base_url}/outbreaks/{outbreak_id}/lab-results/export',
+            			headers= header,
+            			proxies = None
+        				)
+                export = export.append(json.loads(response.text))
+                n += 10000
+                if len(json.loads(response.text))< 10000:
+                    new_results = False
+                    return export
+                
+        except Exception as e:
+            return e
+ ```
