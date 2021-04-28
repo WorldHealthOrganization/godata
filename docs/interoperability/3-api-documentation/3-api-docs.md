@@ -221,4 +221,4 @@ cases_short <- as_tibble(fromJSON(json_cases_short, flatten = TRUE))
 {% endraw %}```
 
 ## Example Implementations
-- See the [Github `api` directory](https://github.com/WorldHealthOrganization/godata/tree/master/api) for sample scripts leveraging the API. 
+- See the [Github `api` directory](https://github.com/WorldHealthOrganization/godata/tree/master/api) for sample scripts leveraging the API, both in R and Python.
