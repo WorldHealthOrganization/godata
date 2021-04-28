@@ -116,8 +116,8 @@ _Authors	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
 _Authors	Lucia Fernandez (fernandezl@who.int) - Produced in June 2020_
 
 ## OTHER TIPS:
-
-Receiving time-outs? You may need to apply special filters. Below is an example in Python:
+### Handling time-outs due to large amounts of data
+Receiving time-outs? You may need to apply special filters or limits within your code. Below is an example in Python, utilizing "limit" and "skip" filter terms in a loop to load all the data, developed by colleagues at *The University of Texas at Austin*.
 ```
 def load_labs(token, base_url, outbreak_id):
         n =  0
