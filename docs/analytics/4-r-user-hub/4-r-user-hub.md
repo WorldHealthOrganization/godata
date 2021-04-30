@@ -11,6 +11,7 @@ has_children: true
 
 ## Scripts for automated reporting and HTML dashboards
 - [See the R Reporting page](https://github.com/WorldHealthOrganization/godata/blob/master/analytics/r-reporting) documentation which contains a script to easily connect to API and extract relevant database collections directly into your R console 
+
 ![r-reporting-workflow](../assets/R_reporting_workflow.PNG)
 
 ## RShiny infrastructure
