@@ -1,4 +1,4 @@
-![Go.Data Logo](https://github.com/WorldHealthOrganization/godata/docs/assets/godata_logo.png)
+![](https://github.com/WorldHealthOrganization/godata/blob/master/docs/assets/godata-logo.png)
 
 # Welcome to the Go.Data GitHub Repository!
 
