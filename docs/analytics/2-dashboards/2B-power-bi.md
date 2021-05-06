@@ -1,6 +1,6 @@
 ---
 layout: page
-parent: Dashboards
+parent: Data Visualization
 grand_parent: Analytics & Dashboards
 title: PowerBI
 nav_order: 2
