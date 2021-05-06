@@ -562,8 +562,8 @@ if (nrow(events)==0) {
       lat = address.geoLocation.lat,
       long = address.geoLocation.lng,
       geo_location_accurate = address.geoLocationAccurate,
-      address = address.addressLine1,
-      postal_code = address.postalCode,
+      # address = address.addressLine1, # EO: not found in data
+      # postal_code = address.postalCode,
       city = address.city,
       starts_with("admin_"),
       createdBy

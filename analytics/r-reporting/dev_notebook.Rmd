@@ -1,0 +1,14 @@
+---
+title: "Development notebook"
+output: html_notebook
+---
+
+# Things to do
+
+## Formatting
+* Add css-formatting page
+* Change box width to fit all in header
+* Change default color scheme
+
+## Temporary flags
+* Re-set week formatting for case breakdown + contact breakdown scripts
