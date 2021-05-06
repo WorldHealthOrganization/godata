@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Dashboards
+title: Data Visualization
 parent: Analytics & Dashboards
 nav_order: 2
 permalink: /dashboards/
