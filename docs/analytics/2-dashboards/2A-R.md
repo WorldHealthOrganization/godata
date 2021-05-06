@@ -1,6 +1,6 @@
 ---
 layout: page
-parent: Dashboards
+parent: Data Visualization
 grand_parent: Analytics & Dashboards
 title: R
 nav_order: 1
