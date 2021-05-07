@@ -1,7 +1,7 @@
 ![](https://github.com/WorldHealthOrganization/godata/blob/master/docs/assets/godata-logo.png)
 
 # Welcome to the Go.Data GitHub Repository!
-### Please view a more interactive Docs site of our Github resources here: [https://worldhealthorganization.github.io/godata/](https://worldhealthorganization.github.io/godata/))
+### Please view a more interactive Docs site of our Github resources here: [https://worldhealthorganization.github.io/godata/](https://worldhealthorganization.github.io/godata/)
 
 This repostiory shares technical documentation and resources developed and used in the context of Go.Data deployments worldwide for Interoperability and Analytics.
 The documentation site provides some high-level overview to guide you to code snippets within the Go.Data Github Repository and other documentation that you may find instructive.
