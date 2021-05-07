@@ -13,15 +13,17 @@ _This section was originally published in the Go.Data [**IT Admin Guide, pg. 53*
 Go.Data exposes an Application Programming Interface (API) which is used for all interactions between the web front-end, the smartphone applications and even between copies of Go.Data, if you configure multiple instances of the solution to exchange data in an “upstream sever/client application” model.
 This means that the API is very flexible and any operation possible from the web interface/smartphone can also be made by calling the appropriate method direct.
 
-## API Explorer 
+## LoopBack Explorer 
 The self-documenting description of the API methods can be viewed using Loopback Explorer by adding `/explorer` to the end of any Go.Data URL.  For example, when installing Go.Data on your local machine with default settings:
 
 `http://localhost:8000/explorer`
 
-Loopack explorer provides some examples of possible operations, lists interface parameters and allows you to manually input json inputs and to test them against the API.
+LoopBack Explorer provides some examples of possible operations, lists interface parameters and allows you to manually input json inputs and to test them against the API.
 Methods are present to `GET`, `POST`, `PATCH`, etc. for bidirectional exchange of data with Go.Data. A familiarity with the types of data entities present within Go.Data is essential for understanding the API.
 
-For more information on interacting with the API to query data (e.g., how to add field filters to HTTP requests), see the LoopBack documentation here: 
+<span style="color: orange;">**_NOTE:_**Go.Data is currently running on LoopBack Version 3 - which is no longer being supported by LoopBack team due to Version 4 now available. In an upcoming Go.Data release the LoopBack version will be updated, in which case we will inform Go.Data users of any significant API changes that could affect integration and analytics scripts. </span>
+
+The LoopBack team has provided great documentation for how to query data (e.g., how to add field filters to HTTP requests), which you can find in the documentation 
 [here](https://loopback.io/doc/en/lb3/Querying-data.html)
 
 ## Authentication 
@@ -141,7 +143,7 @@ This constructs the following call:
 ```
 http://localhost:8000/api/outbreaks/cd936eee-5bfb-433b-a80e-e26c66bf6a48/cases/3cd71bf6-afac-40d3-a32d-a1793cfe7638?access_token=HNm29JYiCIa0sNk5kjyTl8FeGKJmhFMiWAhGL6FOBVcBSCc2s2JDQ3EnLH4dFt4l
 ```
-### Filter to retrieve only records with given conditions met, using WHERE filter (i.e. only selecting certain "rows" of observations)
+### FILTER to retrieve only records with given conditions met, using WHERE filter (i.e. only selecting certain "rows" of observations)
 To use the filters provided with the method calls, the syntax is to use the keyword “where” and the sequence of elements for filtering: `{"where":{"fieldname": "filtervalue"}}`
 For more on filtering, view the full LoopBack documentation [here](https://loopback.io/doc/en/lb3/Where-filter.html). 
 
@@ -184,25 +186,36 @@ https://godata.gov.mt/api//outbreaks/{OUTBREAK TOKEN}/cases?filter=%7B%22where%2
 ```
 
 
-### Filter to retrieve only certain fields needed for analysis using FIELDS filter (i.e. only selecting certain "columns" across observations)
+### FILTER to retrieve only certain fields needed for analysis using FIELDS filter (i.e. only selecting certain "columns" across observations)
 Here, you will use "fields" to g: `{"fields":{"fieldname1": "true","fieldname2": "true"}}`
+
+**NOTE: You can also filter for subfields using the "dot" notation.**
+
 For more on filtering, view the full LoopBack documentation [here](https://loopback.io/doc/en/lb3/Where-filter.html). 
 
 This could be useful to reduce the memory load; if you are only focusing on core case/contact variables and do not need bulky questionnaire variables. Similar URL encoding is required, see screenshot and below examples to get you started:
 
 ![fields_filter](../assets/fields_filter_url_encoding.PNG)
 
-*Example of filtering your cases dataset to only bring back visualId, firstName, lastName and createdAt fields*
+*Example of filtering your cases dataset to only bring back visualId, firstName, lastName, addresses.locationId  and createdAt fields*
+
+**NOTE: Location ID is a subfield within Addresses nested list object; so you can identify it for retrieval using dot notation**.
+
 - JSON QUERY:  
 
 ```json
-{"fields": {"firstName":"true","lastName":"true","visualId":"true","createdAt":"true"}}
+{"fields": {"firstName":"true",
+            "lastName":"true",
+            "visualId":"true",
+            "addresses.locationId":"true",
+            "createdAt":"true"}}
 ```
 
 - URL ENCODED: 
 
 ```txt
-%7B%22fields%22%3A%7B%22firstName%22%3A%22true%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22createdAt%22%3A%22true%7D%7D%7D
+%7B%22fields%22%3A%7B%22firstName%22%3A%22true
+%22%2C%22lastName%22%3A%22true%22%2C%22visualId%22%3A%22true%22%2C%22addresses.locationId%22%3A%22true%22%2C%22createdAt%22%3A%22true%7D%7D%7D
 ```
 
 - FINAL GET REQUEST: 
