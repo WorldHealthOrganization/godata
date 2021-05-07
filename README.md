@@ -19,6 +19,9 @@ The *analytics* folder contains example scripts for extracting, cleaning, and ru
 ### Go.Data API Scripts
 This folder contains in it example scripts for working with the Go.Data API.
 
+### Go.Data Integration Scripts
+There are additional resources on some existing integrations, such as the Go.Data/DHIS2 Interoperability App.
+
 # How can I contribute?
 We would love your contributions or feedback so that the user base can benefit from your experience. 
 
