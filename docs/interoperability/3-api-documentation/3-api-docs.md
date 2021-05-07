@@ -21,7 +21,7 @@ The self-documenting description of the API methods can be viewed using Loopback
 LoopBack Explorer provides some examples of possible operations, lists interface parameters and allows you to manually input json inputs and to test them against the API.
 Methods are present to `GET`, `POST`, `PATCH`, etc. for bidirectional exchange of data with Go.Data. A familiarity with the types of data entities present within Go.Data is essential for understanding the API.
 
-<span style="color: orange;">**_NOTE:_**Go.Data is currently running on LoopBack Version 3 - which is no longer being supported by LoopBack team due to Version 4 now available. In an upcoming Go.Data release the LoopBack version will be updated, in which case we will inform Go.Data users of any significant API changes that could affect integration and analytics scripts. </span>
+<span style="color: orange;">**_NOTE:_** Go.Data is currently running on LoopBack Version 3 - which is no longer actively supported by LoopBack development team. We are looking to migrate to LoopBack 4 ASAP in an upcoming Go.Data release, in which case we will inform all Go.Data users of any significant API changes that could affect integration and analytics scripts. </span>
 
 The LoopBack team has provided great documentation for how to query data (e.g., how to add field filters to HTTP requests), which you can find in the documentation 
 [here](https://loopback.io/doc/en/lb3/Querying-data.html)
