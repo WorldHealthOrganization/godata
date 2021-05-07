@@ -125,13 +125,14 @@ statuscols <- c(missed = 0,
 completioncols <- c(completed = 0,
                     partial = 0,
                     not_attempted = 0)
+
 scale_completion <- scale_fill_manual(
   name = "Completed",
   values = c("#E94B25",
              "#ABADAB"),
-  
   labels = c("Incomplete",
              "Completed"))
+
 scale_risk_factors <- scale_fill_manual(
   name = "Status",
   values = c("#ff5c33",
