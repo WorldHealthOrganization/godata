@@ -1,0 +1,34 @@
+---
+layout: page
+title: GIS
+parent: Data Visualization
+grand_parent: Analytics & Dashboards
+nav_order: 5
+permalink: /gis/
+has_children: false
+---
+
+# Options and Considerations for GIS Analysis in Go.Data
+_this page is currently under construction_
+
+## Go.Data Location Variables
+The below variables are stored within the `addresses` block of .json, when registering cases, contacts or events. Please note that some are from reference data that must be configured, while others are freetext. You can add as many addresses as you want for an entity. **Indicates Required Field**
+
+Variable Name     | Code                | Defintiion        |  Source / Notes
+------------------|---------------------|-------------------|-------------------- 
+**Location** | address_location | Location (Recommended to fill most granular Admin Level) | Configurable Go.Data Reference Data (choose from location hierarchy, after your locations have been configured)
+Latitude | address_lat | Latitude |  Configurable Go.Data Reference Data OR manual capture depending on location chosen from drop-down
+Longitude | address_lat | Longitude | Manual Capture OR taken from Go.Data Reference Data depending on location chosen from drop-down
+Coordinates Accurate | address_gps_accurate | GPS Coordinates are considered precise | Toggle to mark Yes or No
+City | address_city | City | freetext
+Street | address_street | Street | freetext
+Phone Number | address_city | City | freetext
+Postal Code | address_postal | Postal Code | freetext
+Email address | address_email| Email Address | freetext
+**Address type** | address_type | Type of address | Date
+Address date | address_date | Date that the address is valid until | Configurable Go.Data Reference Data (Default Values: Current Address, Previous Address)
+
+
+## Sample Go.Data Location Data
+
+## Example Maps Using Go.Data Data
