@@ -12,7 +12,7 @@ has_children: false
 _this page is currently under construction_
 
 ## Go.Data Location Variables
-The below variables are stored within the `addresses` block of .json, when registering cases, contacts or events. Please note that some are from reference data that must be configured, while others are freetext. You can add as many addresses as you want for an entity. **Indicates Required Field**
+The below variables are stored within the `addresses` block of .json, when registering cases, contacts or events. Please note that some are from reference data that must be configured, while others are freetext. **Indicates Required Field**
 
 Variable Name     | Code                | Defintiion        |  Source / Notes
 ------------------|---------------------|-------------------|-------------------- 
@@ -28,6 +28,8 @@ Email address | address_email| Email Address | freetext
 **Address type** | address_type | Type of address | Date
 Address date | address_date | Date that the address is valid until | Configurable Go.Data Reference Data (Default Values: Current Address, Previous Address)
 
+The Go.Data address variables can be found in the "Address" Block when going to register a case, contact or event, as seen in screenshot below. You can add as many addresses as you want for an entity. The address marked as `type` = `current` will be that which is used in analytics dashboards within the application. 
+![](../assets/address_block.png)
 
 ## Sample Go.Data Location Data
 
