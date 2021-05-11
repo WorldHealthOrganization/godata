@@ -13,7 +13,6 @@ permalink: /google-datastudio/
 
 For monitoring of COVID-19 cases and contact tracing in Kosovo, Google DataStudio was used (outputs below)
 ![](../assets/googledatastudio-kosovo-1.png)
-![](../assets/googledatastudio-kosovo-2.png)
 
 Purpose/ objectives: 
 1.	To contribute to informing the general public on the current COVID-19 epidemiological situation.
