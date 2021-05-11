@@ -24,6 +24,7 @@ The pipeline involved:
 3. Store aggregated output in private Google Spreadsheet
 4. Add necessary information manually, not collected in Go.Data
 5. Push to Google DataStudio
+
 ![](../assets/kosovo-data-flow.png)
 
 To view full resources and scripts, please view the repo [here](https://github.com/WorldHealthOrganization/godata/tree/master/analytics/country_use_cases/godata-Kosovo)
