@@ -7,8 +7,11 @@ permalink: /gis/
 has_children: false
 ---
 
-# Options and Considerations for GIS Connectors
-- ESRI ArcGIS Pro / Go.Data Toolkit
--
--
+# Options and Considerations for GIS Analysis in Go.Data
+_coming soon_
 
+## Go.Data Location Variables
+
+## Sample Go.Data Location Data
+
+## Example Maps Using Go.Data Data
