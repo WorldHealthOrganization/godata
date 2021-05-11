@@ -31,6 +31,16 @@ Address date | address_date | Date that the address is valid until | Configurabl
 The Go.Data address variables can be found in the "Address" Block when going to register a case, contact or event, as seen in screenshot below. You can add as many addresses as you want for an entity. The address marked as `type` = `current` will be that which is used in analytics dashboards within the application. 
 ![](../assets/address_block.png)
 
-## Sample Go.Data Location Data
+## Configuring your Go.Data Locations
+- [this guidance](https://community-godata.who.int/conversations/locations-reference-data-languages/sop-bulk-importing-locations-into-godata/6022b951ed9dc017691d861f) contains a step-by-step guide on how to bulk import locations using excel files, in addition to sample excel templates.
+
+## Using GIS Data for your Go.Data Location Configuration
+-excel files of dummy data used to create maps
+
+
+## Sample Go.Data Location Dummy Data for Analysis
+-excel files of dummy data used to create maps
 
 ## Example Maps Using Go.Data Data
+-links/screenshots here of very basic GIS maps, using Go.Data data in test instance
+-template GIS files, linked up to Go.Data data in test instance
