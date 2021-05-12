@@ -11,6 +11,10 @@ has_children: false
 # Options and Considerations for GIS Analysis in Go.Data
 _this page is currently under construction_
 
+## Example Maps Using Go.Data Data
+-links/screenshots here of very basic GIS maps, using Go.Data data in test instance
+-template GIS files, linked up to Go.Data data in test instance
+
 ## Go.Data Location Variables
 The below variables are stored within the `addresses` block of .json, when registering cases, contacts or events. Please note that some are from reference data that must be configured, while others are freetext. **Indicates Required Field**
 
@@ -41,6 +45,4 @@ The Go.Data address variables can be found in the "Address" Block when going to 
 ## Sample Go.Data Location Dummy Data for Analysis
 -excel files of dummy data used to create maps
 
-## Example Maps Using Go.Data Data
--links/screenshots here of very basic GIS maps, using Go.Data data in test instance
--template GIS files, linked up to Go.Data data in test instance
+
