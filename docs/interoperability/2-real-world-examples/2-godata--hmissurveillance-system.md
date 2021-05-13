@@ -2,7 +2,7 @@
 layout: default
 title: 1 & 2. Go.Data Integration with HMIS/Surveillance
 parent: Real-World Examples
-grand_parent: Go.Data Interoperability
+grand_parent: How to integrate my data with other systems
 nav_order: 2
 permalink: /1-2-godata--hmissurveillance-system/
 ---
