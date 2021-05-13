@@ -2,7 +2,7 @@
 layout: default
 title: Integrating with DHIS2
 parent: Frequently Asked Questions
-grand_parent: Go.Data Interoperability
+grand_parent: How to integrate my data with other systems
 nav_order: 3
 permalink: /dhis2-integrations/
 ---
