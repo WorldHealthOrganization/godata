@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Frequently Asked Questions
-parent: Go.Data Interoperability
+parent: How to integrate my data with other systems
 permalink: /topics/
 nav_order: 6
 has_children: true
