@@ -2,7 +2,7 @@
 layout: default
 title: Integrating with Mobile Apps
 parent: Frequently Asked Questions
-grand_parent: Go.Data Interoperability
+grand_parent: How to integrate my data with other systems
 nav_order: 7
 permalink: /integrating-mobile-apps/
 ---
