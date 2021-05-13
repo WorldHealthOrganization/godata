@@ -2,7 +2,7 @@
 layout: default
 title: 3. Importing Lab Sample Data to Go.Data
 parent: Real-World Examples
-grand_parent: Go.Data Interoperability
+grand_parent: How to integrate my data with other systems
 nav_order: 3
 permalink: /importing-lab-results/
 ---
