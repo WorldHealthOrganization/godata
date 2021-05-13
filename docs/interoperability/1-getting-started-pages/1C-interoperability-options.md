@@ -2,7 +2,7 @@
 layout: default
 title: Options
 parent: Getting Started
-grand_parent: Go.Data Interoperability
+grand_parent: How to integrate my data with other systems
 nav_order: 3
 permalink: /options/
 ---
