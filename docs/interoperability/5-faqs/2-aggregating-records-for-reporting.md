@@ -2,7 +2,7 @@
 layout: default
 title: Aggregating Records for Reporting
 parent: Frequently Asked Questions
-grand_parent: Go.Data Interoperability
+grand_parent: How to integrate my data with other systems
 nav_order: 2
 permalink: /aggregate-reporting/
 ---
