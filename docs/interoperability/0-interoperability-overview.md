@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Go.Data Interoperability
+title: How to integrate my data with other systems
 nav_order: 2
 permalink: /interoperability/
 has_children: true
