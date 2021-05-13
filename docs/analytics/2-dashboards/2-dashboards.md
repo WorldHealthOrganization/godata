@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Data Visualization
-parent: Analytics & Dashboards
+parent: How to visualize my data
 nav_order: 2
 permalink: /dashboards/
 has_children: true
