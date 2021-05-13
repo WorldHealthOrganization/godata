@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Live Integrations
-parent: Go.Data Interoperability
+parent: How to integrate my data with other systems
 nav_order: 5
 permalink: /integration-scripts/
 ---
