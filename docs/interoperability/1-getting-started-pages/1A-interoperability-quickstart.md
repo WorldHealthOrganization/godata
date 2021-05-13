@@ -1,7 +1,7 @@
 ---
 layout: page
 parent: Getting Started
-grand_parent: Go.Data Interoperability
+grand_parent: How to integrate my data with other systems
 title: Interoperability QuickStart
 nav_order: 1
 permalink: /interoperability-quickstart/
