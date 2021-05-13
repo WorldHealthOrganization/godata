@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Contribute 
+title: How to contribute 
 has_children: true
 nav_order: 6
 permalink: /project-name/
