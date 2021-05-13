@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Site Customization
-parent: Contribute
+parent: How to contribute
 nav_order: 1
 permalink: /docs-customization/
 ---
