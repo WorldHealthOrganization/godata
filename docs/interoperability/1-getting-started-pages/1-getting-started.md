@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Getting Started
-parent: Go.Data Interoperability
+parent: How to integrate my data with other systems
 nav_order: 2
 permalink: /getting-started/
 has_children: true
