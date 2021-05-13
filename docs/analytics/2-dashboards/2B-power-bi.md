@@ -1,7 +1,7 @@
 ---
 layout: page
 parent: Data Visualization
-grand_parent: Analytics & Dashboards
+grand_parent: How to visualize my data
 title: PowerBI
 nav_order: 2
 permalink: /power-bi/
