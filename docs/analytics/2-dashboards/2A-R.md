@@ -1,7 +1,7 @@
 ---
 layout: page
 parent: Data Visualization
-grand_parent: Analytics & Dashboards
+grand_parent: How to visualize my data
 title: R
 nav_order: 1
 permalink: /R/
