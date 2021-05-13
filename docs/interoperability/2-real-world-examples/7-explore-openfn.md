@@ -2,7 +2,7 @@
 layout: default
 title: Explore OpenFn
 parent: Real-World Examples
-grand_parent: Go.Data Interoperability
+grand_parent: How to integrate my data with other systems
 nav_order: 7
 permalink: /explore-openfn/
 ---
