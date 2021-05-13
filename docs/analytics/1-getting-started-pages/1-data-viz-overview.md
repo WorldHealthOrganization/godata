@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Data Extraction 
-parent: Analytics & Dashboards
+parent: How to visualize my data
 nav_order: 1
 permalink: /data-extraction/
 has_children: false
