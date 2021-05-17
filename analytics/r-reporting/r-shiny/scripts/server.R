@@ -4,9 +4,12 @@ library(shiny); library(shinydashboard); library(ggplot2); library(survival); li
 library(here); library(lubridate); library(forcats); library(viridis); library(RColorBrewer); library(tidyverse)
 library(kableExtra); library(formattable); library(qdapTools)
 
-# source(here("report_sources/01_data_import_api.R"))
-# source(here("report_sources/02_clean_data_api.R"))
-# source(here("scripts/set_variables.R"))
+# Set up ==========================================================================================================================
+
+# Run only when you need to import or update data. Will take a while to run, so comment out when not needed.
+source(here("report_sources/01_data_import_api.R"))
+source(here("report_sources/02_clean_data_api.R"))
+source(here("scripts/set_variables.R"))
 
 server <- function(input, output, server){
 
@@ -29,13 +32,13 @@ server <- function(input, output, server){
     )
   })
   
-  output$vboxCasesContactList <- renderValueBox({
-    valueBox(
-      paste0(perc_from_known_contact, "%"),
-      "Cases from known contacts",
-      color = "green"
-    )
-  })
+  # output$vboxCasesContactList <- renderValueBox({
+  #   valueBox(
+  #     paste0(perc_from_known_contact, "%"),
+  #     "Cases from known contacts",
+  #     color = "green"
+  #   )
+  # })
   
   output$vboxCasesDiedRecovered <- renderValueBox({
     valueBox(
@@ -56,13 +59,13 @@ server <- function(input, output, server){
     )
   })
   
-  output$vboxNewContacts <- renderValueBox({
-    valueBox(
-      contacts %>% filter(date_of_reporting >= prev_7_date) %>% count(),
-      "New contacts listed, last 7d",
-      color = "green"
-    )
-  })
+  # output$vboxNewContacts <- renderValueBox({
+  #   valueBox(
+  #     contacts %>% filter(date_of_reporting >= prev_7_date) %>% count(),
+  #     "New contacts listed, last 7d",
+  #     color = "green"
+  #   )
+  # })
   
   output$vboxContactsFollowed <- renderValueBox({
     valueBox(

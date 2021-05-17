@@ -39,7 +39,7 @@ fKPIByAdmin <- function(variable = input$variable){
       `% Lost to follow up` = perc_lost_to_followup
     ) 
   
-  formattable_tab_contact_status <- tab_contact_status %>%
+  tab_contact_status %>%
       mutate(
       `Admin` = formatter("span", style = ~ formattable::style(
         color = ifelse(`Admin` == "Non rapporté", "red", "grey"),
@@ -56,6 +56,4 @@ fKPIByAdmin <- function(variable = input$variable){
     add_header_above(c(" " = 2, 
                        "Contact registration" = 4,
                        "Contact follow-up" = 4))
-  formattable_tab_contact_status
-  
 }
