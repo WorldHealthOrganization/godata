@@ -6,7 +6,8 @@ permalink: /data-mgmt/
 has_children: true
 ---
 
-# Go.Data Data Management Principles & Resources
+# Getting to know your Data
+Before beginning data collection and in order to consider any analytics and interoperability solutions, you should get to know the metadata requirements within the Go.Data, including understanding what is defined vs. what you can configure on your own. We recommend keeping up-to-date technical documentation for your deployment such as a Data Dictionary, which we describe below.
 
 ## Metadata Overview
 
@@ -53,5 +54,6 @@ Variable Label     | Code                | Defintiion        |  Source / Notes
 
 ## Data Dictionary
 
-You can download this template excel file [here](https://sprcdn-assets.sprinklr.com/1652/dbcc4983-9761-4abc-b5e6-cce1b5c33f10-1723930809.xlsx) to build out a data dictionary for your Go.Data platform.
-**NOTE: You can code variables however you would like, and adapt your reference data to suit your purposes. Using this data dictionary as a starting point, please adapt it to fit what you have configured in your system. This would include adding in entirely new variables that you may have added for custom questionnaires for cases, contacts, follow-ups and labs.**
+You can download this template excel file [here](https://sprcdn-assets.sprinklr.com/1652/dbcc4983-9761-4abc-b5e6-cce1b5c33f10-1723930809.xlsx) to build out a data dictionary for your Go.Data platform. You can code variables however you would like, and adapt your reference data to suit your purposes.
+
+**NOTE:  You will need to adapt this data dictionary to fit what you have configured in your system. This would include adding in entirely new variables that you may have added for custom questionnaires for cases, contacts, follow-ups and labs or changing reference data that you have configured.**
