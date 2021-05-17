@@ -41,23 +41,20 @@ body <- dashboardBody(
                 tags$style(HTML(".small-box.bg-green {
                     background-color: #818181 !important;
                 }
-                    
-                    .colbox{
-                    width: 10px;
-                    }
+
                                     ")),
 
               valueBoxOutput("vboxTotalCases", width = 2),
               
               valueBoxOutput("vboxNewCases", width = 2),
               
-              valueBoxOutput("vboxCasesContactList", width = 2),
+              # valueBoxOutput("vboxCasesContactList", width = 2),
               
               valueBoxOutput("vboxCasesDiedRecovered", width = 2),
               
               valueBoxOutput("vboxActiveContacts", width = 2),
               
-              valueBoxOutput("vboxNewContacts", width = 2),
+              # valueBoxOutput("vboxNewContacts", width = 2),
               
               valueBoxOutput("vboxContactsFollowed", width = 2),
               
