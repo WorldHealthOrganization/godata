@@ -9,3 +9,5 @@ This process will provide you with cleaned, flattened excel files and HTML dashb
 - Download R (version 3.6.1 or higher is recommended) here: https://www.r-project.org/
 - Obtain valid Go.Data login credentials for the instance you are accessing, with the minimum permissions to _view_ data collections you are trying to extract (i.e if you want to extract laboratory data, you need the "Laboratory Personnel" role)
 - Create folder directory on your local machine matching what is outlined in the SOP in an easily accessible place on your computer (i.e. Desktop)
+
+# Example Output
