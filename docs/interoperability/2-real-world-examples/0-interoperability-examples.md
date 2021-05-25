@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Real-World Examples
-parent: How to integrate my data with other systems
+parent: Go.Data Interoperability Toolkit
 nav_order: 3
 permalink: /interoperability-examples/
 has_children: true
