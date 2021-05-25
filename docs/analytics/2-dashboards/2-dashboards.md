@@ -65,9 +65,13 @@ For monitoring of COVID-19 cases and contact tracing at UT Austin, Talbeau is us
 
 To view full resources and scripts, please view the repo [here](https://github.com/WorldHealthOrganization/godata/tree/master/analytics/country_use_cases/godata-universityoftexas)
 
+## PandasGUI 
+Country use case
+{: .label .label-purple }
+The team at Canton Vaud developed a Python/Pandas interface for their Go.Data implementation to more easily fetch data from Go.Data and use it as a Pandas dataframe.
+
+See Github directory:[https://github.com/WorldHealthOrganization/pygodata](https://github.com/WorldHealthOrganization/pygodata)
+
 ## Excel
 Coming soon
 {: .label .label-yellow }
-
-
-
