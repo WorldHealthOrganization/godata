@@ -1,6 +1,6 @@
 ---
 layout: page
-title: How to integrate my data with other systems
+title: Data Management
 nav_order: 4
 permalink: /interoperability/
 has_children: true
