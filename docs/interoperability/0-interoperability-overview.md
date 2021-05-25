@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Go.Data Interoperability Toolkit
-nav_order: 4
+nav_order: 5
 permalink: /interoperability/
 has_children: true
 ---
