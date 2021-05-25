@@ -2,7 +2,7 @@
 layout: default
 title: Use Cases
 parent: Real-World Examples
-grand_parent: How to integrate my data with other systems
+grand_parent: Go.Data Interoperability Toolkit
 nav_order: 1
 permalink: /use-cases/
 ---
