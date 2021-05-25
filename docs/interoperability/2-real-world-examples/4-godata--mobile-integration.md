@@ -2,7 +2,7 @@
 layout: default
 title: 4. Mobile App to Go.Data
 parent: Real-World Examples
-grand_parent: How to integrate my data with other systems
+grand_parent: Go.Data Interoperability Toolkit
 nav_order: 3
 permalink: /godata--mobile-integration/
 ---
