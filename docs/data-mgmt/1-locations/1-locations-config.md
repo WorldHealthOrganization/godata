@@ -7,7 +7,9 @@ permalink: /locations/
 has_children: false
 ---
 
-# Configuring locations in Go.Data
+# Configuring locations in Go.Data 
+Coming soon
+{: .label .label-yellow }
 There are a few options for configuring your locations in Go.Data
 
 ## 1. *Bulk Import via excel* 
