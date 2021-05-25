@@ -2,7 +2,7 @@
 layout: page
 title: GIS
 parent: Data Visualization
-grand_parent: How to visualize my data
+grand_parent: Analytics & Dashboards
 nav_order: 5
 permalink: /gis/
 has_children: false
