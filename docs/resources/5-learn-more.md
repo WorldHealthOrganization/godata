@@ -2,7 +2,7 @@
 layout: page
 title: Learn More
 permalink: /learn-more/
-nav_order: 6
+nav_order: 7
 ---
 
 # Learn More
