@@ -34,6 +34,6 @@ If you would like to try Go.Data before downloading and installing yourself then
   3. Your preferred duration for using the demo site
 
 ## Questions & Contributions
-We are actively seeking feedback and contributions from the community. Please visit the Go.Data [Community of Practice](https://community-godata.who.int/) or contact us at [godata@who.int](mailto://godata@who.int). 
+We are actively seeking feedback and contributions from the community. Please report any bugs, suggestions or feature requests as new issues [here](https://github.com/WorldHealthOrganization/godata/issues), clearly stating topic in the subject title and tagging with appropriate labels. You can also submit a pull request directly to the repository (first email [godata@who.int](mailto://godata@who.int) to be added as a collaborator).
 
 To contribute this documentation site & submit projects and code samples, summarize your project by drafting a new `Project` page and submitting to the Go.Data repo as a pull request. See the `Contribution Template`: [https://github.com/WorldHealthOrganization/godata/blob/master/docs/contribute/contribution-template.md](https://github.com/WorldHealthOrganization/godata/blob/master/docs/contribute/contribution-template.md)
