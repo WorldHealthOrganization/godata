@@ -16,15 +16,17 @@ Go.Data is a software for contact tracing and outbreak response developed by WHO
 ###  Go.Data Analytics Scripts
 The *analytics* folder contains example scripts for extracting, cleaning, and running analyses. Output includes dashboards displaying operational performance metrics for contact tracing by contact tracing supervisor and teams. 
 
-### Go.Data API Scripts
-This folder contains in it example scripts for working with the Go.Data API.
+### Go.Data API Documentation
+This folder contains in it documentation and example scripts for working with the Go.Data API.
 
-### Go.Data Integration Scripts
+### Go.Data Integration Use Cases
 There are additional resources on some existing integrations, such as the Go.Data/DHIS2 Interoperability App.
 
 # How can I contribute?
 We would love your contributions or feedback so that the user base can benefit from your experience. 
 
-If you have a contribution to make, please email godata@who.int or submit a pull request. 
+Please report any bugs, suggestions or feature requests as new issues [here](https://github.com/WorldHealthOrganization/godata/issues), clearly stating topic in the subject title and tagging with appropriate labels.
 
-You can also visit our Community of Practice website to swap learnings or post queries at [https://community-godata.who.int/](https://community-godata.who.int/)
+If you have a contribution to make, please email godata@who.int to be added to the repository and submit a pull request.
+
+You can also visit our Community of Practice website to swap learnings or post queries at [https://community-godata.who.int/](https://community-godata.who.int/).
