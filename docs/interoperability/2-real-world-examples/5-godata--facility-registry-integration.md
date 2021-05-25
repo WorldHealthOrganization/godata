@@ -2,7 +2,7 @@
 layout: default
 title: 5. Locations & Facility Lists to Go.Data
 parent: Real-World Examples
-grand_parent: How to integrate my data with other systems
+grand_parent: Go.Data Interoperability Toolkit
 nav_order: 5
 permalink: /5-godata--facility-registry/
 ---
