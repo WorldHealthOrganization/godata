@@ -8,13 +8,7 @@ has_children: false
 
 # Live Integrations and Extensions for Go.Data
 
-There are a number of solutions that have been built by Go.Data users to add on to existing functionality or to link to other systems.
-
-You can find the full list of related repositories connected to the Go.Data tool in the overarching WHO Github Repository by filtering for topics = "go-data", as seen [here](https://github.com/WorldHealthOrganization?q=go-data&type=&language=)
-
-Below we list some examples of technical solutions that have been built.
-
-_To engage directly with this community, visit the "Interoperability" forum in the CoP [here](https://community-godata.who.int/topics/interoperability/5fd8ec64f5c77e114e6c6823)_
+There are a number of solutions that have been built by Go.Data users to add on to existing functionality or to link to other systems. You can find the full list of related repositories connected to the Go.Data tool in the overarching WHO Github Repository by filtering for topics = "go-data", as seen [here](https://github.com/WorldHealthOrganization?q=go-data&type=&language=) Below we list some examples of technical solutions that have been built. _To engage directly with this community, visit the "Interoperability" forum in the CoP [here](https://community-godata.who.int/topics/interoperability/5fd8ec64f5c77e114e6c6823)_
 
 ## Go.Data-DHIS2 Interoperability App
 
@@ -28,7 +22,12 @@ See Github directories:
 -[dhis2-godata-interoperability](https://github.com/WorldHealthOrganization/dhis2-godata-interoperability)
 -[godata-api-wrapper](https://github.com/WorldHealthOrganization/godata-api-wrapper)
 
-## [Go.Data Anonymization Extenstion]
+## DHIS2 to Go.Data Metadata Sync
+Collaborators at [EyeSeeTea](https://github.com/EyeSeeTea) have developed a script to quickly convert dhis2 Organization Units to Go.Data locations.
+
+See Github directory: [dhis2godata](https://github.com/WorldHealthOrganization/WIDP-DHIS2-scripts/tree/master/dhis2godata)
+
+## Go.Data Anonymization Extenstion
 
 ![](../assets/UPC_anony_infrastructure.png)
 
@@ -47,22 +46,12 @@ Collaborators at [EyeSeeTea](https://github.com/EyeSeeTea) have developed a scri
 
 See Github directory:[PolioDB-GODATA](https://github.com/EyeSeeTea/WHO-scripts)
 
-## Lime Survey to Go.Data
-Coming soon
-{: .label .label-yellow }
-A project developed internally by WHO Information Management and Technology Department to link Data Form (Lime Survey) to Go.Data API for the exchange of COVID-19 tracking data for WHO staff. This is a very specific solution internal to WHO's need but illustrates integrating the Lime Survey and Go.Data interfaces using .Net 4.7.2 - C# code. 
-
 ## PandasGUI 
 Country use case
 {: .label .label-purple }
 The team at Canton Vaud developed a Python/Pandas interface for their Go.Data implementation to more easily fetch data from Go.Data and use it as a Pandas dataframe.
 
 See Github directory:[https://github.com/WorldHealthOrganization/pygodata](https://github.com/WorldHealthOrganization/pygodata)
-
-### DHIS2 to Go.Data Metadata Sync
-Collaborators at [EyeSeeTea](https://github.com/EyeSeeTea) have developed a script to quickly convert dhis2 Organization Units to Go.Data locations.
-
-See Github directory: [dhis2godata](https://github.com/WorldHealthOrganization/WIDP-DHIS2-scripts/tree/master/dhis2godata)
 
 ## OpenFn Job Scripts for API Actions
 [OpenFn](https://www.openfn.org/) has developed a number of automated interoperability solutions to demonstrate common Go.Data interoperability use cases and examples [OpenFn job scripts](https://docs.openfn.org/documentation.html#jobs) 
@@ -74,3 +63,8 @@ See Github directory: [interoperability-jobs](https://github.com/WorldHealthOrga
 See Github directory: [api](https://github.com/WorldHealthOrganization/godata/tree/master/api) and [Analytics documentation](https://worldhealthorganization.github.io/godata/analytics/).
 
 This contains example R, Python and C# scripts for GET/PUT/POST commands so that you can manipulate your Go.Data instance through the API, including bulk actions. We have used this for our training instances but think it could be helpful for others too.
+
+## Lime Survey to Go.Data
+Coming soon
+{: .label .label-yellow }
+A project developed internally by WHO Information Management and Technology Department to link Data Form (Lime Survey) to Go.Data API for the exchange of COVID-19 tracking data for WHO staff. This is a very specific solution internal to WHO's need but illustrates integrating the Lime Survey and Go.Data interfaces using .Net 4.7.2 - C# code. 
