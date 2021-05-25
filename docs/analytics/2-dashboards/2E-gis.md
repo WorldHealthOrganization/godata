@@ -8,8 +8,8 @@ permalink: /gis/
 has_children: false
 ---
 
-# Options and Considerations for GIS Analysis in Go.Data
-_this page is currently under construction_
+# Options and Considerations for GIS Analysis in Go.Data 
+Coming soon {: .label .label-yellow }
 
 ## Example Maps Using Go.Data Data
 -links/screenshots here of very basic GIS maps, using Go.Data data in test instance
