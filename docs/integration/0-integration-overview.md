@@ -3,7 +3,7 @@ layout: page
 title: Live Integrations/Extensions
 nav_order: 4
 permalink: /integration/
-has_children: true
+has_children: false
 ---
 
 # Live Integrations and Extensions for Go.Data
@@ -16,13 +16,11 @@ Below we list some examples of technical solutions that have been built.
 
 _To engage directly with this community, visit the "Interoperability" forum in the CoP [here](https://community-godata.who.int/topics/interoperability/5fd8ec64f5c77e114e6c6823)_
 
-## [Go.Data-DHIS2 Interoperability App]
+## Go.Data-DHIS2 Interoperability App
 
 ![architecture-summary](../assets/dhis2togodata.PNG)
 
 Collaborators at the Polytechnic University of Catalonia (UPC) have developed a DHIS2 app for exporting metadata and data between DHIS2 and Go.Data. This has been a common request for countries who are using DHIS2 COVID-19 package for case registration but would like to utilize Go.Data for contact tracing follow-up. See demo video below, and instructions on how to install at the project site linked above. 
-
-<video width="1098" height="604" src="https://sprcdn-assets.sprinklr.com/1652/67feefd9-83ea-40c3-b0fc-c4f0c0180b9d-36486025.mp4" controls />
 
 For questions / considerations on if this can be piloted in your setting and to provide feedback, please view [this post](https://community-godata.who.int/conversations/interoperability/call-of-interest-piloting-godatadhis2-interoperability-app/6012b391dbaa4b35ec1837cd) on the Go.Data Community of Practice.
 
