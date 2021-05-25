@@ -1,7 +1,7 @@
 ---
 layout: page
 parent: Getting Started
-grand_parent: How to integrate my data with other systems
+grand_parent: Go.Data Interoperability Toolkit
 title: Go.Data Implementation Considerations 
 nav_order: 2
 permalink: /implementation-considerations/
