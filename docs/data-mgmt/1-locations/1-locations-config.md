@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Configuring locations
-parent: How to manage my data
+parent: Data Management
 nav_order: 1
 permalink: /locations/
 has_children: false
