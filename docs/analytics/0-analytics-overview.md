@@ -1,6 +1,6 @@
 ---
 layout: page
-title: How to visualize my data
+title: Analytics & Dashboards
 nav_order: 3
 permalink: /analytics/
 has_children: true
