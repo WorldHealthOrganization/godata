@@ -1,7 +1,7 @@
 ---
 layout: page
 parent: Data Visualization
-grand_parent: How to visualize my data
+grand_parent: Analytics & Dashboards
 title: Tableau
 nav_order: 4
 permalink: /tableau/
