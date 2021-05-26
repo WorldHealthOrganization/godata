@@ -19,7 +19,7 @@ permalink: /R/
 -- [Reference Go.Data R Shiny App Template](https://github.com/WorldHealthOrganization/godata/tree/master/analytics/r-reporting/r-shiny) builds on [Go.Data RMarkdown resources](https://github.com/WorldHealthOrganization/godata/blob/master/analytics/r-reporting) more interactive components for filtering and drilling down into data on a more granular basis. 
 -- [GoContactR](https://github.com/WorldHealthOrganization/GoContactR) is a Shiny App developed by colleagues in the WHO Regional Office for Africa which takes Contact Tracing Data and performs a range of visualizations, including data quality/completeness, contact tracing performance and HTML/PPT output for presentations. It is adapted for a range of data sources, including Excel imports, the Go.Data API and KoBo toolbox. You can view complete documentation, video walkthroughs and setup instructions [here](https://kendavidn.github.io/GoContactR/index.html).
 
-![](../assets/shiny_gocontactr_1.png)
+![shiny](../assets/shiny_gocontactr_1.png)
 
 ## Go.Data R Package
 - _coming soon_ we are looking for collaborators who would like to develop Go.Data specific packages to ease data analyses and use! Please email godata@who.int if you are interested.
