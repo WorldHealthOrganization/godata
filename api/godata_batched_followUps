@@ -1,0 +1,45 @@
+# Guidance on Retrieving follow-ups in batches from Go.Data API:
+
+1. Login and retrieve api token of an user that has access to the follow-ups from the outbreak from which we want to retrieve our data
+
+2. Determine number of total follow-ups that we need to retrieve
+
+```
+count totalFollowUpNo = GET /outbreaks/{idOutbreak}/follow-ups/filtered-count
+```
+
+3. Retrieve follow-ups
+   
+   - There are a few things to point here:
+        - To make request faster we will retrieve only the fields that we need to use (e.g. provide an array of fields in the fields property)
+        - We need to sort them by createdAt to be sure that the order from our request doesn't change which might result in retrieving the same follow-ups again
+        - The batch retrieval
+        - This approach is done in a synchronous manner, but with a few tweaks it can be done in parallel
+        - You will need a buffer where you should store the results until you have all of them and you can user them (e.g. in some cases you might not need this buffer and you could use them right when you have the data, depends of what is you're trying to achieve)
+        - Size of batch should be adjusted accordingly to server specs (e.g. memory, load etc) and mongodb limitations
+
+_NOTE: if you want to include a condition like retrieving follow-ups created in the last 21 days be sure to include condition in both GET list and GET count requests_
+
+## Sample Script Below:
+
+```
+const batchSize = 5000;
+const buffer = [];
+const currentPage = 0;
+while (currentPage * batchSize < totalFollowUpNo) {
+    // construct filter
+    const filter = {
+        "order": ["createdAt asc"],
+        "fields": ["id", "date", "personId", "statusId"], // need to be changed depending of what you're trying to achieve
+        "skip": currentPage * batchSize,
+        "limit": batchSize
+    };
+   
+    // retrieve next batch of follow-ups
+    const followUpsData = GET /outbreaks/{idOutbreak}/follow-ups?filter=filter
+    buffer.push(...followUpsData);
+
+    // prepare to retrieve next batch
+    currentPage++;
+}
+```
