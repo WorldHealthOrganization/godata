@@ -16,15 +16,13 @@ We have developed a pre-formatted PowerBI dashboard library that you can connect
 
 Below are some abbreviated steps to getting started. You can also see a more lengthy "How-To" manual [here](https://github.com/WorldHealthOrganization/godata/blob/master/docs/analytics/2-dashboards/2B-power-bi/Connecting%20Power%20BI%20to%20GoData%20Manual.pdf)
 
-## Step 1: Download Microsoft Power BI Desktop 
+## Step 1: Download [Microsoft Power BI Desktop](https://www.microsoft.com/en-us/download/details.aspx?id=58494)
 
-https://www.microsoft.com/en-us/download/details.aspx?id=58494 
-
-## Step 2: Download the [Go.Data PowerBI Dashboard libary]([here](https://github.com/WorldHealthOrganization/godata/blob/master/docs/analytics/2-dashboards/2B-power-bi/Go-Data%20Epidemiological%20Dashboards.pbix))
+## Step 2: Download the [Go.Data PowerBI Dashboard libary](https://github.com/WorldHealthOrganization/godata/blob/master/docs/analytics/2-dashboards/2B-power-bi/Go-Data%20Epidemiological%20Dashboards.pbix)
 
 This is a .pbix file format, which you can double click to open after downloading PowerBI Desktop. The most updated version will always be on our Github repository in the `power-bi` folder as linked above.
 
-## Step 3: Connect your Go.Data instance to the Go.Data PowerBI dashboard library  
+## Step 3: Connect to your Go.Data instance 
 All dashboard queries are already configured, you simply need to connect it to your Go.Data instance! See steps below:
 
 ### Click on the "Transform Data" icon 
