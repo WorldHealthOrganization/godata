@@ -17,9 +17,12 @@ We have developed a pre-formatted PowerBI dashboard library that you can connect
 
 https://www.microsoft.com/en-us/download/details.aspx?id=58494 
 
-## Step 2: Connect your Go.Data instance to the Go.Data PowerBI dashboard library  
+## Step 2: Download the [Go.Data PowerBI Dashboard libary]([here](https://github.com/WorldHealthOrganization/godata/blob/master/docs/analytics/2-dashboards/2B-power-bi/Go-Data%20Epidemiological%20Dashboards.pbix))
 
-### Download and open the Go.Data PowerBI dashboard library by navigating to the ***.pbix file*** [here](https://github.com/WorldHealthOrganization/godata/blob/master/docs/analytics/2-dashboards/2B-power-bi/Go-Data%20Epidemiological%20Dashboards.pbix)
+This is a .pbix file format, which you can double click to open after downloading PowerBI Desktop. The most updated version will always be on our Github repository in the `power-bi` folder as linked above.
+
+## Step 3: Connect your Go.Data instance to the Go.Data PowerBI dashboard library  
+All dashboard queries are already configured, you simply need to connect it to your Go.Data instance! See steps below:
 
 ### Click on the "Transform Data" icon 
 ![](../assets/powerbi_transform_data.png)
@@ -31,5 +34,5 @@ https://www.microsoft.com/en-us/download/details.aspx?id=58494
 - Password: The password you use to access Go.Data
 - Outbreak ID: This outbreak ID is found when you enter your Go.data installation, go to outbreaks, roll your mouse over the outbreak of interest and select modify. On the URL section, you will see a unique identifier, this is the Outbreak ID that will be used when building your query.
 
-Click close and apply to save.
+### Click close and apply to save.
 
