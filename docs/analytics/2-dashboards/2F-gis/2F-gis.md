@@ -8,12 +8,12 @@ permalink: /gis/
 has_children: false
 ---
 
-# Options and Considerations for GIS Analysis in Go.Data 
-Coming soon {: .label .label-yellow }
-
 ## Open Source Example Map Using Go.Data Data
 -links/screenshots here of very basic GIS maps, using Go.Data data in test instance
 -template GIS files, linked up to Go.Data data in test instance
+-[See QGIS guide here](https://github.com/WorldHealthOrganization/godata/blob/master/docs/analytics/2-dashboards/2F-gis/QGIS.md)
+
+
 
 ## Go.Data Location Variables
 The below variables are stored within the `addresses` block of .json, when registering cases, contacts or events. Please note that some are from reference data that must be configured, while others are freetext. **Indicates Required Field**
