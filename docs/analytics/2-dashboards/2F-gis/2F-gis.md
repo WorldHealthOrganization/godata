@@ -9,8 +9,6 @@ has_children: false
 ---
 
 ## Open Source Example Map Using Go.Data Data
--links/screenshots here of very basic GIS maps, using Go.Data data in test instance
--template GIS files, linked up to Go.Data data in test instance
 -[See QGIS guide here](https://github.com/WorldHealthOrganization/godata/blob/master/docs/analytics/2-dashboards/2F-gis/QGIS.md)
 
 
