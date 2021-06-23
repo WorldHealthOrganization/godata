@@ -8,32 +8,28 @@ has_children: false
 ---
 
 # Configuring locations in Go.Data 
-Coming soon
-{: .label .label-yellow }
-There are a few options for configuring your locations in Go.Data
+Within the Go.Data system “Location” data refers to the administrative unit levels you want to report your data at and it is also used to assign teams for contact tracing and follow-up. For example, administrative unit level zero (ADM0) is the country level, administrative unit level one (ADM1) could be a region, administrative level two (ADM2) a province, etc. Each country has its own set of levels it typically aggregates and reports data at. These may be administrative areas or health service areas – whichever your organization prefers.  As it is a required reference dataset for the Go.Data system, users upload their respective location data prior to creating an outbreak in the system. Go.Data is not shipped with this data so that users will have the flexibility to use their own best available sources. 
 
-### 1. *Bulk Import* 
+### ***Bulk Import*** 
 - To Bulk Import via Excel files, we have a step-by-step SOP in both [English](https://sprcdn-assets.sprinklr.com/1652/4b8d1d7d-12cf-4911-987e-e9a1a0fd3c41-2422637769.pdf) and [French]() for how to bulk import your locations. 
 - We have developed structured excel templates [here](https://github.com/WorldHealthOrganization/godata/tree/master/docs/data-mgmt/1-locations) so that you can adapt and quickly get started.
 - Follow [this thread in the Community of Practice](https://community-godata.who.int/conversations/locations-reference-data-languages/sop-bulk-importing-locations-into-godata/6022b951ed9dc017691d861f) to ask your questions or get tips.
 
-### 2. *Replicate location tree from another system, such as DHIS2*
+### ***Replicate location tree from another system, such as DHIS2***
 - for DHIS2 users, we have developed tools to replicate your DHIS2 Org Unit to be the basis of your location tree in Go.Data. 
 - For steps on how to do this as part of the DHIS2-Go.Data Interoperability App, please see here
 - For steps on how to do this manually, please see here
 
-### 3. *API*
+### ***API***
 - You can create locations via the API - please see more information in the API [here](https://worldhealthorganization.github.io/godata/api-docs/)
 
-### 4. *Indivual Creation in Web-app*
+### ***Indivual Creation in Web-app***
 - if you don't have many locations to create, you can add these one-by-one in the web-app. Please refer to the user guide for more information.
 
 ## Using GIS data as a source for your location data
-Within the Go.Data system “Location” data refers to the administrative unit levels you want to report your data at and it is also used to assign teams for contact tracing and follow-up. For example, administrative unit level zero (ADM0) is the country level, administrative unit level one (ADM1) could be a region, administrative level two (ADM2) a province, etc. Each country has its own set of levels it typically aggregates and reports data at. These may be administrative areas or health service areas – whichever your organization prefers.  As it is a required reference dataset for the Go.Data system, users upload their respective location data prior to creating an outbreak in the system. Go.Data is not shipped with this data so that users will have the flexibility to use their own best available sources. 
+Below we provide suggestions on where to find this data when you are in configuration phase, more specifically, from GIS sources. Users are encouraged to always check with their public health agency/organization for guidance on these data first – we are providing these sources as suggestions only. However, you may find that these sources align with what your public health agency endorses.
 
-Below we provide suggestions on where to find this data, more specifically, from GIS sources. Users are encouraged to always check with their public health agency/organization for guidance on these data first – we are providing these sources as suggestions only. However, you may find that these sources align with what your public health agency endorses.
-
-Why are we suggesting using GIS data as a source for location data? The reasons we suggest GIS data are:
+_Why are we suggesting using GIS data as a source for location data?_
 1.	Comprehensive administrative boundary datasets are publicly available for most of the world
 2.	GIS datasets typically have a unique identifier for each feature/area (a requirement of Go.Data)
 3.	By using a GIS dataset (and its unique identifiers) to define your location data – you will be able to tie back into GIS data outside of Go.Data for further analysis and visualization
