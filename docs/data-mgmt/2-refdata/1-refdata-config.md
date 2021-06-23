@@ -10,9 +10,9 @@ has_children: false
 # Configuring Reference Data in Go.Data 
 Reference Data is cutomizable in Go.Data to allow for flexibility across settings and disease types, in addition to increasing the value of the analytics. Anything with a "dropdown" selector in Go.Data can be configured through Reference Data according to your context. 
 
-![image](https://user-images.githubusercontent.com/57128361/123089261-035a6180-d427-11eb-9579-b5d8733af034.png)
+![image](https://user-images.githubusercontent.com/57128361/123091316-7ebd1280-d429-11eb-8e94-74435e765ade.png)
 
-This page outlines some key things to keep in mind relating to Go.Data Reference Data.
+This page outlines some things to keep in mind relating to Go.Data Reference Data and highlights tangible examples that can help you during implementation.
 
 ## Icon/Color Customization for Reference Data
 Editing reference data to include icons and colors is optional but enables greater utility and interpretation of Go.Data Chains of Transmission. 
