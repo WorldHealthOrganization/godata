@@ -47,7 +47,7 @@ This cluster info now will appear as text on the edge. This may not be the most 
 
 ![image](https://user-images.githubusercontent.com/57128361/123090230-34876180-d428-11eb-8b54-c5194653e786.png)
 
-***OPTION 2: Put this cluster info into configurable reference data pertaining to relationship. ***
+***OPTION 2: Put this cluster info into configurable reference data pertaining to relationship.***
 You can also edit relevant reference data (e.g., context of exposure) and change colors and icons to these option sets, which gives us more flexibility with chains of transmission later. These can be as specific as you would need, i.e. a specific place or event....or flight.
 
  ![image](https://user-images.githubusercontent.com/57128361/123090266-3e10c980-d428-11eb-9344-191689741b26.png)
