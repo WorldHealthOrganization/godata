@@ -41,13 +41,15 @@ Location information can be found in many places, but here are a few recommendat
 The Global Polio Administrative Boundaries project was initiated to compile all available administrative units by country which connect best with GPEI data. Although developed for the Polio program, it is available to the public for use. You can search, visualize and download the various levels of polio administrative boundaries from this page. Various formats of total data or subset of data are available in excel, csv, shape file, geo-database or as API services from this page. 
 
 NOTE: the dataset is available for Admin 0, 1, and 2 only. The excel spreadsheet download will include a unique identifier, centroid coordinates, as well as associated admin area names and IDs (hierarchical). Please read the meta data for the datasets as boundaries are dated and you will want to use current version.
+
 [https://polioboundaries-who.hub.arcgis.com/pages/boundarydownloads](https://polioboundaries-who.hub.arcgis.com/pages/boundarydownloads)
 
 ***The Humanitarian Data Exchange (HDX)***
 HDX is managed by the United Nations Office of Coordination for Humanitarian Affairs (UNOCHA) Centre for Humanitarian Data. It is an open platform for humanitarian data which is designed so that data is easy to find and can be downloaded and used for analysis. 
 
+[https://data.humdata.org/](https://data.humdata.org/)
+
 NOTE: This is a voluntary clearinghouse for data therefore the data availability, admin levels and format vary by country. In some cases, it is only available in GIS format, in those cases someone with GIS skills may need to clean and/or format it to Go.Data requirements.
-https://data.humdata.org/
 
 ***Global Administrative Areas (GADM)***
 GADM is a high-resolution database of country administrative areas. The GADM website and data repository is hosted at UC Davis in the Hijmans Lab. The goal is to maintain GIS for all countries, at all levels, at any time period. Formats include shapefile, geopackage and some R-based formats.
