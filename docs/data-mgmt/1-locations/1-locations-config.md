@@ -21,8 +21,13 @@ There are a few options for configuring your locations in Go.Data
 ## 2. *for DHIS2 users, retrieve Location Tree and replicate in Go.Data* 
 - Link here
 
-## 3. API
+## 3. *API*
 - You can also perform this action in the API. Please see more information in the API [here](https://worldhealthorganization.github.io/godata/api-docs/)
 
-## 4. Indivual Creation in Web-app
+## 4. *Indivual Creation in Web-app*
 - if you don't have many locations to create, you can add these one-by-one in the web-app. Please refer to the user guide for more information.
+
+# Considerations when configuring location data
+
+
+- [this guidance](https://community-godata.who.int/conversations/locations-reference-data-languages/sop-bulk-importing-locations-into-godata/6022b951ed9dc017691d861f) contains a step-by-step guide on how to bulk import locations using excel files, in addition to sample excel templates.
