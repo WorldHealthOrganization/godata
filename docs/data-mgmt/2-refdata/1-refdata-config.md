@@ -16,13 +16,15 @@ This page outlines some things to keep in mind relating to Go.Data Reference Dat
 
 ## Icon/Color Customization for Reference Data
 Editing reference data to include icons and colors is optional but enables greater utility and interpretation of Go.Data Chains of Transmission. 
-- There are excellent open-source health icon libraries, including that developed by Resolve to Save Lives [Health Icons Project](https://healthicons.org/). You can view their associated Github Repository: [https://github.com/resolvetosavelives/healthicons](https://github.com/resolvetosavelives/healthicons)
-- You can find more instructions for how to do this in Chapter 19 of [Go.Data User Guide](https://sprcdn-assets.sprinklr.com/1652/254f53e1-35b0-4ca8-8452-99a46c413cab-1176881866.pdf) titled "Managing Reference Data".
 
+You can find more instructions for how to do this in Chapter 19 of [Go.Data User Guide](https://sprcdn-assets.sprinklr.com/1652/254f53e1-35b0-4ca8-8452-99a46c413cab-1176881866.pdf) titled "Managing Reference Data".
+
+Of note, there are excellent open-source health icon libraries, including that developed by Resolve to Save Lives [Health Icons Project](https://healthicons.org/). You can view their associated Github Repository here: [https://github.com/resolvetosavelives/healthicons](https://github.com/resolvetosavelives/healthicons)
+
+![image](https://user-images.githubusercontent.com/57128361/123091573-cf347000-d429-11eb-9171-ee57db7585dd.png)
 
 ## Editing Reference Data to better yisualize clusters in chains of transmission
-
-This SOP will briefly outline a few different ways to view clusters and exposure patterns in Go.Data chains of transmission, in order to give users a better understanding of what could work in their setting.
+Below we will briefly outline a few different ways to view clusters and exposure patterns in Go.Data chains of transmission, in order to give users a better understanding of what could work in their setting.
 
 ***OPTION 1: Adding and visualizing clusters via "Cluster" portion of app.***
 There are some limitations in how you can visualize clusters if using the current cluster feature.  Because of this, it is not the preferred choice for some, and many are using the other workarounds describe in options 2 and 3 below. We hope to prioritize advancements in cluster feature in future Go.Data versions.
