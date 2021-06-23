@@ -14,11 +14,11 @@ Within the Go.Data system “Location” data refers to the administrative unit 
 - To Bulk Import via Excel files, we have a step-by-step SOP in both [English](https://sprcdn-assets.sprinklr.com/1652/4b8d1d7d-12cf-4911-987e-e9a1a0fd3c41-2422637769.pdf) and [French]() for how to bulk import your locations. 
 - We have developed structured excel templates [here](https://github.com/WorldHealthOrganization/godata/tree/master/docs/data-mgmt/1-locations) so that you can adapt and quickly get started.
 - Follow [this thread in the Community of Practice](https://community-godata.who.int/conversations/locations-reference-data-languages/sop-bulk-importing-locations-into-godata/6022b951ed9dc017691d861f) to ask your questions or get tips.
+- You can also import .json files, such as your location .json tree exported from DHIS2 (see below)
 
-### ***Replicate location tree from another system, such as DHIS2***
-- for DHIS2 users, we have developed tools to replicate your DHIS2 Org Unit to be the basis of your location tree in Go.Data. 
-- For steps on how to do this as part of the DHIS2-Go.Data Interoperability App, please see here
-- For steps on how to do this manually, please see here
+### ***Replicate location tree from another system***
+- for DHIS2 users, we have developed tools to replicate your DHIS2 Org Unit to be the basis of your location tree in Go.Data. For this you can either use [Go.Data-DHIS2 Interoperability App](https://github.com/WorldHealthOrganization/dhis2-godata-interoperability) or export the .json from DHIS2 and utilize Go.Data-DHIS2 Org Unit Converter. Please contact godata@who.int if you need assistance on this.
+- for those who want to utilize WHO Geo-Data via [The Global Polio Administrative Boundaries project](https://polioboundaries-who.hub.arcgis.com/pages/boundarydownloads), there are scripts to transfer this data into necessary Go.Data format.
 
 ### ***API***
 - You can create locations via the API - please see more information in the API [here](https://worldhealthorganization.github.io/godata/api-docs/)
