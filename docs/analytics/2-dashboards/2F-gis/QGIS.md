@@ -1,4 +1,4 @@
-# Example Map in QGIS Using Data from Go.Data
+# Open Source Example Map Using Go.Data Data
 
 ![image](https://user-images.githubusercontent.com/19505814/122239678-21581d00-ce8f-11eb-8b3e-5a9bfdcd7649.png)
 
