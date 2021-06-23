@@ -41,7 +41,7 @@ Location information can be found in many places, but here are a few recommendat
 The Global Polio Administrative Boundaries project was initiated to compile all available administrative units by country which connect best with GPEI data. Although developed for the Polio program, it is available to the public for use. You can search, visualize and download the various levels of polio administrative boundaries from this page. Various formats of total data or subset of data are available in excel, csv, shape file, geo-database or as API services from this page. 
 
 NOTE: the dataset is available for Admin 0, 1, and 2 only. The excel spreadsheet download will include a unique identifier, centroid coordinates, as well as associated admin area names and IDs (hierarchical). Please read the meta data for the datasets as boundaries are dated and you will want to use current version.
-https://polioboundaries-who.hub.arcgis.com/pages/boundarydownloads
+[https://polioboundaries-who.hub.arcgis.com/pages/boundarydownloads](https://polioboundaries-who.hub.arcgis.com/pages/boundarydownloads)
 
 ***The Humanitarian Data Exchange (HDX)***
 HDX is managed by the United Nations Office of Coordination for Humanitarian Affairs (UNOCHA) Centre for Humanitarian Data. It is an open platform for humanitarian data which is designed so that data is easy to find and can be downloaded and used for analysis. 
