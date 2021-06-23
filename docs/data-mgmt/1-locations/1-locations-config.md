@@ -17,8 +17,8 @@ Within the Go.Data system “Location” data refers to the administrative unit 
 - You can also import .json files, such as your location .json tree exported from DHIS2 (see below)
 
 ### ***Replicate location tree from another system***
-- for DHIS2 users, we have developed tools to replicate your DHIS2 Org Unit to be the basis of your location tree in Go.Data. For this you can either use [Go.Data-DHIS2 Interoperability App](https://github.com/WorldHealthOrganization/dhis2-godata-interoperability) or export the .json from DHIS2 and utilize Go.Data-DHIS2 Org Unit Converter. Please contact godata@who.int if you need assistance on this.
-- for those who want to utilize WHO Geo-Data via [The Global Polio Administrative Boundaries project](https://polioboundaries-who.hub.arcgis.com/pages/boundarydownloads), there are scripts to transfer this data into necessary Go.Data format.
+- for DHIS2 users, we have developed tools to replicate your DHIS2 Org Unit to be the basis of your location tree in Go.Data. For this you can either use [Go.Data-DHIS2 Interoperability App](https://github.com/WorldHealthOrganization/dhis2-godata-interoperability) or export the .json from DHIS2 and import into Go.Data. [See the Metadata Export Guide for more details](https://github.com/WorldHealthOrganization/godata/blob/master/docs/interoperability/GoData%20-%20DHIS2%20interoperability-%20Metadata%20Export%20Guide.pdf)
+- for those who want to utilize WHO Geo-Data via [The Global Polio Administrative Boundaries project](https://polioboundaries-who.hub.arcgis.com/pages/boundarydownloads), there are scripts to transfer this data into necessary Go.Data. 
 
 ### ***API***
 - You can create locations via the API - please see more information in the API [here](https://worldhealthorganization.github.io/godata/api-docs/)
