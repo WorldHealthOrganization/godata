@@ -23,7 +23,7 @@ Of note, there are excellent open-source health icon libraries, including that d
 
 ![image](https://user-images.githubusercontent.com/57128361/123091573-cf347000-d429-11eb-9171-ee57db7585dd.png)
 
-## Editing Reference Data to better yisualize clusters in chains of transmission
+## Editing Reference Data to better visualize clusters in chains of transmission
 Below we will briefly outline a few different ways to view clusters and exposure patterns in Go.Data chains of transmission, in order to give users a better understanding of what could work in their setting.
 
 ***OPTION 1: Adding and visualizing clusters via "Cluster" portion of app.***
