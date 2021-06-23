@@ -2,7 +2,7 @@
 layout: page
 title: Configuring Reference Data
 parent: Data Management
-nav_order: 1
+nav_order: 2
 permalink: /refdata/
 has_children: false
 ---
