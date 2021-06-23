@@ -47,21 +47,23 @@ NOTE: the dataset is available for Admin 0, 1, and 2 only. The excel spreadsheet
 ***The Humanitarian Data Exchange (HDX)***
 HDX is managed by the United Nations Office of Coordination for Humanitarian Affairs (UNOCHA) Centre for Humanitarian Data. It is an open platform for humanitarian data which is designed so that data is easy to find and can be downloaded and used for analysis. 
 
-[https://data.humdata.org/](https://data.humdata.org/)
-
 NOTE: This is a voluntary clearinghouse for data therefore the data availability, admin levels and format vary by country. In some cases, it is only available in GIS format, in those cases someone with GIS skills may need to clean and/or format it to Go.Data requirements.
+
+[https://data.humdata.org/](https://data.humdata.org/)
 
 ***Global Administrative Areas (GADM)***
 GADM is a high-resolution database of country administrative areas. The GADM website and data repository is hosted at UC Davis in the Hijmans Lab. The goal is to maintain GIS for all countries, at all levels, at any time period. Formats include shapefile, geopackage and some R-based formats.
 
 NOTE: Someone with GIS or R skills may need to clean and/or format it to Go.Data requirements.
-https://gadm.org/data.html
+
+[https://gadm.org/data.html](https://gadm.org/data.html)
 
 ***Geonames***
 The GeoNames geographical database covers all countries and contains over eleven million placenames that are available for download free of charge under a creative commons attribution license. The data is accessible through a number of webservices and a daily database export. The data is compiled from over a hundred sources and is managed by GeoNames ambassadors.
 
 NOTE: The data format is tab-delimited text in utf8 encoding. It includes a name, ID and centroid lat/lons. Web services in XML and JSON are also available.
-https://www.geonames.org/export/#dump
+
+[https://www.geonames.org/export/#dump](https://www.geonames.org/export/#dump)
 
 TIP: A shapefile is made up of many individual files. The file that stores information with the ID and administrative area name is stored in the .dbf file. It is not necessary to have GIS skills or access to a GIS application to see that – you can open this file in Excel to view those attributes. So, if you download an admin shapefile, open excel and navigate to and open the associated .dbf file to see the attributes.
 
