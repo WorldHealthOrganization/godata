@@ -53,12 +53,7 @@ Collaborators at [EyeSeeTea](https://github.com/EyeSeeTea) have developed a scri
 
 See Github directory:[PolioDB-GODATA](https://github.com/EyeSeeTea/WHO-scripts)
 
-## PandasGUI 
-Country use case
-{: .label .label-purple }
-The team at Canton Vaud developed a Python/Pandas interface for their Go.Data implementation to more easily fetch data from Go.Data and use it as a Pandas dataframe.
 
-See Github directory:[https://github.com/WorldHealthOrganization/pygodata](https://github.com/WorldHealthOrganization/pygodata)
 
 ## OpenFn Job Scripts for API Actions
 [OpenFn](https://www.openfn.org/) has developed a number of automated interoperability solutions to demonstrate common Go.Data interoperability use cases and examples [OpenFn job scripts](https://docs.openfn.org/documentation.html#jobs) 
