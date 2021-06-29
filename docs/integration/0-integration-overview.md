@@ -8,7 +8,9 @@ has_children: false
 
 # Live Integrations and Extensions for Go.Data
 
-There are a number of solutions that have been built by Go.Data users to add on to existing functionality or to link to other systems. You can find the full list of related repositories connected to the Go.Data tool in the overarching WHO Github Repository by filtering for topics = "go-data", as seen [here](https://github.com/WorldHealthOrganization?q=go-data&type=&language=) Below we list some examples of technical solutions that have been built. _To engage directly with this community, visit the "Interoperability" forum in the CoP [here](https://community-godata.who.int/topics/interoperability/5fd8ec64f5c77e114e6c6823)_
+There are a number of solutions that have been built by Go.Data users to add on to existing functionality or to link to other systems. You can find the full list of related repositories connected to the Go.Data tool in the overarching WHO Github Repository by filtering for topics = "go-data", as seen [here](https://github.com/WorldHealthOrganization?q=go-data&type=&language=) Below we list some examples of technical solutions that have been built. 
+
+_To engage directly with this community, visit the "Interoperability" forum in the CoP [here](https://community-godata.who.int/topics/interoperability/5fd8ec64f5c77e114e6c6823)_
 
 ## [Go.Data-DHIS2 Interoperability App](https://www.notion.so/Go-Data-DHIS2-Interoperability-App-3a12d174c9f34d64bc2a6bbe1ea9784d)
 
@@ -22,10 +24,15 @@ See Github directories:
 -[dhis2-godata-interoperability](https://github.com/WorldHealthOrganization/dhis2-godata-interoperability)
 -[godata-api-wrapper](https://github.com/WorldHealthOrganization/godata-api-wrapper)
 
-## [DHIS2 to Go.Data Metadata Sync](https://github.com/WorldHealthOrganization/WIDP-DHIS2-scripts/tree/master/dhis2godata)
-Collaborators at [EyeSeeTea](https://github.com/EyeSeeTea) have developed a script to quickly convert dhis2 Organization Units to Go.Data locations.
+## [DHIS2 to Go.Data Metadata Sync](https://worldhealthorganization.github.io/metadata-synchronization-blessed/metadatasync/)
+Collaborators at [EyeSeeTea](https://github.com/EyeSeeTea) have developed 
+- a DHIS2 Application ***Metadata Sync*** allowing for flexible export of DHIS2 Metadata
+- a script to quickly convert dhis2 Organization Units to Go.Data locations.
 
-See Github directory: [dhis2godata](https://github.com/WorldHealthOrganization/WIDP-DHIS2-scripts/tree/master/dhis2godata)
+See Github directories:
+-[dhis2godata](https://github.com/WorldHealthOrganization/WIDP-DHIS2-scripts/tree/master/dhis2godata)
+-[metadata-synchronization](https://github.com/EyeSeeTea/metadata-synchronization-blessed)
+
 
 ## [Go.Data Anonymization Extenstion](https://github.com/WorldHealthOrganization/InSSIDE)
 
