@@ -34,4 +34,4 @@ Any changes made to the `master` branch will be automatically deployed to the do
 
 
 ## Questions? 
-Mention @openfn on the Go.Data CoP. 
+Reach out to us at godata@who.int
