@@ -21,6 +21,7 @@ When considering which approach is best-fit for your implementation, ask yoursel
 ## Other Planning Resources
 - Go.Data interoperability examples under [reference implementations](https://worldhealthorganization.github.io/godata/interoperability-examples/)
 - Go.Data Implementation Guide & shareable overviews to share with interested partners: [https://community-godata.who.int/page/documents](https://community-godata.who.int/page/documents)
+- WHO [Digital Health Atlas](https://digitalhealthatlas.org/en/-/): see [this instructional video](https://www.youtube.com/watch?v=97wIGZ_YdeM) on how this tool can help inform digital health landscape in your setting when considering implementation and interoperability  
 - Other helpful guidances such as the DHIS2 [Implementation Guide](https://docs.dhis2.org/2.34/en/dhis2_implementation_guide/integration-concepts.html#implementation-steps-for-successful-data-and-system-integration) and the [OpenHIE Implementation Methodology](https://wiki.ohie.org/display/documents/OpenHIE+Planning+and+Implementation+Guides) 
 
 ## Connecting other systems
