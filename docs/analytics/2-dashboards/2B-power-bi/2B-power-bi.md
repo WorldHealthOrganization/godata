@@ -15,7 +15,8 @@ We have developed a pre-formatted PowerBI dashboard library that you can connect
 ![](../assets/powerbi_dash_new.png)
 
 ### [View step-by-step directions in the full-length "How-To" manual here](https://github.com/WorldHealthOrganization/godata/blob/master/docs/analytics/2-dashboards/2B-power-bi/Connecting%20Power%20BI%20to%20GoData%20Manual.pdf)
-The main steps are listed below.
+
+The first key steps are also listed below.
 
 ## Step 1: Download [Microsoft Power BI Desktop](https://www.microsoft.com/en-us/download/details.aspx?id=58494)
 
