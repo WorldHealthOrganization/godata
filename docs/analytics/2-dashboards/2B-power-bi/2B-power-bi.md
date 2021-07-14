@@ -37,4 +37,6 @@ All dashboard queries are already configured, you simply need to connect it to y
 
 ### Click close and apply to save.
 
+## Step 4: Follow along with the steps in the "How-To" manual [here](https://github.com/WorldHealthOrganization/godata/blob/master/docs/analytics/2-dashboards/2B-power-bi/Connecting%20Power%20BI%20to%20GoData%20Manual.pdf)
+
 If you are encountering problems don't hesitate to reach out at _godata@who.int._
