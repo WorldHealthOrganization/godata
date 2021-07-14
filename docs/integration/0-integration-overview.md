@@ -14,7 +14,7 @@ _To engage directly with this community, visit the "Interoperability" forum in t
 
 ## [Go.Data-DHIS2 Interoperability App](https://www.notion.so/Go-Data-DHIS2-Interoperability-App-3a12d174c9f34d64bc2a6bbe1ea9784d)
 
-![architecture-summary](../assets/dhis2togodata.PNG)
+![architecture-summary](../assets/godata-dhis2.png)
 
 Collaborators at the Polytechnic University of Catalonia (UPC) have developed a DHIS2 app for exporting metadata and data between DHIS2 and Go.Data. This has been a common request for countries who are using DHIS2 COVID-19 package for case registration but would like to utilize Go.Data for contact tracing follow-up. See instructions on how to install and for more detailed documentation [here](https://www.notion.so/Go-Data-DHIS2-Interoperability-App-3a12d174c9f34d64bc2a6bbe1ea9784d). 
 
