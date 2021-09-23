@@ -18,7 +18,8 @@ Go.Data provides a suite of options for extracting data -
 ![script_sources](../assets/script_sources.PNG) 
 
 ### *R USERS* 
-- [See the R Reporting page](https://github.com/WorldHealthOrganization/godata/blob/master/analytics/r-reporting) documentation which contains a script to easily connect to API and extract relevant database collections directly into your R console 
+- [See the `godata-r-reports` repo](https://github.com/WorldHealthOrganization/godata-r-reports) which contains scripts to connect to API, quickly extract relevant database collections directly into your R console, and perform simple cleaning functions.
+- We have developed the [`godataR` package](https://github.com/WorldHealthOrganization/godataR) to streamline this process
 
 ### *PYTHON USERS* 
 - Python package `pygodata` developed used by University of Texas at Austin to pull from Go.Data API and sent to Tableau dashboards at Github repo [here](https://github.com/WorldHealthOrganization/godata/tree/master/analytics/country_use_cases/godata-universityoftexas)
