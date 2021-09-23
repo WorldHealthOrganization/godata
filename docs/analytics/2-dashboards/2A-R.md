@@ -9,6 +9,13 @@ permalink: /R/
 
 # R Resources for Go.Data users
 
+## Go.Data R Package Development
+R Package
+{: .label .label-purple }
+
+- [`godataR`](https://github.com/WorldHealthOrganization/godataR) package was developed by the Go.Data team to assist with connecting to your API and extracting large volumes of data into R for further analysis. If you would like more information or if you have feedback, please email godata@who.int. If you are experiencing a bug or have a feature request, please submit an issue [here](https://github.com/WorldHealthOrganization/godataR/issues)
+- if you have ideas for further package development, we would love to hear from you!
+
 ## RMarkdown 
 Reference Template
 {: .label .label-blue }
@@ -17,13 +24,6 @@ Reference Template
 - if you have visualizations you would like to contribute to this, please submit a pull request or email godata@who.int.
 
 ![r-reporting-workflow](../assets/R_reporting_workflow.PNG)
-
-## Go.Data R Packages
-R Package
-{: .label .label-purple }
-
-- [`godataR`](https://github.com/WorldHealthOrganization/godataR) package was developed by the Go.Data team to assist with connecting to your API and extracting large volumes of data into R for further analysis. If you would like more information or if you have feedback, please email godata@who.int. If you are experiencing a bug or have a feature request, please submit an issue [here](https://github.com/WorldHealthOrganization/godataR/issues)
-- if you have ideas for further package development, we would love to hear from you!
 
 ## R Shiny 
 Shiny Apps have been produced across the Go.Data Community of Practice that can serve as reference templates for those who wish to have a live application updated in real-time, versus static reports. Countries and institutions who would like host these on their Go.Data server can start with these frameworks and adapt it with hopefully minimal updates required.
