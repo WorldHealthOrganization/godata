@@ -13,7 +13,8 @@ permalink: /R/
 Reference Template
 {: .label .label-blue }
 
-- [See the `godata-r-reports` repo](https://github.com/WorldHealthOrganization/godata-r-reports) for scripts and associated SOPs for how to extract data from Go.Data API (using `godataR` package - see below - directly into your R console, perform cleaning functions, examples of resulting HTML dashboards using `flexdashboard`.
+- [See the `godata-r-reports` repo](https://github.com/WorldHealthOrganization/godata-r-reports) for scripts and associated SOPs for how to extract data from Go.Data API (using `godataR` package - see below) directly into your R console, perform cleaning functions, examples of resulting HTML dashboards using `flexdashboard`.
+- if you have visualizations you would like to contribute to this, please submit a pull request or email godata@who.int.
 
 ![r-reporting-workflow](../assets/R_reporting_workflow.PNG)
 
