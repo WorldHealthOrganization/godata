@@ -13,9 +13,16 @@ permalink: /R/
 Reference Template
 {: .label .label-blue }
 
-- [See the R Reporting page](https://github.com/WorldHealthOrganization/godata/blob/master/analytics/r-reporting) documentation which contains a script to connect to Go.Data API, extract relevant database collections directly into your R console, and produce HTML dashboards using `flexdashboard`.
+- [See the `godata-r-reports` repo](https://github.com/WorldHealthOrganization/godata-r-reports) for scripts and associated SOPs for how to extract data from Go.Data API (using `godataR` package - see below - directly into your R console, perform cleaning functions, examples of resulting HTML dashboards using `flexdashboard`.
 
 ![r-reporting-workflow](../assets/R_reporting_workflow.PNG)
+
+## Go.Data R Packages
+R Package
+{: .label .label-purple }
+
+- [`godataR`](https://github.com/WorldHealthOrganization/godataR) package was developed by the Go.Data team to assist with connecting to your API and extracting large volumes of data into R for further analysis. If you would like more information or if you have feedback, please email godata@who.int. If you are experiencing a bug or have a feature request, please submit an issue [here](https://github.com/WorldHealthOrganization/godataR/issues)
+- if you have ideas for further package development, we would love to hear from you!
 
 ## R Shiny 
 Shiny Apps have been produced across the Go.Data Community of Practice that can serve as reference templates for those who wish to have a live application updated in real-time, versus static reports. Countries and institutions who would like host these on their Go.Data server can start with these frameworks and adapt it with hopefully minimal updates required.
@@ -31,12 +38,6 @@ Country Use Case
 GoContactR is a Shiny App developed by colleagues in the WHO Regional Office for Africa which takes Contact Tracing Data and performs a range of visualizations, including data quality/completeness, contact tracing performance and HTML/PPT output for presentations. It is adapted for a range of data sources across several countries, including Excel imports, the Go.Data API or KoBo Collect. You can view complete documentation, video walkthroughs and setup instructions [here](https://kendavidn.github.io/GoContactR/index.html).
 
 ![shiny](../assets/shiny_gocontactr_1.png)
-
-## Go.Data R Packages
-Coming soon
-{: .label .label-yellow }
-
-We are looking for collaborators who would like to develop Go.Data specific packages to ease data analyses and use! Please email godata@who.int if you are interested.
 
 ## Resources for R Capacity Building
 ### [Epi R Handbook](https://epirhandbook.com/)
