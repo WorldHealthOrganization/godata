@@ -29,7 +29,7 @@ Go.Data provides a suite of options for extracting data -
 - [See the API page](https://worldhealthorganization.github.io/godata/api-docs/) for more information on accessing and working with the API. 
 
 ## 3. Connect directly to MongoDB database 
-![mongo](../assets/MongoDB_logo.png)
+![mongo](../assets/mongodb_small.PNG)
 - [See p.36 of IT Admin Guide](https://sprcdn-assets.sprinklr.com/1652/dc9766d9-750c-45d5-87cb-e324ed0ddc56-334405042.pdf) for more information on working with MongoDB. 
 
 # Additional Resources
