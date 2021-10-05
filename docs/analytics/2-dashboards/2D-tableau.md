@@ -24,7 +24,7 @@ In order to aggregate contact tracing data into a Tableau dashboard, two primary
 ![Data flow from GoData to Tableau dashboards](../assets/UT_DB_setup.jpg "Data flow from GoData to Tableau dashboards")
 
 #### pygodata
-`pygodata` is a Python package created by the Go.Data team that facilitates API calls to Go.Data. It simply serves as a wrapper to the most frequent API calls they found themselves using. It includes server authentication using the oauth API route, and uses the generated token to make the various GET, PUT, and POST requests required to maintain their contact tracing database.
+`pygodata` is a Python package created by the UT team that facilitates API calls to Go.Data. It simply serves as a wrapper to the most frequent API calls they found themselves using. It includes server authentication using the oauth API route, and uses the generated token to make the various GET, PUT, and POST requests required to maintain their contact tracing database.
 
 #### Data ETL
 Data from Go.Data's mongoDB was replicated into an internal SQL server using `pygodata` for better downstream manipulability. The included `goData_cases_ETL.py` script is an example of one of these ETL scripts, where the Go.Data case export is used to transfer data from one resource to another. 
@@ -63,6 +63,5 @@ Dashboard examining the number of cases by the reporting authority that referred
 
 
 To view full resources and scripts, please view the repo [here](https://github.com/WorldHealthOrganization/godata/tree/master/analytics/country_use_cases/godata-universityoftexas)
-
 
 
