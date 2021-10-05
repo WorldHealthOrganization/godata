@@ -26,7 +26,7 @@ The team at the Ministry of Health in Kosovo use a Python script to read in Go.D
 
 See Python script [here](https://github.com/WorldHealthOrganization/godata/blob/master/analytics/country_use_cases/godata-Kosovo/scripts/kosovo_dashboard_data_extraction.py)
 
-## Python script for data extraction of aggregated and tabular data to Google Sheets
+## Python script for extracing case export from Go.Data and uploading to SQL Server 
 Country use case
 {: .label .label-purple }
 
