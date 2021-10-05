@@ -11,7 +11,7 @@ Before beginning data collection and in order to consider any analytics and inte
 
 ## [Go.Data Data Dictionary](https://docs.google.com/spreadsheets/d/1gt1JZaUXLmacbMJ1SvHBAA0P_TWGA5e8ZDKvzq3kg3Q/edit?usp=sharing)
 -At the link above, you can view a dictionary of Go.Data metadata elements.
-**NOTE:  You will need to adapt this data dictionary to fit what you have configured in your system beyond core module's metadata. this would include any new variables added for custom forms across cases, contacts, follow-ups and labs. In addition, you can modify option sets for categorical variables as needed.**
+-NOTE: You will need to adapt this data dictionary to fit what you have configured in your system beyond core module's metadata. this would include any new variables added for custom forms across cases, contacts, follow-ups and labs. In addition, you can modify option sets for categorical variables as needed.
 
 ## Metadata overview 
 Please see below sections for some important points regarding Go.Data metadata. You can also refer to the [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/69a1e048-e8b7-47ea-8e90-512a50600ecd-1206687439.pdf) You can find tables of the _required metadata fields_ below. Please refer to document to see the entire list.
