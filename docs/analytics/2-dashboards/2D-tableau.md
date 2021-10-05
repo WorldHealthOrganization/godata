@@ -19,7 +19,7 @@ The UT team created Tableau dashboards and connected them to the Go.Data API to 
 ### Implementation
 In order to aggregate contact tracing data into a Tableau dashboard, we created two primary pipelines for data transformation. One ETL pipeline was created to pull data from the GoData API and format it into an internal SQL database. We created a Python package (`pygodata`) as a wrapper for common API calls to facilitate data transfer. The second pipeline aggregated data in our internal SQL server into the weekly measurements we were interested in tracking.
 
-![Data flow from GoData to Tableau dashboards](./images/UT_DB_setup.jpg "Data flow from GoData to Tableau dashboards")
+![Data flow from GoData to Tableau dashboards](../assets/UT_DB_setup.jpg "Data flow from GoData to Tableau dashboards")
 
 #### pygodata
 `pygodata` is the Python package we created for facilitating API calls to GoData. It simply serves as a wrapper to the most frequent API calls we found ourselves using. It includes server authentication using the oauth API route, and uses the generated token to make the various GET, PUT, and POST requests required to maintain our contact tracing database.
@@ -34,28 +34,28 @@ Aggregate measures were compiled into a separate SQL table using a SQL script. T
 Below are some of the dashboards we have been using to track contact tracing activities. Some information has been removed for privacy reasons. 
 
 #### Coverage and Impact
-![Coverage and Impact](./images/UT_Coverage_and_Impact.png "Coverage and Impact")
+![Coverage and Impact](../assets/UT_Coverage_and_Impact.png "Coverage and Impact")
 
 Primary dashboard for assessing contact tracing success, aggregated by week. Metrics include rates of testing among cases and contacts, proportion of new cases that were previously contacts, and proportions of cases and contacts successfully investigated.
 
 <div style="page-break-after: always;"></div>
 
 #### Exposures
-![Exposures](./images/UT_Exposures.png "Exposures")
+![Exposures](../assets/UT_Exposures.png "Exposures")
 
 Dashboard for tracking where case/contact exposures are occurring and numbers of contacts per case, aggregated by week.
 
 <div style="page-break-after: always;"></div>
 
 #### Testing and Tracing Timelines
-![Testing and Tracing Delays](./images/Testing_and_Tracing_Delays.png "Testing and Tracing Delays")
+![Testing and Tracing Delays](../assets/UT_Testing_and_Tracing_Delays.png "Testing and Tracing Delays")
 
 Dashboard for quantifying the timeline of cases and contacts as they are identified, contacted, tested, and closed in our system separated by the organization that sourced the case to contact tracing (redacted).
 
 <div style="page-break-after: always;"></div>
 
 #### Case Source
-![Case Source](./images/UT_Case_Source.png "Case Source")
+![Case Source](../assets/UT_Case_Source.png "Case Source")
 
 Dashboard examining the number of cases by the reporting authority that referred the case to contact tracing.
 
