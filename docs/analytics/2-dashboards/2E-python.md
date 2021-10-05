@@ -30,4 +30,4 @@ See Python script [here](https://github.com/WorldHealthOrganization/godata/blob/
 Country use case
 {: .label .label-purple }
 
-The team at the University of Texas at Austin created the [`goData_cases_ETL.py`](https://github.com/WorldHealthOrganization/godata/blob/master/analytics/country_use_cases/godata-universityoftexas/goData_cases_ETL.py) ETL script to transfer the Go.Data case export from one resource to another. 
+The team at the University of Texas at Austin created ETL scripts in python to transfer Go.Data cases from one resource to another. One such example script is [`goData_cases_ETL.py`](https://github.com/WorldHealthOrganization/godata/blob/master/analytics/country_use_cases/godata-universityoftexas/goData_cases_ETL.py) which replicates and transfers Go.Data cases from mongoDB to an internal SQL server using `pygodata` for better downstream manipulability.
