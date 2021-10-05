@@ -30,8 +30,8 @@ Collaborators at [EyeSeeTea](https://github.com/EyeSeeTea) have developed
 - a script to quickly convert dhis2 Organization Units to Go.Data locations.
 
 See Github directories:
--[dhis2godata](https://github.com/WorldHealthOrganization/WIDP-DHIS2-scripts/tree/master/dhis2godata)
 -[metadata-synchronization](https://github.com/EyeSeeTea/metadata-synchronization-blessed)
+-[dhis2godata](https://github.com/WorldHealthOrganization/WIDP-DHIS2-scripts/tree/master/dhis2godata)
 
 
 ## [Go.Data Anonymization Extenstion](https://github.com/WorldHealthOrganization/InSSIDE)
@@ -51,7 +51,7 @@ See Presentation walkthrough [here](https://github.com/WorldHealthOrganization/g
 
 Collaborators at [EyeSeeTea](https://github.com/EyeSeeTea) have developed a script to quickly convert admin levels from the WHO Polio GeoDatabase to Go.Data locations.
 
-See Github directory:[PolioDB-GODATA](https://github.com/EyeSeeTea/WHO-scripts)
+See Github directory:[PolioDB-GODATA](https://github.com/EyeSeeTea/WIDP-scripts/tree/master/PolioDB-GODATA)
 
 
 
