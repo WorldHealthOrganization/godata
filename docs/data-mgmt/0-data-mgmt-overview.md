@@ -10,16 +10,15 @@ has_children: true
 Before beginning data collection and in order to consider any analytics and interoperability solutions, you should get to know the metadata structure of the Go.Data platform, including understanding what is pre-defined vs. what you can configure on your own. We recommend keeping up-to-date technical documentation for your deployment such as a Data Dictionary and codebooks, which is linked to below.
 
 ## [Go.Data Data Dictionary](https://docs.google.com/spreadsheets/d/1gt1JZaUXLmacbMJ1SvHBAA0P_TWGA5e8ZDKvzq3kg3Q/edit?usp=sharing)
--At the link above, you can view a dictionary of Go.Data metadata elements.
--NOTE: You will need to adapt this data dictionary to fit what you have configured in your system beyond core module's metadata. this would include any new variables added for custom forms across cases, contacts, follow-ups and labs. In addition, you can modify option sets for categorical variables as needed.
+- At the link above, you can view a dictionary of Go.Data metadata elements.
+- NOTE: You will need to adapt this data dictionary to fit what you have configured in your system beyond core module's metadata. this would include any new variables added for custom forms across cases, contacts, follow-ups and labs. In addition, you can modify option sets for categorical variables as needed.
 
 ## Metadata overview 
 Please see below sections for some important points regarding Go.Data metadata. You can also refer to the [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/69a1e048-e8b7-47ea-8e90-512a50600ecd-1206687439.pdf) You can find tables of the _required metadata fields_ below. Please refer to document to see the entire list.
 
 ### Case/Contact Required Variables
-When creating a new person (case, contact or contact of contact), you are prompted to fill out 3 main sections - **Personal**, **Address**, and **Epidemiology**. 
-
-Within these tabs you have a range of pre-formatted core variables to fill in - some required, some optional. The table below highlights the required fields.
+- When creating a new person (case, contact or contact of contact), you are prompted to fill out 3 main sections - **Personal**, **Address**, and **Epidemiology**. 
+- Within these tabs you have a range of pre-formatted core variables to fill in - some required, some optional. The table below highlights the required fields.
 
 Variable Label     | Code                | Definition        |  Source / Notes
 ------------------|---------------------|-------------------|-------------------- 
@@ -32,9 +31,8 @@ Variable Label     | Code                | Definition        |  Source / Notes
 **Date of Last Contact** | dateOfLastContact | Date of last contact with the confirmed or probable COVID-19 case | Date selector from calendar. NOTE: This will be used in generating Follow Up period, as Day 0, for 1st Follow Up to occur on Day 1. _If desirable, can set 1st Follow Up for Day 0 by checking "Start contact follow-up on the date of last contact" in outbreak settings._
 
 ### Event Required Variables
-When creating an event, you are prompted to fill out 2 main sections - **Details** and **Address**.
-
-Within these tabs you have a range of pre-formatted core variables to fill in - some required, some optional. The table below highlights the required fields.
+- When creating an event, you are prompted to fill out 2 main sections - **Details** and **Address**.
+- Within these tabs you have a range of pre-formatted core variables to fill in - some required, some optional. The table below highlights the required fields.
 
 Variable Label     | Code                | Definition        |  Source / Notes
 ------------------|---------------------|-------------------|-------------------- 
@@ -44,10 +42,9 @@ Variable Label     | Code                | Definition        |  Source / Notes
 **Location** | locationId | Event Location (Recommended to fill most granular Admin Level) | same notes as above apply.
 
 ### Lab Required Variables
-When creating an lab sample, you are prompted to fill out only 1 main section - **Details**. You can add as many lab results for any given person, over time. The records are _per sample_ not _per person_.
-**NOTE**: From the web-app, you can only create a lab sample for an existing registered person (case, contact or contact of contact). If bulk importing, you must indicate existing **Person ID** with the proper pattern. A **Sample ID** is not required but is an optional field.
-
-Within this tab you have a range of pre-formatted core variables to fill in - some required, some optional. The table below highlights the required fields.
+- When creating an lab sample, you are prompted to fill out only 1 main section - **Details**. You can add as many lab results for any given person, over time. The records are _per sample_ not _per person_.
+- **NOTE**: From the web-app, you can only create a lab sample for an existing registered person (case, contact or contact of contact). If bulk importing, you must indicate existing **Person ID** with the proper pattern. A **Sample ID** is not required but is an optional field.
+- Within this tab you have a range of pre-formatted core variables to fill in - some required, some optional. The table below highlights the required fields.
 
 Variable Label     | Code                | Definition        |  Source / Notes
 ------------------|---------------------|-------------------|-------------------- 
