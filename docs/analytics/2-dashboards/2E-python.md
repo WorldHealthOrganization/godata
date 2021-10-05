@@ -26,3 +26,8 @@ The team at the Ministry of Health in Kosovo use a Python script to read in Go.D
 
 See Python script [here](https://github.com/WorldHealthOrganization/godata/blob/master/analytics/country_use_cases/godata-Kosovo/scripts/kosovo_dashboard_data_extraction.py)
 
+## Python script for data extraction of aggregated and tabular data to Google Sheets
+Country use case
+{: .label .label-purple }
+
+The team at the University of Texas at Austin created the [`goData_cases_ETL.py`](https://github.com/WorldHealthOrganization/godata/blob/master/analytics/country_use_cases/godata-universityoftexas/goData_cases_ETL.py) ETL script to transfer the Go.Data case export from one resource to another. 
