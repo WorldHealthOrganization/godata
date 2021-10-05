@@ -7,7 +7,7 @@ has_children: true
 ---
 
 # Getting to know your Data
-Before beginning data collection and in order to consider any analytics and interoperability solutions, you should get to know the metadata requirements within the Go.Data, including understanding what is defined vs. what you can configure on your own. We recommend keeping up-to-date technical documentation for your deployment such as a Data Dictionary, which we describe below.
+Before beginning data collection and in order to consider any analytics and interoperability solutions, you should get to know the metadata structure of the Go.Data platform, including understanding what is pre-defined vs. what you can configure on your own. We recommend keeping up-to-date technical documentation for your deployment such as a Data Dictionary and codebooks, which is linked to below.
 
 ## [Go.Data Data Dictionary](https://docs.google.com/spreadsheets/d/1gt1JZaUXLmacbMJ1SvHBAA0P_TWGA5e8ZDKvzq3kg3Q/edit?usp=sharing)
 -At the link above, you can view a dictionary of Go.Data metadata elements.
