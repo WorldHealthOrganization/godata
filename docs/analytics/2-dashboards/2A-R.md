@@ -12,6 +12,7 @@ permalink: /R/
 ## Go.Data R Package Development
 R Package
 {: .label .label-purple }
+![](../assets/godataR.PNG)
 
 - [`godataR`](https://github.com/WorldHealthOrganization/godataR) package was developed by the Go.Data team to assist with connecting to your API and extracting large volumes of data into R for further analysis. If you would like more information or if you have feedback, please email godata@who.int. If you are experiencing a bug or have a feature request, please submit an issue [here](https://github.com/WorldHealthOrganization/godataR/issues)
 - if you have ideas for further package development, we would love to hear from you!
