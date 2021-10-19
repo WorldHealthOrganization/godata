@@ -243,7 +243,7 @@ As of V38.1 there were some optimizations to the API to increase performance for
 - You check status periodically Then, only when export is ready, it will be downloaded
 - Once downloaded, use this fileId and pass to the /export endpoint to retrieve the file.
 
-To see more examples of how this works, with R code, see here: https://github.com/WorldHealthOrganization/godataR#handling-versioning-across-godata-releases
+To see more examples of how this works, with R code, see here: [https://github.com/WorldHealthOrganization/godataR#handling-versioning-across-godata-releases](https://github.com/WorldHealthOrganization/godataR#handling-versioning-across-godata-releases)
 
 ## Example Implementations
 - See the [Github `api` directory](https://github.com/WorldHealthOrganization/godata/tree/master/api) for sample scripts leveraging the API, both in R and Python.
