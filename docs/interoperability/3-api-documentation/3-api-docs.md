@@ -8,6 +8,8 @@ permalink: /api-docs/
 
 # Go.Data API Documentation
 _This section was originally published in the Go.Data [**IT Admin Guide, pg. 53**](https://community-godata.who.int/page/documents). Additional resources have been added_
+<span style="color: orange;">**_NOTE:_** As of V38.1 there were some performance enhancements to the API for large volumes of data. This affects endpoints ending in `/export`. Please see section below ***Important API Updates*** to learn more.
+</span>
 
 ## API Introduction
 Go.Data exposes an Application Programming Interface (API) which is used for all interactions between the web front-end, the smartphone applications and even between copies of Go.Data, if you configure multiple instances of the solution to exchange data in an “upstream sever/client application” model.
@@ -231,6 +233,16 @@ response_cases_short <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/cases/?fil
 json_cases_short <- content(response_cases_short, as = "text")
 cases_short <- as_tibble(fromJSON(json_cases_short, flatten = TRUE))
 {% endraw %}```
+
+## Important API Changes
+
+As of V38.1 there were some optimizations to the API to increase performance for large amounts of data. Now, if you use the /export endpoints (example: outbreak/{id}/cases/export ) instead of just /cases, there is a multi-step process:
+- In API call, you specifically specify a file type
+- An “export request” is submitted to the server.
+- You check status periodically Then, only when export is ready, it will be downloaded
+- Once downloaded, use this fileId and pass to the /export endpoint to retrieve the file.
+
+To see more examples of how this works, with R code, see here: https://github.com/WorldHealthOrganization/godataR#handling-versioning-across-godata-releases
 
 ## Example Implementations
 - See the [Github `api` directory](https://github.com/WorldHealthOrganization/godata/tree/master/api) for sample scripts leveraging the API, both in R and Python.
