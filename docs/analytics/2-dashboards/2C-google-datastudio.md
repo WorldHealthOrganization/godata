@@ -9,7 +9,7 @@ permalink: /google-datastudio/
 
 # Google DataStudio
 
-## _Setting up a Google DataStudio Dashboard for Real-time COVID-19 Tracking in Kosovo_
+## _Setting up a Google DataStudio Dashboard for COVID-19 Tracking in Kosovo_
 Country use case
 {: .label .label-purple }
 
