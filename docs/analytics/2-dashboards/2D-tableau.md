@@ -9,7 +9,9 @@ permalink: /tableau/
 
 # Go.Data dashboards in Tableau
 
-## _Country Use - Contact Tracing at the University of Texas at Austin with Go.Data & Tableau_
+## _Contact Tracing Monitoring at the University of Texas at Austin with Go.Data & Tableau_
+Country use case
+{: .label .label-purple }
 
 ### Background:
 The University of Texas at Austin (UT) began using Go.Data in August 2020 in response to the university's need to track COVID-19 among faculty, staff, and students. A contact tracing program was established in the Dell Medical School to notify contacts of current cases about their exposure status and provide them with resources, including recommendations for isolation and testing. Go.Data was deployed to support this effort.
