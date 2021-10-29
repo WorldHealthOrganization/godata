@@ -7,9 +7,11 @@ nav_order: 3
 permalink: /google-datastudio/
 ---
 
-# Go.Data dashboards in Google DataStudio
+# Google DataStudio
 
-## _Country Use Case_ - Google DataStudio for Real-time COVID-19 Tracking in Kosovo
+## _Setting up a Google DataStudio Dashboard for Real-time COVID-19 Tracking in Kosovo_
+Country use case
+{: .label .label-purple }
 
 For monitoring of COVID-19 cases and contact tracing in Kosovo, Google DataStudio was used (outputs below)
 ![](../assets/googledatastudio-kosovo-1.png)
