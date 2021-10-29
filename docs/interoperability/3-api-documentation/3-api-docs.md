@@ -9,7 +9,7 @@ permalink: /api-docs/
 # Go.Data API Documentation
 _This section was originally published in the Go.Data [**IT Admin Guide, pg. 53**](https://community-godata.who.int/page/documents). Additional resources have been added_
 
-<span style="color: orange;">**_NOTE:_** As of V38.1 there were some performance enhancements to the API for large volumes of data. This affects endpoints ending in `/export`. Please see section below ***Important API Updates*** to learn more.
+<span style="color: orange;">**_NOTE:_** As of V38.1 there were some performance enhancements to the API for large volumes of data. This introduced breaking changes for endpoints ending in `/export`. Please see section below ***Important API Updates*** to learn more.
 </span>
 
 ## API Introduction
@@ -237,11 +237,18 @@ cases_short <- as_tibble(fromJSON(json_cases_short, flatten = TRUE))
 
 ## Important API Changes
 
-As of V38.1 there were some optimizations to the API to increase performance for large amounts of data. Now, if you use the /export endpoints (example: outbreak/{id}/cases/export ) instead of just /cases, there is a multi-step process:
-- In API call, you specifically specify a file type
-- An “export request” is submitted to the server.
-- You check status periodically Then, only when export is ready, it will be downloaded
-- Once downloaded, use this fileId and pass to the /export endpoint to retrieve the file.
+### Breaking Change V38/38.1 in `/export` endpoint 
+- See full release notes [here](https://community-godata.who.int/conversations/release-notes/godata-version-38-381-release-notes/6113769aeee6a640910e8393)
+- If you were previously using `/export` endpoint, starting with version 38.0 export won't return the exported file anymore, instead it will return an id called `exportLogId` which will be used to retrieve the exported file once the export is done. 
+![](../assets/exportendpoint.PNG)
+![](../assets/exportendpoint_response.PNG)
+- Users can check if the export is completed by checking the status of the export-log with the received id in the `/export-logs` endpoint
+![](../assets/get_export_log_id.PNG)
+![](../assets/get_export_log_id_2.PNG)
+![](../assets/get_export_log_id_3.PNG)
+- A new endpoint was added to download the actual file once export finishes (a file can be downloaded only by the user that created that export and it will be deleted after it is downloaded). **Endpoint: `export-log/download`**
+![](../assets/export_log_id_3.PNG)
+- This is an optimization to drastically improve performance for exporting large amounts of data . 
 
 To see more examples of how this works, with R code, see here: [https://github.com/WorldHealthOrganization/godataR#handling-versioning-across-godata-releases](https://github.com/WorldHealthOrganization/godataR#handling-versioning-across-godata-releases)
 
