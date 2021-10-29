@@ -238,7 +238,7 @@ cases_short <- as_tibble(fromJSON(json_cases_short, flatten = TRUE))
 
 ## Important API Changes
 
-### V38 - Breaking Change `/export` endpoint (Aug 2021)
+### V38.0 - Breaking change in `/export` endpoint (Aug 2021)
 - See full release notes [here](https://community-godata.who.int/conversations/release-notes/godata-version-38-381-release-notes/6113769aeee6a640910e8393)
 - If you were previously using `/export` endpoint, starting with version 38.0 export won't return the exported file anymore, instead it will return an id called `exportLogId` which will be used to retrieve the exported file once the export is done. 
 ![](../assets/exportendpoint.PNG)
