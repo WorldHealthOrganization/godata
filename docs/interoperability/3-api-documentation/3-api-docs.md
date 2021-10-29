@@ -233,7 +233,8 @@ response_cases_short <- GET(paste0(url,"api/outbreaks/",outbreak_id,"/cases/?fil
                       )
 json_cases_short <- content(response_cases_short, as = "text")
 cases_short <- as_tibble(fromJSON(json_cases_short, flatten = TRUE))
-{% endraw %}```
+{% endraw %}
+```
 
 ## Important API Changes
 
