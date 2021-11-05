@@ -18,9 +18,9 @@ For example, administrative unit level zero (ADMIN 0) is the country level, admi
 Each country will have its own levels it typically aggregates and reports health data at. These may be administrative areas or health service areas. As it is a required reference dataset for the Go.Data system, users upload their respective hierarchical location data prior to creating an outbreak in the system. Go.Data is not shipped with this data so that users will have the flexibility to use their own best available sources. Below we describe a few ways to configure your locations.
 
 ### ***Bulk Import*** 
-- To Bulk Import via Excel files, we have a step-by-step SOP in both [English](https://sprcdn-assets.sprinklr.com/1652/4b8d1d7d-12cf-4911-987e-e9a1a0fd3c41-2422637769.pdf) and [French]() for how to bulk import your locations. 
-- We have developed structured excel templates [here](https://github.com/WorldHealthOrganization/godata/tree/master/docs/data-mgmt/1-locations) so that you can adapt and quickly get started.
-- Follow [this thread in the Community of Practice](https://community-godata.who.int/conversations/locations-reference-data-languages/sop-bulk-importing-locations-into-godata/6022b951ed9dc017691d861f) to ask your questions or get tips.
+- To Bulk Import via Excel files, we have a step-by-step SOP and structured Excel templates in both English and French for how to bulk import your locations. 
+- [Link to Community of Practice for SOP and Templates in English](https://community-godata.who.int/conversations/locations-reference-data-languages/sop-bulk-importing-locations-into-godata/6022b951ed9dc017691d861f)
+- [Link to Community of Practice for SOP and Templates in French](https://community-godata.who.int/conversations/locations-reference-data-languages/protocole-importation-en-masse-de-lieux-dans-godata/61854a7a793b38530dd72fd6)
 - You can also import .json files, such as your location .json tree exported from DHIS2 (see below)
 
 ### ***Replicate location tree from another system***
