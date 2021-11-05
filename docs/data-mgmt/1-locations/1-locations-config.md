@@ -8,7 +8,14 @@ has_children: false
 ---
 
 # Configuring locations in Go.Data 
-Within the Go.Data system “Location” data refers to the administrative unit levels you want to report your data at and it is also used to assign teams for contact tracing and follow-up. For example, administrative unit level zero (ADM0) is the country level, administrative unit level one (ADM1) could be a region, administrative level two (ADM2) a province, etc. Each country has its own set of levels it typically aggregates and reports data at. These may be administrative areas or health service areas – whichever your organization prefers.  As it is a required reference dataset for the Go.Data system, users upload their respective location data prior to creating an outbreak in the system. Go.Data is not shipped with this data so that users will have the flexibility to use their own best available sources. 
+
+Within the Go.Data system, “Location” data refers to the administrative unit levels you want to report your data at and it is also used to assign teams for contact tracing and follow-up. 
+
+For example, administrative unit level zero (ADMIN 0) is the country level, administrative unit level one (ADMIN 1) could be a region, administrative level two (ADMIN 2) a province, etc. 
+
+Each country has its own set of levels it typically aggregates and reports data at. These may be administrative areas or health service areas – whichever your organization prefers. As it is a required reference dataset for the Go.Data system, users upload their respective location data prior to creating an outbreak in the system. Go.Data is not shipped with this data so that users will have the flexibility to use their own best available sources. 
+
+![](../assets/location_tree_godata.PNG)
 
 ### ***Bulk Import*** 
 - To Bulk Import via Excel files, we have a step-by-step SOP in both [English](https://sprcdn-assets.sprinklr.com/1652/4b8d1d7d-12cf-4911-987e-e9a1a0fd3c41-2422637769.pdf) and [French]() for how to bulk import your locations. 
