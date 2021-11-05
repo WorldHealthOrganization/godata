@@ -14,13 +14,13 @@ We have developed a pre-formatted PowerBI dashboard library that you can connect
 
 ![](../assets/powerbi_dash_new.png)
 
-### [View step-by-step directions in the full-length "How-To" manual here](https://github.com/WorldHealthOrganization/godata/blob/master/docs/analytics/2-dashboards/2B-power-bi/Connecting%20Power%20BI%20to%20GoData%20Manual.pdf)
+### [View step-by-step directions in the full-length "How-To" manual here](https://github.com/WorldHealthOrganization/godata/blob/master/docs/analytics/2-data-visualization/2B-power-bi/Connecting%20Power%20BI%20to%20GoData%20Manual.pdf)
 
 The first key steps are also listed below.
 
 ## Step 1: Download [Microsoft Power BI Desktop](https://www.microsoft.com/en-us/download/details.aspx?id=58494)
 
-## Step 2: Download the [Go.Data PowerBI Dashboard libary](https://github.com/WorldHealthOrganization/godata/blob/master/docs/analytics/2-dashboards/2B-power-bi/Go-Data%20Epidemiological%20Dashboards.pbix)
+## Step 2: Download the [Go.Data PowerBI Dashboard libary](https://github.com/WorldHealthOrganization/godata/blob/master/docs/analytics/2-data-visualization/2B-power-bi/Go-Data%20Epidemiological%20Dashboards.pbix)
 
 This is a .pbix file format, which you can double click to open after downloading PowerBI Desktop. The most updated version will always be on our Github repository in the `power-bi` folder as linked above.
 
