@@ -10,7 +10,6 @@ has_children: false
 # Data Extraction QuickStart
 Considering extracting data from your Go.Data instance for advanced analysis, reporting and visualizations? See the below "Quick Start" steps for getting started and links to same examples. This is a necessary consideration before moving on to analytics and dashboard software.
 
-Go.Data provides a suite of options for extracting data -
 ## 1. *File-based export* to .csv, .xlsx, JSON, xml via in-app functionality 
 ![analysis_export](../assets/analysis_export.PNG)
 
