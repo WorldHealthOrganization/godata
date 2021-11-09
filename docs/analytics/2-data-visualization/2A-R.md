@@ -40,6 +40,11 @@ GoContactR is a Shiny App developed by colleagues in the WHO Regional Office for
 
 ![shiny](../assets/shiny_gocontactr_1.png)
 
+### [Go.Data Guatemala Shiny App](https://github.com/WorldHealthOrganization/godata-guatemala)
+Country Use Case
+{: .label .label-purple }
+This Shiny App infrastructure was built by the Go.Data team in Guatemala from the to view case/contact data from Go.Data API.
+
 ## Resources for R Capacity Building
 ### [Epi R Handbook](https://epirhandbook.com/)
 - If you would like more resources on how to use R for outbreak analysis, you can refer to the *The Epidemiologist R Handbook* - [https://epirhandbook.com/](https://epirhandbook.com/)
