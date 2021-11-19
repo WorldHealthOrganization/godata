@@ -16,7 +16,7 @@ You can find a collection of all other forked repositories related to the Go.Dat
 ## About Go.Data
 [Go.Data](https://www.who.int/godata) is an outbreak investigation tool for public health emergencies, and includes features for contact tracing, contact follow-up, and visualizing chains of transmission. Go.Data is designed to specifically support outbreak responders and intended to be implemented alongside other systems for health surveillance, information management, and service delivery. 
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=tElP8t6QO08" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tElP8t6QO08" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Aim of this documentation site
 This site is a centralized place where you can access _technical documentation and code_ that you may find useful in your Go.Data deployment. This includes code snippets and documentation to access the Go.Data API, perform data exchange / integration with other systems, and conduct additional analysis with a range of software tools. 
