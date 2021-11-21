@@ -15,9 +15,17 @@ To facilitate such standards, Go.Data contains outbreak templates for common dis
 To see more information om how to set up and use Outbreak Templates, please visit the [Go.Data User Guide](https://sprcdn-assets.sprinklr.com/1652/254f53e1-35b0-4ca8-8452-99a46c413cab-1176881866.pdf).
 
 ## Ebola Virus Disease (EVD)
+- [Metadata Overview Guide](https://docs.google.com/document/d/1F3XLt9NRl5DFtSqwTeUGYM9VR-b_sOYb/edit?usp=sharing&ouid=106213743316927309200&rtpof=true&sd=true)
+- Detailed Data Dictionary
 
 ## SARS-CoV-2
+- [Metadata Overview Guide](https://docs.google.com/document/d/14r1IK5W0Q4amT5foPjsmPbhDqlwh2-GZ/edit?usp=sharing&ouid=106213743316927309200&rtpof=true&sd=true)
+- Detailed Data Dictionary
 
 ## Yellow Fever 
+- [Metadata Overview Guide](https://docs.google.com/document/d/1UbBfJezAAYA1lP1Pi8SURRGu6KaHQjAB/edit?usp=sharing&ouid=106213743316927309200&rtpof=true&sd=true)
+- Detailed Data Dictionary
 
 ## Monkeypox
+- Metadata Overview Guide
+- Detailed Data Dictionary
