@@ -19,7 +19,7 @@ To see more information om how to set up and use Outbreak Templates, please visi
 - Detailed Data Dictionary
 
 ## SARS-CoV-2
-- [Metadata Overview Guide](https://docs.google.com/document/d/14r1IK5W0Q4amT5foPjsmPbhDqlwh2-GZ/edit?usp=sharing&ouid=106213743316927309200&rtpof=true&sd=true)
+- [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/69a1e048-e8b7-47ea-8e90-512a50600ecd-1206687439.pdf)
 - Detailed Data Dictionary
 
 ## Yellow Fever 
