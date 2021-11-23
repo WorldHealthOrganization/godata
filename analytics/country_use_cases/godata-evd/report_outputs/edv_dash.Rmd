@@ -183,11 +183,11 @@ scale_risk_factors <- scale_fill_manual(
 
 ```{r define_time_periods, include = FALSE}
 
-today=Sys.Date()-1 #RDN-X
+today_date=Sys.Date()-1
 
-prev_1_date <- today - 1
-prev_7_date <- prev_1_date - 7
-prev_21_date <- prev_1_date - 21
+prev_1_date <- today_date - 1
+prev_7_date <- today_date - 7
+prev_21_date <- today_date - 21
 
 # Create data of these time points, by filtering follow up list for only these date ranges 
 f_1day <- current_clean_followups %>% 
@@ -195,8 +195,8 @@ f_1day <- current_clean_followups %>%
   mutate(days = as.character(prev_1_date)) 
 
 f_0day <- current_clean_followups %>%
-  filter(date_of_followup == today) %>% 
-  mutate(days = as.character(today)) 
+  filter(date_of_followup == today_date) %>% 
+  mutate(days = as.character(today_date)) 
 
 f_7day <- current_clean_followups %>%
   filter(date_of_followup >= prev_7_date) %>% 
@@ -253,7 +253,7 @@ daily_follow_up_linelist_21d <- followups_with_teams_names %>%
          )
 
 fu_subset <- daily_follow_up_linelist_21d %>%
-  filter(date_of_followup == today |
+  filter(date_of_followup == today_date |
          date_of_followup == prev_1_date) %>%
   arrange(contact_id, desc(updated_at)) %>%
   distinct(contact_id, .keep_all = TRUE)
@@ -679,13 +679,13 @@ tab4a <- current_clean_followups %>%
   rename(localite=admin_2_name, contacts_a_suivre=n)
 
 tab4b <- current_clean_followups %>%
-  filter(followup_status !="NOT_PERFORMED" & date_of_data_entry <= today ) %>%
+  filter(followup_status !="NOT_PERFORMED" & date_of_data_entry <= today_date ) %>%
   distinct(contact_uuid,admin_2_name) %>%
   count(admin_2_name, sort = TRUE) %>%
   rename(localite=admin_2_name, contacts_suivis=n)
 
 tab4c <- current_clean_followups %>%
-  filter(followup_status =="NOT_PERFORMED" & date_of_data_entry <= today ) %>%
+  filter(followup_status =="NOT_PERFORMED" & date_of_data_entry <= today_date ) %>%
   distinct(contact_uuid,admin_2_name) %>%
   count(admin_2_name, sort = TRUE) %>%
   rename(localite=admin_2_name, contacts_nonsuivis=n)
@@ -696,7 +696,7 @@ tab_taux=tab_taux %>%
 tab_gen=left_join(tab_taux,tab4c,by= c("localite"))
 
 tab_new_contacts_today <- current_clean_contacts %>%
-    filter(date_of_data_entry == today ) %>%
+    filter(date_of_data_entry == today_date ) %>%
   distinct(uuid,prefecture) %>%
   count(prefecture, sort = TRUE) %>%
   rename(localite=prefecture, nouveaux_contacts=n)
@@ -747,7 +747,7 @@ contact_status_by_team <- contact_status_linelist %>%
   mutate(team_name = str_replace_all(team_name, "_", " ")) %>%
   mutate(team_name = str_to_title(team_name)) %>%
   mutate(prefecture = str_to_title(prefecture)) %>%
-  filter(date_dernier_visite == today) %>% 
+  filter(date_dernier_visite == today_date) %>% 
   group_by(team_name, prefecture,statut_followup) %>%
   tally() %>%
   mutate(statut_followup=tolower(statut_followup))%>%
@@ -764,7 +764,7 @@ graph_contact_status_by_team <- contact_status_by_team %>%
     labs(x = "",
          y = "Nombre de contacts",
          title = "Statut de contacts quotidien, par équipe",
-         subtitle = paste0("Données du ", today, "\n")) +
+         subtitle = paste0("Données du ", today_date, "\n")) +
   theme(plot.title = element_text(face = "bold", color = "#011822", size = 14),
         plot.subtitle = element_text(size = 11, color = "#011822")
         # ,legend.position = "top"
@@ -778,4 +778,201 @@ graph_contact_status_by_team <- contact_status_by_team %>%
 
 graph_contact_status_by_team
 ```
+
+
+
+Aujourd'hui {data-navmenu="LISTE DE LIGNES - INDICATEURS" data-icon=""}
+==============================================================================================
+
+
+Column {.tabset data-width=100%}
+-------------------------------------
+### Données démographiques
+
+```{r donnees_demographiques}
+
+demograph_tab <- current_clean_cases %>%
+  filter(classification=="confirmé" | classification=="probable") %>%
+  filter(date_of_data_entry==today_date) %>%
+  select(
+    full_name,
+    age,
+    gender,
+    city,
+    sous_prefecture,
+    prefecture
+  ) %>%
+  arrange(prefecture, sous_prefecture, city, full_name)%>%
+  kbl( caption = "", align=c(rep('c',times=100)),
+       col.names = c("Noms et prénoms du malade","Age/année","Sexe","Quartier","Aire de santé", "District sanitaire")) %>%
+   kable_styling(font_size = 14,fixed_thead = T,bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+
+demograph_tab
+
+
+```
+
+### Taxonomie
+
+```{r taxonomie}
+
+taxonomie_tab <- current_clean_cases %>%
+  filter(classification=="confirmé" | classification=="probable") %>%
+  filter(date_of_data_entry==today_date)
+
+taxonomie_tab[ , "date_investigation"] <- NA #Adding date_investigation column with NA value
+  
+taxonomie_tab <- taxonomie_tab %>%
+  select(
+    full_name,
+    age,
+    gender,
+    classification,
+    date_of_onset,
+    date_of_data_entry,
+    date_investigation,
+    date_become_case
+  ) %>%
+  arrange(date_of_onset,date_of_data_entry, classification, full_name) %>%
+  kbl( caption = "", align=c(rep('c',times=100)),
+       col.names = c("Noms et prénoms du malade","Age/année","Sexe","Classification","Date de début de symptômes","Date de notification","Date de début de l'investigation","Date de confirmation")) %>%
+   kable_styling(font_size = 14,fixed_thead = T,bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+
+taxonomie_tab
+
+
+```
+
+### Surveillance
+
+```{r surveillance}
+
+surveillance_tab <- current_clean_cases %>%
+  filter(classification=="confirmé" | classification=="probable") %>%
+  filter(date_of_data_entry==today_date)
+
+  surveillance_tab [ , "date_investigation"] <- NA #Adding date_investigation column filled NA value
+  
+surveillance_tab  <- surveillance_tab  %>%
+  select(
+    full_name,
+    age,
+    gender,
+    outcome_id,
+    date_of_onset,
+    date_of_data_entry,
+    date_investigation,
+    date_become_case
+  ) %>%
+  arrange(date_of_onset,date_of_data_entry, outcome_id, full_name) %>%
+  kbl( caption = "", align=c(rep('c',times=100)),
+       col.names = c("Noms et prénoms du malade","Age/année","Sexe","Classification","Date de début de symptômes","Date de notification","Date de début de l'investigation","Date de confirmation")) %>%
+   kable_styling(font_size = 14,fixed_thead = T,bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+
+surveillance_tab 
+
+```
+
+
+
+7 derniers jours {data-navmenu="LISTE DE LIGNES - INDICATEURS" data-icon=""}
+====================================================================================================
+
+
+Column {.tabset data-width=100%}
+-------------------------------------
+### Données démographiques
+
+```{r donnees_demographiques-7days}
+
+demograph_tab <- current_clean_cases %>%
+  filter(classification=="confirmé" | classification=="probable") %>%
+  filter( prev_7_date >=date_of_data_entry) %>%
+  select(
+    full_name,
+    age,
+    gender,
+    city,
+    sous_prefecture,
+    prefecture
+  ) %>%
+  arrange(prefecture, sous_prefecture, city, full_name)%>%
+  kbl( caption = "", align=c(rep('c',times=100)),
+       col.names = c("Noms et prénoms du malade","Age/année","Sexe","Quartier","Aire de santé", "District sanitaire")) %>%
+   kable_styling(font_size = 14,fixed_thead = T,bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+
+demograph_tab
+
+
+```
+
+### Taxonomie
+
+```{r taxonomie-7days}
+
+taxonomie_tab <- current_clean_cases %>%
+  filter(classification=="confirmé" | classification=="probable") %>%
+  filter( prev_7_date >=date_of_data_entry)
+
+taxonomie_tab[ , "date_investigation"] <- NA #Adding date_investigation column with NA value
+  
+taxonomie_tab <- taxonomie_tab %>%
+  select(
+    full_name,
+    age,
+    gender,
+    classification,
+    date_of_onset,
+    date_of_data_entry,
+    date_investigation,
+    date_become_case
+  ) %>%
+  arrange(date_of_onset,date_of_data_entry, classification, full_name) %>%
+  kbl( caption = "", align=c(rep('c',times=100)),
+       col.names = c("Noms et prénoms du malade","Age/année","Sexe","Classification","Date de début de symptômes","Date de notification","Date de début de l'investigation","Date de confirmation")) %>%
+   kable_styling(font_size = 14,fixed_thead = T,bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+
+taxonomie_tab
+
+
+```
+
+### Surveillance
+
+```{r surveillance-7days}
+
+surveillance_tab <- current_clean_cases %>%
+  filter(classification=="confirmé" | classification=="probable") %>%
+  filter( prev_7_date >=date_of_data_entry )
+
+  surveillance_tab [ , "date_investigation"] <- NA #Adding date_investigation column filled NA value
+  
+surveillance_tab  <- surveillance_tab  %>%
+  select(
+    full_name,
+    age,
+    gender,
+    outcome_id,
+    date_of_onset,
+    date_of_data_entry,
+    date_investigation,
+    date_become_case
+  ) %>%
+  arrange(date_of_onset,date_of_data_entry, outcome_id, full_name) %>%
+  kbl( caption = "", align=c(rep('c',times=100)),
+       col.names = c("Noms et prénoms du malade","Age/année","Sexe","Classification","Date de début de symptômes","Date de notification","Date de début de l'investigation","Date de confirmation")) %>%
+   kable_styling(font_size = 14,fixed_thead = T,bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
+
+surveillance_tab 
+
+```
+
+21 jours {data-navmenu="LISTE DE LIGNES - INDICATEURS" data-icon=""}
+===========================================================================================
+
+
+
+
 
