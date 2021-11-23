@@ -1,0 +1,55 @@
+body{ /* Normal  */
+    font-size: 18px;
+}
+td {  /* Table  */
+    font-size: 14px;
+}
+h1.title {
+    padding-top: 10px;
+    font-size: 40px;
+    /* color: DarkRed; */
+}
+h1 { /* Header 1 */
+    padding-top: 60px;
+    font-size: 28px;
+    /* color: DarkBlue; */
+}
+h2 { /* Header 2 */
+    font-size: 28px;
+    /* color: DarkBlue; */
+}
+h3 { /* Header 3 */
+    padding-top: 25px;
+   font-size: 24px;
+    /* font-family: "Times New Roman", Times, serif; */
+    /* color: DarkBlue; */
+}
+h4 { /* Header 3 */
+    font-size: 18px;
+    font-weight: bold;
+    /* font-family: "Times New Roman", Times, serif; */
+    /* color: DarkBlue; */
+}
+code.r{ /* Code block */
+    font-size: 14px;
+}
+pre { /* Code block - determines code spacing between lines */
+    font-size: 14px;
+}
+.report_meta {
+  margin-top: 40px;
+  padding: 20px 20px 15px 20px;
+  border: 1px solid rgba(155,68,110,0.75); /*#9b446e = red**/
+  box-shadow: 1px 1px 2px 2px rgba(155,68,110,0.7);
+  border-radius: 10px;
+}
+.report_meta p {
+  font-size: 16px;
+  line-height: 1;
+  margin: 0 0 6px;
+}
+span.notice strong {
+  color: #9b446e;
+  margin: 0 0 10px;
+}
+
