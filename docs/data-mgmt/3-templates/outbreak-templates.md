@@ -20,7 +20,7 @@ To see more information om how to set up and use Outbreak Templates, please visi
 - [Tutorial for Updating Reference Data to align with Yellow Fever Template](https://sprcdn-assets.sprinklr.com/1652/14fe3b9c-0669-4b54-bc1b-f0afa6681022-2500431952.pdf)
 
 ## Ebola Virus Disease (EVD)
-- [Metadata Overview Guide](https://docs.google.com/document/d/1F3XLt9NRl5DFtSqwTeUGYM9VR-b_sOYb/edit?usp=sharing&ouid=106213743316927309200&rtpof=true&sd=true)
+- [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/da057fb0-29b6-4905-b2d3-e1af6b4283f3-856232029.pdf) 
 - Detailed Data Dictionary
 
 ## SARS-CoV-2
