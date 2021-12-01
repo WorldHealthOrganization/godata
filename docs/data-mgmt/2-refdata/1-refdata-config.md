@@ -10,6 +10,7 @@ has_children: false
 # Configuring Reference Data in Go.Data 
 Reference Data is cutomizable in Go.Data to allow for flexibility across settings and disease types, in addition to increasing the value of the analytics. Anything with a "dropdown" selector in Go.Data can be configured through Reference Data according to your context. 
 
+![](../assets/ocha_icons.PNG)
 ![image](https://user-images.githubusercontent.com/57128361/123091316-7ebd1280-d429-11eb-8e94-74435e765ade.png)
 
 This page outlines some things to keep in mind relating to Go.Data Reference Data and highlights tangible examples that can help you during implementation.
@@ -19,6 +20,7 @@ Editing reference data to include icons and colors is optional but enables great
 
 Of note, there are excellent open-source health icon libraries, including those developed by [OCHA for Humanitarian Settings](https://brand.unocha.org/d/xEPytAUjC3sH/icons)  and the Resolve to Save Lives [Health Icons Project](https://healthicons.org/). You can view the Health Icons Project's associated Github Repository here: [https://github.com/resolvetosavelives/healthicons](https://github.com/resolvetosavelives/healthicons)
 
+ocha_icons.PNG
 ![image](https://user-images.githubusercontent.com/57128361/123091573-cf347000-d429-11eb-9171-ee57db7585dd.png)
 
 ## Editing Reference Data to better visualize clusters in chains of transmission
