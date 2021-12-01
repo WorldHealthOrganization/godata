@@ -15,11 +15,9 @@ Reference Data is cutomizable in Go.Data to allow for flexibility across setting
 This page outlines some things to keep in mind relating to Go.Data Reference Data and highlights tangible examples that can help you during implementation.
 
 ## Icon/Color Customization for Reference Data
-Editing reference data to include icons and colors is optional but enables greater utility and interpretation of Go.Data Chains of Transmission. 
+Editing reference data to include icons and colors is optional but enables greater utility and interpretation of Go.Data Chains of Transmission. You can find more instructions for how to do this in Chapter 19 of [Go.Data User Guide](https://sprcdn-assets.sprinklr.com/1652/254f53e1-35b0-4ca8-8452-99a46c413cab-1176881866.pdf) titled "Managing Reference Data".
 
-You can find more instructions for how to do this in Chapter 19 of [Go.Data User Guide](https://sprcdn-assets.sprinklr.com/1652/254f53e1-35b0-4ca8-8452-99a46c413cab-1176881866.pdf) titled "Managing Reference Data".
-
-Of note, there are excellent open-source health icon libraries, including that developed by Resolve to Save Lives [Health Icons Project](https://healthicons.org/). You can view their associated Github Repository here: [https://github.com/resolvetosavelives/healthicons](https://github.com/resolvetosavelives/healthicons)
+Of note, there are excellent open-source health icon libraries, including those developed by [OCHA for Humanitarian Settings](https://brand.unocha.org/d/xEPytAUjC3sH/icons)  and the Resolve to Save Lives [Health Icons Project](https://healthicons.org/). You can view the Health Icons Project's associated Github Repository here: [https://github.com/resolvetosavelives/healthicons](https://github.com/resolvetosavelives/healthicons)
 
 ![image](https://user-images.githubusercontent.com/57128361/123091573-cf347000-d429-11eb-9171-ee57db7585dd.png)
 
