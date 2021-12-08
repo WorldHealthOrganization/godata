@@ -1,10 +1,10 @@
 ---
 layout: page
-title: GIS
+title: QGIS
 parent: Data Visualization
 grand_parent: Analytics & Dashboards
 nav_order: 6
-permalink: /gis/
+permalink: /qgis/
 has_children: false
 ---
 
