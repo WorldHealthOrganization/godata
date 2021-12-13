@@ -14,12 +14,12 @@ This is linked to the public WHO Go.Data Github repository: [https://github.com/
 You can find a collection of all other forked repositories related to the Go.Data project [here.](https://github.com/WorldHealthOrganization?q=go-data&type=&language=)
 
 ## About Go.Data
-[Go.Data](https://www.who.int/godata) is an outbreak investigation tool for public health emergencies, and includes features for contact tracing, contact follow-up, and visualizing chains of transmission. Go.Data is designed to specifically support outbreak responders and intended to be implemented alongside other systems for health surveillance, information management, and service delivery. 
+[Go.Data](https://www.who.int/godata) is an outbreak investigation tool for public health emergencies, and includes features for contact tracing, contact follow-up, and visualizing chains of transmission. Go.Data is designed to support outbreak responders and intended to be implemented alongside other systems for health surveillance, information management, and service delivery. 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/tElP8t6QO08" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Aim of this documentation site
-This site is a centralized place where you can access _technical documentation and code_ that you may find useful in your Go.Data deployment. This includes code snippets and documentation to access the Go.Data API, perform data exchange / integration with other systems, and conduct additional analysis with a range of software tools. 
+The Go.Data Docs Site is a centralized place where users implementing Go.Data for outbreak investigation can access open-source solutions related to analytics and interoperability. This includes code snippets for interacting with the Go.Data API; detailed metadata descriptions across outbreak templates; live integrations with other platforms; and analytics connectors across a range of tools., and conduct additional analysis with a range of software tools.
 
 Any generic information about Go.Data is best accessed through our [Community of Practice website](https://community-godata.who.int/) (https://community-godata.who.int/), where we link to a range of user guides and training materials. You can dialogue there with the community of Go.Data users on a number of discussion forums. You can access our open-access online training course across multiple languages through OpenWHO [here](https://openwho.org/courses/godata-en).
 ![godata-cop](./assets/cop.PNG)
