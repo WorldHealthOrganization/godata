@@ -29,4 +29,4 @@ To see more information om how to set up and use Outbreak Templates, please visi
 
 ## Monkeypox
 - Metadata Overview Guide
-- Detailed Data Dictionary
+- [Detailed Data Dictionary](https://docs.google.com/spreadsheets/d/14rz48tRfOupiuK-emaROW7gEnjcVGVCz/edit?usp=sharing&ouid=106213743316927309200&rtpof=true&sd=true)
