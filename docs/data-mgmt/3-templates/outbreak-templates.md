@@ -19,6 +19,10 @@ To see more information om how to set up and use Outbreak Templates, please visi
 - [Detailed Data Dictionary](https://docs.google.com/spreadsheets/d/1dPP4jsnwlXhEqlLfSzzdmitUqjnb0EsF/edit?usp=sharing&ouid=106213743316927309200&rtpof=true&sd=true)
 - [Tutorial for Updating Reference Data to align with Yellow Fever Template](https://sprcdn-assets.sprinklr.com/1652/14fe3b9c-0669-4b54-bc1b-f0afa6681022-2500431952.pdf)
 
+## Monkeypox
+- [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/133486a8-9b49-4461-a0d7-211c140947cc-562840094.pdf)
+- [Detailed Data Dictionary](https://docs.google.com/spreadsheets/d/14rz48tRfOupiuK-emaROW7gEnjcVGVCz/edit?usp=sharing&ouid=106213743316927309200&rtpof=true&sd=true)
+
 ## Ebola Virus Disease (EVD)
 - [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/da057fb0-29b6-4905-b2d3-e1af6b4283f3-856232029.pdf) 
 - Detailed Data Dictionary
@@ -27,6 +31,3 @@ To see more information om how to set up and use Outbreak Templates, please visi
 - [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/69a1e048-e8b7-47ea-8e90-512a50600ecd-1206687439.pdf)
 - Detailed Data Dictionary
 
-## Monkeypox
-- Metadata Overview Guide
-- [Detailed Data Dictionary](https://docs.google.com/spreadsheets/d/14rz48tRfOupiuK-emaROW7gEnjcVGVCz/edit?usp=sharing&ouid=106213743316927309200&rtpof=true&sd=true)
