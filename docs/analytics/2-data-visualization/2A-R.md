@@ -45,7 +45,7 @@ Country Use Case
 {: .label .label-purple }
 This Shiny App infrastructure was built by the Go.Data team in Guatemala from the to view case/contact data from Go.Data API.
 
-### R Helper Scripts
+## R Helper Scripts
 - Script to get centroids from .shp files (needed for point locations in Go.Data)
 
 ## Resources for R Capacity Building
