@@ -16,7 +16,7 @@ R Package
 - [`godataR`](https://github.com/WorldHealthOrganization/godataR) package was developed by the Go.Data team to assist with connecting to your API and extracting large volumes of data into R for further analysis. If you would like more information or if you have feedback, please email godata@who.int. If you are experiencing a bug or have a feature request, please submit an issue [here](https://github.com/WorldHealthOrganization/godataR/issues)
 - if you have ideas for further package development, we would love to hear from you!
 
-## RMarkdown 
+## Canned RMarkdown Reports 
 Reference Template
 {: .label .label-blue }
 
@@ -25,7 +25,7 @@ Reference Template
 
 ![r-reporting-workflow](../assets/R_reporting_workflow.PNG)
 
-## R Shiny 
+## RShiny App Templates 
 Shiny Apps have been produced across the Go.Data Community of Practice that can serve as reference templates for those who wish to have a live application updated in real-time, versus static reports. Countries and institutions who would like host these on their Go.Data server can start with these frameworks and adapt it with hopefully minimal updates required.
 
 ### [Reference Go.Data R Shiny App Template](https://github.com/WorldHealthOrganization/godata/tree/master/analytics/r-reporting/r-shiny)
@@ -44,6 +44,9 @@ GoContactR is a Shiny App developed by colleagues in the WHO Regional Office for
 Country Use Case
 {: .label .label-purple }
 This Shiny App infrastructure was built by the Go.Data team in Guatemala from the to view case/contact data from Go.Data API.
+
+### R Helper Scripts
+- Script to get centroids from .shp files (needed for point locations in Go.Data)
 
 ## Resources for R Capacity Building
 ### [Epi R Handbook](https://epirhandbook.com/)
