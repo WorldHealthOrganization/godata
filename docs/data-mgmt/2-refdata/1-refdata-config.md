@@ -14,6 +14,9 @@ Reference Data is cutomizable in Go.Data to allow for flexibility across setting
 
 This page outlines some things to keep in mind relating to Go.Data Reference Data and highlights tangible examples that can help you during implementation.
 
+
+Please read this guide for more information [Go.Data- Reference data configuration](https://sprcdn-assets.sprinklr.com/1652/14fe3b9c-0669-4b54-bc1b-f0afa6681022-2500431952.pdf).
+
 ## Icon/Color Customization for Reference Data
 Editing reference data to include icons and colors is optional but enables greater utility and interpretation of Go.Data Chains of Transmission. You can find more instructions for how to do this in Chapter 19 of [Go.Data User Guide](https://sprcdn-assets.sprinklr.com/1652/254f53e1-35b0-4ca8-8452-99a46c413cab-1176881866.pdf) titled "Managing Reference Data".
 
