@@ -1,4 +1,5 @@
 # script to get centroids of shapefiles, as Go.Data only ingests points and not polygons
+# author: Maryam Diarra <maryam.diarra@pasteur.sn>
 
 # --------------
 library(raster)
