@@ -30,7 +30,7 @@ To see more information on how to set up and use Outbreak Templates, please visi
 - [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/69a1e048-e8b7-47ea-8e90-512a50600ecd-1206687439.pdf)
 - Detailed Data Dictionary
 
-### Tutorial for updating Go.Data Reference Data to align with a Disease-Specific Template 
+## Tutorial for updating Go.Data Reference Data to align with a Disease-Specific Template 
 - [Tutorial for updating Go.Data Reference Data](https://sprcdn-assets.sprinklr.com/1652/a9b559a4-5415-4a37-8dd6-ebf8bad8bcdd-65533445.pdf)
 
 
