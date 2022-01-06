@@ -15,7 +15,7 @@ To facilitate such standards, Go.Data contains outbreak templates for common dis
 To see more information on how to set up and use Outbreak Templates, please visit the [Go.Data User Guide](https://sprcdn-assets.sprinklr.com/1652/254f53e1-35b0-4ca8-8452-99a46c413cab-1176881866.pdf).
 
 ## Yellow Fever 
-- [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/d56be59c-e20d-4621-ab6b-61c207732ccc-911807302.pdf)
+- [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/3f1f7d75-d578-40dc-bb6b-87930da9b5e5-911807302.pdf)
 - [Detailed Data Dictionary](https://docs.google.com/spreadsheets/d/1dPP4jsnwlXhEqlLfSzzdmitUqjnb0EsF/edit?usp=sharing&ouid=106213743316927309200&rtpof=true&sd=true)
 
 ## Monkeypox
