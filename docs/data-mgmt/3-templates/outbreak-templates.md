@@ -22,6 +22,10 @@ To see more information on how to set up and use Outbreak Templates, please visi
 - [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/133486a8-9b49-4461-a0d7-211c140947cc-562840094.pdf)
 - [Detailed Data Dictionary](https://docs.google.com/spreadsheets/d/14rz48tRfOupiuK-emaROW7gEnjcVGVCz/edit?usp=sharing&ouid=106213743316927309200&rtpof=true&sd=true)
 
+## Cholera
+- Metadata Overview Guide
+- [Detailed Data Dictionary](https://sprcdn-assets.sprinklr.com/1652/67b8a9f6-3224-4421-9872-41404ec85e66-1249017395.xlsx)
+
 ## Ebola Virus Disease (EVD)
 - [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/da057fb0-29b6-4905-b2d3-e1af6b4283f3-856232029.pdf) 
 - Detailed Data Dictionary
