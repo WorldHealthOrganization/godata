@@ -28,7 +28,7 @@ To see more information on how to set up and use Outbreak Templates, please visi
 
 ## Ebola Virus Disease (EVD)
 - [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/a278b5aa-54cb-4592-9e47-0325faf3bf50-856232029.pdf) 
-- Detailed Data Dictionary (https://sprcdn-assets.sprinklr.com/1652/e67cd566-18ca-4dfc-be6e-2f4094e01552-298629998.xlsx)
+- [Detailed Data Dictionary] (https://sprcdn-assets.sprinklr.com/1652/e67cd566-18ca-4dfc-be6e-2f4094e01552-298629998.xlsx)
 
 ## SARS-CoV-2
 - [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/69a1e048-e8b7-47ea-8e90-512a50600ecd-1206687439.pdf)
