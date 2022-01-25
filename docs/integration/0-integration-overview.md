@@ -12,19 +12,19 @@ There are a number of solutions that have been built by Go.Data users to add on 
 
 _To engage directly with this community, visit the "Interoperability" forum in the CoP [here](https://community-godata.who.int/topics/interoperability/5fd8ec64f5c77e114e6c6823)_
 
-## [Go.Data-DHIS2 Interoperability App](https://wiscentd-upc.github.io/dhis2-godata-interoperability/)
+## [Go.Data-DHIS2 Interoperability App](https://github.com/WorldHealthOrganization/godata-dhis2-interop-app)
 
 ![architecture-summary](../assets/godata-dhis2.png)
 
-Collaborators at the Polytechnic University of Catalonia (UPC) have developed a DHIS2 app for exchanging case and contact metadata and data between DHIS2 and Go.Data, with the initial configuration mapped to the DHIS2 Tracker COVID-19 Standard Metadata Package. This enables countries or institutions who are using DHIS2 for case registration to utilize Go.Data for additional visualization, contact listing and contact tracing follow-up. 
+Collaborators in Spain and Tajikistan have developed a DHIS2 app for exchanging case and contact metadata and data between DHIS2 and Go.Data. The initial configuration maps to the DHIS2 Tracker COVID-19 Standard Metadata Package, enabling countries or institutions who are using DHIS2 for case registration to utilize Go.Data for additional visualization, contact listing and contact tracing follow-up. The second iteration is more flexible in allowing for any variety of metadata configuration in DHIS2, where the front-end user can "map" DHIS2 fields to Go.Data fields as needed, regardless of which Program or Form is utilized.
 
-See instructions on how to install and for more detailed documentation [here](https://www.notion.so/Go-Data-DHIS2-Interoperability-App-3a12d174c9f34d64bc2a6bbe1ea9784d). 
+See more documentation [here](https://www.notion.so/Go-Data-DHIS2-Interoperability-App-3a12d174c9f34d64bc2a6bbe1ea9784d). 
 
-For questions / considerations on if this can be piloted in your setting and to provide feedback, please view [this post](https://community-godata.who.int/conversations/interoperability/call-of-interest-piloting-godatadhis2-interoperability-app/6012b391dbaa4b35ec1837cd) on the Go.Data Community of Practice.
+For questions / considerations on if this can be piloted in your setting and to provide feedback, please view [this post](https://community-godata.who.int/conversations/interoperability/call-of-interest-piloting-godatadhis2-interoperability-app/6012b391dbaa4b35ec1837cd) on the Go.Data Community of Practice or email us at godata@who.int.
 
-See Github directories: 
--[dhis2-godata-interoperability](https://github.com/WorldHealthOrganization/dhis2-godata-interoperability)
--[godata-api-wrapper](https://github.com/WorldHealthOrganization/godata-api-wrapper)
+Additional Github directories: 
+-[dhis2-godata-interoperability](https://github.com/WISCENTD-UPC/dhis2-godata-interoperability)
+-[godata-api-wrapper](https://github.com/WISCENTD-UPC/godata-api-wrapper)
 
 ## [DHIS2 to Go.Data Metadata Sync](https://worldhealthorganization.github.io/metadata-synchronization-blessed/metadatasync/)
 Collaborators at [EyeSeeTea](https://github.com/EyeSeeTea) have developed 
@@ -54,7 +54,6 @@ See Presentation walkthrough [here](https://github.com/WorldHealthOrganization/g
 Collaborators at [EyeSeeTea](https://github.com/EyeSeeTea) have developed a script to quickly convert admin levels from the WHO Polio GeoDatabase to Go.Data locations.
 
 See Github directory:[PolioDB-GODATA](https://github.com/EyeSeeTea/WIDP-scripts/tree/master/PolioDB-GODATA)
-
 
 
 ## OpenFn Job Scripts for API Actions
