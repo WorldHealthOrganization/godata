@@ -79,8 +79,8 @@ Outputs of the tool include raw data, summarized indicators typically reported i
 
 ### Raw data
 Five csvs of raw outbreak data. This data is returned from Go.Data API endpoints for cases, contacts and locations. It includes most of the core variables thate are collected during an outbreak investigation. For more information about the fields in the raw csv output, please consult Go.Data metadata [here](https://worldhealthorganization.github.io/godata/data-mgmt/) for a more complete list of data collected in the Go.Data system.
-
 ![](../assets/RawCSVUpdate.PNG)
+
 ### Summary data
 Four SITREP summary tables with 16 total calculated fields, each of which could be used to create a separate map. Contents described in next section.
 ![](../assets/SummaryCSVsUpdate.PNG)
@@ -91,16 +91,13 @@ Four feature classes in the file geodatabase provided by user. Each feature clas
 
 # SITREP summary metadata
 The following graphic illustrates the files and associated fields (16) that are calculated as part of the SITREP summary output. These fields are also included in the GIS features output. Note that fields are calculated as of the previous day. For instance, if you run the tool to map the value for confirmed cases last 7 days, that value would consist of the previous day (which is the day prior to running the tool), and the 6 days prior. This is because typically numbers published for a response (or for a daily IM meeting), are "as of" the previous day. 
-
 ![](../assets/SITREPSumMetadata4.PNG)
 
 The data dictionary table below shows the fields in each SITREP summary output file including a description of how each field value is calculated.
-
 ![](../assets/SITREP_Meta_GridUpdate3.PNG)
 
 # Sample SITREP maps
 Below are some sample SITREP maps using fictional data (outbreak and geography). Note that these are just a few that can be created with the summary tables from this tool. The toolbox creates 16 calculated fields as a result of the summary function and they are also part of the GIS features created. You could combine some of these fields as separately symbolized layers within a map, and they can be combined with user provided data. For instance, if a user has population data, they can calculate the case rate with the case summary output.
-
 *(Fictitious Island in graphics below)*
 
 ### 1. Cumulative number of confirmed cases
