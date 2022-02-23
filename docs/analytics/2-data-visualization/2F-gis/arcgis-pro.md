@@ -24,7 +24,7 @@ Metadata for the [SITREP summary](https://github.com/LangsterGA/test/blob/master
 
 
 *SITREP toolbox in action - click on image to see it larger in a new tab*
-![GoData](/images/AnimeToolboxFlowChart.gif)
+![GoData](../assets/AnimeToolboxFlowChart.gif)
 
 ## Toolbox prerequisites 
 Prior to using the toolbox, a Go.Data outbreak administrator must add you as a user to Go.Data and provide you the information in the first four bullets below. Currently, the toolbox works with server-based installations of Go.Data. 
