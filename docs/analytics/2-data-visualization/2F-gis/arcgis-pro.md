@@ -87,6 +87,7 @@ Four SITREP summary tables with 16 total calculated fields, each of which could 
 
 ![](../assets/SummaryCSVsUpdate.PNG)
 
+### Feature classes
 Four feature classes in the file geodatabase provided by user. Each feature classe includes its associated summary data.
 
 ![](../assets/FGDB.PNG)
