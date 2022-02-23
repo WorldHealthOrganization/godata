@@ -23,7 +23,7 @@ SITREP map products can be used in briefing and status documents, or printed and
 Metadata for the [SITREP summary](https://github.com/LangsterGA/test/blob/master/README.md#sitrep-summary-metadata) files, as well as some sample [SITREP maps](https://github.com/LangsterGA/test/blob/master/README.md#sample-sitrep-maps), are located further down on this page. Prior to running the tool, please read the [Helpful tidbits](https://github.com/LangsterGA/test/blob/master/README.md#Helpful-tidbits) section at the bottom of this page to avoid headaches.
 
 
-*SITREP toolbox in action - click on image to see it larger in a new tab*
+*SITREP toolbox in action*
 ![](../assets/AnimeToolboxFlowChart.gif)
 
 ## Toolbox prerequisites 
