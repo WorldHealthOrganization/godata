@@ -35,8 +35,10 @@ Prior to using the toolbox, a Go.Data outbreak administrator must add you as a u
 - ***GIS layer (optional)***: GIS layer with a unique identifier that matches the Go.Data summary data unique identifier field (LocationID). This is only necessary if you are joining summary data ouput to a GIS layer. The user must provide this layer - no data is provided with this toolbox. Some GIS data sources are referenced on this [page](https://worldhealthorganization.github.io/godata/locations/#using-gis-data-as-a-source-for-your-location-data).
 - ***Existing File Geodatabase (required for summary functions)***: This is required if you are generating the SITREP summary files and if you are joining to an existing GIS layer. The tool will create tables and create new features in the specified file geodatabase.
 - ***ArcGIS Pro***: It is assumed that you have access to and familiarity with ArcGIS Pro in order to use the toolbox. The version of Pro that this tool was built on is version 2.8.3 and it also works with 2.6.3 and 2.7.1. The version of Go.Data that it was built with is 40.2. As there are future releases of either applicattion, we will do our best to test this toolbox with each release. 
+
 # Get started
 ## Step 1: Download the Go.Data ArcGIS Pro SITREP toolbox from [here](https://github.com/WorldHealthOrganization/godata-ESRI-SITREP-toolbox)
+
 ## Step 2:  Open ArcGIS Pro and add the toolbox to your project
 To [add the toolbox](https://pro.arcgis.com/en/pro-app/latest/help/projects/connect-to-a-toolbox.htm), go to the “View” tab on the ribbon and click on the “Catalog Pane” icon. In your catalog pane, right-click on the “Toolboxes” item, select “Add Toolbox”, and then navigate to the folder where you downloaded the toolbox to add it.
 
