@@ -71,6 +71,7 @@ Five csvs of raw outbreak data. This data is returned from Go.Data API endpoints
 ![](../assets/RawCSVUpdate.PNG)
 ### Summary data
 Four SITREP summary tables with 16 total calculated fields, each of which could be used to create a separate map. Contents described in next section.
+
 ![](../assets/SummaryCSVsUpdate.PNG)
 ### Feature classes
 Four feature classes in the file geodatabase provided by user. Each feature classe includes its associated summary data.
@@ -78,6 +79,7 @@ Four feature classes in the file geodatabase provided by user. Each feature clas
 ![](../assets/FGDB.PNG)
 # SITREP summary metadata
 The following graphic illustrates the files and associated fields (16) that are calculated as part of the SITREP summary output. These fields are also included in the GIS features output. Note that fields are calculated as of the previous day. For instance, if you run the tool to map the value for confirmed cases last 7 days, that value would consist of the previous day (which is the day prior to running the tool), and the 6 days prior. This is because typically numbers published for a response (or for a daily IM meeting), are "as of" the previous day. 
+
 
 ![](../assets/SITREPSumMetadata4.PNG)
 
