@@ -25,7 +25,6 @@ Metadata for the [SITREP summary](https://worldhealthorganization.github.io/goda
 
 *SITREP toolbox in action*
 ![](../assets/AnimeToolboxFlowChart.gif)
-
 ## Toolbox prerequisites 
 Prior to using the toolbox, a Go.Data outbreak administrator must add you as a user to Go.Data and provide you the information in the first four bullets below. Currently, the toolbox works with server-based installations of Go.Data. 
 - ***Go.Data URL***: The URL of your server where Go.Data is, for example: "https://godata.moh.org/"
@@ -35,16 +34,12 @@ Prior to using the toolbox, a Go.Data outbreak administrator must add you as a u
 - ***GIS layer (optional)***: GIS layer with a unique identifier that matches the Go.Data summary data unique identifier field (LocationID). This is only necessary if you are joining summary data ouput to a GIS layer. The user must provide this layer - no data is provided with this toolbox. Some GIS data sources are referenced on this [page](https://worldhealthorganization.github.io/godata/locations/#using-gis-data-as-a-source-for-your-location-data).
 - ***Existing File Geodatabase (required for summary functions)***: This is required if you are generating the SITREP summary files and if you are joining to an existing GIS layer. The tool will create tables and create new features in the specified file geodatabase.
 - ***ArcGIS Pro***: It is assumed that you have access to and familiarity with ArcGIS Pro in order to use the toolbox. The version of Pro that this tool was built on is version 2.8.3 and it also works with 2.6.3 and 2.7.1. The version of Go.Data that it was built with is 40.2. As there are future releases of either applicattion, we will do our best to test this toolbox with each release. 
-
 # Get started
 ## Step 1: Download the Go.Data ArcGIS Pro SITREP toolbox from [here](https://github.com/WorldHealthOrganization/godata-ESRI-SITREP-toolbox)
-
 ## Step 2:  Open ArcGIS Pro and add the toolbox to your project
 To [add the toolbox](https://pro.arcgis.com/en/pro-app/latest/help/projects/connect-to-a-toolbox.htm), go to the “View” tab on the ribbon and click on the “Catalog Pane” icon. In your catalog pane, right-click on the “Toolboxes” item, select “Add Toolbox”, and then navigate to the folder where you downloaded the toolbox to add it.
-
 ## Step 3: Open "Create SITREP tables" dialog
 Click on the Go.Data toolbox drop down to see the Create SITREP Tables dialog. Highlight it, right-click and select 'Open'. This will open the dialog shown in the figure below.
-
 ![](../assets/DialogCompleteFinal_2.png)
 ## Step 4: Fill in the mandatory parameters ***(1-5 in dialog graphic above)***
 - Add the link to the Go.Data site (1), your user name (2), and your password (3). 
@@ -52,7 +47,6 @@ Click on the Go.Data toolbox drop down to see the Create SITREP Tables dialog. H
 Sometimes this can be a little slow - depends on your internet speed. The tool is accessing the Go.Data site via API endpoints using your credentials. 
 - Select the outbreak (4) you want to extract from.
 - Specify the folder (5) you want the raw csv file outputs written. 
-
 NOTE: If you would just like raw data extracts, you can just click the 'Run' button at this point.
 ## Step 5: Fill in Summary data parameters (optional)
 In order to create the SITREP summary output, complete items 6 - 8. Summary data includes 16 variables summarized by reporting area, so they can be mapped.
@@ -60,42 +54,34 @@ In order to create the SITREP summary output, complete items 6 - 8. Summary data
 - Specify folders (7) where you want to store your summary csv outputs. 
 - Specify a file geodatabase (8) to write the summary tables (it will also create csvs). 
 It can be an existing one, or you can create a new one prior to running tool. This is actually done in preparation for the next step.
-
 ## Step 6. Fill in Geography join parameters (optional)
 If you would like to map the summary data, you will need to join it to a GIS layer. Complete steps 9 - 11 to join your summary data and GIS layer. 
 - Check the box next to 'Join to Geography' (9).
 - Specify the GIS layer that you want the summary table to join to (10).
 - Specify the field in your GIS layer that will match the summary data (11).
 Note that the user must know if the locationID in the summary data will match the GIS layer beforehand. If you are unsure, just run the tool without joining to see the values in the LocationID field in the summary or raw data. Compare those values with your GIS dataset and proceed accordingly - you may need to manually manipulate the data to match fields for a join.
-
 ## Step 7. Click on the 'Run' button! 
 The tool is grabbing data from the Go.Data server and then summarizing the data so the size of the outbreak and your bandwidth will affect the time it takes to process.
-
 ## Step 8. Create maps using the output!
 ***(See [samples](https://worldhealthorganization.github.io/godata/arcgis-pro/#sample-sitrep-maps) below)***
-
 # Description of tool outputs
 Outputs of the tool include raw data, summarized indicators typically reported in an outbreak response, and new GIS features with summary data. Further details is provided below.
-
 ### Raw data
 Five csvs of raw outbreak data. This data is returned from Go.Data API endpoints for cases, contacts and locations. It includes most of the core variables thate are collected during an outbreak investigation. For more information about the fields in the raw csv output, please consult Go.Data metadata [here](https://worldhealthorganization.github.io/godata/data-mgmt/) for a more complete list of data collected in the Go.Data system.
 ![](../assets/RawCSVUpdate.PNG)
-
 ### Summary data
 Four SITREP summary tables with 16 total calculated fields, each of which could be used to create a separate map. Contents described in next section.
 ![](../assets/SummaryCSVsUpdate.PNG)
-
 ### Feature classes
 Four feature classes in the file geodatabase provided by user. Each feature classe includes its associated summary data.
 ![](../assets/FGDB.PNG)
-
 # SITREP summary metadata
 The following graphic illustrates the files and associated fields (16) that are calculated as part of the SITREP summary output. These fields are also included in the GIS features output. Note that fields are calculated as of the previous day. For instance, if you run the tool to map the value for confirmed cases last 7 days, that value would consist of the previous day (which is the day prior to running the tool), and the 6 days prior. This is because typically numbers published for a response (or for a daily IM meeting), are "as of" the previous day. 
+
 ![](../assets/SITREPSumMetadata4.PNG)
 
 The data dictionary table below shows the fields in each SITREP summary output file including a description of how each field value is calculated.
 ![](../assets/SITREP_Meta_GridUpdate3.PNG)
-
 # Sample SITREP maps
 Below are some sample SITREP maps using fictional data (outbreak and geography). Note that these are just a few that can be created with the summary tables from this tool. The toolbox creates 16 calculated fields as a result of the summary function and they are also part of the GIS features created. You could combine some of these fields as separately symbolized layers within a map, and they can be combined with user provided data. For instance, if a user has population data, they can calculate the case rate with the case summary output.
 *(Fictitious Island in graphics below)*
