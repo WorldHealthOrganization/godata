@@ -70,7 +70,7 @@ The tool is grabbing data from the Go.Data server and then summarizing the data 
 # Description of tool outputs
 Outputs of the tool include raw data, summarized indicators typically reported in an outbreak response, and new GIS features with summary data. Further details is provided below.
 ### Raw data
-Five csvs of raw outbreak data. This data is returned from Go.Data API endpoints for cases, contacts and locations. It includes most of the core variables thate are collected during an outbreak investigation. For more information about the fields in the raw csv output, please consult Go.Data metadata [here](https://worldhealthorganization.github.io/godata/data-mgmt/) for a more complete list of data collected in the Go.Data system.
+Five csvs of raw outbreak data. This data is returned from Go.Data API endpoints for cases, contacts and locations. It includes most of the core variables that are collected during an outbreak investigation. For more information about the fields in the raw csv output, please consult Go.Data metadata [here](https://worldhealthorganization.github.io/godata/data-mgmt/) for a more complete list of data collected in the Go.Data system.
 ![](../assets/RawCSVUpdate.PNG)
 ### Summary data
 Four SITREP summary tables with 16 total calculated fields, each of which could be used to create a separate map. Contents described in next section.
