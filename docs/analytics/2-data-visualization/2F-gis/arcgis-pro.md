@@ -42,6 +42,7 @@ Prior to using the toolbox, a Go.Data outbreak administrator must add you as a u
 To [add the toolbox](https://pro.arcgis.com/en/pro-app/latest/help/projects/connect-to-a-toolbox.htm), go to the “View” tab on the ribbon and click on the “Catalog Pane” icon. In your catalog pane, right-click on the “Toolboxes” item, select “Add Toolbox”, and then navigate to the folder where you downloaded the toolbox to add it.
 ## Step 3: Open "Create SITREP tables" dialog
 Click on the Go.Data toolbox drop down to see the Create SITREP Tables dialog. Highlight it, right-click and select 'Open'. This will open the dialog shown in the figure below.
+
 ![](../assets/DialogCompleteFinal_2.png)
 ## Step 4: Fill in the mandatory parameters ***(1-5 in dialog graphic above)***
 - Add the link to the Go.Data site (1), your user name (2), and your password (3). 
