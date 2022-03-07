@@ -40,3 +40,7 @@ All dashboard queries are already configured, you simply need to connect it to y
 ### Click close and apply to save.
 
 If you are encountering problems don't hesitate to reach out at _godata@who.int._
+
+
+### To see the training on the "creation of dashboards in Power BI using the information collected in Go.Data" performed virtualy with the MoH's team in Chile, please visit the [Go.Data Community of Practice](https://community-godata.who.int/conversations/dashboards-and-analysis/godata-implementation-in-chile-training-in-the-development-of-dashboards-in-power-bi-connected-to-godata/621f8a65c838953441d0246e)
+
