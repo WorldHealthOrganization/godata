@@ -21,8 +21,8 @@ To access installation files to begin collecting data for any of the below disea
 - [Detailed Data Dictionary](https://docs.google.com/spreadsheets/d/1dPP4jsnwlXhEqlLfSzzdmitUqjnb0EsF/edit?usp=sharing&ouid=106213743316927309200&rtpof=true&sd=true)
 
 ## Monkeypox 
-- [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/133486a8-9b49-4461-a0d7-211c140947cc-562840094.pdf)
-- [Detailed Data Dictionary](https://docs.google.com/spreadsheets/d/14rz48tRfOupiuK-emaROW7gEnjcVGVCz/edit?usp=sharing&ouid=106213743316927309200&rtpof=true&sd=true)
+- [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/133486a8-9b49-4461-a0d7-211c140947cc-562840094.pdf) [new version coming soon]
+- [Detailed Data Dictionary](https://docs.google.com/spreadsheets/d/17edWIaYZ9VUZkRS68oAAOJyFOIdR9J7B/edit?usp=sharing&ouid=106213743316927309200&rtpof=true&sd=true) [aligned with WHO Case Report Form and Case Investigation Forms, 2022]
 
 ## Cholera
 - Metadata Overview Guide
