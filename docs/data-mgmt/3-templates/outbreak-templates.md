@@ -21,8 +21,9 @@ To access installation files to begin collecting data for any of the below disea
 - [Detailed Data Dictionary](https://docs.google.com/spreadsheets/d/1dPP4jsnwlXhEqlLfSzzdmitUqjnb0EsF/edit?usp=sharing&ouid=106213743316927309200&rtpof=true&sd=true)
 
 ## Monkeypox 
-- [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/133486a8-9b49-4461-a0d7-211c140947cc-562840094.pdf) [new version coming soon]
-- [Detailed Data Dictionary](https://docs.google.com/spreadsheets/d/17edWIaYZ9VUZkRS68oAAOJyFOIdR9J7B/edit?usp=sharing&ouid=106213743316927309200&rtpof=true&sd=true) [aligned with WHO Case Report Form and Case Investigation Forms, 2022]
+- [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/133486a8-9b49-4461-a0d7-211c140947cc-562840094.pdf) [OLD prior to 2022, new version coming soon]
+- [Detailed Data Dictionary](https://docs.google.com/spreadsheets/d/1iZ4E0GNSmPEBUzu5-zjaYF8gwL7cgHDTLy5NU0Ivs0Q/edit?usp=sharing) [aligned with 2022 WHO Case Report Form and Case Investigation Forms, 2022]
+- please email godata@who.int to obtain credentials to demo instance to see template in use.
 
 ## Cholera
 - Metadata Overview Guide
