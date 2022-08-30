@@ -1,8 +1,7 @@
 ---
 layout: page
 title: QGIS
-parent: Data Visualization
-grand_parent: Analytics & Dashboards
+parent: Analytics & Dashboards
 nav_order: 6
 permalink: /qgis/
 has_children: false
