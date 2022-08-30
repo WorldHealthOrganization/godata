@@ -1,7 +1,6 @@
 ---
 layout: page
-parent: Data Visualization
-grand_parent: Analytics & Dashboards
+parent: Analytics & Dashboards
 title: Google DataStudio
 nav_order: 3
 permalink: /google-datastudio/
