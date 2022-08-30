@@ -2,7 +2,7 @@
 layout: page
 title: Python
 parent: Analytics & Dashboards
-nav_order: 5
+nav_order: 6
 permalink: /python/
 has_children: false
 ---
