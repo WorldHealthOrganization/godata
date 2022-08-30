@@ -2,7 +2,7 @@
 layout: page
 parent: Analytics & Dashboards
 title: R
-nav_order: 1
+nav_order: 2
 permalink: /R/
 ---
 
