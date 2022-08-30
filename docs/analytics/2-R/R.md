@@ -8,7 +8,7 @@ permalink: /R/
 
 # Interacting with Go.Data in R
 
-## Go.Data R Package Development
+## Go.Data R Packages
 R Package
 {: .label .label-purple }
 
@@ -24,8 +24,10 @@ Reference Template
 
 ![r-reporting-workflow](../assets/R_reporting_workflow.PNG)
 
-## RShiny App Templates 
+## Shiny Apps 
 Shiny Apps have been produced across the Go.Data Community of Practice that can serve as reference templates for those who wish to have a live application updated in real-time, versus static reports. Countries and institutions who would like host these on their Go.Data server can start with these frameworks and adapt it with hopefully minimal updates required.
+
+### [lab2godata] _coming soon_
 
 ### [Reference Go.Data R Shiny App Template](https://github.com/WorldHealthOrganization/godata/tree/master/analytics/r-reporting/r-shiny)
 Reference Template
