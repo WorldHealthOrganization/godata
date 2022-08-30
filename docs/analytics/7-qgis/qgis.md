@@ -2,7 +2,7 @@
 layout: page
 title: QGIS
 parent: Analytics & Dashboards
-nav_order: 6
+nav_order: 7
 permalink: /qgis/
 has_children: false
 ---
