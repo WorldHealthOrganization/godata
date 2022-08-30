@@ -2,7 +2,7 @@
 layout: page
 title: ArcGIS Pro
 parent: Analytics & Dashboards
-nav_order: 7
+nav_order: 8
 permalink: /arcgis-pro/
 has_children: false
 ---
