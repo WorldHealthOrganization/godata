@@ -29,7 +29,7 @@ Shiny Apps have been produced across the Go.Data Community of Practice that can 
 
 ### [lab2godata] _coming soon_
 
-### [Reference Go.Data R Shiny App Template](https://github.com/WorldHealthOrganization/godata-rshiny-uat))
+### [Reference Go.Data R Shiny App Template](https://github.com/WorldHealthOrganization/godata-rshiny-uat)
 Reference Template
 {: .label .label-blue }
 This Shiny App builds on [Go.Data RMarkdown resources](https://github.com/WorldHealthOrganization/godata/blob/master/analytics/r-reporting) allowing for more interactive components for filtering and drilling down into data on a more granular basis. 
