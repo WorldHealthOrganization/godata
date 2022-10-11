@@ -13,7 +13,7 @@ R Package
 {: .label .label-purple }
 
 - [`godataR`](https://github.com/WorldHealthOrganization/godataR) package was developed to assist with connecting to your API and extracting large volumes of data into R for further analysis. If you would like more information or if you have feedback, please email godata@who.int. If you are experiencing a bug or have a feature request, please submit an issue [here](https://github.com/WorldHealthOrganization/godataR/issues)
-- [`lab2godata`](https://github.com/WorldHealthOrganization/lab2godata) package was developed to allow Go.Data users to easily match new laboratory results with existing cases or lab records in Go.Data, in order to create new Go.Data lab records or update them, respectively.
+- [`lab2godata`](https://github.com/WorldHealthOrganization/lab2godata) package was developed to allow Go.Data users to easily match new laboratory results with existing cases or lab records in Go.Data, in order to create new Go.Data lab records or update them, respectively. If you are experiencing a bug or have a feature request, please submit an issue [here](https://github.com/WorldHealthOrganization/lab2godata/issues)
 - if you have ideas for further package development, we would love to hear from you!
 
 ## Canned RMarkdown Reports 
