@@ -18,7 +18,7 @@ _To engage directly with this community, visit the "Interoperability" forum in t
 
 Collaborators in Spain and Tajikistan have developed a DHIS2 app for exchanging case and contact metadata and data between DHIS2 and Go.Data. The initial configuration maps to the DHIS2 Tracker COVID-19 Standard Metadata Package, enabling countries or institutions who are using DHIS2 for case registration to utilize Go.Data for additional visualization, contact listing and contact tracing follow-up. The second iteration is more flexible in allowing for any variety of metadata configuration in DHIS2, where the front-end user can "map" DHIS2 fields to Go.Data fields as needed, regardless of which Program or Form is utilized.
 
-See more documentation [here]([https://go-data.gitbook.io/go.data-dhis2-interoperability-app/](https://go-data.gitbook.io/go.data-dhis2-interoperability-app/getting-started/installation-and-issue-reporting). 
+See more documentation [here](https://go-data.gitbook.io/go.data-dhis2-interoperability-app/getting-started/installation-and-issue-reporting)
 
 For questions / considerations on if this can be piloted in your setting and to provide feedback, please email us at godata@who.int.
 
