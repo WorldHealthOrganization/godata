@@ -18,13 +18,12 @@ _To engage directly with this community, visit the "Interoperability" forum in t
 
 Collaborators in Spain and Tajikistan have developed a DHIS2 app for exchanging case and contact metadata and data between DHIS2 and Go.Data. The initial configuration maps to the DHIS2 Tracker COVID-19 Standard Metadata Package, enabling countries or institutions who are using DHIS2 for case registration to utilize Go.Data for additional visualization, contact listing and contact tracing follow-up. The second iteration is more flexible in allowing for any variety of metadata configuration in DHIS2, where the front-end user can "map" DHIS2 fields to Go.Data fields as needed, regardless of which Program or Form is utilized.
 
-See more documentation [here](https://go-data.gitbook.io/go.data-dhis2-interoperability-app/). 
+See more documentation [here]([https://go-data.gitbook.io/go.data-dhis2-interoperability-app/](https://go-data.gitbook.io/go.data-dhis2-interoperability-app/getting-started/installation-and-issue-reporting). 
 
-For questions / considerations on if this can be piloted in your setting and to provide feedback, please view [this post](https://community-godata.who.int/conversations/interoperability/call-of-interest-piloting-godatadhis2-interoperability-app/6012b391dbaa4b35ec1837cd) on the Go.Data Community of Practice or email us at godata@who.int.
+For questions / considerations on if this can be piloted in your setting and to provide feedback, please email us at godata@who.int.
 
-Additional Github directories: 
--[dhis2-godata-interoperability](https://github.com/WISCENTD-UPC/dhis2-godata-interoperability)
--[godata-api-wrapper](https://github.com/WISCENTD-UPC/godata-api-wrapper)
+Github repository: 
+-[dhis2-godata-interop-app](https://github.com/WorldHealthOrganization/godata-dhis2-interop-app)
 
 ## [DHIS2 to Go.Data Metadata Sync](https://worldhealthorganization.github.io/metadata-synchronization-blessed/metadatasync/)
 Collaborators at [EyeSeeTea](https://github.com/EyeSeeTea) have developed 
