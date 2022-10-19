@@ -19,7 +19,7 @@ The first key steps are also listed below.
 
 ## Step 1: Download [Microsoft Power BI Desktop](https://www.microsoft.com/en-us/download/details.aspx?id=58494)
 
-## Step 2: Download the [Go.Data PowerBI Dashboard libary](https://github.com/WorldHealthOrganization/godata/blob/master/docs/analytics/2-data-visualization/2B-power-bi/Go-Data%20Epidemiological%20Dashboards_FINAL.pbix)
+## Step 2: Download the [Go.Data Power BI Dashboard library](https://github.com/WorldHealthOrganization/godata/blob/master/docs/analytics/2-data-visualization/2B-power-bi/Go-Data%20Epidemiological%20Dashboards_FINAL.pbix)
 
 This is a .pbix file format, which you can double click to open after downloading PowerBI Desktop. The most updated version will always be on our Github repository in the `power-bi` folder as linked above.
 
