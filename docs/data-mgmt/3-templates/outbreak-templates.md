@@ -32,6 +32,10 @@ To access installation files to begin collecting data for any of the below disea
 - [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/a278b5aa-54cb-4592-9e47-0325faf3bf50-856232029.pdf) 
 - [Detailed Data Dictionary](https://docs.google.com/spreadsheets/d/17fqWrabKtVGOUQswiv1Ix3u8ocX8Bu66/edit?usp=sharing&ouid=111074494541402159127&rtpof=true&sd=true)
 
+## Measles
+- [Metadata Overview Guide](https://github.com/WorldHealthOrganization/godata/blob/a84d0c15229d7ddaf56fb5591fdf14df68850c32/docs/assets/Go.Data%20Metadata%20Overview%20-%20Measles.pdf)
+- Detailed Data Dictionary
+
 ## SARS-CoV-2
 - [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/69a1e048-e8b7-47ea-8e90-512a50600ecd-1206687439.pdf)
 - Detailed Data Dictionary
