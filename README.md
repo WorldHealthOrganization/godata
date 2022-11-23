@@ -38,7 +38,7 @@ Copyright The Go.Data Contributors.
 
 # Terms of Use and License Agreement
 
-Go.Data is available under the [GNU General Public License Version 3](https://www.gnu.org/licenses/gpl-3.0-standalone.html).  
+Go.Data is available under the [GNU General Public License Version 3](LICENSE.txt).
 
 Go.Data also includes external libraries that are available under a variety of licenses.
 
