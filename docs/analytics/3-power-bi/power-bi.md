@@ -9,7 +9,7 @@ permalink: /power-bi/
 # Go.Data PowerBI "Starter Kit"
 Reference Template
 {: .label .label-blue }
-We have developed a pre-formatted PowerBI dashboard library that you can connect to your Go.Data instance with a few simple steps. The result includes various epidemiological dashboards adapted specifically for the Go.Data metadata structure, has seen in screenshot below.
+We have developed a pre-formatted PowerBI dashboard template that you can connect to your Go.Data instance with a few simple steps. The result includes various epidemiological dashboards adapted specifically for the Go.Data metadata structure, has seen in screenshot below.
 
 ![](../assets/powerbi_dash_new.png)
 
@@ -19,7 +19,7 @@ The first key steps are also listed below.
 
 ## Step 1: Download [Microsoft Power BI Desktop](https://www.microsoft.com/en-us/download/details.aspx?id=58494)
 
-## Step 2: Download the [Go.Data Power BI Dashboard library](https://github.com/WorldHealthOrganization/godata/blob/master/docs/analytics/3-power-bi/Go-Data%20Epidemiological%20Dashboards_FINAL.pbix)
+## Step 2: Download the [Go.Data Power BI Dashboard template](https://github.com/WorldHealthOrganization/godata/blob/master/docs/analytics/3-power-bi/Go-Data%20Epidemiological%20Dashboards_FINAL.pbix)
 
 This is a .pbix file format, which you can double click to open after downloading PowerBI Desktop. The most updated version will always be on our Github repository in the `power-bi` folder as linked above.
 
