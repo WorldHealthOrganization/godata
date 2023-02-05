@@ -1,4 +1,4 @@
-###### SET INPUT PARAMETES ################################################################################################
+###### SET INPUT PARAMETERS ################################################################################################
 
 url <- "https://godata-xxx.who.int/"            # <--------------------- insert instance url here, don't forget the slash at end !
 username <- "godata_api@who.int"                             # <--------------------- insert your username for signing into Go.Data webapp here

@@ -1,6 +1,6 @@
 ## This script allows you to update the dates of the training outbreak, or any other outbreak, but one oubreak at a time
 
-###### SET INPUT PARAMETES ################################################################################################
+###### SET INPUT PARAMETERS ################################################################################################
 
 rl <- "https://godata-xxx.who.int/"            # <--------------------- insert instance url here, don't forget the slash at end !
 username <- "godata_api@who.int"                             # <--------------------- insert your username for signing into Go.Data webapp here

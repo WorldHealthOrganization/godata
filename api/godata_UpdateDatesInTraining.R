@@ -1,7 +1,7 @@
 
 ## This script allows you to update the dates of the training outbreak, or any other outbreak, but one oubreak at a time
 
-###### SET INPUT PARAMETES ################################################################################################
+###### SET INPUT PARAMETERS ################################################################################################
 url <- "https://godata-xxx.who.int/"            # <--------------------- insert instance url here, don't forget the slash at end !
 username <- "godata_api@who.int"                             # <--------------------- insert your username for signing into Go.Data webapp here
 password <- "xxxxxxxxxxxxxxx"                           # <--------------------- insert your password for signing into Go.Data webapp here
@@ -268,7 +268,7 @@ for (i in 1:length(events)) {
       
     }
   
-  print(paste0("Updateing date of event: ", i))
+  print(paste0("Updating date of event: ", i))
   Sys.sleep(0.5)
   put <- PUT(paste0(url,"api/outbreaks/",outbreak_to_update ,"/events/",event_id,"?access_token=",token), body=events[[i]], encode="json")
   content(put)

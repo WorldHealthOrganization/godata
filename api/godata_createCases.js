@@ -149,7 +149,7 @@ function loginFunction() {
  }
 
    /**
-* Retriving Temporally stored data 
+* Retrieving Temporally stored data 
 * 
 *
 **/ 

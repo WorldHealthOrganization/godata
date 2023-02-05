@@ -1,7 +1,7 @@
 
 ## This scripts allows to set the users roles in bulk
 
-###### SETINPUT PARAMETES ################################################################################################
+###### SETINPUT PARAMETERS ################################################################################################
 url <- "https://godata-xxx.who.int/"   # <-------- insert instance url of your server here, don't forget the slash at end !
 
 ## Credentials of users with the right to manage users
