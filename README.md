@@ -2,9 +2,9 @@
 
 # Welcome to the Go.Data Site! 
 
-This repostiory serves as an [umbrella site](https://worldhealthorganization.github.io/godata/) to gear the community towards existing technical documentation, resources, and open source components developed by and for the Go.Data community worldwide, particularly in the area of Analytics and Interoperability.
+This repository serves as an [umbrella site](https://worldhealthorganization.github.io/godata/) to gear the community towards existing technical documentation, resources, and open source components developed by and for the Go.Data community worldwide, particularly in the area of Analytics and Interoperability.
 
-You can find all additional repos connected to the Go.Data tool in the overarching WHO Github Repository by filtering for topics = "go-data", as seen [here](https://github.com/WorldHealthOrganization?q=go-data&type=&language=)
+You can find all additional repos connected to the Go.Data tool in the overarching WHO Github Repository by filtering for topics = "go-data", as seen [here](https://github.com/WorldHealthOrganization?q=go-data&type=&language=).
 
 ## What is Go.Data? 
 
