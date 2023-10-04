@@ -9,3 +9,4 @@ To communicate an issue or recommend a feature request, please email godata@who.
 ## [Version 43.0](https://github.com/WorldHealthOrganization/godata/blob/master/release-notes/v43.md) | ***18 August 2022***
 ## [Version 42.0](https://github.com/WorldHealthOrganization/godata/blob/master/release-notes/v42.md) | ***13 July 2022***
 ## [Version 41.0](https://github.com/WorldHealthOrganization/godata/blob/master/release-notes/v41.md) | ***16 June 2022***
+## [Version 40.1](https://github.com/WorldHealthOrganization/godata/blob/master/release-notes/v40.md) | ***22 December 2021***
