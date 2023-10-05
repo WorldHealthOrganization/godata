@@ -2,6 +2,7 @@
 Each new version is available for download from its usual location. See below for specific enhancements and bug fixes for each upgrade. 
 To communicate an issue or recommend a feature request, please email godata@who.int.
 
+## [Version 48.0](https://github.com/WorldHealthOrganization/godata/blob/master/release-notes/v48.md) | ***05 October 2023***
 ## [Version 47.0](https://github.com/WorldHealthOrganization/godata/blob/master/release-notes/v47.md) | ***22 June 2023***
 ## [Version 46.0](https://github.com/WorldHealthOrganization/godata/blob/master/release-notes/v46.md) | ***04 May 2023***
 ## [Version 45.0](https://github.com/WorldHealthOrganization/godata/blob/master/release-notes/v45.md) | ***23 February 2023***
