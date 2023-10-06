@@ -17,10 +17,10 @@ Go.Data utilizes of the following tools and components:
 Tool/Component | Description | Project Repository
 --------- | --------- | ---------
 Go.Data Installer | Creates installers for various system configurations | [GoDataSource-Installers**](https://github.com/WorldHealthOrganization/GoDataSource-Installers) 
-Mobile and Webapp Components | Go.Data outbreak investigation and contract tracing system, both the PC-installable user interface and database parts and the mobile application. | [GoDataSource-MobileApp**](https://github.com/WorldHealthOrganization/GoDataSource-MobileApp)
-Push Notification Server | Built using Express 4.x, Parse Dashboard 1.2, Parse Server 3.1 and Node 8.x | [GoDataSource_PushNotificationServer**](https://github.com/WorldHealthOrganization/GoDataSource_PushNotificationServer)
-Front End Application | Built with Angular CLI version 7.3.7, using Angular v7.2.11 | [GoDataSource-FrontEnd**](https://github.com/WorldHealthOrganization/GoDataSource-FrontEnd)
-Go.Data API | Built using Loopback 3.x using Node 8.x and MongoDb 3.2 | [GoDataSource-API**](https://github.com/WorldHealthOrganization/GoDataSource-API)
+Mobile App |  IOS and Android applications of Go.Data. | [GoDataSource-MobileApp**](https://github.com/WorldHealthOrganization/GoDataSource-MobileApp)
+Push Notification Server | For wiping data from mobile devices. The feature can only be accessed if the required permissions are enabled. | [GoDataSource_PushNotificationServer**](https://github.com/WorldHealthOrganization/GoDataSource_PushNotificationServer)
+Front End Application | The web user interface part of Go.Data. | [GoDataSource-FrontEnd**](https://github.com/WorldHealthOrganization/GoDataSource-FrontEnd)
+Go.Data API | The backend of Go.Data that connects to the database, retrieves data etc.  | [GoDataSource-API**](https://github.com/WorldHealthOrganization/GoDataSource-API)
 
  ** _these repositories are currently private and will be made public with time_ 
 
