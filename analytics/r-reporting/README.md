@@ -42,7 +42,7 @@ TIP: In order to obtain your outbreak ID, navigate to View Outbreak in Go.Data a
 Run the script by clicking "Source".
 NOTE: you will receive an error if you do not have proper contents in the *scripts* (necessary for downloading pre-requisite packages & setting core fields).
 
-Once the script has succesfully completed, you should have created several data frames in your R global environment that will be used in subsequent cleaning scripts.
+Once the script has successfully completed, you should have created several data frames in your R global environment that will be used in subsequent cleaning scripts.
 
 ![](https://github.com/WorldHealthOrganization/godata/blob/master/docs/assets/R_collections.PNG)
 

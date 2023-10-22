@@ -37,7 +37,7 @@ Note the following Mask ID* naming conventions when constructing your identifier
 - `*`: For any character with no limitations in ID length
 
 **Examples**
-- `Case Mask ID: *` might be used if we wanted to import an external identifer for `case_id` with no limits on characters (e.g., `028391BX01`, `827JN09K11`)
+- `Case Mask ID: *` might be used if we wanted to import an external identifier for `case_id` with no limits on characters (e.g., `028391BX01`, `827JN09K11`)
 - `Case Mask ID: CASE-99999` might be used if we wanted to auto-assign an autonumber `case_id` with a standard prefix (e.g., `CASE-00001`, `CASE-00002`)
 - `Case Mask ID: @@@-999999999` might be used if we wanted to import `case_id` that included country code and national Id number (e.g., `SEN-021929192`)
 
@@ -55,7 +55,7 @@ ___________________________
 ### National IDs and Importing Other Existing Identifiers
 If you have an existing unique identifier used in external systems, such as a `National ID`, you may choose to implement this as the unique identifier scheme in the Go.Data system so that all Go.Data `Contact` or `Case` records will also be tagged with this Id.  
 
-To import this external identifer to Go.Data...
+To import this external identifier to Go.Data...
 1. Consider setting the `Case Mask ID: *` so that you can freely import this external identifier with no constraints (or use a `Mask ID` like `99999999` if you know that the Id has a standard format of 8 digits. 
 2. If you prefer that all `Contacts` or `Cases` also be assigned a Go.Data-generated identifier, then you may instead choose to set the `Case Mask ID` to a custom identifier scheme, and rather use the `Document` variable (see below) to also capture the `National ID` or other external identifier. 
 
