@@ -79,9 +79,13 @@ Copyright and license. The Software is copyright (©) World Health Organization,
 
 ## 4. Copyright, Disclaimer and Terms of Use for the Maps 
 
-#### 4.1. The boundaries and names shown and the designations used on the maps [embedded in the Software] (the “Maps”) do not imply the expression of any opinion whatsoever on the part of WHO concerning the legal status of any country, territory, city or area or of its authorities, or con-cerning the delimitation of its frontiers or boundaries. Dotted and dashed lines on maps represent approximate border lines for which there may not yet be full agreement. 
+#### 4.1. 
 
-#### 4.2. Unlike the Software, WHO is not publishing the Maps under the terms of the GNU GPL-3.0. The Maps are not based on “R”, they are an independent and separate work from the Software, and not intended to be distributed as “part of a whole” with the Software.
+The boundaries and names shown and the designations used on the maps [embedded in the Software] (the “Maps”) do not imply the expression of any opinion whatsoever on the part of WHO concerning the legal status of any country, territory, city or area or of its authorities, or con-cerning the delimitation of its frontiers or boundaries. Dotted and dashed lines on maps represent approximate border lines for which there may not yet be full agreement. 
+
+#### 4.2. 
+
+Unlike the Software, WHO is not publishing the Maps under the terms of the GNU GPL-3.0. The Maps are not based on “R”, they are an independent and separate work from the Software, and not intended to be distributed as “part of a whole” with the Software.
 
 ## 5. Acknowledgment and Use of WHO Name and Emblem
 
