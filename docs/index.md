@@ -21,7 +21,7 @@ You can find a collection of all other forked repositories related to the Go.Dat
 ## Aim of this documentation site
 The Go.Data Docs Site is a centralized place where users implementing Go.Data for outbreak investigation can access open-source solutions related to analytics and interoperability. This includes code snippets for interacting with the Go.Data API; detailed metadata descriptions across outbreak templates; live integrations with other platforms; and analytics connectors across a range of tools., and conduct additional analysis with a range of software tools.
 
-Any generic information about Go.Data is best accessed through our [Community of Practice website](https://community-godata.who.int/) (https://community-godata.who.int/), where we link to a range of user guides and training materials. You can dialogue there with the community of Go.Data users on a number of discussion forums. You can access our open-access online training course across multiple languages through OpenWHO [here](https://openwho.org/courses/godata-en).
+Any generic information about Go.Data is best accessed through our [Community of Practice website](https://goarn.who.int/virtual-spaces/godataproject) (https://goarn.who.int/virtual-spaces/godataproject), where we link to a range of user guides and training materials. You can dialogue there with the community of Go.Data users on a number of discussion forums. You can access our open-access online training course across multiple languages through OpenWHO [here](https://openwho.org/channels/godata).
 ![godata-cop](./assets/cop.PNG)
 
 ### Engaging the open-source community
