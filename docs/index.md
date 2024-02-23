@@ -35,6 +35,9 @@ If you would like to try Go.Data before downloading and installing yourself then
   2. Your intended use of Go.Data
   3. Your preferred duration for using the demo site
 
+## Go.Data installation files
+The latest version of Go.Data installation files for both Windows and Linux at the [WHO Go.Data site](https://www.who.int/tools/godata).
+
 ## Questions & Contributions
 We are actively seeking feedback and contributions from the community. Please report any bugs, suggestions or feature requests as new issues [here](https://github.com/WorldHealthOrganization/godata/issues), clearly stating topic in the subject title and tagging with appropriate labels. You can also submit a pull request directly to the repository (first email [godata@who.int](mailto://godata@who.int) to be added as a collaborator).
 
