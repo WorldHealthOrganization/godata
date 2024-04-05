@@ -35,11 +35,11 @@ See Github directories:
 -[dhis2godata](https://github.com/WorldHealthOrganization/WIDP-DHIS2-scripts/tree/master/dhis2godata)
 
 
-## [Go.Data Anonymization Extenstion](https://github.com/WorldHealthOrganization/InSSIDE)
+## [Go.Data Anonymization Extension](https://github.com/WorldHealthOrganization/InSSIDE)
 
 ![](../assets/UPC_anony_infrastructure.png)
 
-Collaborators at the Polytechnic University of Catalonia (UPC) have developed an extension to enable secure exchange of anonymized case data across institutions, such as hospitals. When a user connects to GoData if he/she has the data anonymization extension installed, it communicate via internet to a seperate License Server based on Digital Rights Managemetn (DRM) techniques.
+Collaborators at the Polytechnic University of Catalonia (UPC) have developed an extension to enable secure exchange of anonymized case data across institutions, such as hospitals. When a user connects to GoData if he/she has the data anonymization extension installed, it communicate via internet to a separate License Server based on Digital Rights Managemetn (DRM) techniques.
 
 ![](../assets/UPC_decryption.png)
 

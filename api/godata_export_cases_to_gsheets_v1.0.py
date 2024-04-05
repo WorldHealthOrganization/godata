@@ -137,7 +137,7 @@ worksheet.update_cells(cell_list)
 ## INSERT DF -----
 worksheet.update([df_agg.columns.values.tolist()] + df_agg.values.tolist())
 
-## INSERT LAST UPATE -----
+## INSERT LAST UPDATE -----
 timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
 worksheet = sht.worksheet("meta")
 worksheet.update('A2', timestamp)

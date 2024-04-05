@@ -287,7 +287,7 @@ active_per_sup_aire <- active_contacts_full_linelist %>%
   group_by(sup, aire) %>%
   count()
 
-## Formatting for prettier ouput
+## Formatting for prettier output
 
 tab_active_contacts_status_daily <- active_contacts_full_linelist %>%
 mutate(sup = str_replace_na(sup, replacement = "aucun correctement attribué" )) %>%

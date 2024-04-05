@@ -850,7 +850,7 @@ contacts_per_case <- relationships_clean %>%
          contacts_per_case = n)
 
 ############################Riddy-Ndoma#########################################
-# Creating of tb cases with his location hiearchy
+# Creating of tb cases with his location hierarchy
 ################################################################################
 # cases_clean=cases_clean %>%
 #   left_join(locations_clean, by=c("usualPlaceOfResidenceLocationId" = "location_id")) 
