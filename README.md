@@ -16,13 +16,11 @@ Go.Data utilizes of the following tools and components:
 
 Tool/Component | Description | Project Repository
 --------- | --------- | ---------
-Go.Data Installer | Creates installers for various system configurations | [GoDataSource-Installers**](https://github.com/WorldHealthOrganization/GoDataSource-Installers) 
+Go.Data Installer | Creates installers for various system configurations | [GoDataSource-Installers](https://github.com/WorldHealthOrganization/GoDataSource-Installers) 
 Mobile App |  IOS and Android applications of Go.Data. | [GoDataSource-MobileApp](https://github.com/WorldHealthOrganization/GoDataSource-MobileApp)
 Push Notification Server | For wiping data from mobile devices. The feature can only be accessed if the required permissions are enabled. | [GoDataSource_PushNotificationServer](https://github.com/WorldHealthOrganization/GoDataSource_PushNotificationServer)
 Front End Application | The web user interface part of Go.Data. | [GoDataSource-FrontEnd](https://github.com/WorldHealthOrganization/GoDataSource-FrontEnd)
 Go.Data API | The backend of Go.Data that connects to the database, retrieves data etc.  | [GoDataSource-API](https://github.com/WorldHealthOrganization/GoDataSource-API)
-
- ** _this repository is currently private and will be made public soon_ 
 
 ## In the [*Go.Data Docs Site*](https://worldhealthorganization.github.io/godata/), you can find:
 
