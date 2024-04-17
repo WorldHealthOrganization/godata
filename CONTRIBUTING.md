@@ -1,6 +1,6 @@
 # Contributing to Go.Data
 Thank you for taking the time to contribute! Please read our
-[code of conduct](./CODE_OF_CONDUCT.md) before contributing and check out our discussions (https://goarn.who.int/virtual-spaces/godataproject) to get in contact with the Go.Data project team and other community members. .
+[code of conduct](./CODE_OF_CONDUCT.md) before contributing and check out our [discussions] (https://goarn.who.int/virtual-spaces/godataproject) to get in contact with the Go.Data project team and other community members. .
 
 ## Got a Question or Problem?
 [Post a question in the Go.Data Forum](https://goarn.who.int/virtual-spaces/godataproject)
