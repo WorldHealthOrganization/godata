@@ -50,6 +50,6 @@ Feature requests cover everything that involves adding new features to Go.Data.
 ## Contributing
 
 ### Contributing to the Project
-There are many ways in which you can contribute to this project as a non-developer.If there is something you would like to do that you don't find instructions about here - or if you want to learn how you can get involved - please contact us https://goarn.who.int/virtual-spaces/godataproject
+There are many ways in which you can contribute to this project as a non-developer. If there is something you would like to do that you don't find instructions about here - or if you want to learn how you can get involved - please contact us at godata@who.int or through our Go.Data Community of Practice at https://goarn.who.int/virtual-spaces/godataproject.
 
 
