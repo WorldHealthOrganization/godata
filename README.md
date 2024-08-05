@@ -42,7 +42,7 @@ We would appreciate your contributions or feedback so that the user base can ben
 
 If you have a contribution to make, please email godata@who.int to be added to the repository and submit a pull request, including a documentation page on your Use Case for Analytics or Interoperability.
 
-You can also visit our Community of Practice website to swap learnings or post queries at [https://community-godata.who.int/](https://community-godata.who.int/).
+You can also visit our Community of Practice website to swap learnings or post queries at [https://goarn.who.int/virtual-spaces/godataproject](https://goarn.who.int/virtual-spaces/godataproject).
 
 # Terms of Use
 
