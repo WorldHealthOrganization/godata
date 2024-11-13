@@ -22,8 +22,8 @@ To access installation files to begin collecting data for any of the below disea
 
 ## Mpox 
 - [Detailed Data Dictionary]:
-  - [Aligned with 2024 WHO Case Report Form and Case Investigation Forms, 2024](https://docs.google.com/spreadsheets/d/1Bch_R4-J7u2el33uUBwpnUtflQWrHrcw/edit?usp=drive_web&ouid=111074494541402159127&rtpof=true) 
-  - [Aligned with 2022 WHO Case Report Form and Case Investigation Forms, 2022](https://docs.google.com/spreadsheets/d/1iZ4E0GNSmPEBUzu5-zjaYF8gwL7cgHDTLy5NU0Ivs0Q/edit?usp=sharing)
+  - [Aligned with 2024 WHO Case Report Form and Case Investigation Forms](https://docs.google.com/spreadsheets/d/1Bch_R4-J7u2el33uUBwpnUtflQWrHrcw/edit?usp=drive_web&ouid=111074494541402159127&rtpof=true) 
+  - [Aligned with 2022 WHO Case Report Form and Case Investigation Forms](https://docs.google.com/spreadsheets/d/1iZ4E0GNSmPEBUzu5-zjaYF8gwL7cgHDTLy5NU0Ivs0Q/edit?usp=sharing)
 - please email godata@who.int to obtain credentials to demo instance to see template in use.
 
 ## Cholera
