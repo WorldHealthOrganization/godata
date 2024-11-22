@@ -22,7 +22,7 @@ To access installation files to begin collecting data for any of the below disea
 
 ## Mpox 
  
-  - [Detailed Data Dictionary - Aligned with 2024 WHO CRF and CIF](https://docs.google.com/spreadsheets/d/1Bch_R4-J7u2el33uUBwpnUtflQWrHrcw/edit?usp=drive_web&ouid=111074494541402159127&rtpof=true) 
+  - [Detailed Data Dictionary - Aligned with 2024 Case Report Form (CRF) and Case Investigation Forms (CIF)](https://docs.google.com/spreadsheets/d/1Bch_R4-J7u2el33uUBwpnUtflQWrHrcw/edit?usp=drive_web&ouid=111074494541402159127&rtpof=true) 
 
 *Please note that the Go.Data v49 includes a template that aligns with the 2022 WHO CRF and CIF. Users who wish to utilize the most recent form are encouraged to import the mpox outbreak sync package along with the respective language file. Available options include:
 1) [mpox sync package WITH reference data](https://drive.google.com/file/d/1c-rzV5u3hyuce25MZ2A2_0A5YlAzsvzR/view?usp=drive_link): this option contains the outbreak, forms, and mpox-specific reference data.
