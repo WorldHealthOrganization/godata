@@ -25,7 +25,7 @@ The detailed data dictionary for mpox, which is aligned with the 2024 WHO Case R
   - [Aligned with 2024 WHO CRF and CIF](https://docs.google.com/spreadsheets/d/1Bch_R4-J7u2el33uUBwpnUtflQWrHrcw/edit?usp=drive_web&ouid=111074494541402159127&rtpof=true) 
 
 *Please note that the Go.Data v49 includes a template that aligns with the 2022 WHO CRF and CIF. Users who wish to utilize the most recent form are encouraged to import the mpox outbreak sync package along with the respective language file. Available options include:
-1) [mpox sync package WITH reference data] (https://drive.google.com/file/d/1c-rzV5u3hyuce25MZ2A2_0A5YlAzsvzR/view?usp=drive_link): this option contains the outbreak, forms, and mpox-specific reference data.
+1) [mpox sync package WITH reference data](https://drive.google.com/file/d/1c-rzV5u3hyuce25MZ2A2_0A5YlAzsvzR/view?usp=drive_link): this option contains the outbreak, forms, and mpox-specific reference data.
 2) [mpox sync package](https://drive.google.com/file/d/1gfZ2qkfx1aBimDViVvF1JlDFicWs_SRF/view?usp=drive_link): this option contains the mpox outbreak and forms. Users can create and customize mpox-specific reference data as needed.
 
 Please email godata@who.int to obtain credentials to demo instance to see template in use.
