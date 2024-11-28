@@ -27,8 +27,9 @@ To access installation files to begin collecting data for any of the below disea
 *Please note that the Go.Data v49 includes a template that aligns with the 2022 WHO CRF and CIF. Users who wish to utilize the most recent form are encouraged to import the mpox outbreak sync package along with the respective language file. Available options include:
 
 1) [mpox sync package WITH reference data](https://drive.google.com/file/d/1c-rzV5u3hyuce25MZ2A2_0A5YlAzsvzR/view?usp=drive_link): This option includes the outbreak forms, mpox-specific reference data, and a separate language file.
+   
 
-2) [mpox sync package](https://drive.google.com/file/d/1gfZ2qkfx1aBimDViVvF1JlDFicWs_SRF/view?usp=drive_link): This option includes the outbreak forms and a separate language file. Users can create and customize mpox-specific reference data as needed.
+3) [mpox sync package](https://drive.google.com/file/d/1gfZ2qkfx1aBimDViVvF1JlDFicWs_SRF/view?usp=drive_link): This option includes the outbreak forms and a separate language file. Users can create and customize mpox-specific reference data as needed.
 
 **Important: The language file must be merged with the system's language file and should not be imported using the sync package.
 
