@@ -32,8 +32,7 @@
     }
   ],
   "funding": {
-    "channels": [
-      {
+    "channels": [{
         "guid": "go.data-funding",
         "type": "bank"
       }
