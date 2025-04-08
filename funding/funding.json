@@ -28,14 +28,7 @@
         "Apache-2.0",
         "MIT"
       ],
-      "tags": [
-        "outbreak investigation",
-        "contact tracing",
-        "data visualization",
-        "epidemiology",
-        "open-source software",
-        "health data management"
-      ]
+      "tags": ["outbreak investigation", "contact tracing", "data visualization", "epidemiology", "open-source software", "health data management"]
     }
   ],
   "funding": {
