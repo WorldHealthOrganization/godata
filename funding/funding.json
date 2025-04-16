@@ -5,17 +5,19 @@
     "role": "owner",
     "name": "The Go.Data project",
     "email": "godata@who.int",
-    "description": "Founded in 1948, WHO is the United Nations agency that connects nations, partners and people to promote health, keep the world safe and serve the vulnerable – so everyone, everywhere can attain the highest level of health. ",
+    "phone": "",
+    "description": "Founded in 1948, WHO is the United Nations agency that connects nations, partners and people to promote health, keep the world safe and serve the vulnerable – so everyone, everywhere can attain the highest level of health [https://www.who.int/]. ",
     "webpageUrl": {
-      "url": "https://www.who.int/"     
+      "url": "https://github.com/WorldHealthOrganization"
     }
   },
-  "projects": [{
-      "guid": "go.data",
+  "projects": [
+    {
+      "guid": "godata",
       "name": "Go.Data",
-      "description": "Go.Data is an open-source web and mobile application developed by the WHO in collaboration with the Global Outbreak Alert and Response Network (GOARN) partners. It is designed for use by public health workers, particularly first responders, epidemiologists, and contact tracers during outbreak responses. This tool enables responders to collect data in a more structured manner, integrates data sets for comparison across different regions or events, and provides real-time analysis to inform field operations. Additionally, it includes various features to help organize and monitor contact tracing activities effectively.",
+      "description": "Go.Data is an open-source web and mobile application developed by the WHO in collaboration with the Global Outbreak Alert and Response Network (GOARN) partners. It is designed for use by public health workers, particularly first responders, epidemiologists, and contact tracers during outbreak responses. This tool enables responders to collect data in a more structured manner, integrates data sets for comparison across different regions or events, and provides real-time analysis to inform field operations. Additionally, it includes various features to help organize and monitor contact tracing activities effectively [https://www.who.int/tools/godata].",
       "webpageUrl": {
-        "url": "https://www.who.int/tools/godata"        
+        "url": "https://github.com/WorldHealthOrganization/godata"
       },
       "repositoryUrl": {
         "url": "https://github.com/WorldHealthOrganization/godata",
@@ -28,18 +30,28 @@
         "Apache-2.0",
         "MIT"
       ],
-      "tags": ["outbreak investigation", "contact tracing", "data visualization", "epidemiology", "open-source software", "health data management"]
+      "tags": [
+        "outbreak-investigation",
+        "contact-tracing",
+        "data-visualization",
+        "epidemiology",
+        "open-source-software",
+        "health-data-management"
+      ]
     }
   ],
   "funding": {
-    "channels": [{
-        "guid": "go.data-funding",
-        "type": "bank"
+    "channels": [
+      {
+        "guid": "godata-funding",
+        "type": "bank",
+        "address": "",
+        "description": ""
       }
     ],
     "plans": [
       {
-        "guid": "go.data-funding-developemt",
+        "guid": "godata-funding-developemt",
         "status": "active",
         "name": "Monthly funding plan",
         "description": "This will cover our monthly development costs, including work dedicated to building, maintaining, and enhancing core features of the tool, ensuring high code quality, and supporting ongoing technical improvements.",
@@ -47,11 +59,11 @@
         "currency": "USD",
         "frequency": "monthly",
         "channels": [
-          "go.data-funding"
+          "godata-funding"
         ]
       },
       {
-        "guid": "go.data-qa",
+        "guid": "godata-qa",
         "status": "active",
         "name": "Monthly funding plan",
         "description": "This will address the monthly expenses related to Quality Assurance activities, which include designing and executing testing procedures to ensure software reliability, performance, and compliance with functional requirements.",
@@ -59,11 +71,11 @@
         "currency": "USD",
         "frequency": "monthly",
         "channels": [
-          "go.data-funding"
+          "godata-funding"
         ]
       },
       {
-        "guid": "go.data-funding-ui-ux",
+        "guid": "godata-funding-ui-ux",
         "status": "active",
         "name": "Monthly funding plan",
         "description": "This will address our monthly expenses related to UI/UX design for optimizing user interaction and enhancing interface aesthetics, DevOps practices to ensure reliable and scalable system performance, and cybersecurity measures to protect infrastructure and sensitive data.",
@@ -71,11 +83,11 @@
         "currency": "USD",
         "frequency": "monthly",
         "channels": [
-          "go.data-funding"
+          "godata-funding"
         ]
       },
       {
-        "guid": "Goodwill plan",
+        "guid": "goodwill-plan",
         "status": "active",
         "name": "One-time",
         "description": "Contribute any amount you like to support the project. Thank you for your support.",
@@ -83,7 +95,7 @@
         "currency": "USD",
         "frequency": "one-time",
         "channels": [
-          "go.data-funding"
+          "godata-funding"
         ]
       }
     ],
