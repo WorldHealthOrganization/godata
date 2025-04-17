@@ -1,7 +1,7 @@
 {
   "version": "v1.0.0",
   "entity": {
-    "type": "organization",
+    "type": "organisation",
     "role": "owner",
     "name": "The Go.Data project",
     "email": "godata@who.int",
