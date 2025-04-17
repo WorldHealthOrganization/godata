@@ -1,12 +1,12 @@
 {
   "version": "v1.0.0",
   "entity": {
-    "type": "organisation",
+    "type": "organization",
     "role": "owner",
     "name": "The Go.Data project",
     "email": "godata@who.int",
     "phone": "",
-    "description": "Founded in 1948, WHO is the United Nations agency that connects nations, partners and people to promote health, keep the world safe and serve the vulnerable – so everyone, everywhere can attain the highest level of health (https://www.who.int/). ",
+    "description": "Founded in 1948, the World Health Organization (WHO) is the United Nations agency that connects nations, partners and people to promote health, keep the world safe and serve the vulnerable – so everyone, everywhere can attain the highest level of health (https://www.who.int/). ",
     "webpageUrl": {
       "url": "https://github.com/WorldHealthOrganization"
     }
