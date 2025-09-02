@@ -16,6 +16,16 @@ To see more information on how to set up and use Outbreak Templates, please visi
 
 To access installation files to begin collecting data for any of the below diseases, you can contact godata@who.int.
 
+## Influenza viruses with pandemic potential  
+ 
+  - [Metadata Overview Guide](https://worldhealthorg.sharepoint.com/:f:/r/sites/Go.Data/Shared%20Documents/General?csf=1&web=1)
+  - [Detailed Data Dictionary - Aligned with the Protocol to investigate non-seasonal influenza and other emerging acute respiratory diseases and the influenza investigations and studies (UNITY studies) protocols.](https://worldhealthorg.sharepoint.com/:x:/r/sites/Go.Data/Shared%20Documents/General/Roll-out%20activities/Outbreak%20Toolkit/Influenza/Go.Data%20-%20Influenza%20Template%20-%20Data%20Dictionary_2025.xlsx?d=w9b046382ed4d412ab10e3c2afebe4956&csf=1&web=1) 
+
+In the upcoming v50 release, the updated "Influenza viruses with pandemic potential" template will be integrated directly into the Templates section of the application. 
+
+To obtain credentials to the demo instance to see the template in use, kindly send an email to [godata@who.int](godata@who.int). 
+
+
 ## Yellow Fever 
 - [Metadata Overview Guide](https://sprcdn-assets.sprinklr.com/1652/3f1f7d75-d578-40dc-bb6b-87930da9b5e5-911807302.pdf)
 - [Detailed Data Dictionary](https://docs.google.com/spreadsheets/d/1dPP4jsnwlXhEqlLfSzzdmitUqjnb0EsF/edit?usp=sharing&ouid=106213743316927309200&rtpof=true&sd=true)
