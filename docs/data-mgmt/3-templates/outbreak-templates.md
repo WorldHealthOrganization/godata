@@ -19,7 +19,7 @@ To access installation files to begin collecting data for any of the below disea
 ## Influenza viruses with pandemic potential  
  
   - [Metadata Overview Guide](https://github.com/WorldHealthOrganization/godata/blob/master/docs/data-mgmt/3-templates/Go.Data%20Metadata%20Overview%20-%20Influenza.pdf)
-  - [Detailed Data Dictionary - Aligned with the Protocol to investigate non-seasonal influenza and other emerging acute respiratory diseases and the influenza investigations and studies (UNITY studies) protocols.](https://worldhealthorg.sharepoint.com/:x:/r/sites/Go.Data/Shared%20Documents/General/Roll-out%20activities/Outbreak%20Toolkit/Influenza/Go.Data%20-%20Influenza%20Template%20-%20Data%20Dictionary_2025.xlsx?d=w9b046382ed4d412ab10e3c2afebe4956&csf=1&web=1) 
+  - [Detailed Data Dictionary - Aligned with the Protocol to investigate non-seasonal influenza and other emerging acute respiratory diseases and the influenza investigations and studies (UNITY studies) protocols.](https://github.com/WorldHealthOrganization/godata/blob/master/docs/data-mgmt/3-templates/Go.Data%20-%20Influenza%20Template%20-%20Data%20Dictionary_2025.xlsx) 
 
 In the upcoming v50 release, the updated "Influenza viruses with pandemic potential" template will be integrated directly into the Templates section of the application. 
 
